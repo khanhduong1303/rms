@@ -44,6 +44,11 @@
         <%= msg %>
       <% end %>
     <% end %>
+    <div>
+      <% if user_signed_in? %>
+            Sign in as <%= current_user.email %>. Not you?
+      <% end %>
+    </div>
 
     <%= yield %>
   </div>
