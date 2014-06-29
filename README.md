@@ -1,4 +1,4 @@
-==Thong tin
+== Thong tin
 
 Resident Management System.
 
