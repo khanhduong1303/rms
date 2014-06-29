@@ -1,4 +1,4 @@
-== Thong tin
+== README
 
 Resident Management System.
 
