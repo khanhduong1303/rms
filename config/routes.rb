@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
 
 
+#TEST
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
