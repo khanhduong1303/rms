@@ -14,3 +14,19 @@
  *= require_tree .
  *= require_self
  */
+
+body{
+    padding-top: 5px;
+}
+a:hover{
+    text-decoration: none;
+}
+.float-right{
+    float: right;
+}
+.footer {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 40px;
+    border-top: 1px solid #EEE;
+}
