@@ -30,3 +30,12 @@ a:hover{
     margin-top: 40px;
     border-top: 1px solid #EEE;
 }
+.with100per{
+    width: 100%;
+}
+.with10per{
+    width: 10%;
+}
+.paddingTop20px{
+    padding-top: 20px;
+}
