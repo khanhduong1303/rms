@@ -11,6 +11,15 @@
 .fontSize30{
     font-size: 30px;
 }
+.fontSize40{
+    font-size: 40px;
+}
 .paddingBottom25px{
     padding-top: 25px;
+}
+.floatLeft{
+    float: left;
+}
+.width85per{
+    width: 85%;
 }
