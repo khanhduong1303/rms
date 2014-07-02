@@ -1,25 +1,31 @@
 Rails.application.routes.draw do
-
+     
+     devise_scope :user do
+       get 'user/profile/:id', to: 'registrations#profile', as: 'profile'
+    end
+  devise_for :users ,:controllers => {:registrations =>
+"registrations" , :sessions => "sessions"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'homes#index'
-
+authenticated :user do
+  root :to => 'homes#index', :as => :authenticated_root
+end
+root :to => redirect('/users/sign_in')
 
 
 
 #TEST
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+     # get 'user/:id' => 'registrations#show' , :as =>  :user
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :homes
-
+  
   # Example resource route with options:
   #   resources :products do
   #     member do

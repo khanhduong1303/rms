@@ -26,12 +26,21 @@
     </div>
    <div class="col-lg-9">
      <div class="float-right">
-       <a href="">Welcome </a>
-       <% #if user_signed_in? %>
-        <% #= current_user.email %>
-        <% #end %>
-       <a href="" class="glyphicon glyphicon-cog"></a>
-       <input type="button" class="btn btn-primary" value="Sign out"/>
+     <% if user_signed_in?  %>
+       <p>Hi, <%=current_user.username  %>
+    
+       <%= link_to  "",  profile_path(current_user) , :class => "glyphicon glyphicon-cog" %> 
+       <%= link_to 'Sign Out', destroy_user_session_path, method:
+
+:delete ,:class => "btn btn-primary" %> </p>
+<%  else  %>
+<a href="">Welcome </a>
+      <% #if user_signed_in? %>
+       <% #= current_user.email %>
+       <% #end %>
+      <a href="" class="glyphicon glyphicon-cog"></a>
+      <input type="button" class="btn btn-primary" value="Sign out"/>
+<% end %>
      </div>
 
    </div>

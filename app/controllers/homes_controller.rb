@@ -1,9 +1,9 @@
 class HomesController < ApplicationController
-
+before_filter :authenticate_user! , :only => [:index, :new, :edit]
   def index
 
   end
   def edit
-    render layout: 'application'
+    
   end
 end
