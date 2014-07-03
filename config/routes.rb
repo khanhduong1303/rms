@@ -2,6 +2,8 @@ Rails.application.routes.draw do
      
      devise_scope :user do
        get 'user/profile/:id', to: 'registrations#profile', as: 'profile'
+       patch 'user/change_pass' , to: 'registrations#change_password' , as: 'change_pass'
+       patch 'user/add_avatar' , to: 'registrations#add_avatar' , as: 'add_avatar'
     end
   devise_for :users ,:controllers => {:registrations =>
 "registrations" , :sessions => "sessions"}

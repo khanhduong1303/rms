@@ -1,29 +1,109 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Setting page</h2>
+<hr/>
+<div class = "row">
+<div class = "col-sm-4">
+<% if current_user.avatar? %>
+<%= image_tag  current_user.avatar.url(:big) %>
+<%else %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= image_tag  "default-user-picture.gif" %>
+
+<%end %>
+<a  data-toggle="modal" data-target="#myModal" href="#">
+<span class = "glyphicon glyphicon-pencil"></span></a>
+</div>
+<div class = "col-sm-8">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put ,:id => "edit_user" , 
+                           :class => "form-horizontal",
+                          :role =>"form" }) do |f| %>
   <%= devise_error_messages! %>
+  <div class="form-group">
+      <%= f.label :name , :class => 'col-sm-4 control-label' %>
+      <div class='col-sm-8'>
+      <%= f.text_field :name, autofocus: true ,:class => "form-control" %></div>
+      </div>
+    <div class="form-group">
+      <%= f.label :company , :class => 'col-sm-4 control-label' %>
+      <div class='col-sm-8'>
+      <%= f.text_field :company,:class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+      <%= f.label :email ,:class => 'col-sm-4 control-label'%>
+      <div class='col-sm-8'>
+      <%= f.email_field :email ,:class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+      <%= f.label :country , :class => 'col-sm-4 control-label' %>
+      <div class='col-sm-8'>
+      <%= f.text_field :country, :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+      <%= f.label :city , :class => 'col-sm-4 control-label' %>
+      <div class='col-sm-8'>
+      <%= f.text_field :city, :class => "form-control" %></div>
+      </div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+      <div class="form-group">
+      <%= f.label :phone, "Phone No",:class => 'col-sm-4 control-label' %>
+      <div class='col-sm-8'>
+      <%= f.text_field :phone ,:class => "form-control" %></div>
+      </div>
+      
+      <div class="form-group">
+      <%= f.label :postal_code, "Postal Code",:class => 'col-sm-4 control-label' %>
+      <div class='col-sm-8'>
+      <%= f.text_field :postal_code  ,:class => "form-control"%></div>
+      </div>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %></div>
-
-  <div><%= f.submit "Update" %></div>
+  <div class= "col-sm-offset-4 col-sm-8">
+  <%= link_to "Cancel" , profile_path(current_user), class: "btn btn-danger"  %>
+  <%= f.submit "Save" , class: "btn btn-success"  %>
+  </div> 
 <% end %>
+</div>
+</div>
+<hr/>
+<%= render partial: "devise/shared/change_password" %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+
+<!-- Pop up to edit image -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+
+  <%= form_for(resource, as: resource_name, url: add_avatar_path ,:html => {:id => "upload_image" , 
+    :class => "form-horizontal",
+    :role =>"form"}, method: :patch  ) do |f| %>
+   <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Upload a New Photo </h4>
+      </div>
+      <div class="modal-body">
+  
+     
+       <div class="form-group">
+   
+      <div class='col-sm-8'>
+      <%= f.file_field :avatar %></div>
+      </div>
+      
+      <div class="modal-footer">
+       <div>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      <%= f.submit "Submit", :class => "btn btn-success" %></div>
+      </div>
+    </div>
+    <% end %>
+
+
+
+
+
+
+  </div>
+</div>
+
+

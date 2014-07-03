@@ -13,8 +13,13 @@ validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 validates_attachment :avatar,
     :size => { :in => 0..3.megabytes },
     :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
-    
-validates :username, :uniqueness => {:case_sensitive => false}
+ validates :email, uniqueness: true
+ validates :username, presence: true
+ validates :phone, presence: true
+ validates :postal_code, presence: true
+ validates :enquiry, presence: true
+  validates :username, length: { minimum: 4 , maximun: 14}
+validates :username, uniqueness: true
  def self.find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup
       if login = conditions.delete(:login)

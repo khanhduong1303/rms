@@ -1,0 +1,8 @@
+<%  if resource.errors.any? %>
+             $("#user_password").val('');
+$("#user_password_confirmation").val('');
+  $("div#errors").remove();
+	$('<div id="errors"><p>Please correct the following <%= pluralize(resource.errors.count, "error") %>:</p><ul><% resource.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %></ul></div>').insertBefore('div.modal-body');
+<% else %>
+location.reload(); 
+<% end %>
