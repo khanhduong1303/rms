@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707020016) do
+ActiveRecord::Schema.define(version: 20140707040339) do
 
   create_table "bulletins", force: true do |t|
     t.string   "title",                      null: false
@@ -30,6 +30,29 @@ ActiveRecord::Schema.define(version: 20140707020016) do
     t.string   "tenure"
     t.string   "top_year"
     t.integer  "num_of_units"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_images", force: true do |t|
+    t.text     "description"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.date     "date"
+    t.time     "event_start"
+    t.time     "event_end"
+    t.string   "location"
+    t.string   "organiser"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"

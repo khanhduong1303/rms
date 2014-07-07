@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
      
+  resources :event_images
+
+  resources :events
+
   resources :bulletins
 
   devise_scope :user do
