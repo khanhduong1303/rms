@@ -1,0 +1,39 @@
+<div class="page-header">
+  <%= link_to new_bulletin_path, :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Bulletin
+  <% end %>
+  <h1>Listing bulletins</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Content</th>
+            <th>Send notify</th>
+            <th>Condo</th>
+            <th>Int</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @bulletins) do |bulletin| %>
+            <td><%= bulletin.title %></td>
+            <td><%= bulletin.date %></td>
+            <td><%= bulletin.content %></td>
+            <td><%= bulletin.send_notify %></td>
+            <td><%= bulletin.condo_id %></td>
+            <td><%= bulletin.int %></td>
+            <td><%= link_to 'Show', bulletin %></td>
+        <td><%= link_to 'Edit', edit_bulletin_path(bulletin) %></td>
+        <td><%= link_to 'Destroy', bulletin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

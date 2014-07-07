@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  date: 2014-07-07
+  content: MyText
+  send_notify: false
+  condo_id: MyString
+  int: MyString
+
+two:
+  title: MyString
+  date: 2014-07-07
+  content: MyText
+  send_notify: false
+  condo_id: MyString
+  int: MyString

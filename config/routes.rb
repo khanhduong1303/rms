@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
      
+  resources :bulletins
+
   devise_scope :user do
     get 'user/profile/:id', to: 'registrations#profile', as: 'profile'
     patch 'user/change_pass' , to: 'registrations#change_password' , as: 'change_pass'
