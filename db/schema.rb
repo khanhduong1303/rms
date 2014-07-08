@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707040339) do
+ActiveRecord::Schema.define(version: 20140707081930) do
 
   create_table "bulletins", force: true do |t|
     t.string   "title",                      null: false
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140707040339) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "condo_id"
   end
 
   create_table "users", force: true do |t|

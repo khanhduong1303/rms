@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_hightlight
   # GET /events
   # GET /events.json
   def index
@@ -15,6 +15,8 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @condo = Condo.all
+    @event_image = EventImage.new
   end
 
   # GET /events/1/edit
@@ -28,8 +30,14 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
+        params[:event][:image].each do |image|
+           @event.event_images.create(:image => image)
+        end
+
+        format.html { redirect_to :action => 'index'#redirect_to @event, notice: 'Event was successfully created.'
+                    }
+        format.json { #render :show, status: :created, location: @event
+                    }
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -69,6 +77,10 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :date, :event_start, :event_end, :location, :organiser, :description)
+      params.require(:event).permit(:name, :date, :event_start, :event_end, :location, :organiser, :description, :condo_id)
     end
+
+  def set_hightlight
+    session[:menustatus]='events'
+  end
 end

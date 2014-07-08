@@ -20,6 +20,8 @@
     <tbody>
       <%= content_tag_for(:tr, @event_images) do |event_image| %>
             <td><%= event_image.description %></td>
+        <td><%= image_tag event_image.image.url %>
+        </td>
             <td><%= link_to 'Show', event_image %></td>
         <td><%= link_to 'Edit', edit_event_image_path(event_image) %></td>
         <td><%= link_to 'Destroy', event_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>

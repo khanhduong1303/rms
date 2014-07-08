@@ -1,41 +1,96 @@
 <div class="page-header">
-  <%= link_to new_event_path, :class => 'btn btn-primary' do %>
+  <%= link_to new_event_path, :class => 'btn btn-primary',:remote => true do %>
     <span class="glyphicon glyphicon-plus"></span>
-    New Event
+    Add New Event
   <% end %>
   <h1>Listing events</h1>
 </div>
 
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Event start</th>
-            <th>Event end</th>
-            <th>Location</th>
-            <th>Organiser</th>
-            <th>Description</th>
-            <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
+<% @events.each do |event| %>
+    <div class="row">
+        <div class="col-sm-2 align-center">
+          <% if event.event_images.size > 0 %>
+            <%= image_tag event.event_images[0].image.url(:thumb) %>
+          <% end %>
+        </div>
+        <div class="col-sm-8">
+            <div class="row">
+              <div class="col-sm-12">
+                <h3><%= event.name %></h3>
+              </div>
+            </div>
 
-    <tbody>
-      <%= content_tag_for(:tr, @events) do |event| %>
-            <td><%= event.name %></td>
-            <td><%= event.date %></td>
-            <td><%= event.event_start %></td>
-            <td><%= event.event_end %></td>
-            <td><%= event.location %></td>
-            <td><%= event.organiser %></td>
-            <td><%= event.description %></td>
-            <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-    </tbody>
-  </table>
+          <div class="row">
+            <div class="col-sm-2">
+              Date:
+            </div>
+            <div class="col-sm-10">
+              <%= event.date %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-2">
+              Time:
+            </div>
+            <div class="col-sm-10">
+              <%= event.event_start.strftime('%I:%M %P') %> To <%= event.event_end.strftime('%I:%M %P') %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-2">
+              Location:
+            </div>
+            <div class="col-sm-10">
+              <%= event.location %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-2">
+              Organiser:
+            </div>
+            <div class="col-sm-10">
+              <%= event.organiser %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-2">
+              Description:
+            </div>
+            <div class="col-sm-10">
+              <%= event.description %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <a class="glyphicon glyphicon-trash"><%= link_to ' Delete event', event, method: :delete, data: { confirm: 'Confirm delete Event?' } %></a>
+          <br>
+          <a class="glyphicon glyphicon-pencil"><%= link_to ' Edit event', edit_event_path(event) %></a>
+          <br><br>
+          <%= link_to 'Show more', event, :class => 'btn btn-info' %>
+        </div>
+    </div>
+    <hr>
+<% end %>
+
+<!-- Modal -->
+<div class="modal fade  bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">New event</h4>
+      </div>
+      <div class="modal-body" id="loadNew">
+        ...
+      </div>
+      <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+      <!--</div>-->
+    </div>
+  </div>
 </div>
