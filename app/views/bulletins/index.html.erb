@@ -1,6 +1,6 @@
 <div class="bulletin-header">
   View:
-  <%= link_to new_bulletin_path, :class => 'btn btn-link' do %>
+  <%= link_to new_bulletin_path, { class: 'btn btn-link', remote: true} do %>
     <span class="glyphicon glyphicon-plus"></span> Add New Bulletin
   <% end %>
   <hr>
@@ -33,6 +33,6 @@
 <div id="bulletin-modal" class="modal fade">
   <div class="modal-dialog">
     <div id="bulletin-content" class="modal-content">
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>
