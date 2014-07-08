@@ -2,36 +2,28 @@ class BulletinsController < ApplicationController
   before_action :set_bulletin, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index]
   before_action :set_hightlight
+  respond_to :html, :js, :json
 
-  # GET /bulletins
-  # GET /bulletins.json
   def index
-
     @bulletins = Bulletin.all
   end
 
-  # GET /bulletins/1
-  # GET /bulletins/1.json
   def show
   end
 
-  # GET /bulletins/new
   def new
     @bulletin = Bulletin.new
   end
 
-  # GET /bulletins/1/edit
   def edit
   end
 
-  # POST /bulletins
-  # POST /bulletins.json
   def create
     @bulletin = Bulletin.new(bulletin_params)
 
     respond_to do |format|
       if @bulletin.save
-        format.html { redirect_to @bulletin, notice: 'Bulletin was successfully created.' }
+        format.html { redirect_to action: 'index', notice: 'Bulletin was successfully created.' }
         format.json { render :show, status: :created, location: @bulletin }
       else
         format.html { render :new }
@@ -40,8 +32,6 @@ class BulletinsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /bulletins/1
-  # PATCH/PUT /bulletins/1.json
   def update
     respond_to do |format|
       if @bulletin.update(bulletin_params)
@@ -54,14 +44,12 @@ class BulletinsController < ApplicationController
     end
   end
 
-  # DELETE /bulletins/1
-  # DELETE /bulletins/1.json
+  def delete
+  end
+
   def destroy
     @bulletin.destroy
-    respond_to do |format|
-      format.html { redirect_to bulletins_url, notice: 'Bulletin was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:notice] = 'Bulletin was successfully destroyed.'
   end
 
   private

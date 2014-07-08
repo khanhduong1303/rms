@@ -11,7 +11,7 @@
       </ul>
     </div>
   <% end %>
-
+  <%= f.hidden_field :condo_id, { value: current_user.condo_id } %>
   <div class="form-group" style="width:50%">
     <%= f.text_field :title, { class: 'form-control', placeholder: 'Title' } %>
   </div>

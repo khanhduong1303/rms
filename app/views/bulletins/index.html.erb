@@ -1,8 +1,7 @@
 <div class="bulletin-header">
   View:
   <%= link_to new_bulletin_path, :class => 'btn btn-link' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    Add New Bulletin
+    <span class="glyphicon glyphicon-plus"></span> Add New Bulletin
   <% end %>
   <hr>
 </div>
@@ -16,13 +15,13 @@
         <p><b>Date: </b><%= bulletin.date.strftime("%d/%m/%Y") %></p>
         <p><b>Content:</b></p>
         <p><%= bulletin.content %></p>
-        <%= link_to 'View More', bulletin, {class: 'btn btn-default show-button'} %>
+        <%= link_to 'View More', bulletin, { class: 'btn btn-default show-button', remote: true } %>
       </div>
       <div class="col-xs-2 bulletin-center">
-        <%= link_to bulletin, { method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-link' } do %>
+        <%= link_to bulletin, { class: 'btn btn-link', method: :delete, remote: true } do %>
           <span class="glyphicon glyphicon-trash"></span> Delete Bulletin
         <% end %>
-        <%= link_to edit_bulletin_path(bulletin), {class: 'btn btn-link'} do %>
+        <%= link_to edit_bulletin_path(bulletin), { class: 'btn btn-link' } do %>
           <span class="glyphicon glyphicon-pencil"></span> Edit Bulletin
         <% end %>
       </div>
@@ -30,3 +29,10 @@
     <hr>
   <% end %>
 </div>
+
+<div id="bulletin-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div id="bulletin-content" class="modal-content">
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

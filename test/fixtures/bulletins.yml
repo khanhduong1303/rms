@@ -2,16 +2,14 @@
 
 one:
   title: MyString
-  date: 2014-07-07
+  date: 2014-07-08
   content: MyText
   send_notify: false
-  condo_id: MyString
-  int: MyString
+  condo_id: 1
 
 two:
   title: MyString
-  date: 2014-07-07
+  date: 2014-07-08
   content: MyText
   send_notify: false
-  condo_id: MyString
-  int: MyString
+  condo_id: 1

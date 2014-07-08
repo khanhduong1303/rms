@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707020016) do
+ActiveRecord::Schema.define(version: 20140708101913) do
 
   create_table "bulletins", force: true do |t|
     t.string   "title",                      null: false

@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <h4 class="modal-title">
+    <b><%= @bulletin.title %></b>
+  </h4>
+</div>
+<div class="modal-body">
+  <p><b>Date: </b><%= @bulletin.date.strftime("%d/%m/%Y") %></p>
+  <p><b>Content:</b></p>
+  <p><%= @bulletin.content %></p>
+</div>
