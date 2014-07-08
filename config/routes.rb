@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-     
-  resources :bulletins
+
+  resources :bulletins do
+    get 'confirm'
+  end
 
   devise_scope :user do
     get 'user/profile/:id', to: 'registrations#profile', as: 'profile'

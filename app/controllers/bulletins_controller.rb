@@ -1,11 +1,11 @@
 class BulletinsController < ApplicationController
   before_action :set_bulletin, only: [:show, :edit, :update, :destroy]
+  before_action :set_bulletins, only: [:index, :create, :update, :destroy]
   before_action :authenticate_user!, except: [:index]
   before_action :set_hightlight
   respond_to :html, :js, :json
 
   def index
-    @bulletins = Bulletin.all
   end
 
   def show
@@ -23,7 +23,7 @@ class BulletinsController < ApplicationController
 
     respond_to do |format|
       if @bulletin.save
-        format.html { redirect_to action: 'index', notice: 'Bulletin was successfully created.' }
+        flash[:notice] = 'Bulletin was successfully created.'
         format.json { render :show, status: :created, location: @bulletin }
       else
         format.html { render :new }
@@ -35,7 +35,7 @@ class BulletinsController < ApplicationController
   def update
     respond_to do |format|
       if @bulletin.update(bulletin_params)
-        format.html { redirect_to @bulletin, notice: 'Bulletin was successfully updated.' }
+        flash[:notice] = 'Bulletin was successfully updated.'
         format.json { render :show, status: :ok, location: @bulletin }
       else
         format.html { render :edit }
@@ -44,7 +44,8 @@ class BulletinsController < ApplicationController
     end
   end
 
-  def delete
+  def confirm
+    @bulletin = Bulletin.find(params[:bulletin_id])
   end
 
   def destroy
@@ -56,6 +57,10 @@ class BulletinsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_bulletin
       @bulletin = Bulletin.find(params[:id])
+    end
+
+    def set_bulletins
+      @bulletins = Bulletin.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

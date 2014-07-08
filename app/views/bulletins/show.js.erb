@@ -1,2 +1,2 @@
-$('#bulletin-content').html('<%= j(render 'show') %>')
+$('#bulletin-content').html('<%= escape_javascript(render 'show') %>')
 $('#bulletin-modal').modal('show')
