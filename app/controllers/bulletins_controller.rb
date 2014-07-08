@@ -1,10 +1,12 @@
 class BulletinsController < ApplicationController
   before_action :set_bulletin, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index]
+  before_action :set_hightlight
 
   # GET /bulletins
   # GET /bulletins.json
   def index
+
     @bulletins = Bulletin.all
   end
 
@@ -71,5 +73,9 @@ class BulletinsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def bulletin_params
       params.require(:bulletin).permit(:title, :date, :content, :send_notify, :condo_id)
+    end
+
+    def set_hightlight
+      session[:menustatus] = 'bulletins'
     end
 end
