@@ -19,29 +19,11 @@ class BulletinsController < ApplicationController
   end
 
   def create
-    @bulletin = Bulletin.new(bulletin_params)
-
-    respond_to do |format|
-      if @bulletin.save
-        flash[:notice] = 'Bulletin was successfully created.'
-        format.json { render :show, status: :created, location: @bulletin }
-      else
-        format.html { render :new }
-        format.json { render json: @bulletin.errors, status: :unprocessable_entity }
-      end
-    end
+    @bulletin = Bulletin.create(bulletin_params)
   end
 
   def update
-    respond_to do |format|
-      if @bulletin.update(bulletin_params)
-        flash[:notice] = 'Bulletin was successfully updated.'
-        format.json { render :show, status: :ok, location: @bulletin }
-      else
-        format.html { render :edit }
-        format.json { render json: @bulletin.errors, status: :unprocessable_entity }
-      end
-    end
+    @bulletin.update_attributes(bulletin_params)
   end
 
   def confirm
