@@ -12,65 +12,97 @@
     </div>
   <% end %>
     <div class="form-group">
-      <%= f.label 'Condo name', :class => "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.collection_select(:condo_id,@condo,:id,:name, :class => "form-control") %>
+      <%= f.label 'Condo name:', :class => "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= f.collection_select(:condo_id,@condo,:id,:name, {} ,:class => "form-control") %>
       </div>
     </div>
   <div class="form-group">
-    <%= f.label :name, :class => "col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <%= f.label 'Name:', :class => "col-sm-2 control-label" %>
+    <div class="col-sm-5">
       <%= f.text_field :name, :class => "form-control" %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :date, :class => "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.date_select :date, :class => "form-control" %>
+    <%= f.label 'Date:', :class => "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+    <div class="input-group date"  id='datetime-picker'  data-date-format="DD/MM/YYYY">
+      <%= f.text_field :date, { class: "form-control", placeholder: 'DD/MM/YYYY', value: @event.date.try(:strftime, "%d/%m/%Y") } %>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     </div>
   </div>
-  <div class="form-group">
-    <%= f.label :event_start, :class => "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.time_select :event_start, :class => "form-control" %>
-    </div>
   </div>
   <div class="form-group">
-    <%= f.label :event_end, :class => "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.time_select :event_end, :class => "form-control" %>
+    <%= f.label 'Time:', :class => "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.time_select :event_start, :class => "form-control" %> To  <%= f.time_select :event_end, :class => "form-control" %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :location, :class => "col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <div class="col-sm-5">
       <%= f.text_field :location, :class => "form-control" %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :organiser, :class => "col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <div class="col-sm-5">
       <%= f.text_field :organiser, :class => "form-control" %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :description, :class => "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_area :description, :class => "form-control" %>
+      <%= f.text_area :description, :class => "form-control", rows: 4 %>
     </div>
   </div>
-    <div class="form-group">
-      <%= f.label 'Upload photo', :class => "col-sm-2 control-label" %><br>
-      <div class="col-sm-10">
-        <%= f.file_field :image, :multiple => true %>
-      </div>
-      <div class="col-sm-10">
-        <%= f.file_field :image, :multiple => true %>
-      </div>
-    </div>
+    <hr>
+
+    <% if  @event.persisted? %>
+        <div class="form-group">
+          <%= f.label 'Photos:', :class => "col-sm-2 control-label" %><br>
+          <div class="col-sm-10">
+            <%= f.file_field :image, :multiple => true %>
+            <br>
+            <button id="addMorePhoto" type="button" class="btn btn-default">Add more photo</button>
+          </div>
+          <div class="col-sm-12 paddingTop20px">
+            <div class="div-frame margin-auto">
+                <% @event_image.each do |image| %>
+                  <div class="floatLeft padding-left-30 paddingTop20px">
+                    <%= image_tag image.image.url(:small), :class=>"img-thumbnail" %>
+                    <br>
+                    <%= check_box_tag 'image_id[]', image.id%> Delete
+                  </div>
+
+                <% end %>
+            </div>
+          </div>
+        </div>
+    <% else %>
+        <div class="form-group">
+          <%= f.label 'Upload photos:', :class => "col-sm-2 control-label" %><br>
+          <div class="col-sm-10">
+            <%= f.file_field :image, :multiple => true %>
+            <br>
+            <button id="addMorePhoto" type="button" class="btn btn-default">Add more photo</button>
+          </div>
+        </div>
+    <% end %>
+
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit :class => "btn btn-primary" %>
+    <div class="col-sm-offset-2 col-sm-8 align-center">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      <%= f.submit :class => "btn btn-success", :value => @event.persisted? ? 'Save':'Submit' %>
     </div>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+    $(function() {
+        $('#datetime-picker').datetimepicker({
+            pickTime: false
+        });
+    });
+</script>

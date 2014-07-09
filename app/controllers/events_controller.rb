@@ -21,6 +21,12 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @condo = Condo.all
+    @event_image = @event.event_images
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /events
@@ -30,11 +36,12 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        params[:event][:image].each do |image|
-           @event.event_images.create(:image => image)
+        if params[:event][:image]
+          params[:event][:image].each do |image|
+            @event.event_images.create(:image => image)
+          end
         end
-
-        format.html { redirect_to :action => 'index'#redirect_to @event, notice: 'Event was successfully created.'
+        format.html { redirect_to :action => 'index', notice: 'Event was successfully created.'#redirect_to @event
                     }
         format.json { #render :show, status: :created, location: @event
                     }
@@ -50,7 +57,19 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        if params[:image_id]
+          params[:image_id].each do |image_id|
+            @event_image= EventImage.find(image_id).destroy
+          end
+
+        end
+        if params[:event][:image]
+          params[:event][:image].each do |image|
+            @event.event_images.create(:image => image)
+          end
+        end
+        format.html { redirect_to :action => 'index'#redirect_to @event, notice: 'Event was successfully updated.'
+                    }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }

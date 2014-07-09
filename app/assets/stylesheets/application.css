@@ -46,3 +46,19 @@ a:hover{
 .align-center{
     text-align: center;
 }
+.div-frame{
+    height:180px;
+    width:90%;
+    border:solid 2px dimgrey;
+    overflow:scroll;
+    overflow-x:hidden;
+    overflow-y:scroll;
+}
+.margin-auto{
+    margin: auto;
+}
+.padding-left-30{
+    padding-left: 30px;
+}
+
+
