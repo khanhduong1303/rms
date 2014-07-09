@@ -16,6 +16,7 @@ class BulletinsController < ApplicationController
   end
 
   def edit
+   @h = 'a'
   end
 
   def create

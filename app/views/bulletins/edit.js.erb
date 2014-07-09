@@ -1,1 +1,5 @@
-$(this).html()
+$(function() {
+  $(document).on('click', '.edit-button', function() {
+    alert($(this).prop('href'))
+  })
+})
