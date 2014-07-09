@@ -16,7 +16,6 @@ class BulletinsController < ApplicationController
   end
 
   def edit
-   @h = 'a'
   end
 
   def create
@@ -43,7 +42,7 @@ class BulletinsController < ApplicationController
     end
 
     def set_bulletins
-      @bulletins = Bulletin.all
+      @bulletins = Bulletin.order 'date DESC'
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -55,3 +54,4 @@ class BulletinsController < ApplicationController
       session[:menustatus] = 'bulletins'
     end
 end
+
