@@ -1,0 +1,21 @@
+<% @bulletins.each do |bulletin| %>
+  <div class="row">
+    <div class="col-xs-10">
+      <p><b><h4><%= bulletin.title %></h4></b></p>
+      <p><b>Date: </b><%= bulletin.date.strftime("%d/%m/%Y") %></p>
+      <p><b>Content:</b></p>
+      <p><%= bulletin.content %></p>
+      <%= link_to 'View More', bulletin, { class: 'btn btn-default show-button', remote: true } %>
+    </div>
+    <div class="bulletin-center">
+      <%= link_to bulletin_confirm_path(bulletin), { class: 'btn btn-link', remote: true } do %>
+        <span class="glyphicon glyphicon-trash"></span> Delete Bulletin
+      <% end %>
+      <%= link_to edit_bulletin_path(bulletin), { class: 'edit-button btn btn-link', remote: true } do %>
+        <span class="glyphicon glyphicon-pencil"></span> Edit Bulletin
+      <% end %>
+    </div>
+  </div>
+  <hr>
+<% end %>
+
