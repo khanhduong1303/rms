@@ -16,15 +16,15 @@
  *= require_self
  */
 
-body{
+body {
   padding-top: 5px;
 }
 
-a:hover{
+a:hover {
   text-decoration: none;
 }
 
-.float-right{
+.float-right {
   float: right;
 }
 
@@ -35,15 +35,17 @@ a:hover{
   border-top: 1px solid #EEE;
 }
 
-.with100per{
+.with100per {
   width: 100%;
 }
 
-.floatLeft{
+.menu {
   float: left;
   width: 10%;
+  border-radius: 0px !important;
 }
-.padding-20-px{
+
+.padding-20-px {
   padding-top: 20px;
   padding-bottom: 20px;
 }
