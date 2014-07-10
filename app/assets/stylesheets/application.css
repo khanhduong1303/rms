@@ -17,26 +17,34 @@
  */
 
 body{
-    padding-top: 5px;
+  padding-top: 5px;
 }
+
 a:hover{
-    text-decoration: none;
+  text-decoration: none;
 }
+
 .float-right{
-    float: right;
+  float: right;
 }
+
 .footer {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    margin-top: 40px;
-    border-top: 1px solid #EEE;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+  border-top: 1px solid #EEE;
 }
+
 .with100per{
-    width: 100%;
+  width: 100%;
 }
+
 .with10per{
-    width: 10%;
+  width: 10%;
 }
-.paddingTop20px{
-    padding-top: 20px;
+
+.padding-20-px{
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
+
