@@ -1,0 +1,35 @@
+.bulletin-header {
+  a.btn {
+    float: right;
+  }
+}
+
+div.col-xs-10 {
+  p {
+    text-align: justify
+  }
+}
+
+.bulletin-center {
+  display: table;
+  height: 10em;
+}
+
+//#new_bulletin {
+//  position: relative;
+//}
+
+.show-button {
+//  display: block;
+//  position: absolute;
+//  bottom: 0px;
+//  right: 0px;
+  float: right;
+}
+
+.vcenter {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: right;
+}
+

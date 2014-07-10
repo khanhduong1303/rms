@@ -1,0 +1,7 @@
+<% if @bulletin.errors.any? %>
+
+<% else %>
+  $('#list-bulletin').html('<%= escape_javascript(render 'index') %>')
+  $('#bulletin-modal').modal('hide')
+<% end %>
+

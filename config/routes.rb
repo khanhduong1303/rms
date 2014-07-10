@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-     
+
   resources :event_images
 
   resources :events
 
-  resources :bulletins
+  resources :bulletins do
+    get 'confirm'
+  end
 
   devise_scope :user do
     get 'user/profile/:id', to: 'registrations#profile', as: 'profile'
@@ -74,3 +76,4 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 end
+

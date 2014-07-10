@@ -18,3 +18,4 @@
 //= require turbolinks
 //= require jquery.remotipart
 //= require_tree .
+

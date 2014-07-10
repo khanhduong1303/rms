@@ -10,36 +10,46 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require bootstrap
+//require bootstrap
  *= require bootstrap-datetimepicker
  *= require_tree .
  *= require_self
  */
 
-body{
-    padding-top: 5px;
+body {
+  padding-top: 5px;
 }
-a:hover{
-    text-decoration: none;
+
+a:hover {
+  text-decoration: none;
 }
-.float-right{
-    float: right;
+
+.float-right {
+  float: right;
 }
+
 .footer {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    margin-top: 40px;
-    border-top: 1px solid #EEE;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+  border-top: 1px solid #EEE;
 }
-.with100per{
-    width: 100%;
+
+.with100per {
+  width: 100%;
 }
-.with10per{
-    width: 10%;
+
+.menu {
+  float: left;
+  width: 10%;
+  border-radius: 0px !important;
 }
-.paddingTop20px{
-    padding-top: 20px;
+
+.padding-20-px {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
+
 .testbackground{
     background-color: red;
 }
@@ -60,5 +70,4 @@ a:hover{
 .padding-left-30{
     padding-left: 30px;
 }
-
 
