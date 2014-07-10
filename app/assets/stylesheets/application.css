@@ -39,10 +39,10 @@ a:hover{
   width: 100%;
 }
 
-.with10per{
+.floatLeft{
+  float: left;
   width: 10%;
 }
-
 .padding-20-px{
   padding-top: 20px;
   padding-bottom: 20px;
