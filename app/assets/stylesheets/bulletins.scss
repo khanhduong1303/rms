@@ -5,12 +5,25 @@
 }
 
 .bulletin-center {
-  text-align: center;
-  display: table-cell;
-  vertical-align: middle;
+  display: table;
+  height: 10em;
 }
 
+//#new_bulletin {
+//  position: relative;
+//}
+
 .show-button {
+//  display: block;
+//  position: absolute;
+//  bottom: 0px;
+//  right: 0px;
   float: right;
+}
+
+.vcenter {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
 

@@ -1,2 +1,5 @@
+$('.modal-dialog').hasClass('modal-lg') == true ? $('.modal-dialog').removeClass('modal-lg') : ''
+$('.modal-dialog').addClass('modal-sm')
 $('#bulletin-content').html('<%= escape_javascript(render 'confirm') %>')
 $('#bulletin-modal').modal('show')
+

@@ -1,5 +1,3 @@
-$(function() {
-  $(document).on('click', '.edit-button', function() {
-    alert($(this).prop('href'))
-  })
-})
+var className = '.bulletin-' + <%= @bulletin.id %>;
+$(className).html('<%= escape_javascript(render 'form') %>')
+
