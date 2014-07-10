@@ -16,9 +16,9 @@ class BulletinsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create bulletin" do
+  test "should save bulletin" do
     assert_difference('Bulletin.count') do
-      post :create, bulletin: { condo_id: @bulletin.condo_id, content: @bulletin.content, date: @bulletin.date, int: @bulletin.int, send_notify: @bulletin.send_notify, title: @bulletin.title }
+      post :save, bulletin: { condo_id: @bulletin.condo_id, content: @bulletin.content, date: @bulletin.date, int: @bulletin.int, send_notify: @bulletin.send_notify, title: @bulletin.title }
     end
 
     assert_redirected_to bulletin_path(assigns(:bulletin))

@@ -16,9 +16,9 @@ class EventsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create event" do
+  test "should save event" do
     assert_difference('Event.count') do
-      post :create, event: { date: @event.date, description: @event.description, event_end: @event.event_end, event_start: @event.event_start, location: @event.location, name: @event.name, organiser: @event.organiser }
+      post :save, event: { date: @event.date, description: @event.description, event_end: @event.event_end, event_start: @event.event_start, location: @event.location, name: @event.name, organiser: @event.organiser }
     end
 
     assert_redirected_to event_path(assigns(:event))

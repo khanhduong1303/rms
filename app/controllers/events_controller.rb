@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-
+    @events = Event.all
     respond_to do |format|
       if @event.save
         if params[:event][:image]
@@ -41,13 +41,17 @@ class EventsController < ApplicationController
             @event.event_images.create(:image => image)
           end
         end
-        format.html { redirect_to :action => 'index', notice: 'Event was successfully created.'#redirect_to @event
+        format.html { redirect_to events_path, notice: 'Event was successfully created.'#redirect_to @event
                     }
         format.json { #render :show, status: :created, location: @event
                     }
+        format.js
       else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.html {
+          }
+        format.json { # render json: @event.errors, status: :unprocessable_entity
+          }
+        format.js
       end
     end
   end
@@ -55,25 +59,27 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    @events = Event.all
     respond_to do |format|
       if @event.update(event_params)
         if params[:image_id]
           params[:image_id].each do |image_id|
             @event_image= EventImage.find(image_id).destroy
           end
-
         end
         if params[:event][:image]
           params[:event][:image].each do |image|
             @event.event_images.create(:image => image)
           end
         end
-        format.html { redirect_to :action => 'index'#redirect_to @event, notice: 'Event was successfully updated.'
+        format.html { redirect_to events_path, notice: 'Event was successfully updated.'#redirect_to @event
                     }
         format.json { render :show, status: :ok, location: @event }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

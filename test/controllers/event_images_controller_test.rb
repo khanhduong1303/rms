@@ -16,9 +16,9 @@ class EventImagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create event_image" do
+  test "should save event_image" do
     assert_difference('EventImage.count') do
-      post :create, event_image: { description: @event_image.description }
+      post :save, event_image: { description: @event_image.description }
     end
 
     assert_redirected_to event_image_path(assigns(:event_image))
