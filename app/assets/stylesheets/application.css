@@ -16,6 +16,10 @@
  *= require_self
  */
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   padding-top: 5px;
 }
@@ -50,24 +54,36 @@ a:hover {
   padding-bottom: 20px;
 }
 
+.paddingTop20px {
+  padding-top: 20px;
+}
+
+.floatLeft {
+  float: left;
+}
+
 .testbackground{
-    background-color: red;
+  background-color: red;
 }
+
 .align-center{
-    text-align: center;
+  text-align: center;
 }
+
 .div-frame{
-    height:180px;
-    width:90%;
-    border:solid 2px dimgrey;
-    overflow:scroll;
-    overflow-x:hidden;
-    overflow-y:scroll;
+  height: 180px;
+  width: 90%;
+  border: solid 2px dimgrey;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
+
 .margin-auto{
-    margin: auto;
+  margin: auto;
 }
+
 .padding-left-30{
-    padding-left: 30px;
+  padding-left: 30px;
 }
 

@@ -6,7 +6,7 @@
 
 div.col-xs-10 {
   p {
-    text-align: justify
+    text-align: justify;
   }
 }
 
@@ -31,5 +31,9 @@ div.col-xs-10 {
   display: table-cell;
   vertical-align: middle;
   text-align: right;
+}
+
+.keep-format {
+//  white-space: pre-wrap;
 }
 

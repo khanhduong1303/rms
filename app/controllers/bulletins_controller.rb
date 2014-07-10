@@ -1,7 +1,6 @@
 class BulletinsController < ApplicationController
   before_action :set_bulletin, only: [:show, :edit, :update, :destroy]
   before_action :set_bulletins, only: [:index, :create, :update, :destroy]
-  before_action :authenticate_user!, except: [:index]
   before_action :set_hightlight
   respond_to :html, :js, :json
 
