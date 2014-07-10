@@ -16,9 +16,9 @@ class BookingsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create booking" do
+  test "should save booking" do
     assert_difference('Booking.count') do
-      post :create, booking: {  }
+      post :save, booking: {  }
     end
 
     assert_redirected_to booking_path(assigns(:booking))
