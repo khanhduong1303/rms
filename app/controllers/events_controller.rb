@@ -10,6 +10,11 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @event_image = @event.event_images
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /events/new
