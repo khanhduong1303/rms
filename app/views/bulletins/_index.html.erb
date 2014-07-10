@@ -4,7 +4,7 @@
       <h4><b><%= bulletin.title %></b></h4>
       <p><b>Date: </b><%= bulletin.date.strftime("%d/%m/%Y") %></p>
       <p><b>Content:</b></p>
-      <p><%= bulletin.content.truncate(450, separator: ' ', omission: '... (continued, please click View More)')  %></p>
+      <p><%= bulletin.content.truncate(400, separator: ' ', omission: '... (continued, please click View More)')  %></p>
       <%= link_to 'View More', bulletin, { class: 'btn btn-default show-button', remote: true } %>
     </div>
     <div class="col-xs-2 bulletin-center">

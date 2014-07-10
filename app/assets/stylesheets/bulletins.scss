@@ -4,6 +4,12 @@
   }
 }
 
+div.col-xs-10 {
+  p {
+    text-align: justify
+  }
+}
+
 .bulletin-center {
   display: table;
   height: 10em;
@@ -24,6 +30,6 @@
 .vcenter {
   display: table-cell;
   vertical-align: middle;
-  text-align: center;
+  text-align: right;
 }
 
