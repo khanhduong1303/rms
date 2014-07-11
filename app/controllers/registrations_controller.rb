@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-	 layout "blank"
+
 
 
 def profile
@@ -67,7 +67,7 @@ end # end respond_to
 end # end action add_avatar
 
 def new 
-
+render layout: "blank"
 @condo = Condo.all
 super
 
