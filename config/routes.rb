@@ -27,10 +27,8 @@ Rails.application.routes.draw do
 	root :to => redirect('/users/sign_in')
 
   # Example of regular route:
-     # get 'user/:id' => 'registrations#show' , :as =>  :user
-
-
   #   get 'products/:id' => 'catalog#view'
+
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
@@ -75,5 +73,14 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  namespace :api do
+    resources :bulletins, except: [:update, :destroy] do
+      member do
+        post '' => 'bulletins#update', as: 'update'
+        get 'destroy'=> 'bulletins#destroy', as: 'destroy'
+      end
+    end
+  end
 end
 
