@@ -31,20 +31,8 @@ class Api::BulletinsController < Api::ApiController
     def set_bulletins
       @limit = params[:limit]
       @page = params[:page]
-#      unless @limit
-#        @limit = 5
-#      else
-#        @limit = @limit.to_i
-#      end
       @limit = @limit.nil? ? 5 : @limit.to_i
       @page = @page.nil? ? 1 : @page.to_i
-#      unless @page
-#        @page = 1
-#      else
-#        @page = @page.to_i
-#      end
-      puts @page
-      puts @limit
       @bulletins = Bulletin.limit(@limit).offset((@page - 1) * @limit)
     end
 end
