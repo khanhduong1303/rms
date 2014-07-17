@@ -1,19 +1,21 @@
-<div class="bulletin-header">
+<div class="facility-header">
   View:
   <%= link_to '#', { class: 'btn btn-link', remote: true} do %>
-    <span class="glyphicon glyphicon-plus"></span> Add New Bulletin
+    <span class="glyphicon glyphicon-plus"></span> Add New Facility
   <% end %>
   <hr>
 </div>
-<div id="new-bulletin">
+
+<div id="new-facility">
 </div>
-<div id="list-bulletin">
+
+<div id="list-facility">
   <%= render 'index' %>
 </div>
 
-<div id="bulletin-modal" class="modal fade">
+<div id="facility-modal" class="modal fade">
   <div class="modal-dialog">
-    <div id="bulletin-content" class="modal-content">
+    <div id="facility-content" class="modal-content">
     </div>
   </div>
 </div>

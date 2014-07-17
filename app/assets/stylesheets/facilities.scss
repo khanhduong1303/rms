@@ -1,0 +1,17 @@
+.facility-header {
+  a.btn {
+    float: right;
+  }
+}
+
+.facility-center {
+  display: table;
+  height: 10em;
+}
+
+.facility-vcenter {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: right;
+}
+

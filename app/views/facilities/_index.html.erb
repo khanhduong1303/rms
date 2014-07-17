@@ -13,11 +13,11 @@
       <p>Note: <%= facility.note %></p>
     </div>
 
-    <div class="col-xs-2 bulletin-center">
-      <div class="vcenter">
+    <div class="col-xs-2 facility-center">
+      <div class="facility-vcenter">
         <select class="form-control">
-          <option>Active</option>
-          <option>Inactive</option>
+          <option <%= facility.active ? 'selected' : '' %>>Active</option>
+          <option <%= !facility.active ? 'selected' : '' %>>Inactive</option>
         </select>
         <%= link_to facility_confirm_path(facility), { class: 'btn btn-link', remote: true } do %>
           <span class="glyphicon glyphicon-trash"></span> Delete Bulletin
@@ -37,7 +37,4 @@
   </div>
   <hr>
 <% end %>
-<script type="text/javascript">
-  $('#new-bulletin').hide();
-</script>
 
