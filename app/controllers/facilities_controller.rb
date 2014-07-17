@@ -6,6 +6,10 @@ def index
 end
 
 
+ def new
+    @facility = Facility.new
+ end
+
 
 
 
