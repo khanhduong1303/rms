@@ -1,25 +1,43 @@
 <% @facilities.each do |facility| %>
   <div class="row facility-<%= facility.id %>">
-    <div class="col-xs-10">
-      <h4><b><%= bulletin.title %></b></h4>
-      <p><b>Date: </b><%= bulletin.date.strftime("%d/%m/%Y") %></p>
-      <p><b>Content:</b></p>
-      <%= simple_format(bulletin.content.truncate(400, separator: ' ', omission: '... (continued, please click View More)'), { class: 'keep-format' }) %>
-      <%= link_to 'View More', bulletin, { class: 'btn btn-default show-button', remote: true } %>
+    <div class="col-xs-2">
+      <%= image_tag 'no-image.jpg', :class => 'img-thumbnail' %>
     </div>
+
+    <div class="col-xs-8">
+      <h4><b><%= facility.name %></b></h4>
+      <p>Catetory: <%= facility.facility_category.name %></p>
+      <p>Facility Code: <%= facility.id %></p>
+      <p>Booking Price: <%= facility.booking_price %></p>
+      <p>Deposit Price: <%= facility.deposit_price %></p>
+      <p>Note: <%= facility.note %></p>
+    </div>
+
     <div class="col-xs-2 bulletin-center">
       <div class="vcenter">
-        <%= link_to bulletin_confirm_path(bulletin), { class: 'btn btn-link', remote: true } do %>
+        <select class="form-control">
+          <option>Active</option>
+          <option>Inactive</option>
+        </select>
+        <%= link_to facility_confirm_path(facility), { class: 'btn btn-link', remote: true } do %>
           <span class="glyphicon glyphicon-trash"></span> Delete Bulletin
         <% end %>
-        <%= link_to edit_bulletin_path(bulletin), { class: 'edit-button btn btn-link', remote: true } do %>
+        <%= link_to edit_facility_path(facility), { class: 'edit-button btn btn-link', remote: true } do %>
           <span class="glyphicon glyphicon-pencil"></span> Edit Bulletin
+        <% end %>
+        <%= link_to '#', { class: 'btn btn-link', remote: true } do %>
+          <span class="glyphicon glyphicon-calendar"></span> Facility Status
+        <% end %>
+        <%= link_to '#', { class: 'edit-button btn btn-link', remote: true } do %>
+          <span class="glyphicon glyphicon-time"></span> Facility Time Slots
         <% end %>
       </div>
     </div>
+
   </div>
   <hr>
 <% end %>
 <script type="text/javascript">
   $('#new-bulletin').hide();
 </script>
+
