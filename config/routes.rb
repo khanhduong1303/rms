@@ -117,7 +117,7 @@ Rails.application.routes.draw do
       collection do
         get 'page=:page&limit=:limit' => 'bulletins#index', as: ''
       end
-      get 'bulletin_id=:id' => 'bulletins#show', as: '', path: nil
+      get 'bulletin_id=:id' => 'bulletins#show', as: ''
     end
   end
 
