@@ -74,13 +74,14 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  namespace :api do
-    resources :bulletins, except: [:update, :destroy] do
-      member do
-        post '' => 'bulletins#update', as: 'update'
-        get 'destroy'=> 'bulletins#destroy', as: 'destroy'
+  namespace :api, defaults: {format: :json} do
+    resources :bulletins, only: [] do
+      collection do
+        get 'page=:page&limit=:limit' => 'bulletins#index', as: ''
       end
+      get 'bulletin_id=:id' => 'bulletins#show', as: '', path: nil
     end
   end
+
 end
 
