@@ -1,0 +1,2 @@
+module Api::BulletinsHelper
+end

@@ -1,0 +1,22 @@
+<div class="facility-header">
+  View:
+  <%= link_to '#', { class: 'btn btn-link', remote: true} do %>
+    <span class="glyphicon glyphicon-plus"></span> Add New Facility
+  <% end %>
+  <hr>
+</div>
+
+<div id="new-facility">
+</div>
+
+<div id="list-facility">
+  <%= render 'index' %>
+</div>
+
+<div id="facility-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div id="facility-content" class="modal-content">
+    </div>
+  </div>
+</div>
+

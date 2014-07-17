@@ -1,0 +1,40 @@
+<% @facilities.each do |facility| %>
+  <div class="row facility-<%= facility.id %>">
+    <div class="col-xs-2">
+      <%= image_tag 'no-image.jpg', :class => 'img-thumbnail' %>
+    </div>
+
+    <div class="col-xs-8">
+      <h4><b><%= facility.name %></b></h4>
+      <p>Catetory: <%= facility.facility_category.name %></p>
+      <p>Facility Code: <%= facility.id %></p>
+      <p>Booking Price: <%= facility.booking_price %></p>
+      <p>Deposit Price: <%= facility.deposit_price %></p>
+      <p>Note: <%= facility.note %></p>
+    </div>
+
+    <div class="col-xs-2 facility-center">
+      <div class="facility-vcenter">
+        <select class="form-control">
+          <option <%= facility.active ? 'selected' : '' %>>Active</option>
+          <option <%= !facility.active ? 'selected' : '' %>>Inactive</option>
+        </select>
+        <%= link_to facility_confirm_path(facility), { class: 'btn btn-link', remote: true } do %>
+          <span class="glyphicon glyphicon-trash"></span> Delete Bulletin
+        <% end %>
+        <%= link_to edit_facility_path(facility), { class: 'edit-button btn btn-link', remote: true } do %>
+          <span class="glyphicon glyphicon-pencil"></span> Edit Bulletin
+        <% end %>
+        <%= link_to '#', { class: 'btn btn-link', remote: true } do %>
+          <span class="glyphicon glyphicon-calendar"></span> Facility Status
+        <% end %>
+        <%= link_to '#', { class: 'edit-button btn btn-link', remote: true } do %>
+          <span class="glyphicon glyphicon-time"></span> Facility Time Slots
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+  <hr>
+<% end %>
+

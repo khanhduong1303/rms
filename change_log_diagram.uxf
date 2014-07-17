@@ -8,9 +8,15 @@
       <w>460</w>
       <h>560</h>
     </coordinates>
-    <panel_attributes>Nhật ký...
-* 16/07/2014: sửa khoá ngoại từ bulletins từ condos sang users
-bg=orange</panel_attributes>
+    <panel_attributes>bg=orange
+Nhật ký...
+*16/07/2014:*
+- Sửa khoá ngoại từ bulletins từ condos sang users
+*17/07/2014:*
+- Sửa khoá ngoại từ events từ condos sang users
+- Xoá khoá ngoại từ facilities tới bookings
+- Thêm join_events và khoá ngoại
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

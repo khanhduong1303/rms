@@ -1,3 +1,7 @@
 var className = '.bulletin-' + <%= @bulletin.id %>;
-$(className).html('<%= escape_javascript(render 'form') %>')
+$(className).slideUp(300,function(){
+$(this).html('<%= escape_javascript(render 'form') %>');
+$(this).slideDown(400);
+});
+
 
