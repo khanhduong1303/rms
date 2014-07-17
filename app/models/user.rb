@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+before_save :ensure_authentication_token
 attr_accessor :login
 
   # Include default devise modules. Others available are:
@@ -13,12 +14,12 @@ validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 validates_attachment :avatar,
     :size => { :in => 0..3.megabytes },
     :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
- validates :email, uniqueness: true
- validates :username, presence: true
- validates :phone, presence: true
- validates :postal_code, presence: true
- validates :enquiry, presence: true
-  validates :username, length: { minimum: 4 , maximun: 14}
+validates :email, uniqueness: true
+validates :username, presence: true
+validates :phone, presence: true
+validates :postal_code, presence: true
+validates :enquiry, presence: true
+validates :username, length: { minimum: 4 , maximun: 14}
 validates :username, uniqueness: true
  def self.find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup
@@ -28,6 +29,23 @@ validates :username, uniqueness: true
         where(conditions).first
       end
  end
+
+def ensure_authentication_token
+  if authentication_token.blank?
+    self.authentication_token = generate_authentication_token
+  end
+end
+
+private
+
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.find_by(authentication_token: token)
+    end
+  end
+
+
 
 
 
