@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="11.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>260</x>
+      <y>20</y>
+      <w>460</w>
+      <h>560</h>
+    </coordinates>
+    <panel_attributes>Nhật ký...
+* 16/07/2014: sửa khoá ngoại từ bulletins từ condos sang users
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
