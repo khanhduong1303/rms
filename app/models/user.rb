@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+before_save :ensure_authentication_token
 attr_accessor :login
 
   # Include default devise modules. Others available are:
@@ -28,6 +29,23 @@ validates :username, uniqueness: true
         where(conditions).first
       end
  end
+
+def ensure_authentication_token
+  if authentication_token.blank?
+    self.authentication_token = generate_authentication_token
+  end
+end
+
+private
+
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.find_by(authentication_token: token)
+    end
+  end
+
+
 
 
 

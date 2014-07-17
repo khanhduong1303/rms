@@ -1,5 +1,26 @@
 Rails.application.routes.draw do
 
+#api routes
+  namespace :api , defaults: { format: 'json' } do
+       devise_scope :user do
+    
+    post 'users/change_pass' , to: 'registrations#change_password' , as: 'change_pass'
+    post 'users/edit_profile' , to: 'registrations#edit_profile' , as: 'edit_profile'
+    post 'users/log_out' , to: 'sessions#sign_out' , as: 'log_out'
+    get  'users/profile' , to: 'registrations#profile' , as: 'profile'
+      devise_for :users 
+     
+  end
+    get 'condos/list' , to: 'condos#list' , as: 'listcondo'
+    get 'condos/:id' , to: 'condos#show' , as: 'showcondo'
+
+    end
+
+
+
+
+
+
   resources :event_images
 
   resources :events
@@ -7,6 +28,9 @@ Rails.application.routes.draw do
   resources :bulletins do
     get 'confirm'
   end
+
+
+
 
   devise_scope :user do
     get 'user/profile/:id', to: 'registrations#profile', as: 'profile'
@@ -36,6 +60,7 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :homes
+
   # Example resource route with options:
   #   resources :products do
   #     member do
