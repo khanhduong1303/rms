@@ -3,13 +3,13 @@ Rails.application.routes.draw do
 #api routes
   namespace :api , defaults: { format: 'json' } do
        devise_scope :user do
-    
+
     post 'users/change_pass' , to: 'registrations#change_password' , as: 'change_pass'
     post 'users/edit_profile' , to: 'registrations#edit_profile' , as: 'edit_profile'
     post 'users/log_out' , to: 'sessions#sign_out' , as: 'log_out'
     get  'users/profile' , to: 'registrations#profile' , as: 'profile'
-      devise_for :users 
-     
+      devise_for :users
+
   end
     get 'condos/list' , to: 'condos#list' , as: 'listcondo'
     get 'condos/:id' , to: 'condos#show' , as: 'showcondo'
@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   resources :event_images
 
   resources :events
-  resources :facilities
+  resources :facilities do
+    get 'confirm'
+  end
 
   resources :bulletins do
     get 'confirm'
