@@ -6,9 +6,17 @@ def index
 end
 
 
+
+ def new
+    @facility = Facility.new
+ end
+
+
+
   def confirm
     @facility = Facility.find(params[:facility_id])
   end
+
 
 
 
