@@ -1,4 +1,4 @@
-.facility-header {
+div.facility-header {
   a.btn {
     float: right;
   }
@@ -13,5 +13,12 @@
   display: table-cell;
   vertical-align: middle;
   text-align: right;
+}
+
+div.facility-header {
+  select.form-control {
+    width: 15%;
+    display: inline
+  }
 }
 

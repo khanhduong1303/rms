@@ -20,10 +20,10 @@
           <option <%= !facility.active ? 'selected' : '' %>>Inactive</option>
         </select>
         <%= link_to facility_confirm_path(facility), { class: 'btn btn-link', remote: true } do %>
-          <span class="glyphicon glyphicon-trash"></span> Delete Bulletin
+          <span class="glyphicon glyphicon-trash"></span> Delete Facility
         <% end %>
         <%= link_to edit_facility_path(facility), { class: 'edit-button btn btn-link', remote: true } do %>
-          <span class="glyphicon glyphicon-pencil"></span> Edit Bulletin
+          <span class="glyphicon glyphicon-pencil"></span> Edit Facility
         <% end %>
         <%= link_to '#', { class: 'btn btn-link', remote: true } do %>
           <span class="glyphicon glyphicon-calendar"></span> Facility Status
