@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716085120) do
+ActiveRecord::Schema.define(version: 20140717080513) do
 
   create_table "bulletins", force: true do |t|
     t.string   "title",                      null: false
@@ -59,6 +59,37 @@ ActiveRecord::Schema.define(version: 20140716085120) do
     t.integer  "condo_id"
   end
 
+  create_table "facilities", force: true do |t|
+    t.string   "name"
+    t.integer  "facility_category_id"
+    t.float    "booking_price"
+    t.float    "deposit_price"
+    t.text     "note"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "facility_categories", force: true do |t|
+    t.string   "name"
+    t.integer  "condo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "facility_statuses", force: true do |t|
+    t.integer  "facility_id"
+    t.date     "close_from"
+    t.date     "close_to"
+    t.text     "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "functions", force: true do |t|
     t.string   "alias"
     t.integer  "permission_id"
@@ -82,6 +113,15 @@ ActiveRecord::Schema.define(version: 20140716085120) do
 
   create_table "roles", force: true do |t|
     t.string   "role_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "time_slots", force: true do |t|
+    t.integer  "facility_id"
+    t.time     "slot_start"
+    t.time     "slot_end"
+    t.boolean  "peak"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

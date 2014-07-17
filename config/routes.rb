@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :event_images
 
   resources :events
+  resources :facilities
 
   resources :bulletins do
     get 'confirm'
