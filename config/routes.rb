@@ -75,5 +75,16 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  namespace :api do
+    resources :events do
+      member do
+        get 'event_photo' => 'events#event_photo'
+
+      end
+
+    end
+    post 'join_event' => 'events#join_event'
+  end
 end
 
