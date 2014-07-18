@@ -1,7 +1,14 @@
 <% @facilities.each do |facility| %>
   <div class="row facility-<%= facility.id %>">
     <div class="col-xs-2">
-      <%= image_tag 'no-image.jpg', :class => 'img-thumbnail' %>
+   
+      <% if facility.image? %>
+<%= image_tag  facility.image.url(:default) ,:class => 'img-thumbnail'%>
+<%else %>
+
+<%= image_tag  "no-image.jpg" ,:class => 'img-thumbnail' %>
+
+<%end %>
     </div>
 
     <div class="col-xs-8">
@@ -15,9 +22,11 @@
 
     <div class="col-xs-2 facility-center">
       <div class="facility-vcenter">
-        <select class="form-control">
-          <option <%= facility.active ? 'selected' : '' %>>Active</option>
-          <option <%= !facility.active ? 'selected' : '' %>>Inactive</option>
+        <select class="form-control change-active" data-id="<%=facility.id %>" >
+          <option <%= facility.active ? 'selected' : '' %> val='active'>Active</option>
+          <option <%= !facility.active ? 'selected' : '' %> val='inactive'>Inactive</option>
+     
+          
         </select>
         <%= link_to facility_confirm_path(facility), { class: 'btn btn-link', remote: true } do %>
           <span class="glyphicon glyphicon-trash"></span> Delete Bulletin

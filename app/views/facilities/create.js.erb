@@ -1,0 +1,9 @@
+<% if @facility.errors.any? %>
+
+<% else %>
+<%  @facility.active = true
+    @facility.save %>
+  $('#new-facility').html('')
+  $('#list-facility').html('<%= escape_javascript(render 'index') %>')
+<% end %>
+

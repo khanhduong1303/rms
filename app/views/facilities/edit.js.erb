@@ -1,0 +1,7 @@
+var className = '.facility-' + <%= @facility.id %>;
+$(className).hide(300,function(){
+$(this).html('<%= escape_javascript(render 'form') %>');
+$(this).slideDown(400);
+});
+
+
