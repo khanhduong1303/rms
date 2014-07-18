@@ -1,8 +1,2 @@
-<% if @bulletin.errors.any? %>
-
-<% else %>
-  <% flash[:notice] = 'Bulletin was successfully created.' %>
-  $('#new-bulletin').html('')
-  $('#list-bulletin').html('<%= escape_javascript(render 'index') %>')
-<% end %>
+<%= render 'create' %>
 
