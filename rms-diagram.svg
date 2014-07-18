@@ -190,8 +190,8 @@
       /><polygon fill="none" transform="translate(-380,590)" points=" 30 79 24 67 36 67" stroke="black"
       /><rect x="0" y="0" transform="translate(-440,240)" width="129" height="99" opacity="0" stroke="none"
       /><rect x="0" y="0" transform="translate(-440,240)" fill="none" width="129" height="99" stroke="black" stroke-width="2"
-      /><text fill="black" x="18" xml:space="preserve" y="17" transform="translate(-440,240)" stroke="none"
-      >facility_status</text
+      /><text fill="black" x="10" xml:space="preserve" y="17" transform="translate(-440,240)" stroke="none"
+      >facility_statuses</text
       ><line transform="translate(-440,240)" fill="none" x1="0" x2="129" y1="20" y2="20" stroke="black"
       /><text fill="black" x="7" xml:space="preserve" y="37" transform="translate(-440,240)" stroke="none"
       >close_from: date</text
@@ -426,7 +426,7 @@
       /><line transform="translate(490,0)" fill="none" x1="276" x2="276" y1="0" y2="14" stroke="black"
       /><line transform="translate(490,0)" fill="none" x1="276" x2="289" y1="14" y2="14" stroke="black"
       /><rect x="0" y="0" transform="translate(230,10)" width="99" height="59" opacity="0" stroke="none"
-      /><rect x="0" y="0" transform="translate(230,10)" fill="none" width="99" height="59" stroke="black"
+      /><rect x="0" y="0" transform="translate(230,10)" fill="none" width="99" height="59" stroke="black" stroke-width="2"
       /><text fill="black" x="11" xml:space="preserve" y="17" transform="translate(230,10)" stroke="none"
       >join_events</text
       ><line transform="translate(230,10)" fill="none" x1="0" x2="99" y1="20" y2="20" stroke="black"

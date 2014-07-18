@@ -233,7 +233,7 @@ name
       <h>100</h>
     </coordinates>
     <panel_attributes>bt=*
-facility_status
+facility_statuses
 --
 close_from: date
 close_to: date
@@ -576,7 +576,8 @@ users</panel_attributes>
       <w>100</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>join_events
+    <panel_attributes>bt=*
+join_events
 --
 /user_id: int/
 /event_id: int/</panel_attributes>

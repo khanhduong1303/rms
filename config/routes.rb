@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+
 #api routes
   namespace :api , defaults: { format: 'json' } do
        devise_scope :user do
@@ -29,6 +31,9 @@ Rails.application.routes.draw do
 
   end
   post 'facilities/change_active' , to: 'facilities#change_active'
+
+  resources :bookings, only: [:index, :update, :destroy]
+
   resources :bulletins do
     member do
       get 'confirm'
