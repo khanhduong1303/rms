@@ -20,6 +20,12 @@ end
   def confirm
     @facility = Facility.find(params[:facility_id])
   end
+  def timeslot
+    @facility = Facility.find(params[:facility_id])
+    @timeslots =   @facility.time_slots
+    @timeslot = TimeSlot.new
+
+  end
 
 
    def update
@@ -39,6 +45,10 @@ end
   	 @facility.save
   	 render json: {data:"test"}
   end	
+  def add_timeslot
+    
+    
+  end
 
   def destroy
     @facility = Facility.find(params[:id])

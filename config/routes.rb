@@ -26,9 +26,11 @@ Rails.application.routes.draw do
   resources :events
   resources :facilities do
     get 'confirm'
+    get 'timeslot'
 
   end
   post 'facilities/change_active' , to: 'facilities#change_active'
+  post 'facilities/add_timeslot' , to: 'facilities#add_timeslot' , as: 'add_timeslot'
   resources :bulletins do
     get 'confirm'
   end

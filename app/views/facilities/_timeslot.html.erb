@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="modal-title">Edit TimeSlot</h4>
+</div>
+<%= form_for(@timeslot,url: add_timeslot_path, :remote => true ) do |f| %>
+<div class="modal-body">
+  <table class="content">
+<% @timeslots.each do |timeslot| %>
+
+  <tr>
+  	<td> <%=timeslot.slot_start.to_time %> - <%=timeslot.slot_end.to_time %> </td>
+  	<td> <a class="btn btn-primary" href="#">Peak</a></td>
+  </tr>
+
+
+
+  <% end %>
+    </table>
+<%= f.label 'Add TimeSlot'%>
+   <%= f.time_select :slot_start %> To  <%= f.time_select :slot_end%>
+</div>
+<div class="modal-footer">
+  
+  <%= link_to 'Cancel', '#', { class: 'btn btn-default', data: { dismiss: 'modal'} } %>
+   <%= f.submit "Save" , class: "btn btn-danger"  %>
+</div>
+<% end %>

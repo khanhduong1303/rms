@@ -1,0 +1,5 @@
+$('.modal-dialog').hasClass('modal-sm') == true ? $('.modal-dialog').removeClass('modal-sm') : ''
+$('.modal-dialog').addClass('modal-lg')
+$('#facility-content').html('<%= escape_javascript(render 'timeslot') %>')
+$('#facility-modal').modal('show')
+
