@@ -114,11 +114,13 @@ Rails.application.routes.draw do
     post 'join_event' => 'events#join_event'
   end
   namespace :api, defaults: {format: :json} do
-    resources :bulletins, only: [] do
-      collection do
-        get 'page=:page&limit=:limit' => 'bulletins#index', as: ''
-      end
-      get 'bulletin_id=:id' => 'bulletins#show', as: ''
+    resource :bulletins, only: [] do
+#      collection do
+        get 'bulletins' => 'bulletins#index', as: 'bulletins'
+#      end
+#      member do
+        get 'bulletin_detail' => 'bulletins#show', as: 'bulletin_detail'
+#      end
     end
   end
 
