@@ -5,9 +5,10 @@ class CreateBulletins < ActiveRecord::Migration
       t.date :date, null: false
       t.text :content, null: false
       t.boolean :send_notify, default: true
-      t.integer :condo_id, null: false
+      t.integer :user_id, null: false
 
       t.timestamps
     end
   end
 end
+

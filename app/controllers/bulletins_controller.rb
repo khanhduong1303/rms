@@ -41,7 +41,7 @@ class BulletinsController < ApplicationController
     end
 
     def set_bulletins
-      @bulletins = Bulletin.where(condo_id: current_user.condo_id).order('date DESC')
+      @bulletins = Bulletin.where(user_id: current_user.id).order('date DESC')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

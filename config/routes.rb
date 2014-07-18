@@ -115,7 +115,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :bulletins, only: [] do
       collection do
-        get 'page=:page&limit=:limit' => 'bulletins#index', as: ''
+        get 'page=:page&limit=:limit' => 'bulletins#index', as: ''-
+                get ':page/:limit' => 'bulletins#index', as: ''-
       end
       get 'bulletin_id=:id' => 'bulletins#show', as: ''
     end
