@@ -1,10 +1,12 @@
 class FacilitiesController < ApplicationController
 
+
 before_action :set_hightlight
  respond_to :json ,:html, :js
 def index
 	@facilities = current_user.condo.facilities
 end
+
 
 
 
@@ -18,6 +20,7 @@ end
   def confirm
     @facility = Facility.find(params[:facility_id])
   end
+
 
    def update
    	   if params[:facility][:image]
@@ -37,7 +40,15 @@ end
   	 render json: {data:"test"}
   end	
 
+  def destroy
+    @facility = Facility.find(params[:id])
+    @facility.destroy
+    @facilities = current_user.condo.facilities
+  end
+
+
  def create
+
 
     @facility = Facility.create(facility_params)
 
@@ -50,8 +61,11 @@ end
  def facility_params
       params.require(:facility).permit(:name, :booking_price, :deposit_price, :note, :image,:facility_category_id)
     end
-def set_hightlight
+
+  def set_hightlight
+
     session[:menustatus] = 'facilities'
-end
+  end
+
 end
 

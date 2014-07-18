@@ -1,0 +1,7 @@
+<% if @facility.errors.any? %>
+
+<% else %>
+  $('#list-facility').html('<%= escape_javascript(render 'index') %>')
+  $('#facility-modal').modal('hide')
+<% end %>
+

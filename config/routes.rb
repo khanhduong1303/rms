@@ -103,12 +103,22 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
+  namespace :api do
+    resources :events do
+      member do
+        get 'event_photo' => 'events#event_photo'
+
+      end
+
+    end
+    post 'join_event' => 'events#join_event'
+  end
   namespace :api, defaults: {format: :json} do
     resources :bulletins, only: [] do
       collection do
         get 'page=:page&limit=:limit' => 'bulletins#index', as: ''
       end
-      get 'bulletin_id=:id' => 'bulletins#show', as: '', path: nil
+      get 'bulletin_id=:id' => 'bulletins#show', as: ''
     end
   end
 
