@@ -22,7 +22,7 @@ class Api::BulletinsController < Api::ApiController
   private
     def set_bulletin
       begin
-        @bulletin = Bulletin.find(params[:id])
+        @bulletin = Bulletin.find(params[:bulletin_id])
       rescue ActiveRecord::RecordNotFound => e
         @bulletin = nil
       end
