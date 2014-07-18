@@ -5,10 +5,11 @@ class CreateBookings < ActiveRecord::Migration
       t.date :date_expiry
       t.date :date_book
       t.string :status
-      t.int :user_id
-      t.int :facility_time_slot_id
+      t.integer :user_id
+      t.integer :facility_time_slot_id
 
       t.timestamps
     end
   end
 end
+

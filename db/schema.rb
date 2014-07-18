@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717080513) do
+ActiveRecord::Schema.define(version: 20140718093209) do
+
+  create_table "bookings", force: true do |t|
+    t.date     "date_submit"
+    t.date     "date_expiry"
+    t.date     "date_book"
+    t.string   "status"
+    t.integer  "user_id"
+    t.integer  "facility_time_slot_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "bulletins", force: true do |t|
     t.string   "title",                      null: false
