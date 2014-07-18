@@ -16,6 +16,10 @@ Nhật ký...
 - Sửa khoá ngoại từ events từ condos sang users
 - Xoá khoá ngoại từ facilities tới bookings
 - Thêm join_events và khoá ngoại
+*18/07/2014:*
+- Xoá các trường price của bookings
+- Sửa trường date_use thành date_book của bookings
+- Thêm khoá ngoại từ events sang users
 </panel_attributes>
     <additional_attributes/>
   </element>

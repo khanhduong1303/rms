@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :event_images
+  #resources :event_images
 
   resources :events
   resources :facilities do
@@ -30,7 +30,9 @@ Rails.application.routes.draw do
   end
   post 'facilities/change_active' , to: 'facilities#change_active'
   resources :bulletins do
-    get 'confirm'
+    member do
+      get 'confirm'
+    end
   end
 
 
@@ -43,7 +45,7 @@ Rails.application.routes.draw do
   end
   devise_for :users ,:controllers => {:registrations => "registrations" , :sessions => "sessions"}
 
-  resources :bookings
+  resources :bookings, only: [:index, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -61,7 +63,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :homes
+  resources :homes, only: [:index]
 
   # Example resource route with options:
   #   resources :products do

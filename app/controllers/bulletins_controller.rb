@@ -1,5 +1,5 @@
 class BulletinsController < ApplicationController
-  before_action :set_bulletin, only: [:show, :edit, :update, :destroy]
+  before_action :set_bulletin, only: [:show, :edit, :update, :confirm, :destroy]
   before_action :set_bulletins, only: [:index, :create, :update, :destroy]
   before_action :set_hightlight
   respond_to :html, :js, :json
@@ -26,7 +26,6 @@ class BulletinsController < ApplicationController
   end
 
   def confirm
-    @bulletin = Bulletin.find(params[:bulletin_id])
   end
 
   def destroy
