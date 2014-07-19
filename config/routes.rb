@@ -27,8 +27,9 @@ Rails.application.routes.draw do
 
   resources :events
   resources :facilities do
-    get 'confirm'
-
+    member do
+      get 'confirm'
+    end
   end
   post 'facilities/change_active' , to: 'facilities#change_active'
 

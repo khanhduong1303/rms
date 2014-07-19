@@ -19,15 +19,15 @@
 
     <div class="col-xs-2 facility-center">
       <div class="facility-vcenter">
-        <select class="form-control change-active" data-id="<%=facility.id %>" >
-          <option <%= facility.active ? 'selected' : '' %> value="active">Active</option>
-          <option <%= !facility.active ? 'selected' : '' %> value="inactive">Inactive</option>
+        <select class="form-control change-active" data-facility-id="<%= facility.id %>" >
+          <option value="active" <%= facility.active ? 'selected' : '' %>>Active</option>
+          <option value="inactive" <%= !facility.active ? 'selected' : '' %>>Inactive</option>
         </select>
 
-        <%= link_to facility_confirm_path(facility), { class: 'btn btn-link', remote: true } do %>
+        <%= link_to confirm_facility_path(facility), { class: 'btn btn-link', remote: true } do %>
           <span class="glyphicon glyphicon-trash"></span> Delete Facility
         <% end %>
-        <%= link_to edit_facility_path(facility), { class: 'edit-button btn btn-link', remote: true } do %>
+        <%= link_to edit_facility_path(facility), { class: 'btn btn-link', remote: true } do %>
           <span class="glyphicon glyphicon-pencil"></span> Edit Facility
         <% end %>
         <%= link_to '#', { class: 'btn btn-link', remote: true } do %>
