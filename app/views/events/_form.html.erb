@@ -23,7 +23,7 @@
     <%= f.label 'Date:', :class => "col-sm-2 control-label" %>
     <div class="col-sm-5">
     <div class="input-group date"  id='datetime-picker'  data-date-format="DD/MM/YYYY">
-      <%= f.text_field :date, { class: "form-control", placeholder: 'DD/MM/YYYY', value: @event.date.try(:strftime, "%d/%m/%Y"), readOnly: true } %>
+      <%= f.text_field :date, { id: 'textFieldDate', class: "form-control", placeholder: 'DD/MM/YYYY', value: @event.date.try(:strftime, "%d/%m/%Y"), readOnly: true } %>
       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     </div>
   </div>
