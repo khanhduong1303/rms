@@ -5,35 +5,56 @@ class Api::EventsController < ApplicationController
   def index
     limit = params[:limit].to_i
     page = params[:page].to_i
+    if page < 1
+      return render json: data_json('Page can not smaller one')
+    end
     @events = Event.limit(limit).offset(page*limit-limit)
-    render json: {:status=>"Success", :message=>'All events', :data=>@events }
+    # render json: {:status=>"Success", :message=>'All events', :data=>@events }
+    if @events.size > 0
+      render json: data_json('Event list', true, @events)
+    else
+      render json: data_json("Record not enough to divide {page:#{page}, limit:#{limit}}")
+    end
+
   end
 
   def show
     event_id = params[:id]
     if Event.where(:id => event_id).size > 0
-      render json: {:status=>"Success", :message=>'Show events', :data=>Event.find(event_id)}
+      render json: data_json('Show events', true, Event.find(event_id))
     else
-      render json: {:status=>"Fail", :message=>'Event not found', :data=>nil}
+      render json: data_json('Event not found')
     end
   end
 
   def event_photo
     event_id = params[:id]
     if Event.where(:id => event_id).size > 0
-      render json: {:status=>"Success", :message=>'List events images', :data=>Event.find(event_id).event_images}
+      render json: data_json('List events images', true, Event.find(event_id).event_images)
+      # render json: {:status=>"Success", :message=>'List events images', :data=>Event.find(event_id).event_images}
     else
-      render json: {:status=>"Fail", :message=>'Event not found', :data=>nil}
+      # render json: {:status=>"Fail", :message=>'Event not found', :data=>nil}
+      render json: data_json('Event not found')
     end
   end
 
   def join_event
     @join_event = JoinEvent.create(:user_id=> params[:user_id], :event_id=>params[:event_id])
     if @join_event
-      render json: {:status=>"Success", :message=>'Joined', :data=>@join_event}
+      render json: data_json('Joined', true, @join_event)
+      # render json: {:status=>"Success", :message=>'Joined', :data=>@join_event}
     else
-      render json: {:status=>"Fail", :message=>'Join fail', :data=>nil}
+      render json: data_json('Join not success')
+      # render json: {:status=>"Fail", :message=>'Join fail', :data=>nil}
     end
   end
 
+  private
+  def data_json message, type=false, results=nil
+    if type==true
+      return {:status=>"success", :message=>message, :results=>results}
+    else
+      return {:status=>"failed", :message=>message, :results=>results}
+    end
+  end
 end
