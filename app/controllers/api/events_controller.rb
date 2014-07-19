@@ -19,7 +19,7 @@ class Api::EventsController < ApplicationController
   end
 
   def show
-    event_id = params[:id]
+    event_id = params[:event_id]
     if Event.where(:id => event_id).size > 0
       render json: data_json('Show events', true, Event.find(event_id))
     else
@@ -28,7 +28,7 @@ class Api::EventsController < ApplicationController
   end
 
   def event_photo
-    event_id = params[:id]
+    event_id = params[:event_id]
     if Event.where(:id => event_id).size > 0
       render json: data_json('List events images', true, Event.find(event_id).event_images)
       # render json: {:status=>"Success", :message=>'List events images', :data=>Event.find(event_id).event_images}

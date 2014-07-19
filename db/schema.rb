@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20140718093209) do
     t.date     "date",                       null: false
     t.text     "content",                    null: false
     t.boolean  "send_notify", default: true
-    t.integer  "user_id",                    null: false
+    t.integer  "condo_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
