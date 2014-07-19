@@ -110,18 +110,21 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  namespace :api do
-    resources :events do
-      member do
-        get 'event_photo' => 'events#event_photo'
-
+  namespace :api, path: nil do
+    resource :event, only: [], path: 'api' do
+      collection do
+        get 'events' => 'events#index'
       end
-
+      member do
+        get 'event_detail' => 'events#show'
+        get 'event_detail_photo' => 'events#event_photo'
+        post 'join_event' => 'events#join_event'
+      end
     end
-    post 'join_event' => 'events#join_event'
   end
-  namespace :api, path: 'rcs', defaults: {format: :json} do
-    resource :bulletin, only: [], path: 'rcs-api' do
+
+  namespace :api, path: nil, defaults: {format: :json} do
+    resource :bulletin, only: [], path: 'api' do
       collection do
         get 'bulletins' => 'bulletins#index'
       end
