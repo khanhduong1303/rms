@@ -2,11 +2,8 @@
   <dt>Date:</dt>
   <dd><%= @event.date %></dd>
 
-  <dt>Event start:</dt>
-  <dd><%= @event.event_start %></dd>
-
-  <dt>Event end:</dt>
-  <dd><%= @event.event_end %></dd>
+  <dt>Time:</dt>
+  <dd><%= @event.event_start.strftime('%I:%M %P') %> To <%= @event.event_end.strftime('%I:%M %P') %></dd>
 
   <dt>Location:</dt>
   <dd><%= @event.location %></dd>
