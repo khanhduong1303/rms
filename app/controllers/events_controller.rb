@@ -107,10 +107,11 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :date, :event_start, :event_end, :location, :organiser, :description, :condo_id)
+      params.require(:event).permit(:name, :date, :event_start, :event_end, :location, :organiser, :description, :user_id)
     end
 
   def set_hightlight
     session[:menustatus]='events'
   end
 end
+
