@@ -26,6 +26,12 @@ end
     @timeslot = TimeSlot.new
 
   end
+   def add_timeslot
+    @timeslot = TimeSlot.create(timeslot_params)
+     @facility = Facility.find(params[:time_slot][:facility_id])
+     @timeslots =   @facility.time_slots
+    
+  end
 
 
    def update
@@ -45,10 +51,14 @@ end
   	 @facility.save
   	 render json: {data:"test"}
   end	
-  def add_timeslot
-    
-    
-  end
+
+  def change_peak
+     @timeslot = TimeSlot.find(params[:id])
+     @timeslot.peak = params[:peak]
+     @timeslot.save
+     render json: {peak: @timeslot.peak }
+  end 
+
 
   def destroy
     @facility = Facility.find(params[:id])
@@ -71,6 +81,9 @@ end
  def facility_params
       params.require(:facility).permit(:name, :booking_price, :deposit_price, :note, :image,:facility_category_id)
     end
+  def timeslot_params
+      params.require(:time_slot).permit(:slot_start, :slot_end, :facility_id)
+  end   
 
   def set_hightlight
 

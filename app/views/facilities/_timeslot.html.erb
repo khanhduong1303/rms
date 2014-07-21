@@ -4,18 +4,10 @@
 <%= form_for(@timeslot,url: add_timeslot_path, :remote => true ) do |f| %>
 <div class="modal-body">
   <table class="content">
-<% @timeslots.each do |timeslot| %>
-
-  <tr>
-  	<td> <%=timeslot.slot_start.to_time %> - <%=timeslot.slot_end.to_time %> </td>
-  	<td> <a class="btn btn-primary" href="#">Peak</a></td>
-  </tr>
-
-
-
-  <% end %>
+<%= render 'content_timeslot' %>
     </table>
-<%= f.label 'Add TimeSlot'%>
+  <%= f.hidden_field :facility_id, { value: @facility.id } %>    
+<%= f.label :slot_start , 'Add TimeSlot'%>
    <%= f.time_select :slot_start %> To  <%= f.time_select :slot_end%>
 </div>
 <div class="modal-footer">

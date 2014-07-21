@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   namespace :api , defaults: { format: 'json' } do
        devise_scope :user do
 
-    post 'users/change_pass' , to: 'registrations#change_password' , as: 'change_pass'
-    post 'users/edit_profile' , to: 'registrations#edit_profile' , as: 'edit_profile'
-    post 'users/log_out' , to: 'sessions#sign_out' , as: 'log_out'
-    get  'users/profile' , to: 'registrations#profile' , as: 'profile'
+    post 'change_pass' , to: 'registrations#change_password' , as: 'change_pass'
+    post 'edit_profile' , to: 'registrations#edit_profile' , as: 'edit_profile'
+    post 'log_out' , to: 'sessions#sign_out' , as: 'log_out'
+    get  'profile' , to: 'registrations#profile' , as: 'profile'
       devise_for :users
 
   end
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   end
   post 'facilities/change_active' , to: 'facilities#change_active'
+  post 'facilities/change_peak' , to: 'facilities#change_peak'
   post 'facilities/add_timeslot' , to: 'facilities#add_timeslot' , as: 'add_timeslot'
   resources :bulletins do
     get 'confirm'

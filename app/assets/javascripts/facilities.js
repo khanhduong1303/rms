@@ -22,6 +22,6 @@ else {
  	dataType: "json",
  	success: function(data){alert('Change Active Successfully');} ,
  	error: function(){alert("fails")}
- })
+ });
 
 });
