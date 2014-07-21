@@ -3,7 +3,7 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>440</x>
+      <x>450</x>
       <y>0</y>
       <w>150</w>
       <h>250</h>
@@ -23,13 +23,13 @@ postal_code: string
 country: string
 city: string
 state: string
-/condo_id: int/</panel_attributes>
+/condo_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>530</x>
+      <x>540</x>
       <y>320</y>
       <w>160</w>
       <h>120</h>
@@ -41,13 +41,13 @@ title: string
 date: date
 content: text
 send_notify: boolean
-/users_id: int/</panel_attributes>
+/users_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>780</x>
+      <x>790</x>
       <y>100</y>
       <w>140</w>
       <h>170</h>
@@ -62,7 +62,7 @@ time_end: time
 location: string
 organiser: string
 description: text
-/condo_id: int/</panel_attributes>
+/user_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -70,7 +70,7 @@ description: text
     <coordinates>
       <x>0</x>
       <y>470</y>
-      <w>180</w>
+      <w>210</w>
       <h>150</h>
     </coordinates>
     <panel_attributes>bt=*
@@ -82,13 +82,13 @@ deposit_price: float
 note: text
 image_path: string
 active: boolean
-/facility_category_id: int/</panel_attributes>
+/facility_category_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>210</x>
+      <x>220</x>
       <y>80</y>
       <w>130</w>
       <h>100</h>
@@ -99,15 +99,15 @@ feedbacks
 title: string
 content: text
 archive: boolean
-/user_id: int/</panel_attributes>
+/user_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>540</x>
-      <y>510</y>
-      <w>160</w>
+      <x>550</x>
+      <y>520</y>
+      <w>190</w>
       <h>100</h>
     </coordinates>
     <panel_attributes>bt=*
@@ -115,35 +115,33 @@ forms
 --
 title: string
 form_path: string
-/form_category_id: int/
-/condo_id: int/</panel_attributes>
+/form_category_id: integer/
+/condo_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>190</x>
-      <y>240</y>
-      <w>200</w>
-      <h>170</h>
+      <x>220</x>
+      <y>260</y>
+      <w>210</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>bt=*
 bookings
 --
-date_submit: datetime
-date_expiry: datetime
-date_use: date
-booking_price_actual: float
-deposit_price_actual: float
+date_submit: date
+date_expiry: date
+date_book: date
 status: string
-/user_id: int/
-/facility_time_slot_id: int/</panel_attributes>
+/user_id: integer/
+/facility_time_slot_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1090</x>
+      <x>1100</x>
       <y>440</y>
       <w>140</w>
       <h>100</h>
@@ -154,15 +152,15 @@ guard_houses
 phone: string
 photo_path: string
 map_path: tring
-/condo_id: int/</panel_attributes>
+/condo_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1110</x>
+      <x>1100</x>
       <y>670</y>
-      <w>120</w>
+      <w>140</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>bt=*
@@ -170,13 +168,13 @@ house_rules
 --
 title: string
 content: text
-/condo_id: int/</panel_attributes>
+/condo_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1070</x>
+      <x>1080</x>
       <y>160</y>
       <w>150</w>
       <h>70</h>
@@ -185,13 +183,13 @@ content: text
 event_images
 --
 image_path: string
-/event_id: int/</panel_attributes>
+/event_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>890</x>
+      <x>900</x>
       <y>160</y>
       <w>200</w>
       <h>50</h>
@@ -202,7 +200,7 @@ image_path: string
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>20</x>
+      <x>30</x>
       <y>670</y>
       <w>140</w>
       <h>60</h>
@@ -210,14 +208,14 @@ image_path: string
     <panel_attributes>bt=*
 facility_categories
 --
-name
-/condo_id/</panel_attributes>
+name: string
+/condo_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>60</x>
+      <x>70</x>
       <y>590</y>
       <w>50</w>
       <h>100</h>
@@ -231,22 +229,22 @@ name
     <coordinates>
       <x>0</x>
       <y>240</y>
-      <w>130</w>
+      <w>140</w>
       <h>100</h>
     </coordinates>
     <panel_attributes>bt=*
-facility_status
+facility_statuses
 --
 close_from: date
 close_to: date
 reason: text
-/facility_id: int/</panel_attributes>
+/facility_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>30</x>
+      <x>40</x>
       <y>310</y>
       <w>50</w>
       <h>180</h>
@@ -257,9 +255,9 @@ reason: text
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>280</x>
+      <x>270</x>
       <y>470</y>
-      <w>190</w>
+      <w>230</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>bt=*
@@ -268,14 +266,14 @@ facility_time_slots
 slot_start: time
 slot_end: time
 peak: boolean
-/facility_id: int/
-/category_time_slot_id: int/</panel_attributes>
+/facility_id: integer/
+/category_time_slot_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>290</x>
+      <x>280</x>
       <y>660</y>
       <w>170</w>
       <h>60</h>
@@ -284,13 +282,13 @@ peak: boolean
 category_time_slots
 --
 name: string
-hours: int</panel_attributes>
+hours: integer</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>340</x>
+      <x>330</x>
       <y>560</y>
       <w>50</w>
       <h>120</h>
@@ -302,40 +300,40 @@ hours: int</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>150</x>
+      <x>180</x>
       <y>510</y>
-      <w>150</w>
+      <w>110</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;130;30</additional_attributes>
+    <additional_attributes>30;30;90;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>250</x>
-      <y>380</y>
-      <w>140</w>
-      <h>110</h>
+      <x>280</x>
+      <y>360</y>
+      <w>100</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&gt;&gt;-</panel_attributes>
-    <additional_attributes>30;30;30;50;120;50;120;90</additional_attributes>
+    <additional_attributes>30;30;30;70;80;70;80;110</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>260</x>
+      <x>270</x>
       <y>180</y>
       <w>200</w>
-      <h>80</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&gt;&gt;-</panel_attributes>
-    <additional_attributes>30;60;30;30;180;30</additional_attributes>
+    <additional_attributes>30;80;30;30;180;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>310</x>
+      <x>320</x>
       <y>100</y>
       <w>150</w>
       <h>50</h>
@@ -346,33 +344,33 @@ hours: int</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>10</x>
+      <x>0</x>
       <y>100</y>
-      <w>130</w>
+      <w>160</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>bt=*
 feedback_replies
 --
 content: text
-/feedback_id: int/</panel_attributes>
+/feedback_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>110</x>
+      <x>130</x>
       <y>110</y>
-      <w>120</w>
+      <w>110</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>100;30;30;30</additional_attributes>
+    <additional_attributes>90;30;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>550</x>
+      <x>580</x>
       <y>670</y>
       <w>130</w>
       <h>50</h>
@@ -386,7 +384,7 @@ name: string</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1060</x>
+      <x>1070</x>
       <y>280</y>
       <w>170</w>
       <h>80</h>
@@ -396,24 +394,24 @@ guard_house_images
 --
 name: string
 image_path: string
-/condo_id: int/</panel_attributes>
+/condo_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>580</x>
-      <y>580</y>
+      <x>610</x>
+      <y>590</y>
       <w>50</w>
-      <h>110</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;90;30;30</additional_attributes>
+    <additional_attributes>30;80;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>20</x>
+      <x>0</x>
       <y>0</y>
       <w>230</w>
       <h>60</h>
@@ -428,7 +426,7 @@ fg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>780</x>
+      <x>790</x>
       <y>460</y>
       <w>200</w>
       <h>170</h>
@@ -451,7 +449,7 @@ fg=</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>810</x>
+      <x>820</x>
       <y>320</y>
       <w>150</w>
       <h>70</h>
@@ -459,7 +457,7 @@ fg=</panel_attributes>
     <panel_attributes>bt=*
 condo_images
 --
-condo_id: int
+condo_id: integer
 image_path: string
 bg=</panel_attributes>
     <additional_attributes/>
@@ -467,7 +465,7 @@ bg=</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>850</x>
+      <x>860</x>
       <y>360</y>
       <w>50</w>
       <h>120</h>
@@ -478,18 +476,18 @@ bg=</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>510</x>
+      <x>520</x>
       <y>220</y>
       <w>290</w>
-      <h>310</h>
+      <h>300</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>270;290;220;290;220;70;30;70;30;30</additional_attributes>
+    <additional_attributes>270;280;220;280;220;70;30;70;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>460</x>
+      <x>470</x>
       <y>220</y>
       <w>90</w>
       <h>190</h>
@@ -500,7 +498,7 @@ bg=</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>950</x>
+      <x>960</x>
       <y>510</y>
       <w>230</w>
       <h>100</h>
@@ -511,18 +509,18 @@ bg=</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>910</x>
+      <x>920</x>
       <y>600</y>
-      <w>220</w>
+      <w>200</w>
       <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;30;110;200;110</additional_attributes>
+    <additional_attributes>30;30;30;110;180;110</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1120</x>
+      <x>1130</x>
       <y>330</y>
       <w>50</w>
       <h>130</h>
@@ -533,18 +531,18 @@ bg=</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>670</x>
-      <y>530</y>
-      <w>130</w>
+      <x>710</x>
+      <y>540</y>
+      <w>100</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>110;30;30;30</additional_attributes>
+    <additional_attributes>80;30;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>60</x>
+      <x>70</x>
       <y>600</y>
       <w>810</w>
       <h>170</h>
@@ -555,39 +553,40 @@ bg=</panel_attributes>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>980</x>
+      <x>940</x>
       <y>0</y>
-      <w>240</w>
+      <w>290</w>
       <h>130</h>
     </coordinates>
-    <panel_attributes>Nhật ký...
-*17/07/2014:*
-- Sửa khoá ngoại từ events
-từ condos sang users
-- Xoá khoá ngoại từ facilities
-tới bookings
-- Thêm join_events và khoá ngoại
-bg=orange</panel_attributes>
+    <panel_attributes>bg=orange
+Nhật ký...
+*18/07/2014:*
+- Xoá các trường price của bookings
+- Sửa trường date_use thành date_book
+của bookings
+- Thêm khoá ngoại từ events sang
+users</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>670</x>
+      <x>650</x>
       <y>10</y>
-      <w>100</w>
+      <w>130</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>join_events
+    <panel_attributes>bt=*
+join_events
 --
-/user_id: int/
-/event_id: int/</panel_attributes>
+/user_id: integer/
+/event_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>740</x>
+      <x>750</x>
       <y>10</y>
       <w>130</w>
       <h>110</h>
@@ -598,12 +597,23 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
+      <x>570</x>
       <y>40</y>
       <w>170</w>
-      <h>140</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;120;150;120;150;30</additional_attributes>
+    <additional_attributes>30;90;150;90;150;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>570</x>
+      <y>150</y>
+      <w>240</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;30;220;30</additional_attributes>
   </element>
 </diagram>

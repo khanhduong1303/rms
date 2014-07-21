@@ -1,5 +1,5 @@
 class BulletinsController < ApplicationController
-  before_action :set_bulletin, only: [:show, :edit, :update, :destroy]
+  before_action :set_bulletin, only: [:show, :edit, :update, :confirm, :destroy]
   before_action :set_bulletins, only: [:index, :create, :update, :destroy]
   before_action :set_hightlight
   respond_to :html, :js, :json
@@ -26,7 +26,6 @@ class BulletinsController < ApplicationController
   end
 
   def confirm
-    @bulletin = Bulletin.find(params[:bulletin_id])
   end
 
   def destroy
@@ -46,7 +45,7 @@ class BulletinsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bulletin_params
-      params.require(:bulletin).permit(:title, :date, :content, :send_notify, :condo_id)
+      params.require(:bulletin).permit(:title, :date, :content, :send_notify, :user_id)
     end
 
     def set_hightlight

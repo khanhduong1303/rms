@@ -1,9 +1,13 @@
 class HomesController < ApplicationController
-before_filter :authenticate_user! , :only => [:index, :new, :edit]
+  before_action :authenticate_user! , :only => [:index]
+  before_action :set_hightlight
+
   def index
-    session[:menustatus]='home';
   end
-  def edit
-    
-  end
+
+  private
+    def set_hightlight
+      session[:menustatus] = 'home';
+    end
 end
+

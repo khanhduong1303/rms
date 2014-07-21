@@ -12,12 +12,7 @@
       </ul>
     </div>
   <% end %>
-    <div class="form-group">
-      <%= f.label 'Condo name:', :class => "col-sm-2 control-label" %>
-      <div class="col-sm-5">
-        <%= f.collection_select(:condo_id,@condo,:id,:name, {} ,:class => "form-control") %>
-      </div>
-    </div>
+  <%= f.hidden_field :user_id, { value: current_user.id } %>
   <div class="form-group">
     <%= f.label 'Name:', :class => "col-sm-2 control-label" %>
     <div class="col-sm-5">
@@ -107,3 +102,4 @@
         });
     });
 </script>
+

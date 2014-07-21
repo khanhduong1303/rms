@@ -7,7 +7,7 @@ class Api::BulletinsController < Api::ApiController
     unless @bulletins.nil?
       render json: { status: 'success', message: 'Found bulletins', data: @bulletins }
     else
-      render json: { status: 'failed', message: 'Not found bulletins', data: {} }
+      render json: { status: 'success', message: 'Not found bulletins', data: {} }
     end
   end
 
@@ -29,11 +29,12 @@ class Api::BulletinsController < Api::ApiController
     end
 
     def set_bulletins
-      @limit = params[:limit]
-      @page = params[:page]
-      @limit = @limit.nil? ? 5 : @limit.to_i
-      @page = @page.nil? ? 1 : @page.to_i
+      @limit = params[:limit].to_i
+      @page = params[:page].to_i
       @bulletins = Bulletin.limit(@limit).offset((@page - 1) * @limit)
+      unless @bulletins.present?
+        @bulletins = nil
+      end
     end
 end
 

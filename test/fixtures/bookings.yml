@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_submit: 2014-07-18
+  date_expiry: 2014-07-18
+  date_book: 2014-07-18
+  status: MyString
+  user_id: 
+  facility_time_slot_id: 
+
+two:
+  date_submit: 2014-07-18
+  date_expiry: 2014-07-18
+  date_book: 2014-07-18
+  status: MyString
+  user_id: 
+  facility_time_slot_id: 

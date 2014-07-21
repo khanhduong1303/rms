@@ -1,8 +1,9 @@
 class Bulletin < ActiveRecord::Base
   # References
-  belongs_to :condo
+  belongs_to :user
 
   # Validates
-  validates :title, :date, :content, :send_notify, :condo_id, presence: true
-  validates :condo_id, numericality: true
+  validates :title, :date, :content, :send_notify, :user_id, presence: true
+  validates :user_id, numericality: true
 end
+

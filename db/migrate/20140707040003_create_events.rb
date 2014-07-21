@@ -8,8 +8,10 @@ class CreateEvents < ActiveRecord::Migration
       t.string :location
       t.string :organiser
       t.text :description
+      t.integer :user_id
 
       t.timestamps
     end
   end
 end
+

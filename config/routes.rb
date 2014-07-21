@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+
 #api routes
   namespace :api , defaults: { format: 'json' } do
        devise_scope :user do
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :event_images
+  #resources :event_images
 
   resources :events
   resources :facilities do
@@ -32,8 +34,14 @@ Rails.application.routes.draw do
   post 'facilities/change_active' , to: 'facilities#change_active'
   post 'facilities/change_peak' , to: 'facilities#change_peak'
   post 'facilities/add_timeslot' , to: 'facilities#add_timeslot' , as: 'add_timeslot'
+
+
+  resources :bookings, only: [:index, :update, :destroy]
+
   resources :bulletins do
-    get 'confirm'
+    member do
+      get 'confirm'
+    end
   end
 
 
@@ -46,7 +54,7 @@ Rails.application.routes.draw do
   end
   devise_for :users ,:controllers => {:registrations => "registrations" , :sessions => "sessions"}
 
-  resources :bookings
+  resources :bookings, only: [:index, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -64,7 +72,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :homes
+  resources :homes, only: [:index]
 
   # Example resource route with options:
   #   resources :products do
@@ -106,24 +114,27 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  namespace :api do
-    resources :events do
-      member do
-        get 'event_photo' => 'events#event_photo'
-
+  namespace :api, path: nil do
+    resource :event, only: [], path: 'api' do
+      collection do
+        get 'events' => 'events#index'
       end
-
+      member do
+        get 'event_detail' => 'events#show'
+        get 'event_detail_photo' => 'events#event_photo'
+        post 'join_event' => 'events#join_event'
+      end
     end
-    post 'join_event' => 'events#join_event'
   end
-  namespace :api, defaults: {format: :json} do
-    resource :bulletins, only: [] do
-#      collection do
-        get 'bulletins' => 'bulletins#index', as: 'bulletins'
-#      end
-#      member do
-        get 'bulletin_detail' => 'bulletins#show', as: 'bulletin_detail'
-#      end
+
+  namespace :api, path: nil, defaults: {format: :json} do
+    resource :bulletin, only: [], path: 'api' do
+      collection do
+        get 'bulletins' => 'bulletins#index'
+      end
+      member do
+        get 'bulletin_detail' => 'bulletins#show'
+      end
     end
   end
 
