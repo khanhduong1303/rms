@@ -52,7 +52,7 @@
     <%= f.text_area :note, class: "form-control", rows: 5  %>
   </div>
 
-  <div class="show-button">
+  <div class="facility-button">
     <%= link_to 'Cancel', facilities_path, class: 'btn btn-danger' %>
     <%= f.submit class: "btn btn-success", value: @facility.persisted? ? 'Save' : 'Add' %>
   </div>

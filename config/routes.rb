@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
 
+
 #api routes
   namespace :api , defaults: { format: 'json' } do
        devise_scope :user do
@@ -41,7 +42,11 @@ Rails.application.routes.draw do
     end
   end
 
-
+  resources :house_rules do
+    member do
+      get 'confirm'
+    end
+  end
 
 
   devise_scope :user do
@@ -131,6 +136,12 @@ Rails.application.routes.draw do
       end
       member do
         get 'bulletin_detail' => 'bulletins#show'
+      end
+    end
+
+    resource :house_rule, only: [], path: 'api' do
+      collection do
+        get 'house_rules' => 'house_rules#index'
       end
     end
   end

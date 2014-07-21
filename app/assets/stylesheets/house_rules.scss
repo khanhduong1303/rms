@@ -1,0 +1,28 @@
+div.house-rule-header {
+  text-align: right;
+}
+
+.house-rule-button {
+  text-align: right;
+}
+
+.my-row {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+
+  .my-col-8 {
+    width: 80%;
+    float: left;
+  }
+
+  .my-col-2 {
+    position: absolute;
+    width: 20%;
+    float: right;
+    text-align: right;
+    right: 0;
+    bottom: 40%;
+  }
+}
+

@@ -1,0 +1,20 @@
+<%= form_for @house_rule, remote: true do |f| %>
+  <ul class="errors"></ul>
+
+  <%= f.hidden_field :condo_id, { value: current_user.condo_id } %>
+  <div class="form-group" style="width:50%">
+    <%= f.text_field :title, { class: 'form-control', placeholder: 'Title' } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content %>:
+    <%= f.text_area :content, class: "form-control", rows: 5 %>
+  </div>
+
+    <div class="house-rule-button">
+      <%= link_to 'Cancel', house_rules_path, class: 'btn btn-danger' %>
+      <%= f.submit class: "btn btn-success", value: @house_rule.persisted? ? 'Save' : 'Add' %>
+    </div>
+  </div>
+<% end %>
+

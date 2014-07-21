@@ -1,7 +1,6 @@
 class Api::BulletinsController < Api::ApiController
   before_action :set_bulletin, only: [:show]
   before_action :set_bulletins, only: [:index]
-  respond_to :json
 
   def index
     unless @bulletins.nil?
