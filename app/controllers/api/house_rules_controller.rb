@@ -1,13 +1,14 @@
 class Api::HouseRulesController < Api::ApiController
   def index
-    @house_rules = HouseRule.all
-    unless @house_rules.present?
-        @house_rules = nil
+    begin
+      @house_rules = HouseRule.where(condo_id: params[:condo_id])
+    rescue Exception => e
+      @house_rules = nil
     end
     unless @house_rules.nil?
-      render json: { status: 'success', message: 'Found bulletins', data: @house_rules }
+      render json: { status: 'success', message: 'Found house rules', total: @house_rules.size, data: @house_rules }, status: :ok
     else
-      render json: { status: 'success', message: 'Not found bulletins', data: {} }
+      render json: { status: 'failed', message: 'Not found house rules', data: {} }, status: :not_found
     end
   end
 end

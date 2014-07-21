@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
 
 
+  resources :forms
+
+  resources :form_categories
+
 #api routes
   namespace :api , defaults: { format: 'json' } do
        devise_scope :user do
@@ -33,6 +37,14 @@ Rails.application.routes.draw do
     end
   end
   post 'facilities/change_active' , to: 'facilities#change_active'
+
+  resources :facility_statuses, only: [:new, :create]
+
+  resource :facility_status, only: [] do
+    collection do
+      get 'cancel'
+    end
+  end
 
   resources :bookings, only: [:index, :update, :destroy]
 

@@ -9,7 +9,7 @@ class FacilitiesController < ApplicationController
 
   def new
     @facility = Facility.new
-    @cat = current_user.condo.facility_categories
+    @facility_categories = current_user.condo.facility_categories
   end
 
   def create
@@ -17,14 +17,14 @@ class FacilitiesController < ApplicationController
   end
 
   def edit
-    @cat = current_user.condo.facility_categories
+    @facility_categories = current_user.condo.facility_categories
   end
 
   def update
-    if params[:facility][:image]
-      @image = true
+    if params[:facility][:image_path]
+      @image_path = true
     else
-      @image = false
+      @image_path = false
     end
     @facility.update_attributes(facility_params)
   end
@@ -56,7 +56,7 @@ class FacilitiesController < ApplicationController
     end
 
     def facility_params
-      params.require(:facility).permit(:name, :booking_price, :deposit_price, :note, :image, :facility_category_id)
+      params.require(:facility).permit(:name, :booking_price, :deposit_price, :note, :image_path, :facility_category_id)
     end
 
     def set_hightlight

@@ -34,17 +34,17 @@
 
 <script type="text/javascript">
   $(function() {
-      $('#datetime-picker').datetimepicker({
-        pickTime: false,
-      });
+    $('#datetime-picker').datetimepicker({
+      pickTime: false,
+    });
   });
 </script>
 
 <% if !@bulletin.persisted? %>
   <script type="text/javascript">
     $(function() {
-        date = new Date();
-        $('#datetime-picker').data('DateTimePicker').setDate(dateToString(date));
+      date = new Date();
+      $('#datetime-picker').data('DateTimePicker').setDate(dateToString(date));
     });
     function dateToString(date) {
       return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
