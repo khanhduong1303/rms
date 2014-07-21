@@ -135,5 +135,13 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api, path: nil do
+    resources :booking, only: [], path: 'api' do
+      collection do
+        get 'booking_facilities' => 'bookings#index'
+        post 'make_a_booking' => 'bookings#make_a_booking'
+      end
+    end
+  end
 end
 
