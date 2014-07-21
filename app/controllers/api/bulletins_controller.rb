@@ -31,7 +31,7 @@ class Api::BulletinsController < Api::ApiController
     def set_bulletins
       @limit = params[:limit].to_i
       @page = params[:page].to_i
-      @bulletins = Bulletin.limit(@limit).offset((@page - 1) * @limit)
+      @bulletins = Bulletin.where(send_notify: true).limit(@limit).offset((@page - 1) * @limit).order(date: :desc)
       unless @bulletins.present?
         @bulletins = nil
       end

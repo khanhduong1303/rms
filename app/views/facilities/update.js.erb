@@ -1,15 +1,13 @@
 <% if @facility.errors.any? %>
- 
+
 <% else %>
-<% if @image %>
-$("div.image img").remove();
-$("div.image a").before('<%=image_tag @facility.image.url(:default) %>')
-  $("#myModal").modal('hide');
-<% else%>
-  $('#new-facility').html('')
-  $('#list-facility').html('<%= escape_javascript(render 'index') %>')
-
-
-<% end %>
+  <% if @image %>
+    $("div.image img").remove();
+    $("div.image a").before('<%=image_tag @facility.image.url(:default) %>')
+    $("#myModal").modal('hide');
+  <% else%>
+    $('#new-facility').html('')
+    $('#list-facility').html('<%= escape_javascript(render 'index') %>')
+  <% end %>
 <% end %>
 

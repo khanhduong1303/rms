@@ -25,6 +25,17 @@ body {
   padding-top: 5px;
 }
 
+#notifications {
+  position: fixed;
+  top: 45%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 350px;
+  text-align: center;
+  z-index: 999999;
+}
+
 a:hover {
   text-decoration: none;
 }
