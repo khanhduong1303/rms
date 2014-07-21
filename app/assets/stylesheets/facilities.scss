@@ -2,6 +2,10 @@ div.facility-header {
   a.btn {
     float: right;
   }
+  select.form-control {
+    width: 15%;
+    display: inline
+  }
 }
 
 .facility-center {
@@ -15,10 +19,7 @@ div.facility-header {
   text-align: right;
 }
 
-div.facility-header {
-  select.form-control {
-    width: 15%;
-    display: inline
-  }
+.facility-button {
+  text-align: right;
 }
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718093209) do
+ActiveRecord::Schema.define(version: 20140721031541) do
 
   create_table "bookings", force: true do |t|
     t.date     "date_submit"
@@ -105,6 +105,14 @@ ActiveRecord::Schema.define(version: 20140718093209) do
     t.string   "alias"
     t.integer  "permission_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "house_rules", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "condo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
