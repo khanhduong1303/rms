@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721031541) do
+ActiveRecord::Schema.define(version: 20140721170012) do
 
   create_table "bookings", force: true do |t|
     t.date     "date_submit"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20140721031541) do
     t.text     "content",                    null: false
     t.boolean  "send_notify", default: true
     t.integer  "user_id",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "condo_images", force: true do |t|
+    t.string   "image_path_file_name"
+    t.string   "image_path_content_type"
+    t.integer  "image_path_file_size"
+    t.datetime "image_path_created_at"
+    t.integer  "condo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -101,6 +111,23 @@ ActiveRecord::Schema.define(version: 20140721031541) do
     t.date     "close_to"
     t.text     "reason"
     t.integer  "facility_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "form_categories", force: true do |t|
+    t.string   "name",       null: false
+    t.integer  "condo_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forms", force: true do |t|
+    t.string   "title",                null: false
+    t.string   "form_path_file_name"
+    t.integer  "form_path_file_size"
+    t.datetime "form_path_created_at"
+    t.integer  "form_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
