@@ -1,0 +1,2 @@
+class FormCategoriesController < ApplicationController
+end

@@ -28,6 +28,12 @@
       >- Sửa trường date_use thành date_book của bookings</text
       ><text fill="black" x="7" xml:space="preserve" y="187" stroke="none"
       >- Thêm khoá ngoại từ events sang users</text
+      ><text fill="black" x="7" xml:space="preserve" y="204" font-weight="bold" stroke="none"
+      >21/07/2014:</text
+      ><text fill="black" x="7" xml:space="preserve" y="221" stroke="none"
+      >- Thêm cột image_path vào facility_statuses</text
+      ><text fill="black" x="7" xml:space="preserve" y="238" stroke="none"
+      >- Đổi liên kết ngoại giữa condos và forms và form_categories</text
       ><line y2="0" fill="none" x1="0" x2="446" stroke="black" y1="0"
       /><line y2="14" fill="none" x1="446" x2="459" stroke="black" y1="0"
       /><line y2="559" fill="none" x1="459" x2="459" stroke="black" y1="14"

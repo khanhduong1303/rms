@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718093209) do
+ActiveRecord::Schema.define(version: 20140721170012) do
 
   create_table "bookings", force: true do |t|
     t.date     "date_submit"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20140718093209) do
     t.text     "content",                    null: false
     t.boolean  "send_notify", default: true
     t.integer  "condo_id",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "condo_images", force: true do |t|
+    t.string   "image_path_file_name"
+    t.string   "image_path_content_type"
+    t.integer  "image_path_file_size"
+    t.datetime "image_path_created_at"
+    t.integer  "condo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -71,18 +81,18 @@ ActiveRecord::Schema.define(version: 20140718093209) do
   end
 
   create_table "facilities", force: true do |t|
-    t.string   "name"
-    t.integer  "facility_category_id"
-    t.float    "booking_price"
-    t.float    "deposit_price"
+    t.string   "name",                                   null: false
+    t.float    "booking_price",                          null: false
+    t.float    "deposit_price",                          null: false
     t.text     "note"
-    t.boolean  "active"
+    t.string   "image_path_file_name"
+    t.string   "image_path_content_type"
+    t.integer  "image_path_file_size"
+    t.datetime "image_path_updated_at"
+    t.boolean  "active",                  default: true
+    t.integer  "facility_category_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
   end
 
   create_table "facility_categories", force: true do |t|
@@ -93,10 +103,31 @@ ActiveRecord::Schema.define(version: 20140718093209) do
   end
 
   create_table "facility_statuses", force: true do |t|
-    t.integer  "facility_id"
+    t.string   "image_path_file_name"
+    t.string   "image_path_content_type"
+    t.integer  "image_path_file_size"
+    t.datetime "image_path_updated_at"
     t.date     "close_from"
     t.date     "close_to"
     t.text     "reason"
+    t.integer  "facility_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "form_categories", force: true do |t|
+    t.string   "name",       null: false
+    t.integer  "condo_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forms", force: true do |t|
+    t.string   "title",                null: false
+    t.string   "form_path_file_name"
+    t.integer  "form_path_file_size"
+    t.datetime "form_path_created_at"
+    t.integer  "form_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -105,6 +136,14 @@ ActiveRecord::Schema.define(version: 20140718093209) do
     t.string   "alias"
     t.integer  "permission_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "house_rules", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "condo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

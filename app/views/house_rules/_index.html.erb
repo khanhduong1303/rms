@@ -1,0 +1,22 @@
+<% @house_rules.each do |house_rule| %>
+  <div class="my-row house-rule-<%= house_rule.id %>">
+    <div class="my-col-8">
+      <h4><b><%= house_rule.title %></b></h4>
+      <p><b>Content:</b></p>
+      <%= simple_format(house_rule.content.truncate(450, separator: '\n', omission: '... (continued, please click View More)'), { class: 'keep-format' }) %>
+      <%= link_to 'View More', house_rule, { class: 'btn btn-default show-button', remote: true } %>
+    </div>
+    <div class="my-col-2">
+      <div class="middle">
+        <%= link_to confirm_house_rule_path(house_rule), { class: 'btn btn-link', remote: true } do %>
+          <span class="glyphicon glyphicon-trash"></span> Delete House Rule
+        <% end %>
+        <%= link_to edit_house_rule_path(house_rule), { class: 'btn btn-link', remote: true } do %>
+          <span class="glyphicon glyphicon-pencil"></span> Edit House Rule
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <hr>
+<% end %>
+

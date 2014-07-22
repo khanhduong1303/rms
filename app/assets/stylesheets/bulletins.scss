@@ -2,6 +2,10 @@ div.bulletin-header {
   a.btn {
     float: right;
   }
+  select.form-control {
+    width: 15%;
+    display: inline
+  }
 }
 
 div.col-xs-10 {
@@ -40,12 +44,5 @@ div.col-xs-10 {
 
 a.btn-link:hover {
   text-decoration: none;
-}
-
-div.bulletin-header {
-  select.form-control {
-    width: 15%;
-    display: inline
-  }
 }
 
