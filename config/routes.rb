@@ -140,6 +140,7 @@ Rails.application.routes.draw do
       collection do
         get 'booking_facilities' => 'bookings#index'
         post 'make_a_booking' => 'bookings#make_a_booking'
+        get 'check_booking' => 'bookings#check_booking'
       end
     end
   end

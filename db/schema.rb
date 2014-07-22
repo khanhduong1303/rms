@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20140718093209) do
     t.date     "date_book"
     t.string   "status"
     t.integer  "user_id"
-    t.integer  "facility_time_slot_id"
+    t.integer  "time_slot_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20140718093209) do
     t.date     "date",                       null: false
     t.text     "content",                    null: false
     t.boolean  "send_notify", default: true
-    t.integer  "user_id",                    null: false
+    t.integer  "condo_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -65,9 +65,9 @@ ActiveRecord::Schema.define(version: 20140718093209) do
     t.string   "location"
     t.string   "organiser"
     t.text     "description"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "condo_id"
   end
 
   create_table "facilities", force: true do |t|

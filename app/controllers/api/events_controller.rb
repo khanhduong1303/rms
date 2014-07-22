@@ -3,10 +3,11 @@ class Api::EventsController < ApplicationController
   #before_action :authenticate_user!, :except => [:index, :show, :event_photo, :join_event]
   http_basic_authenticate_with name: "admin", password: "rms.innoria"
      skip_before_filter :authenticate_user!
+
+  # $public_function = PublicFunction.new()
   def index
     limit = params[:limit].to_i
     page = params[:page].to_i
-
     if page < 1 or limit < 1
       @events = Event.limit(10)
       return render json: data_json('success', 'Event list', @events.size, @events)
@@ -62,6 +63,6 @@ class Api::EventsController < ApplicationController
 
   private
   def data_json status, message, total, results=nil
-      return {:status=>status, :message=>message,:total=>total, :results=>results}
+    return {:status=>status, :message=>message,:total=>total, :results=>results}
   end
 end
