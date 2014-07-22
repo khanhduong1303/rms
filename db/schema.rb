@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718093209) do
+ActiveRecord::Schema.define(version: 20140721141720) do
 
   create_table "bookings", force: true do |t|
     t.date     "date_submit"
@@ -29,9 +29,19 @@ ActiveRecord::Schema.define(version: 20140718093209) do
     t.date     "date",                       null: false
     t.text     "content",                    null: false
     t.boolean  "send_notify", default: true
-    t.integer  "user_id",                    null: false
+    t.integer  "condo_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "condo_images", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "condo_id"
   end
 
   create_table "condos", force: true do |t|
@@ -65,9 +75,9 @@ ActiveRecord::Schema.define(version: 20140718093209) do
     t.string   "location"
     t.string   "organiser"
     t.text     "description"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "condo_id"
   end
 
   create_table "facilities", force: true do |t|

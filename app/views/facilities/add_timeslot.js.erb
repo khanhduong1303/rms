@@ -1,5 +1,5 @@
 <% if @timeslot.errors.any? %>
-
+alert("Please Choose the time start and end");
 <% else %>
 <%  @timeslot.peak = false
      @timeslot.save   %>

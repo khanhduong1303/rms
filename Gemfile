@@ -36,8 +36,10 @@ gem "paperclip", "~> 4.1"
 gem 'momentjs-rails', '~> 2.5.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0.1'
 gem 'bootstrap-timepicker-rails'
+
 # upload file use ajax with paperclip
 gem 'remotipart', '~> 1.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

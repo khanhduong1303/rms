@@ -24,11 +24,15 @@ Rails.application.routes.draw do
 
 
   #resources :event_images
-
+  resources :condos
+  post 'condos/images' , to: 'condos#create_image' , as: 'create_image'
   resources :events
   resources :facilities do
     get 'confirm'
     get 'timeslot'
+    member do
+      get 'confirm'
+    end
 
   end
   post 'facilities/change_active' , to: 'facilities#change_active'

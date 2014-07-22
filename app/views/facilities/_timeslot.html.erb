@@ -8,11 +8,44 @@
     </table>
   <%= f.hidden_field :facility_id, { value: @facility.id } %>    
 <%= f.label :slot_start , 'Add TimeSlot'%>
-   <%= f.time_select :slot_start %> To  <%= f.time_select :slot_end%>
+
+   <div class="row">
+    <div class='col-sm-3'>
+     <div class='input-group date' id='datetimepicker1'>
+     <%= f.text_field :slot_start , :class => "form-control" %>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-time">
+          
+        </span></span>
+    </div>
+    </div>
+     <div class='col-sm-1'>
+     <p>To</p> 
+     </div>
+      <div class='col-sm-3'>
+       <div class='input-group date' id='datetimepicker2'>
+     <%= f.text_field :slot_end , :class => "form-control" %>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-time">
+          
+        </span></span>
+    </div>
+
+      </div>    
+    
+   </div> 
+     <%= link_to 'Cancel', '#', { class: 'btn btn-danger', data: { dismiss: 'modal'} } %>
+   <%= f.submit "Submit" , class: "btn btn-success"  %>
 </div>
-<div class="modal-footer">
-  
-  <%= link_to 'Cancel', '#', { class: 'btn btn-default', data: { dismiss: 'modal'} } %>
-   <%= f.submit "Save" , class: "btn btn-danger"  %>
-</div>
+
 <% end %>
+
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({
+                    pickDate: false
+                });
+                $('#datetimepicker2').datetimepicker({
+                    pickDate: false
+                });
+            });
+        </script>

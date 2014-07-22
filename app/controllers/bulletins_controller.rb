@@ -19,10 +19,12 @@ class BulletinsController < ApplicationController
 
   def create
     @bulletin = Bulletin.create(bulletin_params)
+    @persisted = false
   end
 
   def update
     @bulletin.update_attributes(bulletin_params)
+    @persisted = true
   end
 
   def confirm
@@ -30,7 +32,6 @@ class BulletinsController < ApplicationController
 
   def destroy
     @bulletin.destroy
-    flash[:notice] = 'Bulletin was successfully destroyed.'
   end
 
   private
@@ -40,7 +41,7 @@ class BulletinsController < ApplicationController
     end
 
     def set_bulletins
-      @bulletins = Bulletin.where(user_id: current_user.id).order('date DESC')
+      @bulletins = Bulletin.where(user_id: current_user.id).order(date: :desc)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
