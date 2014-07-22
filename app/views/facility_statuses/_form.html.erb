@@ -2,7 +2,7 @@
 <%= form_for @facility_status, remote: true do |f| %>
   <ul class="errors"></ul>
 
-  <%= f.hidden_field :facility_id, { value: 8 } %>
+  <%= f.hidden_field :facility_id, { value: '' } %>
   <div class="facility-status-image">
     <%= image_tag 'http://www.joomlaworks.net/images/demos/galleries/abstract/7.jpg', { class: 'img-thumbnail', size: '320x240'} %>
     <%= link_to '#', { class: 'btn btn-link choose-image', remote: true } do %>
