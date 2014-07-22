@@ -13,6 +13,7 @@
 <% if @condo.condo_images.size > 0 %>
 <%= image_tag @condo.condo_images.first.image.url(:big), :class=>"img-thumbnail" %>
 <% else %>
+<%= image_tag "image_null.jpg", :class=>"img-thumbnail" %>
 <% end %>
 </div>
 <table class="condo">
