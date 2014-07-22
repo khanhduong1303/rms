@@ -1,8 +1,8 @@
 <%= form_for @facility, remote: true do |f| %>
   <ul class="errors"></ul>
 <div class="row">
-  <div class="col-xs-2">
-    <% if @facility.persisted? %>
+  <% if @facility.persisted? %>
+    <div class="col-xs-2">
       <div class="image">
         <% if @facility.image_path? %>
           <%= image_tag @facility.image_path.url(:default), class: 'img-thumbnail' %>
@@ -11,12 +11,10 @@
         <% end %>
         <a data-toggle="modal" data-target="#myModal" href="#" class="edit"><span class = "glyphicon glyphicon-pencil"></span></a>
       </div>
-    <% else %>
-      <%= f.file_field :image_path %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
-  <div class="col-xs-10">
+  <div class="<%= @facility.persisted? ? 'col-xs-10' : 'col-xs-12' %>">
     <div class="form-group form-inline">
       <%= f.label :name %>:
       <%= f.text_field :name, { class: "form-control", placeholder: 'Name of facility' } %>
@@ -37,9 +35,28 @@
       <%= f.text_field :deposit_price, { class: "form-control", placeholder: 'Deposit price' } %>
     </div>
 
+    <% if !@facility.persisted? %>
+      <%= f.file_field :image_path, { id: 'file-box', style: 'display:none' }%>
+      <div class="form-group">
+        <div class="input-group col-xs-5">
+          <input id="input-file" class="form-control" type="text" placeholder="Choose a image">
+          <a class="btn btn-default input-group-addon btn-browse">Browse</a>
+        </div>
+      </div>
+
+      <script type="text/javascript">
+        $(document).on('click', '.btn-browse', function() {
+          $('input[id=file-box]').click();
+        })
+        $('input[id=file-box]').change(function() {
+          $('#input-file').val($(this).val());
+        });
+      </script>
+    <% end %>
+
     <div class="form-group">
       <%= f.label :note %>:
-      <%= f.text_area :note, class: "form-control", rows: 5  %>
+      <%= f.text_area :note, class: "form-control", rows: 2  %>
     </div>
 
     <div class="facility-button">
