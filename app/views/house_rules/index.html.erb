@@ -1,0 +1,21 @@
+<div class="house-rule-header">
+  <%= link_to new_house_rule_path, { class: 'btn btn-link', remote: true} do %>
+    <span class="glyphicon glyphicon-plus"></span> Add New House Rule
+  <% end %>
+</div>
+<hr>
+
+<div id="new-house-rule">
+</div>
+
+<div id="list-house-rule">
+  <%= render 'index' %>
+</div>
+
+<div id="house-rule-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div id="house-rule-content" class="modal-content">
+    </div>
+  </div>
+</div>
+

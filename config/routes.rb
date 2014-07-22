@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
 
 
+
+  resources :forms
+
+  resources :form_categories
+
 #api routes
   namespace :api , defaults: { format: 'json' } do
        devise_scope :user do
@@ -40,6 +45,14 @@ Rails.application.routes.draw do
   post 'facilities/add_timeslot' , to: 'facilities#add_timeslot' , as: 'add_timeslot'
 
 
+  resources :facility_statuses, only: [:new, :create]
+
+  resource :facility_status, only: [] do
+    collection do
+      get 'cancel'
+    end
+  end
+
   resources :bookings, only: [:index, :update, :destroy]
 
   resources :bulletins do
@@ -48,7 +61,11 @@ Rails.application.routes.draw do
     end
   end
 
-
+  resources :house_rules do
+    member do
+      get 'confirm'
+    end
+  end
 
 
   devise_scope :user do
@@ -140,7 +157,22 @@ Rails.application.routes.draw do
         get 'bulletin_detail' => 'bulletins#show'
       end
     end
+
+    resource :house_rule, only: [], path: 'api' do
+      collection do
+        get 'house_rules' => 'house_rules#index'
+      end
+    end
   end
 
+  namespace :api, path: nil do
+    resources :booking, only: [], path: 'api' do
+      collection do
+        get 'booking_facilities' => 'bookings#index'
+        post 'make_a_booking' => 'bookings#make_a_booking'
+        get 'check_booking' => 'bookings#check_booking'
+      end
+    end
+  end
 end
 

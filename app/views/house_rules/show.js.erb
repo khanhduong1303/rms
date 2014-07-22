@@ -1,0 +1,5 @@
+$('.modal-dialog').hasClass('modal-sm') == true ? $('.modal-dialog').removeClass('modal-sm') : ''
+$('.modal-dialog').addClass('modal-lg')
+$('#house-rule-content').html('<%= escape_javascript(render 'show') %>')
+$('#house-rule-modal').modal('show')
+

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  form_path_file_name: MyString
+  form_path_file_size: 1
+  form_path_created_at: 2014-07-21 23:50:28
+  form_category_id: 1
+
+two:
+  title: MyString
+  form_path_file_name: MyString
+  form_path_file_size: 1
+  form_path_created_at: 2014-07-21 23:50:28
+  form_category_id: 1

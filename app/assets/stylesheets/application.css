@@ -99,6 +99,10 @@ a:hover {
 }
 
 select.form-control option {
-    padding: 6px 12px;
+  padding: 6px 12px;
+}
+
+textarea {
+  resize: vertical;
 }
 

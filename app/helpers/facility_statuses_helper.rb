@@ -1,0 +1,2 @@
+module FacilityStatusesHelper
+end

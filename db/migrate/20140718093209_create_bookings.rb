@@ -6,7 +6,7 @@ class CreateBookings < ActiveRecord::Migration
       t.date :date_book
       t.string :status
       t.integer :user_id
-      t.integer :facility_time_slot_id
+      t.integer :time_slot_id
 
       t.timestamps
     end

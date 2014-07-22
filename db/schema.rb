@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721141720) do
+ActiveRecord::Schema.define(version: 20140721165028) do
 
   create_table "bookings", force: true do |t|
     t.date     "date_submit"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20140721141720) do
     t.date     "date",                       null: false
     t.text     "content",                    null: false
     t.boolean  "send_notify", default: true
-    t.integer  "condo_id",                   null: false
+    t.integer  "user_id",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,9 +75,9 @@ ActiveRecord::Schema.define(version: 20140721141720) do
     t.string   "location"
     t.string   "organiser"
     t.text     "description"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "condo_id"
   end
 
   create_table "facilities", force: true do |t|
@@ -111,10 +111,35 @@ ActiveRecord::Schema.define(version: 20140721141720) do
     t.datetime "updated_at"
   end
 
+  create_table "form_categories", force: true do |t|
+    t.string   "name",       null: false
+    t.integer  "condo_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forms", force: true do |t|
+    t.string   "title",                null: false
+    t.string   "form_path_file_name"
+    t.integer  "form_path_file_size"
+    t.datetime "form_path_created_at"
+    t.integer  "form_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "functions", force: true do |t|
     t.string   "alias"
     t.integer  "permission_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "house_rules", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "condo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

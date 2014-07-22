@@ -1,0 +1,3 @@
+var className = '.house-rule-' + <%= @house_rule.id %>;
+$(className).html('<%= escape_javascript(render 'form') %>');
+
