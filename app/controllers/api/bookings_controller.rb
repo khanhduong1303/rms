@@ -23,14 +23,22 @@ class Api::BookingsController < ApplicationController
     else
       if User.where(id:user).size > 0
         @booking = User.find(user).bookings
-        @check_booking = []
+        @facilities = []
         i=0
-        @booking.each do |b|
-          @check_booking[i]= b.time_slot.facility
-          #@check_booking[i][:ok] = 'ok'
+        @booking.each do |book|
+          temp = Hash.new
+          temp[:name]= book.time_slot.facility.name
+          temp[:booking_price]= book.time_slot.facility.booking_price
+          temp[:deposit_price]= book.time_slot.facility.deposit_price
+          temp[:note]= book.time_slot.facility.note
+          temp[:status]=book.status
+          @facilities[i] = temp
+          #temp[b.status] = b.status
+          #facilities[i][:ok] = 'ok'
           i+=1
         end
-        render json: data_json('success', 'Check booking list',@check_booking.size,@check_booking)
+        # facilities[0].status = 'booked'
+        render json: data_json('success', 'Check booking list',@facilities.size,@facilities)
       else
         render json: data_json('failed', 'User_id not found',0,nil)
       end
