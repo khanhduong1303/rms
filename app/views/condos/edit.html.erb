@@ -1,0 +1,106 @@
+<div class="condoinfo-header">
+
+ <h4>Edit Condo Infos</h4>
+    <div></div>
+  <hr>
+</div>
+<div class="condoinfo-content">
+<div class="condo-image">
+<% if @condo.condo_images.size > 0 %>
+<%= image_tag @condo.condo_images.first.image.url(:big), :class=>"img-thumbnail" %>
+<% else %>
+
+<% end %>
+<div>
+<%= form_for @condo, :html=>{:role =>"form"} do |f| %>
+<table class="condo">
+<tr>
+<th>Project</th>
+<th><%= f.text_field :name , class: "form-control" %></th>
+</tr>
+<tr>
+<td>Project type</td>
+<td><%= f.text_field :property_type , class: "form-control"  %></td>
+</tr>
+<tr>
+<td>Developer</td>
+<td><%= f.text_field :developer , class: "form-control" %></td>
+</tr>
+<tr>
+<td>Tenure</td>
+<td><%= f.text_field :tenure , class: "form-control" %></td>
+</tr>
+<tr>
+<td>TOP Year</td>
+<td><%= f.text_field :top_year, class: "form-control"  %></td>
+</tr>
+<tr>
+<td># of Units</td>
+<td> <%= f.text_field :num_of_units, class: "form-control"  %></td>
+</tr>
+</table>
+<p><b>Description: </b></br>
+  <%= f.text_area :description ,{class:"form-control" ,:rows=>"3"} %>
+</p>
+
+<div class="image-container">
+<b>Photo Gallery: </b></br>
+<a  data-toggle="modal" data-target="#myModal" href="#" class="btn btn-default">Add More Photos</a>
+<div class="image-content">
+<%= render "image_content" %>
+</div>
+</div>
+<div class="end-float"></div>
+<%= link_to "Cancel" ,condos_path , class: "btn btn-default" %>
+<%= f.submit "Save" , class: "btn btn-success"%>
+<% end %>
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+
+  <%= form_for(@condo_image, url: create_image_path ,:html => {:id => "upload_image" , 
+    :class => "form-horizontal",
+    :role =>"form"} , :remote => true ) do |f| %>
+   <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Upload a New Photo </h4>
+      </div>
+      <div class="modal-body">
+  
+     
+       <div class="form-group">
+   
+      <div class='up_pic'>
+     
+     <%= f.file_field :image , :multiple => true %>
+      </div>
+      <a class = "add_more btn btn-default">Add More</a>
+      <div class="modal-footer">
+       <div>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      <%= f.submit "Submit", :class => "btn btn-success" %></div>
+      </div>
+    </div>
+    <% end %>
+
+
+
+
+
+
+  </div>
+</div>
+</div>
+
+
+
+<script>
+$(document).ready(function(){
+$("a.add_more").click(function(){
+$('div.up_pic').append('  <input accept="image/png,image/gif,image/jpeg" id="images_" name="condo_image[image][]" multiple="multiple" type="file" />')
+});
+});
+</script>

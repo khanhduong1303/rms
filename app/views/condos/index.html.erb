@@ -1,0 +1,56 @@
+<div class="condoinfo-header">
+ 
+  <%= link_to edit_condo_path(@condo), { class: 'btn btn-link'} do %>
+    <span class="glyphicon glyphicon-pencil"></span> Edit Condo Infos
+  <% end %>
+  <div></div>
+ <hr>
+</div>
+
+<div class="condoinfo-content">
+
+<div class="condo-image">
+<% if @condo.condo_images.size > 0 %>
+<%= image_tag @condo.condo_images.first.image.url(:big), :class=>"img-thumbnail" %>
+<% else %>
+<% end %>
+</div>
+<table class="condo">
+<tr>
+<th>Project</th>
+<th><%= @condo.name %></th>
+</tr>
+<tr>
+<td>Project type</td>
+<td><%= @condo.property_type %></td>
+</tr>
+<tr>
+<td>Developer</td>
+<td><%= @condo.developer %></td>
+</tr>
+<tr>
+<td>Tenure</td>
+<td><%= @condo.tenure %></td>
+</tr>
+<tr>
+<td>TOP Year</td>
+<td><%= @condo.top_year %></td>
+</tr>
+<tr>
+<td># of Units</td>
+<td> <%= @condo.num_of_units %></td>
+</tr>
+</table>
+<b>Description:</b> </br>
+
+<blockquote>
+	  <%= @condo.description %>
+</blockquote>
+<b>Photo Galery:</b> </br>
+<div class="image-content">
+<% @condo.condo_images.each do |i| %>
+<%= image_tag i.image.url(:small), :class=>"img-thumbnail" %>
+<% end %>
+</div>
+</div>
+
