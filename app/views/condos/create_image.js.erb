@@ -1,0 +1,8 @@
+<% if @flag %> 
+$('div.image-content').html('<%= escape_javascript(render 'image_content') %>')
+$('#myModal').modal('hide')
+$('div.up_pic').html('  <input accept="image/png,image/gif,image/jpeg" id="images_" name="condo_image[image][]" multiple="multiple" type="file" />')
+
+<% else %>
+alert("Please choose an image to submit");
+<% end %>

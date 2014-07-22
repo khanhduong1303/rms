@@ -33,7 +33,7 @@
         <%= link_to new_facility_status_path, { class: 'btn btn-link facility-status', remote: true, data: { 'facility-id' => facility.id } } do %>
           <span class="glyphicon glyphicon-calendar"></span> Facility Status
         <% end %>
-        <%= link_to '#', { class: 'edit-button btn btn-link', remote: true } do %>
+        <%= link_to facility_timeslot_path(facility), { class: 'edit-button btn btn-link', remote: true } do %>
           <span class="glyphicon glyphicon-time"></span> Facility Time Slots
         <% end %>
       </div>

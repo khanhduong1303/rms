@@ -1,0 +1,76 @@
+div.condoinfo-header {
+  a.btn {
+    float: right;
+  }
+  div {
+  clear : both ;
+  }
+}
+div.condoinfo-content{
+ margin : 0px auto;
+ width : 960px;
+}
+
+
+table.condo { 
+margin-top : 15px;
+width : 100% ;
+border-collapse: collapse; }
+
+table.condo td {
+	border-left : 1px solid black; 
+	border-right : 1px solid black; 
+	padding-top: 3px;
+    padding-bottom: 2px;
+}
+
+
+table.condo th{
+	border-left : 1px solid black; 
+	border-right : 1px solid black; 
+	border-top : 1px solid black; 
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background: #505252;
+}
+table.condo tr:nth-of-type(even){
+background-color: rgba(255,255,255,.1);
+}
+table.condo tr:nth-of-type(odd){
+background-color: #D5DAD8;
+}
+table.condo tr:last-child td {border-bottom:1px solid black;}
+
+blockquote{
+  font: 12px/20px normal helvetica, sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  padding-left: 15px;
+  border-left: 3px solid #ccc;
+} 
+
+
+div.image-container{
+   position: relative;
+    margin : 10px 5px;
+	img{
+	display: inline-block;
+	padding:5px 15px;
+	}
+	div.image-content div { float:left;
+	       width:160px;
+	       margin: 20px 5px;   }
+	 a{
+	 position : absolute;
+	 top : 0px;
+	 right : 0px;
+	 }      
+}
+.add_more{
+	margin-top : 10px
+}
+.end-float{
+	clear :both;
+}

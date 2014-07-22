@@ -45,7 +45,7 @@
         <%= link_to 'Home', homes_path, { class: "btn btn-primary menu #{session[:menustatus] == 'home' ? 'active' : ''}" } %>
         <%= link_to 'Bookings', bookings_path, { class: "btn btn-primary menu #{session[:menustatus] == 'bookings' ? 'active' : ''}" } %>
         <%= link_to 'Bulletin', bulletins_path, { class: "btn btn-primary menu #{session[:menustatus] == 'bulletins' ? 'active' : ''}" } %>
-        <%= link_to 'Condo Info', '#', { class: "btn btn-primary menu #{session[:menustatus] == 'condoInfos' ? 'active' : ''}" } %>
+        <%= link_to 'Condo Info', condos_path, { class: "btn btn-primary menu #{session[:menustatus] == 'condoInfos' ? 'active' : ''}" } %>
         <%= link_to 'Events', events_path, { class: "btn btn-primary menu #{session[:menustatus] == 'events' ? 'active' : ''}" } %>
         <%= link_to 'Facilities',  facilities_path, { class: "btn btn-primary menu #{session[:menustatus] == 'facilities' ? 'active' : ''}" } %>
         <%= link_to 'Feedback', '#', { class: "btn btn-primary menu #{session[:menustatus] == 'feedbacks' ? 'active' : ''}" } %>
