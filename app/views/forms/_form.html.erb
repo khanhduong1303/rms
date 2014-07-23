@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <% if @form.persisted? %>
+    <span>Edit Form</span>
+  <% else %>
+    <span>Add New Form</span>
+  <% end %>
+</div>
+
+<div class="modal-body">
+  <%= form_for @form, remote: true do |f| %>
+    <ul class="errors"></ul>
+
+    <div class="form-group form-inline">
+      <label>Categories:</label>
+      <%= f.collection_select :form_category_id, @form_categories, :id, :name, {}, { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group form-inline">
+      <%= f.label :title %>:
+      <%= f.text_field :title, { class: 'form-control' } %>
+    </div>
+
+    <%= f.file_field :form_path, { id: 'file-box', class: 'hidden' } %>
+    <div class="form-group">
+      <label>Upload form:</label>
+      <div class="input-group">
+        <input id="input-file" class="form-control" type="text">
+        <span class="btn btn-default input-group-addon btn-browse">Browse</span>
+      </div>
+    </div>
+
+    <%= f.submit class: 'btn btn-success', value: @form.persisted? ? 'Save' : 'Add' %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $(document).on('click', '.btn-browse', function() {
+    $('input[id=file-box]').click();
+  })
+  $('input[id=file-box]').change(function() {
+    $('#input-file').val($(this).val());
+  });
+</script>
+

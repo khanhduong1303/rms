@@ -1,0 +1,9 @@
+<div class="modal-header">
+  <h4 class="modal-title"><%= @form.title %></h4>
+</div>
+<div class="modal-body">
+  <% if @form.form_path.exists? %>
+    <iframe src="<%= @form.form_path %>" width="858" height="500"></iframe>
+  <% end %>
+</div>
+

@@ -4,7 +4,8 @@
 
   <%= f.hidden_field :facility_id, { value: '' } %>
   <div class="facility-status-image">
-    <%= image_tag 'http://www.joomlaworks.net/images/demos/galleries/abstract/7.jpg', { class: 'img-thumbnail', size: '320x240'} %>
+    <%= image_tag @facility_status.image_path.url(:thumbnail), { id: 'image-preview', class: 'img-thumbnail', size: '320x240'} %>
+    <%= f.file_field :image_path, { id: 'file-image'} %>
     <%= link_to '#', { class: 'btn btn-link choose-image', remote: true } do %>
       <span class="glyphicon glyphicon-pencil"></span>
     <% end %>
@@ -55,6 +56,31 @@
 
 <% if !@facility_status.persisted? %>
   <script type="text/javascript">
+    $(document).on('click', '.choose-image', function(e) {
+      e.preventDefault();
+      $('#file-image').trigger('click');
+    });
+
+    function handleFileSelect(evt) {
+      var files = evt.target.files; // FileList object
+        f = files[0]
+        // Only process image files.
+        if (f.type.match('image.*')) {
+          var reader = new FileReader();
+          reader.onload = (function(theFile) {
+            return function(e) {
+              // alert(e.target.result);
+              document.getElementById("image-preview").src = e.target.result;
+            };
+          })(f);
+
+        // Read in the image file as a data URL.
+        reader.readAsDataURL(f);
+        }
+      }
+    document.getElementById('file-image').addEventListener('change', handleFileSelect, false);
+
+
     $(function() {
       date = new Date();
       $('#datetime-picker-close-from').data('DateTimePicker').setDate(dateToString(date));

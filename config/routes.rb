@@ -33,7 +33,6 @@ Rails.application.routes.draw do
   post 'condos/images' , to: 'condos#create_image' , as: 'create_image'
   resources :events
   resources :facilities do
-    get 'confirm'
     get 'timeslot'
     member do
       get 'confirm'
@@ -56,6 +55,15 @@ Rails.application.routes.draw do
   resources :bookings, only: [:index, :update, :destroy]
 
   resources :bulletins do
+    member do
+      get 'confirm'
+    end
+  end
+
+  resources :forms do
+    collection do
+      post 'filter'
+    end
     member do
       get 'confirm'
     end

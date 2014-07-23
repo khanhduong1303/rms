@@ -1,0 +1,15 @@
+<% if @form.errors.any? %>
+  $("ul.errors").html('')
+  <% @form.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $('#notifications').html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>Form was successfully <%= !@persisted ? 'created!' : 'updated!' %></div>')
+  $('#list-form').html('<%= escape_javascript(render 'index') %>')
+  $('#form-modal').modal('hide')
+
+  setTimeout(function() {
+    $('div.alert.alert-success.alert-dismissible').alert('close');
+  }, 1500);
+<% end %>
+

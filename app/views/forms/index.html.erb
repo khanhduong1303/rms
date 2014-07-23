@@ -1,0 +1,20 @@
+<div class="form-header">
+  View:
+  <%= collection_select :form_category, :id, @form_categories, :id, :name, { prompt: 'All' }, { class: 'form-control'} %>
+  <%= link_to new_form_path, { class: 'btn btn-link', remote: true} do %>
+    <span class="glyphicon glyphicon-plus"></span> Add New Form
+  <% end %>
+  <hr>
+</div>
+
+<div id="list-form">
+  <%= render 'index' %>
+</div>
+
+<div id="form-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div id="form-content" class="modal-content">
+    </div>
+  </div>
+</div>
+
