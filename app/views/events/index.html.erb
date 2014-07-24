@@ -1,8 +1,13 @@
 <div  id="loadbody">
-  <%= link_to new_event_path, :class => 'float-right',:remote => true, :id=>'addNewEvent' do %>
+  <div class="row">
+  <%= link_to new_event_path, :class => 'float-right right-30',:remote => true, :id=>'addNewEvent' do %>
     <span class="glyphicon glyphicon-plus"></span>
     Add New Event
   <% end %>
+    <br>
+    <hr>
+    </div>
+
 <% @events.each do |event| %>
     <div class="row">
         <div class="col-sm-2 align-center">

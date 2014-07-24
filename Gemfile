@@ -39,7 +39,8 @@ gem 'bootstrap-timepicker-rails'
 
 # upload file use ajax with paperclip
 gem 'remotipart', '~> 1.2'
-
+# dataTable
+gem 'jquery-datatables-rails', '~> 2.1.10.0.3'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

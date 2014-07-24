@@ -7,5 +7,9 @@ class Facility < ActiveRecord::Base
   validates_attachment_content_type :image_path, :content_type => /\Aimage\/.*\Z/
   validates_attachment :image_path, size: { :in => 0..3.megabytes }, content_type: { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
   validates :name, :booking_price, :deposit_price, :facility_category_id, presence: true
+
+  def currency(val)
+    "#{ActionController::Base.helpers.number_to_currency(val)}"
+  end
 end
 

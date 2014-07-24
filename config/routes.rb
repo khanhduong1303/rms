@@ -53,7 +53,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bookings, only: [:index, :update, :destroy]
+  resources :bookings, only: [:index, :update, :destroy] do
+    collection do
+      post 'deleteColection'
+      post 'updateStatus'
+      get 'confirm'
+    end
+  end
 
   resources :bulletins do
     member do
@@ -74,8 +80,6 @@ Rails.application.routes.draw do
     patch 'user/add_avatar' , to: 'registrations#add_avatar' , as: 'add_avatar'
   end
   devise_for :users ,:controllers => {:registrations => "registrations" , :sessions => "sessions"}
-
-  resources :bookings, only: [:index, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
