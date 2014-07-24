@@ -166,6 +166,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resource :form, only: [], path: 'api' do
+      collection do
+        get 'forms' => 'forms#index'
+      end
+    end
+
     resource :house_rule, only: [], path: 'api' do
       collection do
         get 'house_rules' => 'house_rules#index'

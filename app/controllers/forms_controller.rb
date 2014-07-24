@@ -26,6 +26,7 @@ class FormsController < ApplicationController
 
   def create
     @form = Form.create(form_params)
+    @persisted = false
   end
 
   def edit
@@ -33,6 +34,7 @@ class FormsController < ApplicationController
 
   def update
     @form.update_attributes(form_params)
+    @persisted = true
   end
 
   def confirm
