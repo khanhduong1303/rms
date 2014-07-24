@@ -6,24 +6,27 @@ class BookingsController < ApplicationController
   def index
   end
 
-  def update
-    respond_to do |format|
-      if @booking.update(booking_params)
-        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
-        format.json { render :show, status: :ok, location: @booking }
-      else
-        format.html { render :edit }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
-      end
+  def deleteColection
+    params[:book_id].each do |book|
+      @book = Booking.find(book)
+      @book.destroy
+    end
+      return render json: {status:'success'}
+  end
+
+  def updateStatus
+    if Booking.where(id:params[:book_id]).size < 1 && !params[:book_stt].nil?
+      return render json: {status:'failed'}
+    end
+    @book = Booking.find(params[:book_id])
+    if @book.update_attributes(:status=> params[:book_stt])
+      return render json: {status:'success'}
+    else
+      return render json: {status:'failed'}
     end
   end
 
-  def destroy
-    @booking.destroy
-    respond_to do |format|
-      format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  def confirm
   end
 
   private
