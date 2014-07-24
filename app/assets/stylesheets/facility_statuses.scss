@@ -2,7 +2,13 @@
   position: relative;
   text-align: center;
   padding-bottom: 15px;
-    .choose-image {
-    }
+}
+
+#file-image {
+  display: none;
+}
+
+img#image-preview.img-thumbnail {
+  height: 240px !important;
 }
 

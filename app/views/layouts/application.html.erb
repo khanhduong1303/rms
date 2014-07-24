@@ -49,7 +49,7 @@
         <%= link_to 'Events', events_path, { class: "btn btn-primary menu #{session[:menustatus] == 'events' ? 'active' : ''}" } %>
         <%= link_to 'Facilities',  facilities_path, { class: "btn btn-primary menu #{session[:menustatus] == 'facilities' ? 'active' : ''}" } %>
         <%= link_to 'Feedback', '#', { class: "btn btn-primary menu #{session[:menustatus] == 'feedbacks' ? 'active' : ''}" } %>
-        <%= link_to 'Forms', '#', { class: "btn btn-primary menu #{session[:menustatus] == 'forms' ? 'active' : ''}" } %>
+        <%= link_to 'Forms', forms_path, { class: "btn btn-primary menu #{session[:menustatus] == 'forms' ? 'active' : ''}" } %>
         <%= link_to 'Guard House', '#', { class: "btn btn-primary menu #{session[:menustatus] == 'guard_houses' ? 'active' : ''}" } %>
         <%= link_to 'House Rules', house_rules_path, { class: "btn btn-primary menu #{session[:menustatus] == 'house_rules' ? 'active' : ''}" } %>
       </div>

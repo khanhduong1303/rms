@@ -41,6 +41,15 @@ body {
   z-index: 999999;
 }
 
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+
+.hidden {
+  display: none;
+}
+
 a:hover {
   text-decoration: none;
 }
