@@ -1,9 +1,22 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:update, :destroy]
-  before_action :set_bookings, only: [:index]
+  #before_action :set_bookings, only: [:index]
   before_action :set_hightlight
 
   def index
+    session[:category_id_temp]='all';
+    @users = User.where(condo_id: current_user.condo_id)
+    @categories = FacilityCategory.where(condo_id: current_user.condo_id)
+    if @users.size > 0
+      @bookings = []
+      @users.each do |u|
+        if !u.bookings.blank?
+          u.bookings.each do |book|
+            @bookings << book
+          end
+        end
+      end
+    end
   end
 
   def deleteColection
@@ -27,6 +40,44 @@ class BookingsController < ApplicationController
   end
 
   def confirm
+  end
+
+  def filter
+    category_id = params[:id]
+    session[:category_id_temp]=category_id;
+    @categories = FacilityCategory.where(condo_id: current_user.condo_id)
+    if category_id=='all'
+      @users = User.where(condo_id: current_user.condo_id)
+      if @users.size > 0
+        @bookings = []
+        @users.each do |u|
+          if !u.bookings.blank?
+            u.bookings.each do |book|
+              @bookings << book
+            end
+          end
+        end
+      end
+    else
+      @bookings = []
+      @users = User.where(condo_id: current_user.condo_id)
+      if @users.size > 0
+        @bookings = []
+        @users.each do |u|
+          if !u.bookings.blank?
+            u.bookings.each do |book|
+              if book.time_slot.facility.facility_category_id==category_id
+                @bookings << book
+              end
+            end
+          end
+        end
+      end
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   private

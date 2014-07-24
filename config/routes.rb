@@ -52,7 +52,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'bookings/filter/:id' => 'bookings#filter', as: 'filter'
   resources :bookings, only: [:index, :update, :destroy] do
+
     collection do
       post 'deleteColection'
       post 'updateStatus'

@@ -13,7 +13,9 @@ $(function(){
 
     });
 
-
+    if (category_id_temp!=undefined){
+        $('#'+category_id_temp).attr('selected','selected')
+    }
 });
 //function update booking status
 function updateBookStatus(id){
@@ -53,6 +55,16 @@ function deleteBooking(){
             });
     }
 
+}
+// event change booking categories
+function filterBookCategory(val){
+    window.location='/bookings/filter/'+ val;
+    alert(category_id_temp);
+}
+// temp save category id
+var category_id_temp;
+function tempSelectCategory(id){
+    category_id_temp =id;
 }
 //library array
 function libArray(){
