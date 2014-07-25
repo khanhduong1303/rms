@@ -54,12 +54,10 @@ function deleteBooking(){
                 }
             });
     }
-
 }
 // event change booking categories
 function filterBookCategory(val){
     window.location='/bookings/filter/'+ val;
-    alert(category_id_temp);
 }
 // temp save category id
 var category_id_temp;
