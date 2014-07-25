@@ -9,11 +9,13 @@ Rails.application.routes.draw do
     post 'edit_profile' , to: 'registrations#edit_profile' , as: 'edit_profile'
     post 'log_out' , to: 'sessions#sign_out' , as: 'log_out'
     get  'profile' , to: 'registrations#profile' , as: 'profile'
-      devise_for :users
+    post 'log_in' , to:  'sessions#sign_in'
+       devise_for :users
 
   end
-    get 'condos/list' , to: 'condos#list' , as: 'listcondo'
-    get 'condos/:id' , to: 'condos#show' , as: 'showcondo'
+    get 'condos_list' , to: 'condos#list' , as: 'listcondo'
+    get 'condos_detail' , to: 'condos#show' , as: 'showcondo'
+    post 'send_feedback' , to: 'feedbacks#create'
 
     end
 
