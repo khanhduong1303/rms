@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h4 class="modal-title">Reply to <b><%= @feedback.user.name %></b> about <b><%= @feedback.title%> </b></h4>
+</div>
+<%= form_for @reply , url: reply_path, :remote => true  do |f|  %>
+<div class="modal-body">
+ <%= f.hidden_field :feedback_id , {value: @feedback.id } %>
+ <%= f.text_area :content , :class => "form-control"  %> 
+
+</div>
+<div class="modal-footer">
+  <%= link_to 'Cancel', '#', { class: 'btn btn-default', data: { dismiss: 'modal'} } %>
+<%= f.submit "Submit" , :class => "btn btn-success" %> 
+
+</div>
+ <% end%>	

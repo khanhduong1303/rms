@@ -1,0 +1,5 @@
+$('.modal-dialog').hasClass('modal-lg')  ? $('.modal-dialog').removeClass('modal-lg') : ''
+$('.modal-dialog').addClass('modal-sm')
+$('#feedback-content').html('<%= escape_javascript(render 'confirm') %>')
+$('#feedback-modal').modal('show')
+

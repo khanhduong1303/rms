@@ -1,0 +1,156 @@
+<div class="feedback-header">
+  
+  <a   data-toggle="modal" data-target="#myModal" href="#" class="btn btn-link delete-confirm">
+<span class = "glyphicon glyphicon-trash"></span>Delete Feedbacks</a>
+<a   data-toggle="modal" data-target="#myModal" href="#" class="btn btn-link move-confirm">
+<span class = "glyphicon glyphicon-arrow-right"></span>Move to Archive</a>
+ 
+   
+  
+  <ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#">Current</a></li>
+  <li><%=link_to "Archive" , feedbacks_archive_path %></li>
+<div></div>
+</ul>
+
+</div>
+
+<div class= "feedback-content">
+
+ <%= render "index_content" %>
+<%=will_paginate @feedbacks %>
+</div>
+
+
+<div id="feedback-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div id="feedback-content" class="modal-content">
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+
+   <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirmation </h4>
+      </div>
+      <div class="modal-body">
+     <p></p>
+    
+      </div>
+      
+      <div class="modal-footer">
+       <div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      <a class = "btn btn-danger delete" href="#">Delete</a>
+       <a class = "btn btn-danger move" href="#">Move</a>
+      </div>
+    </div>
+
+
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('a.delete-confirm').click(function(){
+var feedid = [];
+        $( "input:checked" ).each(function(){
+        feedid.push($(this).val());
+    });
+        if($.isEmptyObject(feedid)){
+     $('#myModal').find('p').text("Please choose atleast one feedback to delete! ");
+    $('#myModal').find('a.delete').hide();
+      $('#myModal').find('a.move').hide();
+        } else {
+   $('#myModal').find('p').text("Are you sure to delete these feedbacks?");
+    $('#myModal').find('a.delete').show();
+    $('#myModal').find('a.move').hide();
+        }
+    });
+      $('a.move-confirm').click(function(){
+    var feedid = [];
+        $( "input:checked" ).each(function(){
+        feedid.push($(this).val());
+    });
+        if($.isEmptyObject(feedid)){
+     $('#myModal').find('p').text("Please choose atleast one feedback to move! ");
+    $('#myModal').find('a.delete').hide();
+      $('#myModal').find('a.move').hide();
+        } else {
+   $('#myModal').find('p').text("Are you sure to move these feedbacks to archive?");
+    $('#myModal').find('a.delete').hide();
+    $('#myModal').find('a.move').show();
+        }
+   
+          
+    });
+    $('a.delete').click(function(e){
+    	var feedid = [];
+      e.preventDefault();
+    $( "input:checked" ).each(function(){
+        feedid.push($(this).val());
+
+    });
+    param = {
+	"ids" : feedid 	
+	 
+		};
+
+    $.ajax({
+ 	url : "feedbacks/destroy_multiple" ,
+ 	type : "post" ,
+ 	data: param ,
+ 	dataType: "json",
+ 	success: function(data){ 
+      if(data.status){
+      location.reload(); 	
+      }else{
+      	$('#myModal').modal('hide');
+      }
+ 	} ,
+ 	error: function(){ }
+ 		});
+  
+
+      });
+     $('a.move').click(function(e){
+       e.preventDefault();
+        var feedid = [];
+    
+    $( "input:checked" ).each(function(){
+        feedid.push($(this).val());
+
+    });
+    param = {
+  "ids" : feedid  
+   
+    };
+
+    $.ajax({
+  url : "feedbacks/move_multiple" ,
+  type : "post" ,
+  data: param ,
+  dataType: "json",
+  success: function(data){ 
+      if(data.status){
+      location.reload();  
+      }else{
+        $('#myModal').modal('hide');
+      }
+  } ,
+  error: function(){ }
+    });
+  
+
+
+     });
+
+
+
+});
+</script>

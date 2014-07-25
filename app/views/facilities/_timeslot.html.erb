@@ -1,9 +1,10 @@
 <div class="modal-header">
   <h4 class="modal-title">Edit TimeSlot</h4>
 </div>
-<%= form_for(@timeslot,url: add_timeslot_path, :remote => true ) do |f| %>
+<%= form_for(@timeslot,url: add_timeslot_path, :remote => true  ,
+html: { :class => "form-horizontal",:role =>"form" }) do |f| %>
 <div class="modal-body">
-  <table class="content">
+  <table class="content table table-bordered">
 <%= render 'content_timeslot' %>
     </table>
   <%= f.hidden_field :facility_id, { value: @facility.id } %>    
@@ -32,8 +33,12 @@
       </div>    
     
    </div> 
-     <%= link_to 'Cancel', '#', { class: 'btn btn-danger', data: { dismiss: 'modal'} } %>
+   <div class="btn">
+          <%= link_to 'Cancel', '#', { class: 'btn btn-danger', data: { dismiss: 'modal'} } %>
    <%= f.submit "Submit" , class: "btn btn-success"  %>
+
+   </div>
+
 </div>
 
 <% end %>

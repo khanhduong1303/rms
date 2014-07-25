@@ -15,25 +15,27 @@
   <% end %>
 
   <div class="<%= @facility.persisted? ? 'col-xs-10' : 'col-xs-12' %>">
-    <div class="form-group form-inline">
-      <%= f.label :name %>:
-      <%= f.text_field :name, { class: "form-control", placeholder: 'Name of facility' } %>
-    </div>
+  <table class="form-facility">
+    <tr>
+      <td><%= f.label :name %>:</td>
+     <td> <%= f.text_field :name, { class: "form-control", placeholder: 'Name of facility' } %> </td>
+    </tr>
 
-    <div class="form-group form-inline">
-      <%= f.label :facility_category_id, "Categories:" %>
-      <%= f.collection_select :facility_category_id, @facility_categories, :id, :name, {}, { class: 'form-control' } %>
-    </div>
+      <tr>
+       <td><%= f.label :facility_category_id, "Categories:" %></td>
+      <td><%= f.collection_select :facility_category_id, @facility_categories, :id, :name, {}, { class: 'form-control' } %></td>
+      </tr>
 
-    <div class="form-group form-inline">
-      <%= f.label :booking_price %>:
-      <%= f.text_field :booking_price, { class: "form-control", placeholder: 'Booking price' } %>
-    </div>
+<tr>
+     <td> <%= f.label :booking_price %>:</td>
+      <td><%= f.text_field :booking_price, { class: "form-control", placeholder: 'Booking price' } %> </td>
+</tr>
 
-    <div class="form-group form-inline">
-      <%= f.label :deposit_price %>:
-      <%= f.text_field :deposit_price, { class: "form-control", placeholder: 'Deposit price' } %>
-    </div>
+   <tr>
+      <td><%= f.label :deposit_price %>:</td>
+      <td><%= f.text_field :deposit_price, { class: "form-control", placeholder: 'Deposit price' } %></td>
+   </tr> 
+   </table>
 
     <% if !@facility.persisted? %>
       <%= f.file_field :image_path, { id: 'file-box', style: 'display:none' }%>
@@ -54,7 +56,7 @@
       </script>
     <% end %>
 
-    <div class="form-group">
+    <div class="form-group note">
       <%= f.label :note %>:
       <%= f.text_area :note, class: "form-control", rows: 2  %>
     </div>

@@ -13,6 +13,7 @@ devise :database_authenticatable, :registerable,
   has_many :bulletins, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :bookings
+  has_many :feedbacks
 
 
 #setup avartar

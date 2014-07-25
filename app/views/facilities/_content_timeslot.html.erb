@@ -1,3 +1,8 @@
+<% if @timeslots.size >0 %>
+<tr>
+<th>TimeSlot</th>
+<th> </th>
+</tr>
 <% @timeslots.each do |timeslot| %>
 
   <tr>
@@ -9,6 +14,9 @@
 
 
   <% end %>
+  <%else%>
+
+  <%end %>
   <script type="text/javascript">
   $(document).ready(function(){
  $(document).on("click","a.peak" , function(e){

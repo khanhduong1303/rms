@@ -52,6 +52,7 @@ class FacilitiesController < ApplicationController
   end
 
   def confirm
+  
   end
 
   def change_peak

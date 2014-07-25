@@ -1,0 +1,25 @@
+div.feedback-header {
+  a.btn {
+    float: right;
+  }
+  div {
+  clear : both ;
+  }
+}
+div.feedback-content{
+	margin-top : 10px; 
+	
+	img {margin-left : 25px;}
+	div.row{ position: relative}
+	input { position: absolute;
+	        left : 0px;
+	        top: 40%;}
+}
+.reply p{
+	margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  padding-left: 15px;
+  border-left: 3px solid #ccc;
+  display:none;
+}
