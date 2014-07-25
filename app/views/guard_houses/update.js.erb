@@ -1,0 +1,6 @@
+<% if @guard_house.errors.any? %>
+
+<% else %>
+  $('#content-guard-house').html('<%= escape_javascript(render 'form') %>')
+<% end %>
+

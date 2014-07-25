@@ -1,10 +1,9 @@
-<div class="page-header">
-  <%= link_to new_event_path, :class => 'btn btn-primary',:remote => true do %>
-      <span class="glyphicon glyphicon-plus"></span>
-      Add New Event
+<div class="text-right">
+  <%= link_to new_event_path, { id: 'addNewEvent', class: 'btn btn-link', remote: true } do %>
+    <span class="glyphicon glyphicon-plus"></span> Add New Event
   <% end %>
-  <h1>Listing events</h1>
-</div>
+  </div>
+  <hr>
 
 <% @events.each do |event| %>
     <div class="row">
@@ -77,3 +76,4 @@
     </div>
     <hr>
 <% end %>
+

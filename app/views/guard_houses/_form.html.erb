@@ -1,0 +1,18 @@
+<%= form_for @guard_house, { remote: true } do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= image_tag @guard_house.photo_path.url(:thumbnail), { id: 'photo-path', class: 'img-thumbnail img-preview col-lg-12 col-md-12 col-sm-12 col-xs-12' } %>
+      <%= f.file_field :photo_path, { id: 'photo-file-input', class: 'hidden' } %>
+    </div>
+    <div class="col-md-6">
+      <%= image_tag @guard_house.map_path.url(:thumbnail), { id: 'map-path', class: 'img-thumbnail img-preview col-lg-12 col-md-12 col-sm-12 col-xs-12' } %>
+      <%= f.file_field :map_path, { id: 'map-file-input', class: 'hidden' } %>
+    </div>
+  </div>
+  <br>
+  <div class="form-group form-inline">
+    <%= f.label 'Tele' + :phone.to_s + ': ' %>
+    <%= f.text_field :phone, { id: 'phone-text-input', class: 'form-control' } %>
+  </div>
+<% end %>
+
