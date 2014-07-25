@@ -14,6 +14,7 @@ class FacilitiesController < ApplicationController
 
   def create
     @facility = Facility.create(facility_params)
+    @persisted = false
   end
 
   def edit
@@ -29,16 +30,12 @@ class FacilitiesController < ApplicationController
     @timeslot = TimeSlot.create(timeslot_params)
      @facility = Facility.find(params[:time_slot][:facility_id])
      @timeslots =   @facility.time_slots
-    
+
   end
 
   def update
-    if params[:facility][:image_path]
-      @image_path = true
-    else
-      @image_path = false
-    end
     @facility.update_attributes(facility_params)
+    @persisted = true
   end
 
   def change_active
@@ -60,7 +57,7 @@ class FacilitiesController < ApplicationController
      @timeslot.peak = params[:peak]
      @timeslot.save
      render json: {peak: @timeslot.peak }
-  end 
+  end
 
 
   def destroy
@@ -73,7 +70,7 @@ class FacilitiesController < ApplicationController
     end
   def timeslot_params
       params.require(:time_slot).permit(:slot_start, :slot_end, :facility_id)
-  end   
+  end
 
     def set_facilities
       @facilities = current_user.condo.facilities

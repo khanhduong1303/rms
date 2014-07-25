@@ -9,7 +9,7 @@
   <div class="form-group form-inline">
     <%= f.label :date %>:
     <div id='datetime-picker' class="input-group date" data-date-format="DD/MM/YYYY">
-      <%= f.text_field :date, { class: "form-control", placeholder: 'DD/MM/YYYY', value: @bulletin.date.try(:strftime, "%d/%m/%Y") } %>
+      <%= f.text_field :date, { class: "form-control", readonly: true, placeholder: 'DD/MM/YYYY', value: @bulletin.date.try(:strftime, "%d/%m/%Y") } %>
       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     </div>
   </div>

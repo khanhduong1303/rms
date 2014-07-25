@@ -1,28 +1,82 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:update, :destroy]
-  before_action :set_bookings, only: [:index]
+  #before_action :set_bookings, only: [:index]
   before_action :set_hightlight
 
   def index
-  end
-
-  def update
-    respond_to do |format|
-      if @booking.update(booking_params)
-        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
-        format.json { render :show, status: :ok, location: @booking }
-      else
-        format.html { render :edit }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
+    session[:category_id_temp]='all';
+    @users = User.where(condo_id: current_user.condo_id)
+    @categories = FacilityCategory.where(condo_id: current_user.condo_id)
+    if @users.size > 0
+      @bookings = []
+      @users.each do |u|
+        if !u.bookings.blank?
+          u.bookings.each do |book|
+            @bookings << book
+          end
+        end
       end
     end
   end
 
-  def destroy
-    @booking.destroy
+  def deleteColection
+    params[:book_id].each do |book|
+      @book = Booking.find(book)
+      @book.destroy
+    end
+      return render json: {status:'success'}
+  end
+
+  def updateStatus
+    if Booking.where(id:params[:book_id]).size < 1 && !params[:book_stt].nil?
+      return render json: {status:'failed'}
+    end
+    @book = Booking.find(params[:book_id])
+    if @book.update_attributes(:status=> params[:book_stt])
+      return render json: {status:'success'}
+    else
+      return render json: {status:'failed'}
+    end
+  end
+
+  def confirm
+  end
+
+  def filter
+    category_id = params[:id]
+    session[:category_id_temp]=category_id;
+    @categories = FacilityCategory.where(condo_id: current_user.condo_id)
+    if category_id=='all'
+      @users = User.where(condo_id: current_user.condo_id)
+      if @users.size > 0
+        @bookings = []
+        @users.each do |u|
+          if !u.bookings.blank?
+            u.bookings.each do |book|
+              @bookings << book
+            end
+          end
+        end
+      end
+    else
+      @bookings = []
+      @users = User.where(condo_id: current_user.condo_id)
+      if @users.size > 0
+        @bookings = []
+        @users.each do |u|
+          if !u.bookings.blank?
+            u.bookings.each do |book|
+              if book.time_slot.facility.facility_category_id==category_id.to_f
+                @bookings << book
+              end
+            end
+          end
+        end
+      end
+    end
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html
+      format.js
     end
   end
 

@@ -1,16 +1,2 @@
-<% if @facility.errors.any? %>
-  $("ul.errors").html('')
-  <% @facility.errors.full_messages.each do |message| %>
-    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
-  <% end %>
-<% else %>
-  <% if @image_path %>
-    $("div.image img").remove();
-    $("div.image a").before('<%=image_tag @facility.image_path.url(:default) %>')
-    $("#myModal").modal('hide');
-  <% else%>
-    $('#new-facility').html('')
-    $('#list-facility').html('<%= escape_javascript(render 'index') %>')
-  <% end %>
-<% end %>
+<%= render 'save' %>
 

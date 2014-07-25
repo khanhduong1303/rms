@@ -1,0 +1,12 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <h4 class="modal-title"><%= @form.title %></h4>
+</div>
+<div class="modal-body">
+  <% if @form.form_path.exists? %>
+    <div class="content-iframe">
+      <iframe src="<%= @form.form_path %>" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" height="500"></iframe>
+    </div>
+  <% end %>
+</div>
+

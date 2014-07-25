@@ -1,11 +1,7 @@
 <% @facilities.each do |facility| %>
   <div class="row facility-<%= facility.id %>">
     <div class="col-xs-2">
-      <% if facility.image_path? %>
-        <%= image_tag  facility.image_path.url(:default) ,:class => 'img-thumbnail'%>
-      <%else %>
-        <%= image_tag  "no-image.jpg" ,:class => 'img-thumbnail' %>
-      <%end %>
+      <%= image_tag facility.image_path.url(:default), :class => 'img-thumbnail'%>
     </div>
 
     <div class="col-xs-8">

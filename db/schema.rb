@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724025128) do
+ActiveRecord::Schema.define(version: 20140724085655) do
 
   create_table "bookings", force: true do |t|
     t.date     "date_submit"
@@ -156,6 +156,32 @@ ActiveRecord::Schema.define(version: 20140724025128) do
     t.string   "alias"
     t.integer  "permission_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "guard_house_images", force: true do |t|
+    t.string   "name"
+    t.string   "image_path_file_name"
+    t.string   "image_path_content_type"
+    t.integer  "image_path_file_size"
+    t.datetime "image_path_updated_at"
+    t.integer  "guard_house_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "guard_houses", force: true do |t|
+    t.string   "phone"
+    t.string   "photo_path_file_name"
+    t.string   "photo_path_content_type"
+    t.integer  "photo_path_file_size"
+    t.datetime "photo_path_updated_at"
+    t.string   "map_path_file_name"
+    t.string   "map_path_content_type"
+    t.integer  "map_path_file_size"
+    t.datetime "map_path_updated_at"
+    t.integer  "condo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -17,5 +17,18 @@
 //= require bootstrap-datetimepicker
 //= require turbolinks
 //= require jquery.remotipart
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require_tree .
+
+jQuery(function() {
+    $('.datatable').dataTable({
+        // sDom: 'Rlfrtip',
+        bProcessing: true,
+        bDeferRender: true,
+        sAjaxSource: $('.datatable').data('source'),
+        sPaginationType: "full_numbers",
+        bStateSave: true
+    });
+});
 

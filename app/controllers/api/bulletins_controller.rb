@@ -1,6 +1,7 @@
 class Api::BulletinsController < Api::ApiController
   before_action :set_bulletin, only: [:show]
   before_action :set_bulletins, only: [:index]
+  skip_before_action :authenticate_user_from_token!
 
   def index
     unless @bulletins.nil?

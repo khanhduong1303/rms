@@ -1,0 +1,6 @@
+<% if @form_category.nil? %>
+  $('#list-form').html('<%= escape_javascript(render 'index') %>')
+<% else %>
+  $('#list-form').html('<%= escape_javascript(render 'filter') %>')
+<% end %>
+

@@ -1,93 +1,56 @@
 <%= form_for @facility, remote: true do |f| %>
   <ul class="errors"></ul>
-<div class="row">
-  <% if @facility.persisted? %>
+  <div class="row">
+
     <div class="col-xs-2">
-      <div class="image">
-        <% if @facility.image_path? %>
-          <%= image_tag @facility.image_path.url(:default), class: 'img-thumbnail' %>
-        <% else %>
-          <%= image_tag "no-image.jpg", class: 'img-thumbnail' %>
-        <% end %>
-        <a data-toggle="modal" data-target="#myModal" href="#" class="edit"><span class = "glyphicon glyphicon-pencil"></span></a>
+      <div class="img-preview">
+        <%= image_tag @facility.image_path.url(:default), class: 'img-thumbnail' %>
       </div>
     </div>
-  <% end %>
 
-  <div class="<%= @facility.persisted? ? 'col-xs-10' : 'col-xs-12' %>">
-  <table class="form-facility">
-    <tr>
-      <td><%= f.label :name %>:</td>
-     <td> <%= f.text_field :name, { class: "form-control", placeholder: 'Name of facility' } %> </td>
-    </tr>
+    <div class="col-xs-10">
+      <div class="form-group form-inline">
+        <%= f.label :name %>:
+        <%= f.text_field :name, { class: "form-control", placeholder: 'Name of facility' } %>
+      </div>
 
-      <tr>
-       <td><%= f.label :facility_category_id, "Categories:" %></td>
-      <td><%= f.collection_select :facility_category_id, @facility_categories, :id, :name, {}, { class: 'form-control' } %></td>
-      </tr>
+      <div class="form-group form-inline">
+        <%= f.label :facility_category_id, "Categories:" %>
+        <%= f.collection_select :facility_category_id, @facility_categories, :id, :name, {}, { class: 'form-control' } %>
+      </div>
 
-<tr>
-     <td> <%= f.label :booking_price %>:</td>
-      <td><%= f.text_field :booking_price, { class: "form-control", placeholder: 'Booking price' } %> </td>
-</tr>
+      <div class="form-group form-inline">
+        <%= f.label :booking_price %>:
+        <%= f.text_field :booking_price, { class: "form-control", placeholder: 'Booking price' } %>
+      </div>
 
-   <tr>
-      <td><%= f.label :deposit_price %>:</td>
-      <td><%= f.text_field :deposit_price, { class: "form-control", placeholder: 'Deposit price' } %></td>
-   </tr> 
-   </table>
+      <div class="form-group form-inline">
+        <%= f.label :deposit_price %>:
+        <%= f.text_field :deposit_price, { class: "form-control", placeholder: 'Deposit price' } %>
+      </div>
 
-    <% if !@facility.persisted? %>
       <%= f.file_field :image_path, { id: 'file-box', style: 'display:none' }%>
+
       <div class="form-group">
-        <div class="input-group col-xs-5">
-          <input id="input-file" class="form-control" type="text" placeholder="Choose a image">
-          <a class="btn btn-default input-group-addon btn-browse">Browse</a>
-        </div>
+        <%= f.label :note %>:
+        <%= f.text_area :note, class: "form-control", rows: 2  %>
       </div>
 
-      <script type="text/javascript">
-        $(document).on('click', '.btn-browse', function() {
-          $('input[id=file-box]').click();
-        })
-        $('input[id=file-box]').change(function() {
-          $('#input-file').val($(this).val());
-        });
-      </script>
-    <% end %>
-
-    <div class="form-group note">
-      <%= f.label :note %>:
-      <%= f.text_area :note, class: "form-control", rows: 2  %>
-    </div>
-
-    <div class="facility-button">
-      <%= link_to 'Cancel', facilities_path, class: 'btn btn-danger' %>
-      <%= f.submit class: "btn btn-success", value: @facility.persisted? ? 'Save' : 'Add' %>
-    </div>
-  </div>
-
-</div>
-<% end %>
-
-<% if @facility.persisted? %>
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-    <%= form_for @facility ,:remote => true do |f| %>
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Upload a New Photo</h4>
-        </div>
-        <div class="modal-body">
-          <%= f.file_field :image_path %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-          <%= f.submit "Submit", class: "btn btn-success" %>
-        </div>
+      <div class="facility-button">
+        <%= link_to 'Cancel', facilities_path, class: 'btn btn-danger' %>
+        <%= f.submit class: "btn btn-success", value: @facility.persisted? ? 'Save' : 'Add' %>
       </div>
-    <% end %>
     </div>
+
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $(document).on('click', '#list-facility .img-preview', function() {
+    $('input[id=file-box]').click();
+  })
+  $('input[id=file-box]').change(function() {
+    $(this).closest('form').submit();
+  });
+</script>
 

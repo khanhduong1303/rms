@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
 
 
-
-
-  resources :forms
-
-  resources :form_categories
-
 #api routes
   namespace :api , defaults: { format: 'json' } do
        devise_scope :user do
@@ -43,7 +37,6 @@ Rails.application.routes.draw do
   get  'feedbacks/archive' , to: "feedbacks#index_archive" ,as: "feedbacks_archive"
   resources :events
   resources :facilities do
-    get 'confirm'
     get 'timeslot'
     member do
       get 'confirm'
@@ -63,12 +56,41 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bookings, only: [:index, :update, :destroy]
+  get 'bookings/filter/:id' => 'bookings#filter', as: 'filter'
+  resources :bookings, only: [:index, :update, :destroy] do
+
+    collection do
+      post 'deleteColection'
+      post 'updateStatus'
+      get 'confirm'
+    end
+  end
 
   resources :bulletins do
     member do
       get 'confirm'
     end
+  end
+
+  resources :forms do
+    collection do
+      post 'filter'
+    end
+    member do
+      get 'confirm'
+    end
+  end
+
+  resources :guard_houses, only: [:index, :update] do
+
+  end
+
+  resource :guard_house, only: [:edit] do
+
+  end
+
+  resources :guard_house_image, except: [:show] do
+
   end
 
   resources :house_rules do
@@ -84,8 +106,6 @@ Rails.application.routes.draw do
     patch 'user/add_avatar' , to: 'registrations#add_avatar' , as: 'add_avatar'
   end
   devise_for :users ,:controllers => {:registrations => "registrations" , :sessions => "sessions"}
-
-  resources :bookings, only: [:index, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -165,6 +185,12 @@ Rails.application.routes.draw do
       end
       member do
         get 'bulletin_detail' => 'bulletins#show'
+      end
+    end
+
+    resource :form, only: [], path: 'api' do
+      collection do
+        get 'forms' => 'forms#index'
       end
     end
 
