@@ -1,0 +1,62 @@
+<div class="bulletin-header">
+  View:
+  <select class="form-control">
+    <option>
+      All
+    </option>
+  </select>
+  <%= link_to nil, :class => 'btn btn-link',onclick:'checkEmptyBooking()', remote:true do %>
+      <span class="glyphicon glyphicon-trash"></span>
+      Delete Bookings
+  <% end %>
+</div>
+<br>
+   <div class="row">
+    <div class="col-sm-12">
+      <table class="datatable">
+        <thead>
+            <th><a class="glyphicon glyphicon-ok font-color-green fontSize20"></a></th>
+            <th>Booking</th>
+            <th>Facility</th>
+            <th>Submit</th>
+            <th>Expiry</th>
+            <th>Book</th>
+            <th>Time Slot</th>
+            <th>Name</th>
+            <th>Booking</th>
+            <th>Deposit</th>
+            <th>Status</th>
+        </thead>
+        <tbody>
+        <% @bookings.each do |book| %>
+            <tr>
+              <td><input id="<%= book.id %>" class="selectBook" type="checkbox" value="<%= book.id %>" name="colection[]"/></td>
+              <td><%= book.id%></td>
+              <td><%= book.time_slot.facility.name%></td>
+              <td><%= book.date_submit.strftime '%d/%m/%Y' if !book.date_submit.blank? %></td>
+              <td><%= book.date_expiry.strftime '%d/%m/%Y' if !book.date_expiry.blank? %></td>
+              <td><%= book.date_book.strftime '%d/%m/%Y' if !book.date_book.blank? %></td>
+              <td><%= book.time_slot.slot_start.strftime "%H:%M" if !book.time_slot.slot_start.blank? %>-<%= book.time_slot.slot_end.strftime "%H:%M" if !book.time_slot.slot_end.blank? %></td>
+              <td><%= book.user.name%></td>
+              <td><%= book.time_slot.facility.currency(book.time_slot.facility.booking_price) if !book.time_slot.facility.booking_price.blank? %></td>
+              <td><%= book.time_slot.facility.currency(book.time_slot.facility.deposit_price) if !book.time_slot.facility.deposit_price.blank? %></td>
+              <td>
+                <select class="form-control" id="bookStatus<%= book.id %>" data-id="<%= book.id %>"  onchange="updateBookStatus(this.id)">
+                  <option <%= 'selected' if book.status.upcase == 'BOOKED'%> value="Booked">Booked</option>
+                  <option <%= 'selected' if book.status.upcase == 'RESERVED'%> value="Reserved">Reserved</option>
+                  <option <%= 'selected' if book.status.upcase == 'CLOSED'%> value="Closed">Closed</option>
+                </select>
+              </td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+   </div>
+
+<div id="booking-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div id="booking-content" class="modal-content">
+    </div>
+  </div>
+</div>
