@@ -1,0 +1,22 @@
+<div class="guard-house-header">
+  <%= link_to edit_guard_house_path, { class: 'btn btn-link', remote: true} do %>
+    <span class="glyphicon glyphicon-plus"></span> Edit Guard House
+  <% end %>
+</div>
+<hr>
+
+<div id="content-guard-house">
+  <%= render 'index' %>
+</div>
+
+<div id="list-guard-house-image">
+  <%= redirect_to controller: :guard_house_image, action: :index %>
+</div>
+
+<div id="guard-house-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div id="guard-house-content" class="modal-content">
+    </div>
+  </div>
+</div>
+
