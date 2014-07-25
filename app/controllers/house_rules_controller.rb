@@ -16,6 +16,7 @@ class HouseRulesController < ApplicationController
 
   def create
     @house_rule = HouseRule.create(house_rule_params)
+    @persisted = false
   end
 
   def edit
@@ -23,6 +24,7 @@ class HouseRulesController < ApplicationController
 
   def update
     @house_rule.update_attributes(house_rule_params)
+    @persisted = true
   end
 
   def confirm

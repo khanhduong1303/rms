@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
 
 
-
-
-  resources :forms
-
-  resources :form_categories
-
 #api routes
   namespace :api , defaults: { format: 'json' } do
        devise_scope :user do
@@ -75,6 +69,18 @@ Rails.application.routes.draw do
     member do
       get 'confirm'
     end
+  end
+
+  resources :guard_houses, only: [:index, :update] do
+
+  end
+
+  resource :guard_house, only: [:edit] do
+
+  end
+
+  resources :guard_house_image, except: [:show] do
+
   end
 
   resources :house_rules do
@@ -169,6 +175,12 @@ Rails.application.routes.draw do
       end
       member do
         get 'bulletin_detail' => 'bulletins#show'
+      end
+    end
+
+    resource :form, only: [], path: 'api' do
+      collection do
+        get 'forms' => 'forms#index'
       end
     end
 

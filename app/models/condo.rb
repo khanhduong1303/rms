@@ -7,6 +7,8 @@ class Condo < ActiveRecord::Base
   has_many :form_categories, dependent: :destroy
   has_many :forms, through: :form_categories
   has_many :condo_images, dependent: :destroy
+  has_many :guard_houses, dependent: :destroy
+  has_many :guard_house_images, through: :guard_houses
 
 end
 

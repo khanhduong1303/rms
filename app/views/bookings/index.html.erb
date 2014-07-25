@@ -2,7 +2,7 @@
   View:
   <select class="form-control" onchange="filterBookCategory(this.value)">
     <option value="all" id="all" onclick="tempSelectCategory(this.id)" <%= 'selected' if session[:category_id_temp]=='all' %>>
-      <b>All</b>
+      All
     </option>
     <% @categories.each do |category| %>
         <option <%= 'selected' if session[:category_id_temp]==category.id %> id="<%= category.id %>" onclick="tempSelectCategory(this.id)" value="<%= category.id %>"><%= link_to category.name, filter_path(category) %></option>

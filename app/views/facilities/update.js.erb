@@ -1,10 +1,2 @@
-<% if @facility.errors.any? %>
-  $("ul.errors").html('')
-  <% @facility.errors.full_messages.each do |message| %>
-    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
-  <% end %>
-<% else %>
-  $('#new-facility').html('')
-  $('#list-facility').html('<%= escape_javascript(render 'index') %>')
-<% end %>
+<%= render 'save' %>
 

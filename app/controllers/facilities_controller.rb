@@ -14,6 +14,7 @@ class FacilitiesController < ApplicationController
 
   def create
     @facility = Facility.create(facility_params)
+    @persisted = false
   end
 
   def edit
@@ -34,6 +35,7 @@ class FacilitiesController < ApplicationController
 
   def update
     @facility.update_attributes(facility_params)
+    @persisted = true
   end
 
   def change_active

@@ -6,9 +6,6 @@
   <div class="facility-status-image">
     <%= image_tag @facility_status.image_path.url(:thumbnail), { id: 'image-preview', class: 'img-thumbnail', size: '320x240'} %>
     <%= f.file_field :image_path, { id: 'file-image'} %>
-    <%= link_to '#', { class: 'btn btn-link choose-image', remote: true } do %>
-      <span class="glyphicon glyphicon-pencil"></span>
-    <% end %>
   </div>
 
   <div class="form-group form-inline">
@@ -56,7 +53,7 @@
 
 <% if !@facility_status.persisted? %>
   <script type="text/javascript">
-    $(document).on('click', '.choose-image', function(e) {
+    $(document).on('click', '#image-preview', function(e) {
       e.preventDefault();
       $('#file-image').trigger('click');
     });
