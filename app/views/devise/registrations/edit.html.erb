@@ -90,12 +90,13 @@
         <h4 class="modal-title" id="myModalLabel">Upload a New Photo </h4>
       </div>
       <div class="modal-body">
-  
-     
-       <div class="form-group">
-   
-      <div class='col-sm-8'>
-      <%= f.file_field :avatar %></div>
+      <%= f.label :avatar do %>
+       <div class="input-group choose">
+            <input type="text" class="form-control">
+            <span class="input-group-addon" style="cursor: pointer" =>Browse</span>
+      </div>
+      <% end %>
+        <%= f.file_field :avatar ,{id: "thefile" ,style: "display:none"} %>
       </div>
       
       <div class="modal-footer">
@@ -122,6 +123,13 @@ $("div.image").hover(function(){
     },function(){
     $("a.edit").hide(); 
     });
+$("#thefile").change(function(){
+          $("div.choose input").val($(this).val());
+        });
+         $(document).on('click', 'div.choose', function(e) {
+           e.preventDefault();
+           $('#thefile').trigger('click');
+         });
 });
 </script>
 
