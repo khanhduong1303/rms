@@ -11,7 +11,7 @@
     <%= f.text_area :content, class: "form-control", rows: 5 %>
   </div>
 
-    <div class="house-rule-button">
+    <div class="text-right">
       <%= link_to 'Cancel', house_rules_path, class: 'btn btn-danger' %>
       <%= f.submit class: "btn btn-success", value: @house_rule.persisted? ? 'Save' : 'Add' %>
     </div>

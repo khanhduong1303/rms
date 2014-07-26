@@ -1,12 +1,10 @@
 <div  id="loadbody">
-  <div class="row">
-  <%= link_to new_event_path, :class => 'float-right right-30',:remote => true, :id=>'addNewEvent' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    Add New Event
+  <div class="text-right">
+  <%= link_to new_event_path, { id: 'addNewEvent', class: 'btn btn-link', remote: true } do %>
+    <span class="glyphicon glyphicon-plus"></span> Add New Event
   <% end %>
-    <br>
-    <hr>
-    </div>
+  </div>
+  <hr>
 
 <% @events.each do |event| %>
     <div class="row">
@@ -98,3 +96,4 @@
     </div>
   </div>
 </div>
+
