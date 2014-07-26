@@ -41,7 +41,8 @@
     date = new Date();
     $('#datetime-picker-close-from').datetimepicker({
       pickTime: false,
-      minDate: date
+      minDate: date,
+      maxDate: date + 1
     });
 
     $('#datetime-picker-close-to').datetimepicker({
