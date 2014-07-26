@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20140724085655) do
     t.date     "date_book"
     t.string   "status"
     t.integer  "user_id"
-    t.integer  "facility_time_slot_id"
+    t.integer  "time_slot_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(version: 20140724085655) do
     t.integer  "condo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "condos", force: true do |t|
@@ -99,14 +103,10 @@ ActiveRecord::Schema.define(version: 20140724085655) do
   end
 
   create_table "facility_statuses", force: true do |t|
-    t.string   "image_path_file_name"
-    t.string   "image_path_content_type"
-    t.integer  "image_path_file_size"
-    t.datetime "image_path_updated_at"
+    t.integer  "facility_id"
     t.date     "close_from"
     t.date     "close_to"
     t.text     "reason"
-    t.integer  "facility_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

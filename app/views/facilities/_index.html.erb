@@ -1,41 +1,46 @@
 <% @facilities.each do |facility| %>
-  <div class="row facility-<%= facility.id %>">
-    <div class="col-xs-2">
-      <%= image_tag facility.image_path.url(:default), :class => 'img-thumbnail'%>
-    </div>
-
-    <div class="col-xs-8">
-      <h4><b><%= facility.name %></b></h4>
-      <p>Catetory: <%= facility.facility_category.name %></p>
-      <p>Facility Code: <%= facility.id %></p>
-      <p>Booking Price: <%= facility.booking_price %></p>
-      <p>Deposit Price: <%= facility.deposit_price %></p>
-      <p>Note: <%= facility.note %></p>
-    </div>
-
-    <div class="col-xs-2 facility-center">
-      <div class="facility-vcenter">
-        <select class="form-control change-active" data-facility-id="<%= facility.id %>" >
-          <option value="active" <%= facility.active ? 'selected' : '' %>>Active</option>
-          <option value="inactive" <%= !facility.active ? 'selected' : '' %>>Inactive</option>
-        </select>
-
-        <%= link_to confirm_facility_path(facility), { class: 'btn btn-link', remote: true } do %>
-          <span class="glyphicon glyphicon-trash"></span> Delete Facility
-        <% end %>
-        <%= link_to edit_facility_path(facility), { class: 'btn btn-link', remote: true } do %>
-          <span class="glyphicon glyphicon-pencil"></span> Edit Facility
-        <% end %>
-        <%= link_to new_facility_status_path, { class: 'btn btn-link facility-status', remote: true, data: { 'facility-id' => facility.id } } do %>
-          <span class="glyphicon glyphicon-calendar"></span> Facility Status
-        <% end %>
-        <%= link_to facility_timeslot_path(facility), { class: 'edit-button btn btn-link', remote: true } do %>
-          <span class="glyphicon glyphicon-time"></span> Facility Time Slots
-        <% end %>
+    <div class="row facility-<%= facility.id %>">
+      <div class="col-xs-2">
+        <%= image_tag facility.image_path.url(:default), :class => 'img-thumbnail' %>
       </div>
-    </div>
 
-  </div>
-  <hr>
+      <div class="col-xs-8">
+        <h4><b><%= facility.name %></b></h4>
+
+        <p>Catetory: <%= facility.facility_category.name %></p>
+
+        <p>Facility Code: <%= facility.id %></p>
+
+        <p>Booking Price: <%= facility.booking_price %></p>
+
+        <p>Deposit Price: <%= facility.deposit_price %></p>
+
+        <p>Note: <%= facility.note %></p>
+      </div>
+
+      <div class="col-xs-2 facility-center">
+        <div class="facility-vcenter">
+          <select class="form-control change-active" data-facility-id="<%= facility.id %>">
+            <option value="active" <%= facility.active ? 'selected' : '' %>>Active</option>
+            <option value="inactive" <%= !facility.active ? 'selected' : '' %>>Inactive</option>
+          </select>
+
+          <%= link_to confirm_facility_path(facility), {class: 'btn btn-link', remote: true} do %>
+              <span class="glyphicon glyphicon-trash"></span> Delete Facility
+          <% end %>
+          <%= link_to edit_facility_path(facility), {class: 'btn btn-link', remote: true} do %>
+              <span class="glyphicon glyphicon-pencil"></span> Edit Facility
+          <% end %>
+          <%= link_to new_facility_status_path, {class: 'btn btn-link facility-status', remote: true, data: {'facility-id' => facility.id}} do %>
+              <span class="glyphicon glyphicon-calendar"></span> Facility Status
+          <% end %>
+          <%= link_to facility_timeslot_path(facility), {class: 'edit-button btn btn-link', remote: true} do %>
+              <span class="glyphicon glyphicon-time"></span> Facility Time Slots
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+    <hr>
 <% end %>
 

@@ -6,21 +6,21 @@
   </div>
   <hr>
 
-<% @events.each do |event| %>
-    <div class="row">
+  <% @events.each do |event| %>
+      <div class="row">
         <div class="col-sm-2 align-center">
           <% if event.event_images.size > 0 %>
-            <%= image_tag event.event_images[0].image.url(:thumb), :class => 'img-thumbnail' %>
-              <% else %>
-            <%= image_tag 'no-image.jpg', :class => 'img-thumbnail' %>
+              <%= image_tag event.event_images[0].image.url(:thumb), :class => 'img-thumbnail' %>
+          <% else %>
+              <%= image_tag 'no-image.jpg', :class => 'img-thumbnail' %>
           <% end %>
         </div>
         <div class="col-sm-8">
-            <div class="row">
-              <div class="col-sm-12">
-                <h3><%= event.name %></h3>
-              </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h3><%= event.name %></h3>
             </div>
+          </div>
 
           <div class="row">
             <div class="col-sm-2">
@@ -36,7 +36,8 @@
               Time:
             </div>
             <div class="col-sm-10">
-              <%= event.event_start.strftime('%I:%M %P') %> To <%= event.event_end.strftime('%I:%M %P') %>
+              <%= event.event_start.strftime('%I:%M %P') if !event.event_start.nil? %>
+              To <%= event.event_end.strftime('%I:%M %P') if !event.event_end.nil? %>
             </div>
           </div>
 
@@ -63,35 +64,36 @@
               Description:
             </div>
             <div class="col-sm-10">
-              <%= event.description.truncate(150, separator: ' ',omission: '... (click "View more" to see detail)')%>
+              <%= event.description.truncate(150, separator: ' ', omission: '... (click "View more" to see detail)') %>
             </div>
           </div>
         </div>
         <div class="col-sm-2">
-          <a class="glyphicon glyphicon-trash"><%= link_to ' Delete event', event, method: :delete, data: { confirm: 'Confirm delete Event?' } %></a>
+          <a class="glyphicon glyphicon-trash"><%= link_to ' Delete event', event, method: :delete, data: {confirm: 'Confirm delete Event?'} %></a>
           <br>
           <a class="glyphicon glyphicon-pencil"><%= link_to ' Edit event', edit_event_path(event), :remote => true %></a>
           <br><br>
           <%= link_to 'Show more', event, :class => 'btn btn-info', :remote => true %>
         </div>
-    </div>
-    <hr>
-<% end %>
+      </div>
+      <hr>
+  <% end %>
 </div>
 <!-- Modal -->
 <div class="modal fade  bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">New event</h4>
       </div>
       <div class="modal-body" id="loadNew">
         ...
       </div>
       <!--<div class="modal-footer">-->
-        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+      <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+      <!--<button type="button" class="btn btn-primary">Save changes</button>-->
       <!--</div>-->
     </div>
   </div>

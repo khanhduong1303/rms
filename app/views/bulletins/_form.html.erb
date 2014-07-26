@@ -1,54 +1,54 @@
 <%= form_for @bulletin, remote: true do |f| %>
-  <ul class="errors"></ul>
+    <ul class="errors"></ul>
 
-  <%= f.hidden_field :user_id, { value: current_user.id } %>
-  <div class="form-group" style="width:50%">
-    <%= f.text_field :title, { class: 'form-control', placeholder: 'Title' } %>
-  </div>
-
-  <div class="form-group form-inline">
-    <%= f.label :date %>:
-    <div id='datetime-picker' class="input-group date" data-date-format="DD/MM/YYYY">
-      <%= f.text_field :date, { class: "form-control", readonly: true, placeholder: 'DD/MM/YYYY', value: @bulletin.date.try(:strftime, "%d/%m/%Y") } %>
-      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    <%= f.hidden_field :user_id, {value: current_user.id} %>
+    <div class="form-group" style="width:50%">
+      <%= f.text_field :title, {class: 'form-control', placeholder: 'Title'} %>
     </div>
-  </div>
 
-  <div class="form-group">
-    <%= f.label :content %>:
-    <%= f.text_area :content, class: "form-control", rows: 5 %>
-  </div>
-
-  <div class="form-group form-inline">
-    <%= f.label :send_notify, class: "control-label" do %>
-      <%= f.check_box :send_notify, { class: "form-control" } %>
-      Send notification to resident through EleApps
-    <% end %>
-
-    <div class="show-button">
-      <%= link_to 'Cancel', bulletins_path, class: 'btn btn-danger' %>
-      <%= f.submit class: "btn btn-success", value: @bulletin.persisted? ? 'Save' : 'Add' %>
+    <div class="form-group form-inline">
+      <%= f.label :date %>:
+      <div id='datetime-picker' class="input-group date" data-date-format="DD/MM/YYYY">
+        <%= f.text_field :date, {class: "form-control", readonly: true, placeholder: 'DD/MM/YYYY', value: @bulletin.date.try(:strftime, "%d/%m/%Y")} %>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      </div>
     </div>
-  </div>
+
+    <div class="form-group">
+      <%= f.label :content %>:
+      <%= f.text_area :content, class: "form-control", rows: 5 %>
+    </div>
+
+    <div class="form-group form-inline">
+      <%= f.label :send_notify, class: "control-label" do %>
+          <%= f.check_box :send_notify, {class: "form-control"} %>
+          Send notification to resident through EleApps
+      <% end %>
+
+      <div class="show-button">
+        <%= link_to 'Cancel', bulletins_path, class: 'btn btn-danger' %>
+        <%= f.submit class: "btn btn-success", value: @bulletin.persisted? ? 'Save' : 'Add' %>
+      </div>
+    </div>
 <% end %>
 
 <script type="text/javascript">
-  $(function() {
-    $('#datetime-picker').datetimepicker({
-      pickTime: false,
+    $(function () {
+        $('#datetime-picker').datetimepicker({
+            pickTime: false,
+        });
     });
-  });
 </script>
 
 <% if !@bulletin.persisted? %>
-  <script type="text/javascript">
-    $(function() {
-      date = new Date();
-      $('#datetime-picker').data('DateTimePicker').setDate(dateToString(date));
-    });
-    function dateToString(date) {
-      return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
-    }
-  </script>
+    <script type="text/javascript">
+        $(function () {
+            date = new Date();
+            $('#datetime-picker').data('DateTimePicker').setDate(dateToString(date));
+        });
+        function dateToString(date) {
+            return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+        }
+    </script>
 <% end %>
 

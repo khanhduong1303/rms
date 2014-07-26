@@ -1,6 +1,6 @@
-class Api::SessionsController <  Devise::RegistrationsController
-	prepend_before_filter :require_no_authentication , :only =>[:destroy]
-  before_filter :ensure_params_exist , :only => [:create]
+class Api::SessionsController < Devise::RegistrationsController
+  prepend_before_filter :require_no_authentication, :only => [:destroy]
+  before_filter :ensure_params_exist, :only => [:create]
 
   respond_to :json
 
@@ -27,22 +27,27 @@ class Api::SessionsController <  Devise::RegistrationsController
   #   end
   #   invalid_login_attempt
   # end
+<<<<<<< HEAD
+  def create
+
+=======
     def sign_in
     
+>>>>>>> e37345009a73b041c1f98b2b7311d8962befa4e2
     user = User.find_for_database_authentication(
-      email: params[:user][:email]
+        email: params[:user][:email]
     )
     return invalid_login_attempt unless user
 
     if user.valid_password?(params[:user][:password])
       # sign_in("user", resource)
       render json: {
-        status: "success",
-        message: "You sign in successfuly",
-        result:{
-          authentication_token: user.authentication_token,
-          email: user.email
-               }
+          status: "success",
+          message: "You sign in successfuly",
+          result: {
+              authentication_token: user.authentication_token,
+              email: user.email
+          }
       }
       return
     end
@@ -56,45 +61,44 @@ class Api::SessionsController <  Devise::RegistrationsController
   #   render :json => { :message => ["Session deleted."] },  :success => true, :status => :ok
   # end
   def sign_out
-      user = User.where(:authentication_token => params[:authentication_token]).first
-    if user    
+    user = User.where(:authentication_token => params[:authentication_token]).first
+    if user
       user.authentication_token= nil
       user.save
-   render json: {
-    status: "success",
-    message: "You sign out successfuly, Seession is deleted ",
-    result:{
+      render json: {
+          status: "success",
+          message: "You sign out successfuly, Seession is deleted ",
+          result: {
 
-            }
+          }
       }
     else
-         render json: {
-    status: "fails",
-    message: "You need sign in or sign up first",
-    result:{
+      render json: {
+          status: "fails",
+          message: "You need sign in or sign up first",
+          result: {
 
-            }
+          }
       }
     end
   end
 
 
-
   protected
 
-    def ensure_params_exist
-      return unless params[:user].blank?
-      render json: {
+  def ensure_params_exist
+    return unless params[:user].blank?
+    render json: {
         success: false,
         message: "missing user parameter"
-      }, status: 422
-    end
+    }, status: 422
+  end
 
-    def invalid_login_attempt
-      warden.custom_failure!
-      render json: {
+  def invalid_login_attempt
+    warden.custom_failure!
+    render json: {
         success: false,
         message: "Error with your login or password"
-      }, status: 401
-    end
+    }, status: 401
+  end
 end

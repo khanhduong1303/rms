@@ -13,15 +13,15 @@ class Api::BookingsController < ApplicationController
   end
 
   def make_a_booking
-    
+
   end
 
   def check_booking
     user = params[:user_id]
     if user.nil?
-      render json: data_json('failed', 'Missing parameter',0,nil)
+      render json: data_json('failed', 'Missing parameter', 0, nil)
     else
-      if User.where(id:user).size > 0
+      if User.where(id: user).size > 0
         @booking = User.find(user).bookings
         @facilities = []
         i=0
@@ -38,9 +38,9 @@ class Api::BookingsController < ApplicationController
           i+=1
         end
         # facilities[0].status = 'booked'
-        render json: data_json('success', 'Check booking list',@facilities.size,@facilities)
+        render json: data_json('success', 'Check booking list', @facilities.size, @facilities)
       else
-        render json: data_json('failed', 'User_id not found',0,nil)
+        render json: data_json('failed', 'User_id not found', 0, nil)
       end
     end
 
@@ -49,6 +49,6 @@ class Api::BookingsController < ApplicationController
 
   private
   def data_json status, message, total, results=nil
-    return {:status=>status, :message=>message,:total=>total, :results=>results}
+    return {:status => status, :message => message, :total => total, :results => results}
   end
 end

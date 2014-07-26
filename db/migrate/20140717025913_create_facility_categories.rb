@@ -3,7 +3,7 @@ class CreateFacilityCategories < ActiveRecord::Migration
     create_table :facility_categories do |t|
       t.string :name
       t.integer :condo_id
-      
+
       t.timestamps
     end
   end

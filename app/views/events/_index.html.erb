@@ -1,3 +1,4 @@
+
 <div class="text-right">
   <%= link_to new_event_path, { id: 'addNewEvent', class: 'btn btn-link', remote: true } do %>
     <span class="glyphicon glyphicon-plus"></span> Add New Event
@@ -35,7 +36,8 @@
             Time:
           </div>
           <div class="col-sm-10">
-            <%= event.event_start.strftime('%I:%M %P') %> To <%= event.event_end.strftime('%I:%M %P') %>
+            <%= event.event_start.strftime('%I:%M %P') if !event.event_start.nil? %>
+            To <%= event.event_end.strftime('%I:%M %P') if !event.event_end.nil? %>
           </div>
         </div>
 
@@ -67,7 +69,7 @@
         </div>
       </div>
       <div class="col-sm-2">
-        <a class="glyphicon glyphicon-trash"><%= link_to ' Delete event', event, method: :delete, data: { confirm: 'Confirm delete Event?' } %></a>
+        <a class="glyphicon glyphicon-trash"><%= link_to ' Delete event', event, method: :delete, data: {confirm: 'Confirm delete Event?'} %></a>
         <br>
         <a class="glyphicon glyphicon-pencil"><%= link_to ' Edit event', edit_event_path(event), :remote => true %></a>
         <br><br>

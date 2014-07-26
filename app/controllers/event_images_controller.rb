@@ -62,13 +62,13 @@ class EventImagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event_image
-      @event_image = EventImage.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event_image
+    @event_image = EventImage.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_image_params
-      params.require(:event_image).permit(:description, :image)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def event_image_params
+    params.require(:event_image).permit(:description, :image)
+  end
 end

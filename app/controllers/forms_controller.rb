@@ -45,20 +45,20 @@ class FormsController < ApplicationController
   end
 
   private
-    def set_form
-      @form = Form.find(params[:id])
-    end
+  def set_form
+    @form = Form.find(params[:id])
+  end
 
-    def set_form_catogires
-      @form_categories = current_user.condo.form_categories
-    end
+  def set_form_catogires
+    @form_categories = current_user.condo.form_categories
+  end
 
-    def form_params
-      params.require(:form).permit(:title, :form_path, :form_category_id)
-    end
+  def form_params
+    params.require(:form).permit(:title, :form_path, :form_category_id)
+  end
 
-    def set_highlight
-      session[:menustatus] = 'forms'
-    end
+  def set_highlight
+    session[:menustatus] = 'forms'
+  end
 end
 
