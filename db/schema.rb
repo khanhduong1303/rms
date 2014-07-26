@@ -143,10 +143,11 @@ ActiveRecord::Schema.define(version: 20140724085655) do
   end
 
   create_table "forms", force: true do |t|
-    t.string   "title",                null: false
+    t.string   "title",                  null: false
     t.string   "form_path_file_name"
+    t.string   "form_path_content_type"
     t.integer  "form_path_file_size"
-    t.datetime "form_path_created_at"
+    t.datetime "form_path_updated_at"
     t.integer  "form_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
