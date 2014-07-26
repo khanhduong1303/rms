@@ -1,0 +1,12 @@
+$('.modal-dialog').hasClass('modal-sm') == true ? $('.modal-dialog').removeClass('modal-sm') : ''
+$('.modal-dialog').addClass('modal-lg')
+<% if @feedback.feedback_reply %>
+$('#feedback-content').html('<%= escape_javascript(render 'reply_edit') %>')
+$('#feedback-modal').modal('show')
+
+<% else %>
+
+$('#feedback-content').html('<%= escape_javascript(render 'reply') %>')
+$('#feedback-modal').modal('show')
+
+<% end %>

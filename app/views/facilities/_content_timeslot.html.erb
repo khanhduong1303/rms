@@ -1,12 +1,16 @@
-<% @timeslots.each do |timeslot| %>
-
+<% if @timeslots.size >0 %>
     <tr>
-      <td> <%= timeslot.slot_start.strftime('%I:%M %P') %> - <%= timeslot.slot_end.strftime('%I:%M %P') %> </td>
-      <td><a class="btn <%= timeslot.peak ? 'btn-default' : 'btn-primary' %>
-  	peak " href="#" data-tid=<%= timeslot.id %>>Peak</a></td>
+      <th>TimeSlot</th>
+      <th></th>
     </tr>
-
-
+    <% @timeslots.each do |timeslot| %>
+        <tr>
+          <td> <%= timeslot.slot_start.strftime('%I:%M %P') %> - <%= timeslot.slot_end.strftime('%I:%M %P') %> </td>
+          <td><a class="btn <%= timeslot.peak ? 'btn-default' : 'btn-primary' %>
+  	peak " href="#" data-tid=<%= timeslot.id %>>Peak</a></td>
+        </tr>
+    <% end %>
+<% else %>
 
 <% end %>
 <script type="text/javascript">
@@ -48,8 +52,6 @@
                 error: function () {
                 }
             });
-
-
         });
     });
 </script>

@@ -19,11 +19,21 @@ div.facility-header {
   text-align: right;
 }
 
-.facility-button {
-  text-align: right;
+div.btn{
+  margin-top : 15px;
+}
+table.form-facility{
+  td {
+  padding: 5px;
+  }
 }
 
-#list-facility .img-preview {
+div.note{
+  width :60%;
+}
+
+
+#list-facility .img-thumbnail {
   cursor: pointer;
 }
 

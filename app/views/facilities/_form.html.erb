@@ -36,21 +36,19 @@
           <%= f.text_area :note, class: "form-control", rows: 2 %>
         </div>
 
-        <div class="facility-button">
+        <div class="text-right">
           <%= link_to 'Cancel', facilities_path, class: 'btn btn-danger' %>
           <%= f.submit class: "btn btn-success", value: @facility.persisted? ? 'Save' : 'Add' %>
         </div>
       </div>
-
     </div>
 <% end %>
 
 <script type="text/javascript">
-    $(document).on('click', '#list-facility .img-preview', function () {
+    $(document).on('click', '#list-facility .img-thumbnail', function () {
         $('input[id=file-box]').click();
     })
     $('input[id=file-box]').change(function () {
         $(this).closest('form').submit();
     });
 </script>
-

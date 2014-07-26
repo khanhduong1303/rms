@@ -27,8 +27,13 @@ class Api::SessionsController < Devise::RegistrationsController
   #   end
   #   invalid_login_attempt
   # end
+<<<<<<< HEAD
   def create
 
+=======
+    def sign_in
+    
+>>>>>>> e37345009a73b041c1f98b2b7311d8962befa4e2
     user = User.find_for_database_authentication(
         email: params[:user][:email]
     )

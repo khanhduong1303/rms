@@ -22,18 +22,18 @@
 <body>
 <div class="container">
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
       <%= image_tag 'innoria_logo2.png' %>
     </div>
-    <div class="col-lg-9">
-      <div class="float-right">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <div class="text-right">
         <% if user_signed_in? %>
-            <p>
-              Hi, <%= current_user.username %>
-              <%= link_to profile_path(current_user), class: "glyphicon glyphicon-cog" do
-              end %>
-              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
-            </p>
+           <span>
+             Hi, <%= current_user.username %>
+             <%= link_to profile_path(current_user), class: "glyphicon glyphicon-cog" do
+             end %>
+             <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+           </span>
         <% end %>
       </div>
     </div>
@@ -49,12 +49,13 @@
       <%= link_to 'Condo Info', condos_path, {class: "btn btn-primary menu #{session[:menustatus] == 'condoInfos' ? 'active' : ''}"} %>
       <%= link_to 'Events', events_path, {class: "btn btn-primary menu #{session[:menustatus] == 'events' ? 'active' : ''}"} %>
       <%= link_to 'Facilities', facilities_path, {class: "btn btn-primary menu #{session[:menustatus] == 'facilities' ? 'active' : ''}"} %>
-      <%= link_to 'Feedback', '#', {class: "btn btn-primary menu #{session[:menustatus] == 'feedbacks' ? 'active' : ''}"} %>
+      <%= link_to 'Feedback', feedbacks_path, {class: "btn btn-primary menu #{session[:menustatus] == 'feedbacks' ? 'active' : ''}"} %>
       <%= link_to 'Forms', forms_path, {class: "btn btn-primary menu #{session[:menustatus] == 'forms' ? 'active' : ''}"} %>
       <%= link_to 'Guard House', guard_houses_path, {class: "btn btn-primary menu #{session[:menustatus] == 'guard_houses' ? 'active' : ''}"} %>
       <%= link_to 'House Rules', house_rules_path, {class: "btn btn-primary menu #{session[:menustatus] == 'house_rules' ? 'active' : ''}"} %>
     </div>
   </div>
+  <!--</div>-->
 
   <% flash.each do |name, msg| %>
       <%= content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable" do %>
@@ -73,7 +74,7 @@
     </div>
   </div>
 </div>
-</div>
+<!--</div>-->
 </body>
 </html>
 

@@ -5,7 +5,7 @@ class GuardHousesController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-     @guard_house_images = current_user.condo.guard_house_images
+    @guard_house_images = current_user.condo.guard_house_images
   end
 
   def edit
@@ -17,7 +17,7 @@ class GuardHousesController < ApplicationController
 
   private
   def set_guard_house
-    @guard_house = GuardHouse.find(current_user.condo.id)
+    @guard_house = GuardHouse.find_by_condo_id(current_user.condo.id)
   end
 
   def set_guard_houses

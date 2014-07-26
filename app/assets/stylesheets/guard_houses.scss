@@ -1,4 +1,15 @@
-div.guard-house-header {
-  text-align: right;
+#content-guard-house {
+  .img-thumbnail {
+    padding-right: 4px !important;
+    padding-left: 4px !important;
+  }
+  .img-preview {
+    cursor: pointer;
+  }
+}
+
+.img-preview:hover {
+  background: rgba(0,0,0,.75);
+  opacity: 1;
 }
 

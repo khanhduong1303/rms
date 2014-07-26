@@ -4,5 +4,6 @@ alert("Please Choose the time start and end");
 <%  @timeslot.peak = false
      @timeslot.save   %>
 $('table.content').html('<%= escape_javascript(render "content_timeslot") %>')
+("input").val('');
 <% end %>
 

@@ -1,0 +1,9 @@
+<% if @reply.errors.any? %>
+  
+<% else %>
+
+ $('.feedback-<%= @reply.feedback.id %> div.reply p').text('<%= @reply.content %>');
+  $('#feedback-modal').modal('hide');
+
+<% end %>
+

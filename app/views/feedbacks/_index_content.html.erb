@@ -1,0 +1,60 @@
+<% @feedbacks.each do |feedback| %>
+  <div class="row feedback-<%= feedback.id %>">
+    <div class="col-xs-2 check-feed">
+        <input type="checkbox"  value='<%= feedback.id %>' >
+      <% if feedback.user.avatar? %>
+        <%= image_tag  feedback.user.avatar.url(:big) ,:class => 'img-thumbnail'%>
+      <%else %>
+        <%= image_tag  "no-image.jpg" ,:class => 'img-thumbnail' %>
+      <%end %>
+    </div>
+
+    <div class="col-xs-8">
+    <div>
+      <h4><b><%= feedback.user.name %></b></h4>
+      <h4><%= feedback.title %></h4>
+      <p><%= feedback.content %></p>
+   </div>
+   <div class="reply">
+   <% if feedback.feedback_reply %>
+   <p><%= feedback.feedback_reply.content %></p>
+   <% else %>
+   <p>The Feedback haven't replied </p>
+   <%end %>
+   </div>
+</div>
+    <div class="col-xs-2 facility-center">
+      <div class="facility-vcenter">
+
+        <% if feedback.archive %>
+         <%= link_to confirm_feedback_path(feedback), { class: 'btn btn-link', remote: true } do %>
+          <span class="glyphicon glyphicon-trash"></span> Delete 
+        <% end %>
+        <% else %>
+        <%= link_to create_reply_path(feedback), { class: 'btn btn-link', remote: true } do %>
+          <span class="glyphicon glyphicon-share-alt"></span> Reply
+        <% end %>
+        <%= link_to confirm_feedback_path(feedback), { class: 'btn btn-link', remote: true } do %>
+          <span class="glyphicon glyphicon-trash"></span> Delete 
+        <% end %>
+        <%= link_to "#", { class: 'btn btn-link view', remote: true} do %>
+          <span class="glyphicon glyphicon-eye-open"></span> View Reply
+        <% end %>
+
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+  <hr>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("a.view").click(function(e){
+      
+     $(this).parent().parent().prev().find(".reply p").slideToggle();
+     return false;
+    });
+  });
+</script>

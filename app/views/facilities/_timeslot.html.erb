@@ -1,9 +1,9 @@
 <div class="modal-header">
   <h4 class="modal-title">Edit TimeSlot</h4>
 </div>
-<%= form_for(@timeslot, url: add_timeslot_path, :remote => true) do |f| %>
+<%= form_for(@timeslot, url: add_timeslot_path, :remote => true, html: {:class => "form-horizontal", :role => "form"}) do |f| %>
     <div class="modal-body">
-      <table class="content">
+      <table class="content table table-bordered">
         <%= render 'content_timeslot' %>
       </table>
       <%= f.hidden_field :facility_id, {value: @facility.id} %>
@@ -12,10 +12,8 @@
       <div class="row">
         <div class='col-sm-3'>
           <div class='input-group date' id='datetimepicker1'>
-            <%= f.text_field :slot_start, :class => "form-control" %>
-            <span class="input-group-addon"><span class="glyphicon glyphicon-time">
-          
-        </span></span>
+            <%= f.text_field :slot_start, :class => "form-control start" %>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
           </div>
         </div>
         <div class='col-sm-1'>
@@ -23,21 +21,17 @@
         </div>
         <div class='col-sm-3'>
           <div class='input-group date' id='datetimepicker2'>
-            <%= f.text_field :slot_end, :class => "form-control" %>
-            <span class="input-group-addon"><span class="glyphicon glyphicon-time">
-          
-        </span></span>
+            <%= f.text_field :slot_end, :class => "form-control end" %>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
           </div>
-
         </div>
-
       </div>
-      <%= link_to 'Cancel', '#', {class: 'btn btn-danger', data: {dismiss: 'modal'}} %>
-      <%= f.submit "Submit", class: "btn btn-success" %>
+      <div class="btn">
+        <%= link_to 'Cancel', '#', {class: 'btn btn-danger', data: {dismiss: 'modal'}} %>
+        <%= f.submit "Submit", class: "btn btn-success" %>
+      </div>
     </div>
-
 <% end %>
-
 
 <script type="text/javascript">
     $(function () {
