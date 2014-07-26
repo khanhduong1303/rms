@@ -1,75 +1,75 @@
 <h3>Settings</h3>
 <hr/>
 <h4>Organisation Profile</h4>
-<div class = "row">
-<div class = "col-sm-3">
-<div class = "image">
-<% if current_user.avatar? %>
-<%= image_tag  current_user.avatar.url(:big), :class => 'img-thumbnail' %>
-<%else %>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="image">
+      <% if current_user.avatar? %>
+          <%= image_tag current_user.avatar.url(:big), :class => 'img-thumbnail' %>
+      <% else %>
 
-<%= image_tag  "default-user-picture.gif" ,:class => 'img-thumbnail' %>
+          <%= image_tag "default-user-picture.gif", :class => 'img-thumbnail' %>
 
-<%end %>
-<a  data-toggle="modal" data-target="#myModal" href="#" class="edit">
-<span class = "glyphicon glyphicon-pencil"></span></a>
-</div>
-</div>
-<div class = "col-sm-9">
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put ,:id => "edit_user" , 
-                           :class => "form-horizontal",
-                          :role =>"form" }) do |f| %>
-  <%= devise_error_messages! %>
-  <div class="form-group">
-      <div class="col-sm-2"><%= f.label :name , :class => 'control-label' %>
-      </div>
-      <div class='col-sm-8'>
-      <%= f.text_field :name, autofocus: true ,:class => "form-control" %></div>
-      </div>
-    <div class="form-group">
- <div class="col-sm-2">
-      <%= f.label :company , :class => ' control-label' %>
-      </div>
-      <div class='col-sm-8'>
-      <%= f.text_field :company,:class => "form-control" %></div>
-      </div>
-      <div class="form-group">
-       <div class="col-sm-2">
-      <%= f.label :country , :class => 'control-label' %>
-      </div>
-      <div class='col-sm-8'>
-      <%= f.text_field :country, :class => "form-control" %></div>
-      </div>
-      <div class="form-group">
-       <div class="col-sm-2">
-      <%= f.label :city , :class => 'control-label' %>
-      </div>
-      <div class='col-sm-8'>
-      <%= f.text_field :city, :class => "form-control" %></div>
-      </div>
+      <% end %>
+      <a data-toggle="modal" data-target="#myModal" href="#" class="edit">
+        <span class="glyphicon glyphicon-pencil"></span></a>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, :id => "edit_user",
+                                                                                            :class => "form-horizontal",
+                                                                                            :role => "form"}) do |f| %>
+        <%= devise_error_messages! %>
+        <div class="form-group">
+          <div class="col-sm-2"><%= f.label :name, :class => 'control-label' %>
+          </div>
+          <div class='col-sm-8'>
+            <%= f.text_field :name, autofocus: true, :class => "form-control" %></div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-2">
+            <%= f.label :company, :class => ' control-label' %>
+          </div>
+          <div class='col-sm-8'>
+            <%= f.text_field :company, :class => "form-control" %></div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-2">
+            <%= f.label :country, :class => 'control-label' %>
+          </div>
+          <div class='col-sm-8'>
+            <%= f.text_field :country, :class => "form-control" %></div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-2">
+            <%= f.label :city, :class => 'control-label' %>
+          </div>
+          <div class='col-sm-8'>
+            <%= f.text_field :city, :class => "form-control" %></div>
+        </div>
 
 
-      <div class="form-group">
-       <div class="col-sm-2">
-      <%= f.label :phone, "Phone No",:class => 'control-label' %>
-      </div>
-      <div class='col-sm-8'>
-      <%= f.text_field :phone ,:class => "form-control" %></div>
-      </div>
-      
-      <div class="form-group">
-       <div class="col-sm-2">
-      <%= f.label :postal_code, "Postal Code",:class => 'control-label' %></div>
-      <div class='col-sm-8'>
-      <%= f.text_field :postal_code  ,:class => "form-control"%></div>
-      </div>
+        <div class="form-group">
+          <div class="col-sm-2">
+            <%= f.label :phone, "Phone No", :class => 'control-label' %>
+          </div>
+          <div class='col-sm-8'>
+            <%= f.text_field :phone, :class => "form-control" %></div>
+        </div>
 
-  <div class= "col-sm-offset-2 col-sm-8">
-  <%= link_to "Cancel" , profile_path(current_user), class: "btn btn-danger"  %>
-  <%= f.submit "Save" , class: "btn btn-success"  %>
-  </div> 
-<% end %>
-</div>
+        <div class="form-group">
+          <div class="col-sm-2">
+            <%= f.label :postal_code, "Postal Code", :class => 'control-label' %></div>
+          <div class='col-sm-8'>
+            <%= f.text_field :postal_code, :class => "form-control" %></div>
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-8">
+          <%= link_to "Cancel", profile_path(current_user), class: "btn btn-danger" %>
+          <%= f.submit "Save", class: "btn btn-success" %>
+        </div>
+    <% end %>
+  </div>
 </div>
 <hr/>
 <%= render partial: "devise/shared/change_password" %>
@@ -81,29 +81,30 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
 
-  <%= form_for(resource, as: resource_name, url: add_avatar_path ,:html => {:id => "upload_image" , 
-    :class => "form-horizontal",
-    :role =>"form"}, method: :patch  ) do |f| %>
-   <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Upload a New Photo </h4>
-      </div>
-      <div class="modal-body">
-  
-     
-       <div class="form-group">
-   
-      <div class='col-sm-8'>
-      <%= f.file_field :avatar %></div>
-      </div>
-      
-      <div class="modal-footer">
-       <div>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-      <%= f.submit "Submit", :class => "btn btn-success" %></div>
-      </div>
-    </div>
+    <%= form_for(resource, as: resource_name, url: add_avatar_path, :html => {:id => "upload_image",
+                                                                              :class => "form-horizontal",
+                                                                              :role => "form"}, method: :patch) do |f| %>
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Upload a New Photo </h4>
+          </div>
+          <div class="modal-body">
+
+
+            <div class="form-group">
+
+              <div class='col-sm-8'>
+                <%= f.file_field :avatar %></div>
+            </div>
+
+            <div class="modal-footer">
+              <div>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <%= f.submit "Submit", :class => "btn btn-success" %></div>
+            </div>
+          </div>
     <% end %>
 
 
@@ -111,17 +112,17 @@
 
 
 
+    </div>
   </div>
 </div>
-</div>
 <script type="text/javascript">
-  $(document).ready(function(){
-$("a.edit").hide();
-$("div.image").hover(function(){
-    $("a.edit").show();
-    },function(){
-    $("a.edit").hide(); 
+    $(document).ready(function () {
+        $("a.edit").hide();
+        $("div.image").hover(function () {
+            $("a.edit").show();
+        }, function () {
+            $("a.edit").hide();
+        });
     });
-});
 </script>
 

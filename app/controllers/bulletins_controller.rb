@@ -35,20 +35,20 @@ class BulletinsController < ApplicationController
   end
 
   private
-    def set_bulletin
-      @bulletin = Bulletin.find(params[:id])
-    end
+  def set_bulletin
+    @bulletin = Bulletin.find(params[:id])
+  end
 
-    def set_bulletins
-      @bulletins = Bulletin.where(user_id: current_user.id).order(date: :desc)
-    end
+  def set_bulletins
+    @bulletins = Bulletin.where(user_id: current_user.id).order(date: :desc)
+  end
 
-    def bulletin_params
-      params.require(:bulletin).permit(:title, :date, :content, :send_notify, :user_id)
-    end
+  def bulletin_params
+    params.require(:bulletin).permit(:title, :date, :content, :send_notify, :user_id)
+  end
 
-    def set_highlight
-      session[:menustatus] = 'bulletins'
-    end
+  def set_highlight
+    session[:menustatus] = 'bulletins'
+  end
 end
 

@@ -35,20 +35,20 @@ class HouseRulesController < ApplicationController
   end
 
   private
-    def set_house_rule
-      @house_rule = HouseRule.find(params[:id])
-    end
+  def set_house_rule
+    @house_rule = HouseRule.find(params[:id])
+  end
 
-    def set_house_rules
-      @house_rules = HouseRule.where(condo_id: current_user.condo_id)
-    end
+  def set_house_rules
+    @house_rules = HouseRule.where(condo_id: current_user.condo_id)
+  end
 
-    def house_rule_params
-      params.require(:house_rule).permit(:title, :content, :condo_id)
-    end
+  def house_rule_params
+    params.require(:house_rule).permit(:title, :content, :condo_id)
+  end
 
-    def set_highlight
-      session[:menustatus] = 'house_rules'
-    end
+  def set_highlight
+    session[:menustatus] = 'house_rules'
+  end
 end
 

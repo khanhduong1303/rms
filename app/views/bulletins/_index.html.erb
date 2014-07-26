@@ -1,23 +1,25 @@
 <% @bulletins.each do |bulletin| %>
-  <div class="row bulletin-<%= bulletin.id %>">
-    <div class="col-xs-10">
-      <h4><b><%= bulletin.title %></b></h4>
-      <p><b>Date: </b><%= bulletin.date.strftime("%d/%m/%Y") %></p>
-      <p><b>Content:</b></p>
-      <%= simple_format(bulletin.content.truncate(400, separator: ' ', omission: '... (continued, please click View More)'), { class: 'keep-format' }) %>
-      <%= link_to 'View More', bulletin, { class: 'btn btn-default show-button', remote: true } %>
-    </div>
-    <div class="col-xs-2 bulletin-center">
-      <div class="vcenter">
-        <%= link_to confirm_bulletin_path(bulletin), { class: 'btn btn-link', remote: true } do %>
-          <span class="glyphicon glyphicon-trash"></span> Delete Bulletin
-        <% end %>
-        <%= link_to edit_bulletin_path(bulletin), { class: 'btn btn-link', remote: true } do %>
-          <span class="glyphicon glyphicon-pencil"></span> Edit Bulletin
-        <% end %>
+    <div class="row bulletin-<%= bulletin.id %>">
+      <div class="col-xs-10">
+        <h4><b><%= bulletin.title %></b></h4>
+
+        <p><b>Date: </b><%= bulletin.date.strftime("%d/%m/%Y") %></p>
+
+        <p><b>Content:</b></p>
+        <%= simple_format(bulletin.content.truncate(400, separator: ' ', omission: '... (continued, please click View More)'), {class: 'keep-format'}) %>
+        <%= link_to 'View More', bulletin, {class: 'btn btn-default show-button', remote: true} %>
+      </div>
+      <div class="col-xs-2 bulletin-center">
+        <div class="vcenter">
+          <%= link_to confirm_bulletin_path(bulletin), {class: 'btn btn-link', remote: true} do %>
+              <span class="glyphicon glyphicon-trash"></span> Delete Bulletin
+          <% end %>
+          <%= link_to edit_bulletin_path(bulletin), {class: 'btn btn-link', remote: true} do %>
+              <span class="glyphicon glyphicon-pencil"></span> Edit Bulletin
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-  <hr>
+    <hr>
 <% end %>
 

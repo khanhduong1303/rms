@@ -20,107 +20,109 @@
  */
 
 html {
-  overflow-y: scroll;
+    overflow-y: scroll;
 }
 
 body {
-  padding-top: 5px;
+    padding-top: 5px;
 }
 
-.font-color-green{
+.font-color-green {
     color: green;
 }
+
 #notifications {
-  position: fixed;
-  top: 45%;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 350px;
-  text-align: center;
-  z-index: 999999;
+    position: fixed;
+    top: 45%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 350px;
+    text-align: center;
+    z-index: 999999;
 }
 
 input[readonly] {
-  background-color: white !important;
-  cursor: text !important;
+    background-color: white !important;
+    cursor: text !important;
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
 
 a:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .float-right {
-  float: right;
+    float: right;
 }
 
 .footer {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  margin-top: 40px;
-  border-top: 1px solid #EEE;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 40px;
+    border-top: 1px solid #EEE;
 }
 
 .with100per {
-  width: 100%;
+    width: 100%;
 }
 
 .menu {
-  float: left;
-  width: 10%;
-  border-radius: 0px !important;
+    float: left;
+    width: 10%;
+    border-radius: 0px !important;
 }
 
 .padding-20-px {
-  padding-top: 20px;
-  padding-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .paddingTop20px {
-  padding-top: 20px;
+    padding-top: 20px;
 }
 
 .floatLeft {
-  float: left;
+    float: left;
 }
 
-.testbackground{
-  background-color: red;
+.testbackground {
+    background-color: red;
 }
 
-.align-center{
-  text-align: center;
+.align-center {
+    text-align: center;
 }
 
-.div-frame{
-  height: 180px;
-  width: 90%;
-  border: solid 2px dimgrey;
-  overflow: scroll;
-  overflow-x: hidden;
-  overflow-y: scroll;
+.div-frame {
+    height: 180px;
+    width: 90%;
+    border: solid 2px dimgrey;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
-.margin-auto{
-  margin: auto;
+.margin-auto {
+    margin: auto;
 }
 
-.padding-left-30{
-  padding-left: 30px;
+.padding-left-30 {
+    padding-left: 30px;
 }
-.right-30{
+
+.right-30 {
     margin-right: 30px;
 }
 
 select.form-control option {
-  padding: 6px 12px;
+    padding: 6px 12px;
 }
 
 textarea {
-  resize: vertical;
+    resize: vertical;
 }
 

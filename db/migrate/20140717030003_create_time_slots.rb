@@ -5,7 +5,7 @@ class CreateTimeSlots < ActiveRecord::Migration
       t.time :slot_start
       t.time :slot_end
       t.boolean :peak
-      
+
       t.timestamps
     end
   end

@@ -6,9 +6,9 @@ class Api::HouseRulesController < Api::ApiController
       @house_rules = nil
     end
     unless @house_rules.nil?
-      render json: { status: 'success', message: 'Found house rules', total: @house_rules.size, data: @house_rules }, status: :ok
+      render json: {status: 'success', message: 'Found house rules', total: @house_rules.size, data: @house_rules}, status: :ok
     else
-      render json: { status: 'failed', message: 'Not found house rules', data: {} }, status: :not_found
+      render json: {status: 'failed', message: 'Not found house rules', data: {}}, status: :not_found
     end
   end
 end

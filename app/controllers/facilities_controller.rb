@@ -2,7 +2,7 @@ class FacilitiesController < ApplicationController
   before_action :set_facility, only: [:edit, :update, :change_active, :confirm, :destroy]
   before_action :set_facilities, only: [:index, :create, :update, :destroy]
   before_action :set_hightlight
-  respond_to :json ,:html, :js
+  respond_to :json, :html, :js
 
   def index
   end
@@ -20,16 +20,18 @@ class FacilitiesController < ApplicationController
   def edit
     @facility_categories = current_user.condo.facility_categories
   end
+
   def timeslot
     @facility = Facility.find(params[:facility_id])
-    @timeslots =   @facility.time_slots
+    @timeslots = @facility.time_slots
     @timeslot = TimeSlot.new
 
   end
-   def add_timeslot
+
+  def add_timeslot
     @timeslot = TimeSlot.create(timeslot_params)
-     @facility = Facility.find(params[:time_slot][:facility_id])
-     @timeslots =   @facility.time_slots
+    @facility = Facility.find(params[:time_slot][:facility_id])
+    @timeslots = @facility.time_slots
 
   end
 
@@ -42,9 +44,9 @@ class FacilitiesController < ApplicationController
     begin
       @facility.active = params[:active]
       @facility.save
-      render json: { status: 'success' }
+      render json: {status: 'success'}
     rescue Exception => e
-      render json: { status: 'failed' }
+      render json: {status: 'failed'}
     end
   end
 
@@ -52,10 +54,10 @@ class FacilitiesController < ApplicationController
   end
 
   def change_peak
-     @timeslot = TimeSlot.find(params[:id])
-     @timeslot.peak = params[:peak]
-     @timeslot.save
-     render json: {peak: @timeslot.peak }
+    @timeslot = TimeSlot.find(params[:id])
+    @timeslot.peak = params[:peak]
+    @timeslot.save
+    render json: {peak: @timeslot.peak}
   end
 
 
@@ -64,23 +66,24 @@ class FacilitiesController < ApplicationController
   end
 
   private
-    def set_facility
-      @facility = Facility.find(params[:id])
-    end
-  def timeslot_params
-      params.require(:time_slot).permit(:slot_start, :slot_end, :facility_id)
+  def set_facility
+    @facility = Facility.find(params[:id])
   end
 
-    def set_facilities
-      @facilities = current_user.condo.facilities
-    end
+  def timeslot_params
+    params.require(:time_slot).permit(:slot_start, :slot_end, :facility_id)
+  end
 
-    def facility_params
-      params.require(:facility).permit(:name, :booking_price, :deposit_price, :note, :image_path, :facility_category_id)
-    end
+  def set_facilities
+    @facilities = current_user.condo.facilities
+  end
 
-    def set_hightlight
-      session[:menustatus] = 'facilities'
-    end
+  def facility_params
+    params.require(:facility).permit(:name, :booking_price, :deposit_price, :note, :image_path, :facility_category_id)
+  end
+
+  def set_hightlight
+    session[:menustatus] = 'facilities'
+  end
 end
 

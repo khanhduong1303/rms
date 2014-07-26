@@ -1,9 +1,9 @@
-class SessionsController <  Devise::SessionsController
-	layout "blank"
+class SessionsController < Devise::SessionsController
+  layout "blank"
 
-	def new
-		@condo = Condo.all
-		super
+  def new
+    @condo = Condo.all
+    super
 
-	end
+  end
 end

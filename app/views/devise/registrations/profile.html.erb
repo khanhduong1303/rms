@@ -1,31 +1,38 @@
 <h3>Settings</h3>
 <hr/>
 <h4>Organisation Profile</h4>
-<div class = "row">
-<div class = "col-sm-3">
-<% if current_user.avatar? %>
-<%= image_tag  current_user.avatar.url(:big) ,:class => 'img-thumbnail'%>
-<%else %>
+<div class="row">
+  <div class="col-sm-3">
+    <% if current_user.avatar? %>
+        <%= image_tag current_user.avatar.url(:big), :class => 'img-thumbnail' %>
+    <% else %>
 
-<%= image_tag  "default-user-picture.gif" ,:class => 'img-thumbnail' %>
+        <%= image_tag "default-user-picture.gif", :class => 'img-thumbnail' %>
 
-<%end %>
-</div>
-<div class = "col-sm-6">
-<p><b>UserName:</b> <%= current_user.username %> </p>
-<p><b>Name: </b>  <%= current_user.name %> </p>
-<p><b>Company :</b> <%= current_user.company %> </p>
-<p><b>Email:</b> <%= current_user.email %> </p>
-<p><b>Country :</b> <%= current_user.country %> </p>
-<p><b>City :</b> <%= current_user.city %> </p>
-<p><b>Zip :</b> <%= current_user.postal_code %> </p>
-<p><b>Phone :</b> <%= current_user.phone %> </p>
-</div>
-<div class = "col-sm-1">
-<%= link_to  edit_user_registration_path ,{class: "btn btn-link"} do%>
- <span class="glyphicon glyphicon-pencil"></span> Edit Organisation Profile
-<% end %>
-</div> 
+    <% end %>
+  </div>
+  <div class="col-sm-6">
+    <p><b>UserName:</b> <%= current_user.username %> </p>
+
+    <p><b>Name: </b>  <%= current_user.name %> </p>
+
+    <p><b>Company :</b> <%= current_user.company %> </p>
+
+    <p><b>Email:</b> <%= current_user.email %> </p>
+
+    <p><b>Country :</b> <%= current_user.country %> </p>
+
+    <p><b>City :</b> <%= current_user.city %> </p>
+
+    <p><b>Zip :</b> <%= current_user.postal_code %> </p>
+
+    <p><b>Phone :</b> <%= current_user.phone %> </p>
+  </div>
+  <div class="col-sm-1">
+    <%= link_to edit_user_registration_path, {class: "btn btn-link"} do %>
+        <span class="glyphicon glyphicon-pencil"></span> Edit Organisation Profile
+    <% end %>
+  </div>
 </div>
 <hr/>
 <%= render partial: "devise/shared/change_password" %>

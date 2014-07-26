@@ -16,45 +16,45 @@
 </dl>
 <div class="row">
   <div class="col-lg-3"></div>
-    <div class="col-lg-6">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <% if @event_image.size >0 %>
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <% for i in 1...@event_image.size%>
-                    <li data-target="#carousel-example-generic" data-slide-to="<%= i %>"></li>
-                <% end %>
-                <% else %>
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+  <div class="col-lg-6">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <% if @event_image.size >0 %>
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <% for i in 1...@event_image.size %>
+                <li data-target="#carousel-example-generic" data-slide-to="<%= i %>"></li>
             <% end %>
-          </ol>
+        <% else %>
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <% end %>
+      </ol>
 
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner">
-            <% if @event_image.size >0 %>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <% if @event_image.size >0 %>
             <div class="item active">
-              <img src="<%= @event_image[0].image.url(:large)%>" alt="..." class="margin-auto">
+              <img src="<%= @event_image[0].image.url(:large) %>" alt="..." class="margin-auto">
             </div>
-                <% for i in 1...@event_image.size%>
-            <div class="item">
-              <img src="<%= @event_image[i].image.url(:large)%>" alt="..." class="margin-auto">
-            </div>
-                <% end %>
-                <% else %>
-                <div class="item active">
-                  <%= image_tag 'no-image.jpg', :class => 'img-thumbnail',class:"margin-auto" %>
+            <% for i in 1...@event_image.size %>
+                <div class="item">
+                  <img src="<%= @event_image[i].image.url(:large) %>" alt="..." class="margin-auto">
                 </div>
             <% end %>
-          </div>
+        <% else %>
+            <div class="item active">
+              <%= image_tag 'no-image.jpg', :class => 'img-thumbnail', class: "margin-auto" %>
+            </div>
+        <% end %>
+      </div>
 
-          <!-- Controls -->
-          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-          </a>
-          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-          </a>
-        </div>
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
     </div>
+  </div>
 </div>

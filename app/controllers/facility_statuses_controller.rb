@@ -11,8 +11,8 @@ class FacilityStatusesController < ApplicationController
   end
 
   private
-    def facility_status_params
-      params.require(:facility_status).permit(:image_path, :close_from, :close_to, :reason, :facility_id)
-    end
+  def facility_status_params
+    params.require(:facility_status).permit(:image_path, :close_from, :close_to, :reason, :facility_id)
+  end
 end
 

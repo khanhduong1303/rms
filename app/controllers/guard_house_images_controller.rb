@@ -25,16 +25,16 @@ class GuardHouseImagesController < ApplicationController
   end
 
   private
-    def set_guard_house_image
-      @guard_house_image = GuardHouseImage.find(params[:id])
-    end
+  def set_guard_house_image
+    @guard_house_image = GuardHouseImage.find(params[:id])
+  end
 
-    def set_guard_house_images
-      @guard_house_images = current_user.condo.guard_house_images
-    end
+  def set_guard_house_images
+    @guard_house_images = current_user.condo.guard_house_images
+  end
 
-    def guard_house_image_params
-      params.require(:guard_house_image).permit(:name, :image_path, :guard_house_id)
-    end
+  def guard_house_image_params
+    params.require(:guard_house_image).permit(:name, :image_path, :guard_house_id)
+  end
 end
 

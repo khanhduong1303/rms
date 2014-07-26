@@ -21,7 +21,7 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require_tree .
 
-jQuery(function() {
+jQuery(function () {
     $('.datatable').dataTable({
         // sDom: 'Rlfrtip',
         bProcessing: true,

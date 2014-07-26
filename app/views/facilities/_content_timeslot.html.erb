@@ -1,56 +1,55 @@
 <% @timeslots.each do |timeslot| %>
 
-  <tr>
-  	<td> <%=timeslot.slot_start.strftime('%I:%M %P') %> - <%=timeslot.slot_end.strftime('%I:%M %P') %> </td>
-  	<td> <a class="btn <%= timeslot.peak ? 'btn-default' : 'btn-primary' %> 
-  	peak " href="#" data-tid= <%=timeslot.id%>  >Peak</a></td>
-  </tr>
+    <tr>
+      <td> <%= timeslot.slot_start.strftime('%I:%M %P') %> - <%= timeslot.slot_end.strftime('%I:%M %P') %> </td>
+      <td><a class="btn <%= timeslot.peak ? 'btn-default' : 'btn-primary' %>
+  	peak " href="#" data-tid=<%= timeslot.id %>>Peak</a></td>
+    </tr>
 
 
 
-  <% end %>
-  <script type="text/javascript">
-  $(document).ready(function(){
- $(document).on("click","a.peak" , function(e){
+<% end %>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on("click", "a.peak", function (e) {
 
- e.preventDefault();
- var t =$(this);
- var peak = false;
- var id =  $(this).data('tid') ;
+            e.preventDefault();
+            var t = $(this);
+            var peak = false;
+            var id = $(this).data('tid');
 
-if($(this).hasClass('btn-default'))
-	{
-  		peak = false;  
- 	}
-else
-	{
-		peak = true;
-	}
-param = {
-	"id" : id 	,
-	"peak" :peak
-		};
+            if ($(this).hasClass('btn-default')) {
+                peak = false;
+            }
+            else {
+                peak = true;
+            }
+            param = {
+                "id": id,
+                "peak": peak
+            };
 
- $.ajax({
- 	url : "facilities/change_peak" ,
- 	type : "post" ,
- 	data: param ,
- 	dataType: "json",
- 	success: function(data){ 
-      if(data.peak){
-       t.removeClass("btn-primary");
-       t.addClass("btn-default");
+            $.ajax({
+                url: "facilities/change_peak",
+                type: "post",
+                data: param,
+                dataType: "json",
+                success: function (data) {
+                    if (data.peak) {
+                        t.removeClass("btn-primary");
+                        t.addClass("btn-default");
 
-      }else
-  {t.attr('data-peak',false);
-        t.removeClass("btn-default") ;
-        t.addClass("btn-primary")  ;
-      }
- 	} ,
- 	error: function(){ }
- 		});
+                    } else {
+                        t.attr('data-peak', false);
+                        t.removeClass("btn-default");
+                        t.addClass("btn-primary");
+                    }
+                },
+                error: function () {
+                }
+            });
 
 
- 			});
-});
-  </script>
+        });
+    });
+</script>

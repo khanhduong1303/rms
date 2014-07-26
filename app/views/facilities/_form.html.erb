@@ -1,56 +1,56 @@
 <%= form_for @facility, remote: true do |f| %>
-  <ul class="errors"></ul>
-  <div class="row">
+    <ul class="errors"></ul>
+    <div class="row">
 
-    <div class="col-xs-2">
-      <div class="img-preview">
-        <%= image_tag @facility.image_path.url(:default), class: 'img-thumbnail' %>
+      <div class="col-xs-2">
+        <div class="img-preview">
+          <%= image_tag @facility.image_path.url(:default), class: 'img-thumbnail' %>
+        </div>
       </div>
+
+      <div class="col-xs-10">
+        <div class="form-group form-inline">
+          <%= f.label :name %>:
+          <%= f.text_field :name, {class: "form-control", placeholder: 'Name of facility'} %>
+        </div>
+
+        <div class="form-group form-inline">
+          <%= f.label :facility_category_id, "Categories:" %>
+          <%= f.collection_select :facility_category_id, @facility_categories, :id, :name, {}, {class: 'form-control'} %>
+        </div>
+
+        <div class="form-group form-inline">
+          <%= f.label :booking_price %>:
+          <%= f.text_field :booking_price, {class: "form-control", placeholder: 'Booking price'} %>
+        </div>
+
+        <div class="form-group form-inline">
+          <%= f.label :deposit_price %>:
+          <%= f.text_field :deposit_price, {class: "form-control", placeholder: 'Deposit price'} %>
+        </div>
+
+        <%= f.file_field :image_path, {id: 'file-box', style: 'display:none'} %>
+
+        <div class="form-group">
+          <%= f.label :note %>:
+          <%= f.text_area :note, class: "form-control", rows: 2 %>
+        </div>
+
+        <div class="facility-button">
+          <%= link_to 'Cancel', facilities_path, class: 'btn btn-danger' %>
+          <%= f.submit class: "btn btn-success", value: @facility.persisted? ? 'Save' : 'Add' %>
+        </div>
+      </div>
+
     </div>
-
-    <div class="col-xs-10">
-      <div class="form-group form-inline">
-        <%= f.label :name %>:
-        <%= f.text_field :name, { class: "form-control", placeholder: 'Name of facility' } %>
-      </div>
-
-      <div class="form-group form-inline">
-        <%= f.label :facility_category_id, "Categories:" %>
-        <%= f.collection_select :facility_category_id, @facility_categories, :id, :name, {}, { class: 'form-control' } %>
-      </div>
-
-      <div class="form-group form-inline">
-        <%= f.label :booking_price %>:
-        <%= f.text_field :booking_price, { class: "form-control", placeholder: 'Booking price' } %>
-      </div>
-
-      <div class="form-group form-inline">
-        <%= f.label :deposit_price %>:
-        <%= f.text_field :deposit_price, { class: "form-control", placeholder: 'Deposit price' } %>
-      </div>
-
-      <%= f.file_field :image_path, { id: 'file-box', style: 'display:none' }%>
-
-      <div class="form-group">
-        <%= f.label :note %>:
-        <%= f.text_area :note, class: "form-control", rows: 2  %>
-      </div>
-
-      <div class="facility-button">
-        <%= link_to 'Cancel', facilities_path, class: 'btn btn-danger' %>
-        <%= f.submit class: "btn btn-success", value: @facility.persisted? ? 'Save' : 'Add' %>
-      </div>
-    </div>
-
-  </div>
 <% end %>
 
 <script type="text/javascript">
-  $(document).on('click', '#list-facility .img-preview', function() {
-    $('input[id=file-box]').click();
-  })
-  $('input[id=file-box]').change(function() {
-    $(this).closest('form').submit();
-  });
+    $(document).on('click', '#list-facility .img-preview', function () {
+        $('input[id=file-box]').click();
+    })
+    $('input[id=file-box]').change(function () {
+        $(this).closest('form').submit();
+    });
 </script>
 
