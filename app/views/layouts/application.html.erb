@@ -45,7 +45,7 @@
     <div class="col-lg-12">
       <%= link_to 'Home', homes_path, {class: "btn btn-primary menu #{session[:menustatus] == 'home' ? 'active' : ''}"} %>
       <%= link_to 'Bookings', bookings_path, {'data-no-turbolink' => true, class: "btn btn-primary menu #{session[:menustatus] == 'bookings' ? 'active' : ''}"} %>
-      <%= link_to 'Bulletin', bulletins_path, {class: "btn btn-primary menu #{session[:menustatus] == 'bulletins' ? 'active' : ''}"} %>
+      <%= link_to 'Bulletins', bulletins_path, {class: "btn btn-primary menu #{session[:menustatus] == 'bulletins' ? 'active' : ''}"} %>
       <%= link_to 'Condo Info', condos_path, {class: "btn btn-primary menu #{session[:menustatus] == 'condoInfos' ? 'active' : ''}"} %>
       <%= link_to 'Events', events_path, {class: "btn btn-primary menu #{session[:menustatus] == 'events' ? 'active' : ''}"} %>
       <%= link_to 'Facilities', facilities_path, {class: "btn btn-primary menu #{session[:menustatus] == 'facilities' ? 'active' : ''}"} %>
@@ -55,7 +55,6 @@
       <%= link_to 'House Rules', house_rules_path, {class: "btn btn-primary menu #{session[:menustatus] == 'house_rules' ? 'active' : ''}"} %>
     </div>
   </div>
-  <!--</div>-->
 
   <% flash.each do |name, msg| %>
       <%= content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable" do %>
@@ -74,7 +73,6 @@
     </div>
   </div>
 </div>
-<!--</div>-->
 </body>
 </html>
 
