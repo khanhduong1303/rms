@@ -13,3 +13,9 @@ img#image-preview.img-thumbnail {
   height: 240px !important;
 }
 
+a.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+}
+

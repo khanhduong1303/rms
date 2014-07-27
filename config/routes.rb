@@ -50,8 +50,9 @@ Rails.application.routes.draw do
   resources :facility_statuses, only: [:new, :create]
 
   resource :facility_status, only: [] do
-    collection do
-      get 'cancel'
+    member do
+      get 'previous'
+      get 'next'
     end
   end
 

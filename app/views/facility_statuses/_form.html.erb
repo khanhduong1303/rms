@@ -1,90 +1,117 @@
 <div class="modal-body">
+  <div class="text-center">
+    <div class="h3 pull-left">
+      <%= link_to previous_facility_status_path, { remote: true, class: @current ? 'disabled' : '' } do %>
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      <% end %>
+    </div>
+    <span class="text-center h3"><%= @month_name + ' ' + @year.to_s %></span>
+    <div class="h3 pull-right">
+      <%= link_to next_facility_status_path, { remote: true } do %>
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      <% end %>
+    </div>
+  </div>
+
   <%= form_for @facility_status, remote: true do |f| %>
       <ul class="errors"></ul>
 
-      <%= f.hidden_field :facility_id, {value: ''} %>
+      <%= f.hidden_field :facility_id, { value: '' } %>
       <div class="facility-status-image">
-        <%= image_tag @facility_status.image_path.url(:thumbnail), {id: 'image-preview', class: 'img-thumbnail', size: '320x240'} %>
-        <%= f.file_field :image_path, {id: 'file-image'} %>
+        <%= image_tag @facility_status.image_path.url(:thumbnail), { id: 'image-preview', class: 'img-thumbnail', size: '320x240' } %>
+        <%= f.file_field :image_path, { id: 'file-image' } %>
       </div>
 
       <div class="form-group form-inline">
-        <%= f.label :close_from %>
+        <%= f.label :close_from %>:
         <div id='datetime-picker-close-from' class="input-group date" data-date-format="DD/MM/YYYY">
-          <%= f.text_field :close_from, {class: "form-control", placeholder: 'DD/MM/YYYY', value: @facility_status.close_from.try(:strftime, "%d/%m/%Y")} %>
+          <%= f.text_field :close_from, { class: "form-control", readonly: true, placeholder: 'DD/MM/YYYY', value: @facility_status.close_from.try(:strftime, "%d/%m/%Y") } %>
           <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
         </div>
       </div>
 
       <div class="form-group form-inline">
-        <%= f.label :close_to %>
+        <%= f.label :close_to %>:
         <div id='datetime-picker-close-to' class="input-group date" data-date-format="DD/MM/YYYY">
-          <%= f.text_field :close_to, {class: "form-control", placeholder: 'DD/MM/YYYY', value: @facility_status.close_to.try(:strftime, "%d/%m/%Y")} %>
+          <%= f.text_field :close_to, { class: "form-control", readonly: true, placeholder: 'DD/MM/YYYY', value: @facility_status.close_to.try(:strftime, "%d/%m/%Y") } %>
           <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :reason.to_s + 's for Closure' %>
-        <%= f.text_area :reason, {class: 'form-control', rows: 2} %>
+        <%= f.label :reason.to_s + 's for Closure:' %>
+        <%= f.text_area :reason, { class: 'form-control', rows: 1 } %>
       </div>
 
-      <div class="facility-button">
-        <%= link_to 'Cancel', cancel_facility_status_path, {class: 'btn btn-danger', remote: true} %>
-        <%= f.submit class: "btn btn-success", value: @facility_status.persisted? ? 'Save' : 'Submit' %>
+      <div class="text-center">
+        <%= button_tag 'Cancel', { type: :button, class: 'btn btn-danger', data: { dismiss: 'modal' } } %>
+        <%= f.submit class: 'btn btn-success', value: @facility_status.persisted? ? 'Save' : 'Submit' %>
       </div>
   <% end %>
 </div>
 
 <script type="text/javascript">
     $(function () {
-        date = new Date();
-        $('#datetime-picker-close-from').datetimepicker({
-            pickTime: false,
-            minDate: date
-        });
+      <% if @current %>
+        minDate = new Date();
+      <% else %>
+        minDate = new Date(<%= @year %>, <%= @month - 1 %>, <%= @beginning_of_month.day %>)
+      <% end %>
+      maxDate = new Date(<%= @year %>, <%= @month - 1 %>, <%= @end_of_month.day %>)
+      $('#datetime-picker-close-from').datetimepicker({
+          pickTime: false,
+          minDate: minDate,
+          maxDate: maxDate
+      });
 
-        $('#datetime-picker-close-to').datetimepicker({
-            pickTime: false,
-            minDate: date
-        });
+      $('#datetime-picker-close-to').datetimepicker({
+          pickTime: false,
+          minDate: minDate,
+          maxDate: maxDate
+      });
     });
 </script>
 
 <% if !@facility_status.persisted? %>
     <script type="text/javascript">
         $(document).on('click', '#image-preview', function (e) {
-            e.preventDefault();
-            $('#file-image').trigger('click');
+          e.preventDefault();
+          $('#file-image').trigger('click');
         });
 
         function handleFileSelect(evt) {
-            var files = evt.target.files; // FileList object
-            f = files[0]
-            // Only process image files.
-            if (f.type.match('image.*')) {
-                var reader = new FileReader();
-                reader.onload = (function (theFile) {
-                    return function (e) {
-                        // alert(e.target.result);
-                        document.getElementById("image-preview").src = e.target.result;
-                    };
-                })(f);
+          var files = evt.target.files; // FileList object
+          f = files[0]
+          // Only process image files.
+          if (f.type.match('image.*')) {
+            var reader = new FileReader();
+            reader.onload = (function (theFile) {
+              return function (e) {
+                // alert(e.target.result);
+                document.getElementById("image-preview").src = e.target.result;
+              };
+            })(f);
 
-                // Read in the image file as a data URL.
-                reader.readAsDataURL(f);
-            }
+            // Read in the image file as a data URL.
+            reader.readAsDataURL(f);
+          }
         }
         document.getElementById('file-image').addEventListener('change', handleFileSelect, false);
 
-
         $(function () {
+          <% if @current %>
             date = new Date();
             $('#datetime-picker-close-from').data('DateTimePicker').setDate(dateToString(date));
             $('#datetime-picker-close-to').data('DateTimePicker').setDate(dateToString(date));
+          <% else %>
+            date = new Date(<%= @year %>, <%= @month - 1 %>, <%= @beginning_of_month.day %>)
+            $('#datetime-picker-close-from').data('DateTimePicker').setDate(dateToString(date));
+            $('#datetime-picker-close-to').data('DateTimePicker').setDate(dateToString(date));
+          <% end %>
         });
+
         function dateToString(date) {
-            return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+          return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
         }
     </script>
 <% end %>
