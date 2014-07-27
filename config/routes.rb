@@ -89,7 +89,7 @@ Rails.application.routes.draw do
 
   end
 
-  resources :guard_house_image, except: [:show] do
+  resources :guard_house_images do
 
   end
 

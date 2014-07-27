@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/bernat/best_in_place.git
+  revision: 11805c95f7cdc32c69db8e1e110d647a79abe56d
+  specs:
+    best_in_place (3.0.0.alpha)
+      actionpack (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -152,6 +159,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  best_in_place!
   bootstrap-generators (~> 3.1.1)
   bootstrap-sass (~> 3.1.1)
   bootstrap-timepicker-rails

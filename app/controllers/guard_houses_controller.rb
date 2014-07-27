@@ -9,6 +9,7 @@ class GuardHousesController < ApplicationController
   end
 
   def edit
+    @guard_house_images = current_user.condo.guard_house_images
   end
 
   def update
@@ -20,7 +21,7 @@ class GuardHousesController < ApplicationController
       @guard_house=GuardHouse.find(params[:guard_house_id])
       if params[:guard_house][:guard_house_image].size > 0
         params[:guard_house][:guard_house_image].each do |image|
-          @guard_house.guard_house_images.create(:image_path=> image)
+          @guard_house.guard_house_images.create(:image_path=> image, name:'No content!')
         end
 
       end

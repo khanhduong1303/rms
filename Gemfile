@@ -42,6 +42,8 @@ gem 'bootstrap-timepicker-rails'
 gem 'remotipart', '~> 1.2'
 # dataTable
 gem 'jquery-datatables-rails', '~> 2.1.10.0.3'
+# best_in_place gem, same as x-editable
+gem 'best_in_place', github: 'bernat/best_in_place'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

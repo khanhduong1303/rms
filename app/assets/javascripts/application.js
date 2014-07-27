@@ -19,6 +19,8 @@
 //= require jquery.remotipart
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require best_in_place
+//= require best_in_place.purr
 //= require_tree .
 
 jQuery(function () {
@@ -30,5 +32,13 @@ jQuery(function () {
         sPaginationType: "full_numbers",
         bStateSave: true
     });
+//    add bootstrap in best_in_place
+    $('.best_in_place').best_in_place()
+    $(document).on('click','.in_place_class',function(){
+        $('.in_place_class span form input:text').addClass('form-control input-sm');
+        $('.in_place_class span form input:button').addClass('btn btn-danger');
+        $('.in_place_class span form input:submit').addClass('btn btn-primary');
+    });
+
 });
 

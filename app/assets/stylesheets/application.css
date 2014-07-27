@@ -106,6 +106,22 @@ a:hover {
     overflow-x: hidden;
     overflow-y: scroll;
 }
+.div-frame-guard-house-index {
+    height: 190px;
+    width: 93%;
+    border: solid 2px dimgrey;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.div-frame-guard-house-edit {
+    height: 220px;
+    width: 93%;
+    border: solid 2px dimgrey;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
 
 .margin-auto {
     margin: auto;
@@ -126,4 +142,23 @@ select.form-control option {
 textarea {
     resize: vertical;
 }
+
+/*format best_in_place*/
+form.form_in_place input[type='text']{
+    width: 40%;
+    min-width: 100px;
+    float: left;
+}
+form.form_in_place input[type='button']{
+    margin-left: 10px;
+    width: 5%;
+    min-width: 55px;
+}
+form.form_in_place input[type='submit']{
+    margin-left: 10px;
+    width: 5%;
+    min-width: 50px;
+}
+/*end format best_in_place*/
+
 
