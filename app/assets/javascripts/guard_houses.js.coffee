@@ -23,3 +23,7 @@ $ ->
     return
   return
 
+  $(document).on 'click','#modal-guard-house-image', ->
+    $('.bs-example-modal-sm').modal()
+    return
+
