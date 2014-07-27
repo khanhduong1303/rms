@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 #api routes
   namespace :api, defaults: {format: 'json'} do
     devise_scope :user do
-
       post 'change_pass', to: 'registrations#change_password', as: 'change_pass'
       post 'edit_profile', to: 'registrations#edit_profile', as: 'edit_profile'
       post 'log_out', to: 'sessions#sign_out', as: 'log_out'
@@ -81,7 +80,9 @@ Rails.application.routes.draw do
   end
 
   resources :guard_houses, only: [:index, :update] do
-
+    collection do
+      post 'update_photo'
+    end
   end
 
   resource :guard_house, only: [:edit] do

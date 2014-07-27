@@ -10,21 +10,61 @@
 </div>
 
 <div class="">
-  <span>Guards on duty</span>
+  <b class="floatLeft">Guards on duty</b>
 
+  <div class="text-right">
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">Add more
+      photo
+    </button>
+  </div>
 </div>
 <div class="row">
   <div class="col-lg-12">
-    <% @guard_house_images.each do |guard_house_image| %>
-
+    <% if  @guard_house_images.size > 0 %>
+        <div class="form-group">
+          <div class="col-sm-12 paddingTop20px">
+            <div class="div-frame margin-auto">
+              <% @guard_house_images.each do |guard_house_image| %>
+                  <div class="floatLeft padding-left-30 paddingTop20px">
+                    <%= image_tag guard_house_image.image_path.url(:thumbnail), :class => "img-thumbnail" %>
+                    <br>
+                    <%= check_box_tag 'image_id[]', guard_house_image.id %> Delete
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
     <% end %>
+
   </div>
 </div>
 
-<div id="guard-house-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div id="guard-house-content" class="modal-content">
+
+
+<%= form_for @guard_house, url: update_photo_guard_houses_path, :html=>{:multipart => true, :class => "form-horizontal", method:'post'} do |f|%>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <%= label_tag 'guard_house_image', 'Upload photos:' %>
+          <br>
+
+          <div>
+            <!--<input id="guard_house_image" type="file" name="guard_house_image[]" multiple="multiple">-->
+            <%= f.file_field :guard_house_image, :multiple => true %>
+            <input type="hidden" name="guard_house_id" value="<%= @guard_house.id %>">
+            <br>
+            <button id="addMorePhoto" type="button" class="btn btn-default">Add more photo</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <%= f.submit "Submit", :class => "btn btn-success" %></div>
+      </div>
     </div>
   </div>
 </div>
-
+<% end %>
