@@ -9,7 +9,7 @@
 </div>
 <div class="row">
   <div class="col-lg-12">
-    <%= form_for @guard_house, url: update_photo_guard_houses_path, :html => {:multipart => true, :class => "form-horizontal", method: 'post'} do |f| %>
+    <%= form_for @guard_house, url: delete_photo_guard_houses_path, :html => {:multipart => true, :class => "form-horizontal", method: 'post'} do |f| %>
     <% if  @guard_house_images.size > 0 %>
         <div class="form-group">
           <div class="col-sm-12 paddingTop20px">

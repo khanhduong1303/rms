@@ -83,6 +83,7 @@ Rails.application.routes.draw do
   resources :guard_houses, only: [:index, :update] do
     collection do
       post 'update_photo'
+      post 'delete_photo'
     end
   end
 

@@ -18,16 +18,20 @@ class GuardHousesController < ApplicationController
   end
 
   def update_photo
+    @guard_house_images = current_user.condo.guard_house_images
     if GuardHouse.where(id:params[:guard_house_id]).size > 0
       @guard_house=GuardHouse.find(params[:guard_house_id])
       if params[:guard_house][:guard_house_image].size > 0
         params[:guard_house][:guard_house_image].each do |image|
           @guard_house.guard_house_images.create(:image_path=> image, name:'Click to edit!')
         end
-
       end
-
     end
+
+
+  end
+
+  def delete_photo
     if !params[:image_id].nil? && params[:image_id].size > 0
       params[:image_id].each do |image|
         if GuardHouseImage.where(id:image.to_f).size > 0
@@ -38,7 +42,6 @@ class GuardHousesController < ApplicationController
     respond_to do |format|
       format.html {redirect_to guard_houses_path}
     end
-
   end
 
   private
