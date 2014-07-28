@@ -18,7 +18,7 @@
                   <div class="floatLeft padding-left-30 paddingTop20px in_place_class width-180">
                     <%= image_tag guard_house_image.image_path.url(:thumbnail), :class => "img-thumbnail" %>
                     <br><br>
-                    <%= best_in_place guard_house_image, :name, :type => :input, :nil => "No content!" %>
+                    <%= best_in_place guard_house_image, :name, :type => :input, :nil => "Click to edit!" %>
                     <br><br>
                     <%= check_box_tag 'image_id[]', guard_house_image.id %> Delete
                   </div>

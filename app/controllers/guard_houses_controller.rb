@@ -22,14 +22,13 @@ class GuardHousesController < ApplicationController
       @guard_house=GuardHouse.find(params[:guard_house_id])
       if params[:guard_house][:guard_house_image].size > 0
         params[:guard_house][:guard_house_image].each do |image|
-          @guard_house.guard_house_images.create(:image_path=> image, name:'No content!')
+          @guard_house.guard_house_images.create(:image_path=> image, name:'Click to edit!')
         end
 
       end
 
     end
-    if params[:image_id].size > 0
-      puts 'sdj vhjbabhkbfkabvmn vms,js,vmbvfmvkbvhb bbvlcbvd'
+    if !params[:image_id].nil? && params[:image_id].size > 0
       params[:image_id].each do |image|
         if GuardHouseImage.where(id:image.to_f).size > 0
           GuardHouseImage.find(image.to_f).destroy
