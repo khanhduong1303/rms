@@ -8,12 +8,19 @@ class Api::BookingsController < ApplicationController
     if @booking_facilities.size > 0
       render json: data_json('success', 'Booking list', @booking_facilities.size, @booking_facilities)
     else
-      render json: data_json('success', 'Booking list', 0, nil)
+      render json: data_json('failed', 'Booking list', 0, nil)
     end
   end
 
   def make_a_booking
-
+    if !params[:user_id].nil? && !params[:preferred_date].nil? && !params[:time_slot_id].nil?
+      @booking = Booking.create(time_slot_id:params[:time_slot_id], date_submit:params[:preferred_date], user_id:params[:user_id], status:'Waiting')
+      if @booking
+        return render json: data_json('success', 'Booking success', 1, @booking)
+      else
+        render json: data_json('failed', 'Booking list', 0, nil)
+      end
+    end
   end
 
   def check_booking
