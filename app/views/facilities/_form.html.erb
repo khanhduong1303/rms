@@ -4,7 +4,7 @@
 
       <div class="col-xs-2">
         <div class="img-preview">
-          <%= image_tag @facility.image_path.url(:default), class: 'img-thumbnail' %>
+          <%= image_tag @facility.image_path.url(:default), { id: 'img-thumbnail', class: 'img-thumbnail', size: '150x150' } %>
         </div>
       </div>
 
@@ -45,10 +45,27 @@
 <% end %>
 
 <script type="text/javascript">
-    $(document).on('click', '#list-facility .img-thumbnail', function () {
+    $(document).on('click', '#img-thumbnail', function () {
         $('input[id=file-box]').click();
     })
-    $('input[id=file-box]').change(function () {
-        $(this).closest('form').submit();
-    });
+
+    function handleFileSelect(evt) {
+      var files = evt.target.files; // FileList object
+      f = files[0]
+      // Only process image files.
+      if (f.type.match('image.*')) {
+        var reader = new FileReader();
+        reader.onload = (function (theFile) {
+          return function (e) {
+            // alert(e.target.result);
+            document.getElementById("img-thumbnail").src = e.target.result;
+          };
+        })(f);
+
+        // Read in the image file as a data URL.
+        reader.readAsDataURL(f);
+      }
+    }
+    document.getElementById('file-box').addEventListener('change', handleFileSelect, false);
 </script>
+
