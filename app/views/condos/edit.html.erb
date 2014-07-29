@@ -1,8 +1,5 @@
 <div class="condoinfo-header">
-
   <h4>Edit Condo Infos</h4>
-
-  <div></div>
   <hr>
 </div>
 <div class="condoinfo-content">
@@ -72,34 +69,25 @@
                 <h4 class="modal-title" id="myModalLabel">Upload a New Photo </h4>
               </div>
               <div class="modal-body">
-
-
-                <div class="form-group">
-
-                  <div class='up_pic'>
-
-                    <%= f.file_field :image, :multiple => true %>
-                  </div>
-                  <a class="add_more btn btn-default">Add More</a>
-
-                  <div class="modal-footer">
-                    <div>
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                      <%= f.submit "Submit", :class => "btn btn-success" %></div>
-                  </div>
-                </div>
+                 <div class='up_pic'><%= f.file_field :image, :multiple => true %></div>
+                 <a class="add_more btn btn-default">Add More</a>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <%= f.submit "Submit", :class => "btn btn-success" %>
+              </div>
+            </div>
         <% end %>
-        </div>
         </div>
       </div>
     </div>
-  </div>
 </div>
 
 <script>
     $(document).ready(function () {
         $("a.add_more").click(function () {
-            $('div.up_pic').append('  <input accept="image/png,image/gif,image/jpeg" id="images_" name="condo_image[image][]" multiple="multiple" type="file" />')
+            $('div.up_pic').append('<input accept="image/png,image/gif,image/jpeg" id="images_" name="condo_image[image][]" multiple="multiple" type="file" />')
         });
     });
 </script>
+

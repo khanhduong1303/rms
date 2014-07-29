@@ -10,7 +10,7 @@ class CreateCondos < ActiveRecord::Migration
       t.string :developer
       t.string :tenure
       t.string :top_year
-      t.integer :number_of_units
+      t.integer :num_of_units
       t.text :description
 
       t.timestamps
