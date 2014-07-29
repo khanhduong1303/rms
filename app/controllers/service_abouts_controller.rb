@@ -1,0 +1,2 @@
+class ServiceAboutsController < ApplicationController
+end

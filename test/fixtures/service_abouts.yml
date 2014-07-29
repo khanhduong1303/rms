@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image_path: 
+  description: MyText
+  call_to_order: MyString
+  email: MyString
+  more_info: MyText
+  service_id: 1
+
+two:
+  image_path: 
+  description: MyText
+  call_to_order: MyString
+  email: MyString
+  more_info: MyText
+  service_id: 1
