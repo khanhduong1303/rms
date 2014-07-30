@@ -39,7 +39,7 @@
       ><text fill="black" x="7" xml:space="preserve" y="272" stroke="none"
       >- Thêm privileges, privilege_users</text
       ><text fill="black" x="7" xml:space="preserve" y="289" stroke="none"
-      >- Thêm service_categories, services, service_about</text
+      >- Thêm service_categories, services</text
       ><line y2="0" fill="none" x1="0" x2="446" stroke="black" y1="0"
       /><line y2="14" fill="none" x1="446" x2="459" stroke="black" y1="0"
       /><line y2="559" fill="none" x1="459" x2="459" stroke="black" y1="14"
