@@ -26,9 +26,7 @@ Nhật ký...
 *30/07/2014:*
 - Thêm privileges, privilege_users
 - Thêm service_categories, services
-
-
-
+- Thêm courses, course_users
 </panel_attributes>
     <additional_attributes/>
   </element>

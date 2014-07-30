@@ -1,2 +1,0 @@
-class ServiceAboutsController < ApplicationController
-end

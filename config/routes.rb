@@ -100,8 +100,6 @@ Rails.application.routes.draw do
 
   resources :privilege_users, only: []
 
-  resources :service_abouts, only: []
-
   resources :services, only: []
 
   resources :service_categories, only: []
@@ -227,9 +225,6 @@ Rails.application.routes.draw do
       collection do
         get 'service_categories' => 'service_categories#index'
       end
-      member do
-        get 'service_category_detail' => 'service_categories#show'
-      end
     end
 
     resource :service, only: [], path: 'api' do
@@ -238,12 +233,6 @@ Rails.application.routes.draw do
       end
       member do
         get 'service_detail' => 'services#show'
-      end
-    end
-
-    resource :service_about, only: [], path: 'api' do
-      member do
-        get 'service_about' => 'service_abouts#show'
       end
     end
 
