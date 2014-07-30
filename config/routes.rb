@@ -104,6 +104,10 @@ Rails.application.routes.draw do
 
   resources :service_categories, only: []
 
+  resources :courses, only: []
+
+  resources :course_users, only: []
+
   devise_scope :user do
     get 'user/profile/:id', to: 'registrations#profile', as: 'profile'
     patch 'user/change_pass', to: 'registrations#change_password', as: 'change_pass'
@@ -230,6 +234,21 @@ Rails.application.routes.draw do
       end
       member do
         get 'service_detail' => 'services#show'
+      end
+    end
+
+    resource :course, only: [], path: 'api' do
+      collection do
+        get 'courses' => 'courses#index'
+      end
+      member do
+        get 'course_detail' => 'courses#show'
+      end
+    end
+
+    resource :course, only: [], path: 'api' do
+      member do
+        post 'join_course' => 'course_users#create'
       end
     end
 
