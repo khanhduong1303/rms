@@ -1,2 +1,3 @@
-class Api::ServicesController < ApplicationController
+class Api::ServicesController < Api::ApiController
 end
+
