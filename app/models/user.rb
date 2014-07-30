@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :events, dependent: :destroy
   has_many :bookings
   has_many :feedbacks
+  has_many :privileges, dependent: :destroy
 
 
 #setup avartar
