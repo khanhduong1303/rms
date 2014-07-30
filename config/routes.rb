@@ -206,8 +206,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :privilege, only: [], path: 'api' do
+    resource :privileges, only: [], path: 'api' do
       collection do
+        get 'privileges' => 'privileges#index'
+        get 'privilege_detail' => 'privileges#privilege_detail'
+        get 'redeem_previlege' => 'privileges#redeem_previlege'
       end
       member do
       end
