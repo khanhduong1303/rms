@@ -107,6 +107,70 @@ class Api::ChatsController < ApplicationController
     end
   end
 
+  def send_chat_message
+    if !params[:sending_user_id].nil? && !params[:receiving_user_id].nil?
+      if User.where(id:params[:sending_user_id]).size < 1
+        return render json: data_json('failed', 'sending_user_id not found', 0, nil)
+      end
+      if User.where(id:params[:receiving_user_id]).size < 1
+        return render json: data_json('failed', 'receiving_user_id not found', 0, nil)
+      end
+      if params[:message_content].blank?
+        return render json: data_json('failed', 'Message content is null', 0, nil)
+      end
+      @send_message = IndividualChat.create(sending_user: params[:sending_user_id], receiving_user: params[:receiving_user_id], message_content: params[:message_content])
+      if @send_message
+        return render json: data_json('success', 'Send message success!', 1, @send_message)
+      else
+        return render json: data_json('failed', 'Send message was not success!', 0, nil)
+      end
+    else
+      return render json: data_json('failed', 'Missing parameters', 0, nil)
+    end
+  end
+
+  def create_group_chat
+    if !params[:group_name].nil? && !params[:member_list].nil?
+      if params[:member_list].size <1 ||!params[:member_list].is_a?(Array)
+        return render json: data_json('failed', 'Member list is null or member_list parameter isn\'t array type', 0, nil)
+      end
+      @group_chat = GroupChatList.create(name: params[:group_name])
+      if @group_chat
+        params[:member_list].each do |member|
+          if User.where(id:member).size > 0
+            GroupChatMember.create(group_chat_list_id: @group_chat.id, user_id: member)
+          end
+        end
+        return render json: data_json('success', 'Create group chat was success!', 1, @group_chat)
+      else
+        return render json: data_json('failed', 'Create group chat was not success!', 0, nil)
+      end
+    else
+      return render json: data_json('failed', 'Missing parameters', 0, nil)
+    end
+  end
+
+  def send_chat_group
+    if !params[:group_name].nil? && !params[:member_list].nil?
+      if params[:member_list].size <1 ||!params[:member_list].is_a?(Array)
+        return render json: data_json('failed', 'Member list is null or member_list parameter isn\'t array type', 0, nil)
+      end
+      @group_chat = GroupChatList.create(name: params[:group_name])
+      if @group_chat
+        params[:member_list].each do |member|
+          if User.where(id:member).size > 0
+            GroupChatMember.create(group_chat_list_id: @group_chat.id, user_id: member)
+          end
+        end
+        return render json: data_json('success', 'Create group chat was success!', 1, @group_chat)
+      else
+        return render json: data_json('failed', 'Create group chat was not success!', 0, nil)
+      end
+    else
+      return render json: data_json('failed', 'Missing parameters', 0, nil)
+    end
+  end
+
   private
   def data_json status, message, total, results=nil
     return {:status => status, :message => message, :total => total, :results => results}

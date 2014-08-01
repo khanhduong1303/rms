@@ -243,6 +243,9 @@ Rails.application.routes.draw do
         get 'friend_list' => 'chats#friend_list'
         get 'pending_request' => 'chats#pending_request'
         get 'neightbours' => 'chats#neightbours'
+        post 'send_chat_message' => 'chats#send_chat_message'
+        post 'create_group_chat' => 'chats#create_group_chat'
+        post 'send_chat_group' => 'chats#send_chat_group'
       end
     end
 
