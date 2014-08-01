@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :bookings
   has_many :feedbacks
   has_many :privileges, dependent: :destroy
+  has_many :group_chats
+  has_many :group_chat_members
 
 
 #setup avartar

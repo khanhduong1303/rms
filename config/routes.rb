@@ -208,7 +208,7 @@ Rails.application.routes.draw do
       collection do
         get 'privileges' => 'privileges#index'
         get 'privilege_detail' => 'privileges#privilege_detail'
-        get 'redeem_previlege' => 'privileges#redeem_previlege'
+        post 'redeem_previlege' => 'privileges#redeem_previlege'
       end
       member do
       end
@@ -233,6 +233,16 @@ Rails.application.routes.draw do
       end
       member do
         get 'service_detail' => 'services#show'
+      end
+    end
+
+    resource :chats, only: [], path: 'api' do
+      collection do
+        post 'request_friend' => 'chats#request_friend'
+        post 'confirm_friend_request' => 'chats#confirm_friend_request'
+        get 'friend_list' => 'chats#friend_list'
+        get 'pending_request' => 'chats#pending_request'
+        get 'neightbours' => 'chats#neightbours'
       end
     end
 

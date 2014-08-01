@@ -49,7 +49,7 @@ class Api::EventsController < ApplicationController
       if Event.where(:id => params[:event_id]).size < 1
         return render json: data_json('failed', 'Event not found', 0, nil)
       end
-      if Event.where(:id => params[:user_id]).size < 1
+      if User.where(:id => params[:user_id]).size < 1
         return render json: data_json('failed', 'User not found', 0, nil)
       end
       @join_event = JoinEvent.create(:user_id => params[:user_id], :event_id => params[:event_id])

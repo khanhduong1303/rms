@@ -30,7 +30,20 @@ class Api::PrivilegesController < ApplicationController
   end
 
   def redeem_previlege
-    
+    if !params[:user_id].nil? and !params[:privilege_id].nil?
+      if Privilege.where(:id => params[:privilege_id]).size < 1
+        return render json: data_json('failed', 'Privilege not found', 0, nil)
+      end
+      if User.where(:id => params[:user_id]).size < 1
+        return render json: data_json('failed', 'User not found', 0, nil)
+      end
+      @redeem = PrivilegeUser.create(:user_id => params[:user_id], :privilege_id => params[:privilege_id])
+      return render json: data_json('success', 'Redeem success', 1, @redeem)
+      # render json: {:status=>"Success", :message=>'Joined', :data=>@join_event}
+    else
+      render json: data_json('failed', 'Missing parameter', 0, nil)
+      # render json: {:status=>"Fail", :message=>'Join fail', :data=>nil}
+    end
   end
 
   private

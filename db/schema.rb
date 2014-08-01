@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729171252) do
+ActiveRecord::Schema.define(version: 20140731144459) do
 
   create_table "bookings", force: true do |t|
     t.date     "date_submit"
@@ -153,10 +153,39 @@ ActiveRecord::Schema.define(version: 20140729171252) do
     t.datetime "updated_at"
   end
 
+  create_table "friend_lists", force: true do |t|
+    t.integer  "request_user"
+    t.integer  "confirm_user"
+    t.boolean  "is_confirm"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "functions", force: true do |t|
     t.string   "alias"
     t.integer  "permission_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_chat_lists", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_chat_members", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "group_chat_list_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_chats", force: true do |t|
+    t.string   "chat_content"
+    t.integer  "group_chat_list_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -191,6 +220,14 @@ ActiveRecord::Schema.define(version: 20140729171252) do
     t.string   "title"
     t.text     "content"
     t.integer  "condo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "individual_chats", force: true do |t|
+    t.integer  "sending_user"
+    t.integer  "receiving_user"
+    t.string   "message_content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -274,15 +311,8 @@ ActiveRecord::Schema.define(version: 20140729171252) do
     t.string   "icon_path_content_type"
     t.integer  "icon_path_file_size"
     t.datetime "icon_path_updated_at"
-    t.string   "image_path_file_name"
-    t.string   "image_path_content_type"
-    t.integer  "image_path_file_size"
-    t.datetime "image_path_updated_at"
-    t.text     "description"
-    t.string   "call_to_order"
-    t.string   "email"
-    t.text     "more_info"
-    t.integer  "service_category_id"
+    t.string   "service_category_id"
+    t.string   "integer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -304,12 +334,12 @@ ActiveRecord::Schema.define(version: 20140729171252) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -331,6 +361,7 @@ ActiveRecord::Schema.define(version: 20140729171252) do
     t.datetime "avatar_updated_at"
     t.boolean  "active"
     t.string   "authentication_token"
+    t.boolean  "is_status",              default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
