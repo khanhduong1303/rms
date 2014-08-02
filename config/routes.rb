@@ -246,6 +246,8 @@ Rails.application.routes.draw do
         post 'send_chat_message' => 'chats#send_chat_message'
         post 'create_group_chat' => 'chats#create_group_chat'
         post 'send_chat_group' => 'chats#send_chat_group'
+        get 'history_chat_group_list' => 'chats#history_chat_group_list'
+        get 'history_chat_individual_list' => 'chats#history_chat_individual_list'
       end
     end
 

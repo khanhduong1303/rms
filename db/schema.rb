@@ -183,7 +183,7 @@ ActiveRecord::Schema.define(version: 20140731144459) do
   end
 
   create_table "group_chats", force: true do |t|
-    t.string   "chat_content"
+    t.string   "message_content"
     t.integer  "group_chat_list_id"
     t.integer  "user_id"
     t.datetime "created_at"

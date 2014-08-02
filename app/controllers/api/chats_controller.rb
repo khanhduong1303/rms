@@ -151,23 +151,56 @@ class Api::ChatsController < ApplicationController
   end
 
   def send_chat_group
-    if !params[:group_name].nil? && !params[:member_list].nil?
-      if params[:member_list].size <1 ||!params[:member_list].is_a?(Array)
-        return render json: data_json('failed', 'Member list is null or member_list parameter isn\'t array type', 0, nil)
+    if !params[:user_id].nil? && !params[:group_chat_list_id].nil?
+      if User.where(id:params[:user_id]).size < 1
+        return render json: data_json('failed', 'User not found', 0, nil)
       end
-      @group_chat = GroupChatList.create(name: params[:group_name])
-      if @group_chat
-        params[:member_list].each do |member|
-          if User.where(id:member).size > 0
-            GroupChatMember.create(group_chat_list_id: @group_chat.id, user_id: member)
-          end
-        end
-        return render json: data_json('success', 'Create group chat was success!', 1, @group_chat)
+      if GroupChatList.where(id:params[:group_chat_list_id]).size < 1
+        return render json: data_json('failed', 'Group chat not found', 0, nil)
+      end
+      if params[:message_content].blank?
+        return render json: data_json('failed', 'Message content is null', 0, nil)
+      end
+      @send_message = GroupChat.create(user_id: params[:user_id], group_chat_list_id: params[:group_chat_list_id], message_content: params[:message_content])
+      if @send_message
+        return render json: data_json('success', 'Send message was success!', 1, @send_message)
       else
-        return render json: data_json('failed', 'Create group chat was not success!', 0, nil)
+        return render json: data_json('failed', 'Send message was not success!', 0, nil)
       end
     else
       return render json: data_json('failed', 'Missing parameters', 0, nil)
+    end
+  end
+
+  def history_chat_group_list
+    if params[:user_id].nil?
+      return render json: data_json('failed', 'Missing parameter found', 0, nil)
+    end
+    if User.where(id:params[:user_id]).size < 1
+      return render json: data_json('failed', 'User not found', 0, nil)
+    else
+      arr_group_id  = []
+      GroupChat.select('group_chat_list_id').distinct.each do |group_id|
+        arr_group_id << group_id.group_chat_list_id
+      end
+      @group_chat_list = GroupChatList.where("id in (#{arr_group_id.join(',')})")
+      return render json: data_json('failed', 'User not found', @group_chat_list.size, @group_chat_list)
+    end
+  end
+
+  def history_chat_individual_list
+    if params[:user_id].nil?
+      return render json: data_json('failed', 'Missing parameter found', 0, nil)
+    end
+    if User.where(id:params[:user_id]).size < 1
+      return render json: data_json('failed', 'User not found', 0, nil)
+    else
+      arr_user_id = []
+      IndividualChat.where(sending_user: params[:user_id]).distinct.each do |u_id|
+        arr_user_id << u_id.receiving_user
+      end
+      @individual_chat_list = User.where("id in (#{arr_user_id.join(',')})")
+      return render json: data_json('failed', 'User not found', @individual_chat_list.size, @individual_chat_list)
     end
   end
 
