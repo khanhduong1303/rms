@@ -87,7 +87,6 @@ Rails.application.routes.draw do
   end
 
   resource :guard_house, only: [:edit] do
-
   end
 
   resources :house_rules do
@@ -95,6 +94,8 @@ Rails.application.routes.draw do
       get 'confirm'
     end
   end
+
+  resources :guard_house_images
 
   resources :privileges, only: []
 

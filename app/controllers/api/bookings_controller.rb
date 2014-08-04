@@ -6,9 +6,9 @@ class Api::BookingsController < ApplicationController
   def index
     @booking_facilities = Facility.where(:active => true)
     if @booking_facilities.size > 0
-      render json: data_json('success', 'Booking list', @booking_facilities.size, @booking_facilities)
+      render json: PublicFunction.data_json('success', 'Booking list', @booking_facilities.size, @booking_facilities)
     else
-      render json: data_json('failed', 'Booking list', 0, nil)
+      render json: PublicFunction.data_json('failed', 'Booking list', 0, nil)
     end
   end
 
@@ -16,9 +16,9 @@ class Api::BookingsController < ApplicationController
     if !params[:user_id].nil? && !params[:preferred_date].nil? && !params[:time_slot_id].nil?
       @booking = Booking.create(time_slot_id:params[:time_slot_id], date_submit:params[:preferred_date], user_id:params[:user_id], status:'Waiting')
       if @booking
-        return render json: data_json('success', 'Booking success', 1, @booking)
+        return render json: PublicFunction.data_json('success', 'Booking success', 1, @booking)
       else
-        render json: data_json('failed', 'Booking list', 0, nil)
+        render json: PublicFunction.data_json('failed', 'Booking list', 0, nil)
       end
     end
   end
@@ -26,7 +26,7 @@ class Api::BookingsController < ApplicationController
   def check_booking
     user = params[:user_id]
     if user.nil?
-      render json: data_json('failed', 'Missing parameter', 0, nil)
+      render json: PublicFunction.data_json('failed', 'Missing parameter', 0, nil)
     else
       if User.where(id: user).size > 0
         @booking = User.find(user).bookings
@@ -45,17 +45,12 @@ class Api::BookingsController < ApplicationController
           i+=1
         end
         # facilities[0].status = 'booked'
-        render json: data_json('success', 'Check booking list', @facilities.size, @facilities)
+        render json: PublicFunction.data_json('success', 'Check booking list', @facilities.size, @facilities)
       else
-        render json: data_json('failed', 'User_id not found', 0, nil)
+        render json: PublicFunction.data_json('failed', 'User_id not found', 0, nil)
       end
     end
 
 
-  end
-
-  private
-  def data_json status, message, total, results=nil
-    return {:status => status, :message => message, :total => total, :results => results}
   end
 end
