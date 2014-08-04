@@ -1,0 +1,2 @@
+module PrivilegeUsersHelper
+end

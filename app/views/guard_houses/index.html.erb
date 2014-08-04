@@ -35,17 +35,15 @@
 </div>
 
 
-  <%= form_for @guard_house, url: update_photo_guard_houses_path, :html => {:multipart => true, :class => "form-horizontal", method: 'post'} do |f| %>
-      <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+  <%= form_for @guard_house, url: update_photo_guard_houses_path, :html => {:multipart => true, :class => "form-horizontal", method: 'post', remote: true} do |f| %>
+      <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-body">
               <div>
                 <%= label_tag 'guard_house_image', 'Upload photos:' %>
                 <br>
-
                 <div>
-                  <!--<input id="guard_house_image" type="file" name="guard_house_image[]" multiple="multiple">-->
                   <%= f.file_field :guard_house_image, :multiple => true %>
                   <input type="hidden" name="guard_house_id" value="<%= @guard_house.id %>">
                   <br>
@@ -62,4 +60,4 @@
       </div>
 
   <% end %>
-<!--</div>-->
+

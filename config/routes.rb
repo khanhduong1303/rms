@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
 #api routes
   namespace :api, defaults: {format: 'json'} do
     devise_scope :user do
@@ -103,14 +102,11 @@ Rails.application.routes.draw do
   resources :guard_houses, only: [:index, :update] do
     collection do
       post 'update_photo'
+      post 'delete_photo'
     end
   end
 
   resource :guard_house, only: [:edit] do
-
-  end
-
-  resources :guard_house_images do
 
   end
 
@@ -120,6 +116,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :privileges, only: []
+
+  resources :privilege_users, only: []
+
+  resources :services, only: []
+
+  resources :service_categories, only: []
 
   devise_scope :user do
     get 'user/profile/:id', to: 'registrations#profile', as: 'profile'
@@ -220,6 +223,39 @@ Rails.application.routes.draw do
         get 'house_rules' => 'house_rules#index'
       end
     end
+
+    resource :privileges, only: [], path: 'api' do
+      collection do
+        get 'privileges' => 'privileges#index'
+        get 'privilege_detail' => 'privileges#privilege_detail'
+        get 'redeem_previlege' => 'privileges#redeem_previlege'
+      end
+      member do
+      end
+    end
+
+    resource :privilege_user, only: [], path: 'api' do
+      collection do
+      end
+      member do
+      end
+    end
+
+    resource :service_category, only: [], path: 'api' do
+      collection do
+        get 'service_categories' => 'service_categories#index'
+      end
+    end
+
+    resource :service, only: [], path: 'api' do
+      collection do
+        get 'services' => 'services#index'
+      end
+      member do
+        get 'service_detail' => 'services#show'
+      end
+    end
+
   end
 
   namespace :api, path: nil do

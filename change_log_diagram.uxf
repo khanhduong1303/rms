@@ -22,7 +22,12 @@ Nhật ký...
 - Thêm khoá ngoại từ events sang users
 *21/07/2014:*
 - Thêm cột image_path vào facility_statuses
-- Đổi liên kết ngoại giữa condos và forms và form_categories</panel_attributes>
+- Đổi liên kết ngoại giữa condos và forms và form_categories
+*30/07/2014:*
+- Thêm privileges, privilege_users
+- Thêm service_categories, services
+- Thêm courses, course_users
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

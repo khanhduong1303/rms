@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20140731030326) do
+
+
 
   create_table "bookings", force: true do |t|
     t.date     "date_submit"
@@ -216,11 +219,77 @@ ActiveRecord::Schema.define(version: 20140731030326) do
     t.text     "describe"
   end
 
+  create_table "privilege_users", force: true do |t|
+    t.integer  "privilege_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "privileges", force: true do |t|
+    t.string   "location"
+    t.float    "price"
+    t.string   "distance"
+    t.date     "date_expiry"
+    t.text     "description"
+    t.string   "image_path_file_name"
+    t.string   "image_path_content_type"
+    t.integer  "image_path_file_size"
+    t.datetime "image_path_updated_at"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", force: true do |t|
     t.string   "role_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "condo_id"
+  end
+
+  create_table "service_abouts", force: true do |t|
+    t.string   "image_path_file_name"
+    t.string   "image_path_content_type"
+    t.integer  "image_path_file_size"
+    t.datetime "image_path_updated_at"
+    t.text     "description"
+    t.string   "call_to_order"
+    t.string   "email"
+    t.text     "more_info"
+    t.integer  "service_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "service_categories", force: true do |t|
+    t.string   "name"
+    t.string   "icon_path_file_name"
+    t.string   "icon_path_content_type"
+    t.integer  "icon_path_file_size"
+    t.datetime "icon_path_updated_at"
+    t.integer  "condo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "services", force: true do |t|
+    t.string   "name"
+    t.string   "icon_path_file_name"
+    t.string   "icon_path_content_type"
+    t.integer  "icon_path_file_size"
+    t.datetime "icon_path_updated_at"
+    t.string   "image_path_file_name"
+    t.string   "image_path_content_type"
+    t.integer  "image_path_file_size"
+    t.datetime "image_path_updated_at"
+    t.text     "description"
+    t.string   "call_to_order"
+    t.string   "email"
+    t.text     "more_info"
+    t.integer  "service_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "time_slots", force: true do |t|

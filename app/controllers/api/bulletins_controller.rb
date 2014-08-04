@@ -22,7 +22,7 @@ class Api::BulletinsController < Api::ApiController
   private
   def set_bulletin
     begin
-      @bulletin = Bulletin.find(params[:bulletin_id])
+      @bulletin = Bulletin.select(:id, :title, :date, :content).find(params[:bulletin_id])
     rescue ActiveRecord::RecordNotFound => e
       @bulletin = nil
     end
@@ -34,7 +34,7 @@ class Api::BulletinsController < Api::ApiController
       @page = params[:page]
       @limit = @limit.nil? ? 5 : @limit.to_i
       @page = @page.nil? ? 1 : @page.to_i
-      @bulletins = Bulletin.where(send_notify: true).limit(@limit).offset((@page - 1) * @limit).order(date: :desc)
+      @bulletins = Bulletin.select(:id, :title, :date).where(send_notify: true).limit(@limit).offset((@page - 1) * @limit).order(date: :desc)
     rescue Exception => e
       @bulletins = nil
     end
