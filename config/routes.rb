@@ -21,6 +21,26 @@ Rails.application.routes.draw do
 
 
 #resources :event_images
+  resources :admins , :only => [:index , :new]
+  get 'admins/roles' , to: 'roles#index' , as: 'roles'
+  get 'admins/confirm_drop/:id' , to: 'roles#confirm_drop' , as: 'confirm_drop'
+  delete 'admins/drop_role/:id',to: 'roles#drop_role' , as: 'drop_role' 
+  get 'admins/roles/show' , to: 'roles#show' 
+  get 'admins/roles/new' , to: 'roles#new' , as: 'new_roles' 
+  post 'admins/roles/new' , to: 'roles#create' , as: 'create_roles' 
+  post 'admins/remove_multiple' , to: 'roles#remove_multiple' , as: 'remove_multiple' 
+  get 'admins/roles/add/:id' , to: 'roles#add_permission' , as: 'add_permission'
+  put 'admins/process' , to: 'roles#process_add_permission' , as: 'process_role'
+  get 'roles/cofirm/:rid/:pid', to: 'roles#confirm_remove' , as: 'confirm_remove'
+  delete 'roles/remove_permsion/:id' ,to: 'roles#remove_permission' , as: "remove_permission"
+  get 'admin/manage_user/:id' ,to: 'admins#manage' , as: "manage_user"
+  get'admin/delete_confirm/:id' ,to: 'admins#confirm' , as: "confirm_delete"
+  delete'admin/delete_user/:id' ,to: 'admins#destroy' , as: "delete_user"
+  post 'admin/add_role' , to: 'admins#process_add_role' , as: "processs_add_role"
+  delete 'admin/remove_role/:uid/:rid' , to: 'admins#remove_role' , as: "remove_role" 
+  post  'admin/change_active'  , to: 'admins#change_active' 
+  post  'admin/create_user' , to: "admins#create_user" , as: "create_user"
+  post 'admins/destroy_multiple' , to: "admins#destroy_multiple"
   resources :condos
   post 'condos/images', to: 'condos#create_image', as: 'create_image'
   resources :feedbacks, :only => [:index, :destroy]

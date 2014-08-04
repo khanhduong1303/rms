@@ -8,6 +8,7 @@ gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use bootstrap for stylesheets
+
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'bootstrap-generators', '~> 3.1.1'
 
@@ -29,6 +30,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring', group: :development
+#gem for authoriation
+gem "select2-rails"
+gem 'cancan', '1.6.0'
 gem 'devise'
 gem "paperclip", "~> 4.1"
 

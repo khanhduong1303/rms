@@ -1,5 +1,5 @@
 class Permission < ActiveRecord::Base
-  has_many :per_roles
+  has_many :per_roles , dependent: :destroy
   has_many :roles, :through => :per_roles
   has_many :functions
 

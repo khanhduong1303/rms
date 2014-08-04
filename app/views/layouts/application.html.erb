@@ -28,12 +28,32 @@
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
       <div class="text-right">
         <% if user_signed_in? %>
-           <span>
+        <% if can? :index, User %> 
+        Hi, <%= current_user.username %>
+          <div class="btn-group">
+         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+         Action <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+    <li>  <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+    </li>
+    <li>
+       <%= link_to 'Admin Page', admins_path %>
+    </li>
+    <li>
+       <%= link_to 'Setting' , profile_path(current_user) %>
+    </li>
+        </ul>
+        </div>
+         <% else %>
+                <span>
              Hi, <%= current_user.username %>
              <%= link_to profile_path(current_user), class: "glyphicon glyphicon-cog" do
              end %>
              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
            </span>
+
+         <% end %>  
         <% end %>
       </div>
     </div>
@@ -72,6 +92,41 @@
       <p>© Innoria Company</p>
     </div>
   </div>
+</div>
+
+
+
+
+<div class="modal fade" id="app-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+
+   <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Error</h4>
+      </div>
+      <div class="modal-body">
+          <div>
+        <h3>The change you wanted was rejected.</h3>
+
+        <p>Maybe you tried to change something you didn't have access to.</p>
+        </div>
+     <p>If you are the application owner check the logs for more information.</p>
+
+    
+      </div>
+      
+      <div class="modal-footer">
+       <div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+
+   
+      </div>
+    </div>
+
+
+</div>
+</div>
 </div>
 </body>
 </html>

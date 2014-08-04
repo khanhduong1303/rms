@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724085655) do
+ActiveRecord::Schema.define(version: 20140731030326) do
 
   create_table "bookings", force: true do |t|
     t.date     "date_submit"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20140724085655) do
     t.date     "date_book"
     t.string   "status"
     t.integer  "user_id"
-    t.integer  "time_slot_id"
+    t.integer  "facility_time_slot_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -35,13 +35,13 @@ ActiveRecord::Schema.define(version: 20140724085655) do
   end
 
   create_table "condo_images", force: true do |t|
-    t.integer  "condo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "condo_id"
   end
 
   create_table "condos", force: true do |t|
@@ -154,9 +154,9 @@ ActiveRecord::Schema.define(version: 20140724085655) do
   end
 
   create_table "functions", force: true do |t|
-    t.string   "alias"
     t.integer  "permission_id"
-    t.string   "name"
+    t.string   "action"
+    t.string   "object"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -213,12 +213,14 @@ ActiveRecord::Schema.define(version: 20140724085655) do
     t.string   "per_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "describe"
   end
 
   create_table "roles", force: true do |t|
     t.string   "role_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "condo_id"
   end
 
   create_table "time_slots", force: true do |t|
@@ -238,12 +240,12 @@ ActiveRecord::Schema.define(version: 20140724085655) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -263,8 +265,8 @@ ActiveRecord::Schema.define(version: 20140724085655) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.boolean  "active"
     t.string   "authentication_token"
+    t.boolean  "active",                 default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

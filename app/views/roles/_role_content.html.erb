@@ -1,0 +1,54 @@
+
+<div class="table_content">
+<h3>
+<div class="btn-group">
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+    <%= @role.role_name %> <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><%= link_to  "#" , remote: true do  %>
+    <span class='glyphicon glyphicon-user'> </span> List User<% end %>    
+    </li>
+    <li><%= link_to  '#' , remote: true do  %>
+    <span class='glyphicon glyphicon-refresh'> </span> Rename<% end %>    
+    </li>
+    <li><%= link_to  confirm_drop_path(@role.id) , remote: true do  %>
+    <span class='glyphicon glyphicon-trash'> </span> Drop <% end %>    
+    </li>
+  </ul>
+</div>
+
+</h3>
+<%= form_tag remove_multiple_path , remote:true do %>
+<%= hidden_field_tag  "role_id" ,@role.id %> 
+<table class="table table-bordered">
+<tr>
+    <th></th>
+ 	<th>Permission</th>
+	<th>Describe</th>
+	<th>Manipulate</th>
+</tr>
+
+<% @permission.each do |p| %>
+<tr>
+    <td><%=check_box_tag "permission_id[]",p.id%></td> 
+    <td><%= p.per_name %></td>
+    <td><%= p.describe %></td>
+    <td> <%= link_to  confirm_remove_path(@role.id,p.id), class: "btn btn-danger" ,remote: true do%>
+      <span class='glyphicon glyphicon-trash'></span>
+          <% end %></td>
+</tr>
+<% end %>
+<tr>
+<td></td>
+<td colspan="3"> <a   data-toggle="modal" data-target="#myModal" href="#" class="btn btn-danger delete-confirm"><span class='glyphicon glyphicon-trash'></span>Remove</a>  
+<%= link_to  add_permission_path(@role.id) , class: "btn btn-info" , remote: true do%>
+<span class='glyphicon glyphicon-plus'></span>Add permissions
+<% end %>
+
+</td>
+</tr>
+</table>
+
+<%end%>
+</div>

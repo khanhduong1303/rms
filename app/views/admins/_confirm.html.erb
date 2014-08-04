@@ -1,0 +1,10 @@
+<div class="modal-header">
+  <h4 class="modal-title">Destroy User</h4>
+</div>
+<div class="modal-body">
+  <span>Are you realy want to destroy this user?</span>
+</div>
+<div class="modal-footer">
+  <%= link_to 'Confirm', delete_user_path(@user), {class: 'btn btn-danger', method: :delete, remote: true} %>
+  <%= link_to 'Cancel', '#', {class: 'btn btn-default', data: {dismiss: 'modal'}} %>
+</div>

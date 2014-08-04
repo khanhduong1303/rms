@@ -1,5 +1,5 @@
 class Condo < ActiveRecord::Base
-
+  has_many :roles, dependent: :destroy
   has_many :users, dependent: :destroy
   has_many :feedback_categories
   has_many :feedbacks , through: :feedback_categories
@@ -11,7 +11,7 @@ class Condo < ActiveRecord::Base
   has_many :condo_images, dependent: :destroy
   has_many :guard_houses, dependent: :destroy
   has_many :guard_house_images, through: :guard_houses
-
+  
 
 end
 

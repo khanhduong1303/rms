@@ -1,0 +1,138 @@
+<div class="author-header">
+  
+<%= link_to new_admin_path, :class => "btn btn-link move-confirm" , remote: true do %>
+<span class = "glyphicon glyphicon-arrow-right"></span>Add new user
+ <% end %>
+   
+  
+  <ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#">Manage User</a></li>
+  <li><%=link_to "Manage Role" , roles_path %></li>
+<div></div>
+</ul>
+
+</div>
+
+<div class= "author-content">
+
+<div class= 'user-content'>
+
+<%= render 'content_user' %>
+</div>
+</div>
+<div id="admin-modal" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div id="admin-content" class="modal-content">
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+
+   <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirmation </h4>
+      </div>
+      <div class="modal-body">
+     <p></p>
+    
+      </div>
+      
+      <div class="modal-footer">
+       <div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      <a class = "btn btn-danger delete" href="#">Delete</a>
+   
+      </div>
+    </div>
+
+
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+	$(document).on('change' , 'select.user-active' , function(){
+		var uid = $(this).data('uid');
+		var active = false; 
+		if ($(this).val()== 'active')
+	{
+         active = true;
+	}
+        params = {
+        	'id' : uid ,
+        	 'active': active
+        }; 
+        $.ajax({
+       	url: 'admin/change_active' ,
+    	type: 'post',
+    	data: params,
+    	dataType: 'json',
+    	success: function(data){switch (data.status)
+    		{ case "active":
+          $('#notifications').html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>User is actived</div>');
+            setTimeout(function () {
+               $('div.alert.alert-success.alert-dismissible').alert('close');
+            }, 1500);
+            break; 
+           case "block":
+            $('#notifications').html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>User is blocked</div>');
+              setTimeout(function () {
+                $('div.alert.alert-success.alert-dismissible').alert('close');
+              }, 1500);
+            break;
+            case "failed":
+            $('#notifications').html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>Somthing wrong</div>');
+              setTimeout(function () {
+                $('div.alert.alert-success.alert-dismissible').alert('close');
+              }, 1500);
+            break;
+         }
+      },
+    	error: function(){}
+        });
+	});
+
+  $(document).on('click', 'a.delete-confirm' , function(){
+  
+        var uid = [];
+        $( "input:checked" ).each(function(){
+        uid.push($(this).val());
+    });
+        if($.isEmptyObject(uid)){
+     $('#myModal').find('p').text("Please choose atleast one person to remove! ");
+    $('#myModal').find('a.delete').hide();
+  
+        } else {
+    $('#myModal').find('p').text("Are you sure to delete these person?");
+    $('#myModal').find('a.delete').show();
+
+        }
+    });
+ $('a.delete').click(function(e){
+  e.preventDefault();
+    var uid = [];
+
+    $( "input:checked" ).each(function(){
+        uid.push($(this).val());
+    });
+    param = {
+    
+    "user_id" : uid  
+   
+    };
+    $.ajax({
+  url : "admins/destroy_multiple" ,
+  type : "post" ,
+  data: param ,
+  dataType: "script",
+  success: function(){ } ,
+  error: function(){ }
+    });
+ });
+
+
+
+</script>
+

@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h4 class="modal-title">Manage User Role</h4>
+</div>
+<%= form_for(@user_role, url: processs_add_role_path, :remote => true, html: {:class => "form-horizontal", :role => "form"}) do |f| %>
+    <div class="modal-body">
+      <div class= 'list-role'>
+      
+        <%= render 'content_role' %>
+      
+      </div>
+      <%= f.hidden_field :user_id, {value: @user.id} %>
+
+        <div class="field">
+    <%= f.collection_select  :role_id, @role, :id, :role_name ,{},
+      { multiple: true, style: "width: 31em;", class: "js-select2" }%>
+          <%= f.submit "Add", class: "btn btn-success" %>
+        </div>   
+    
+      <% end %>
+    </div>
+    <div class="modal-footer">
+  
+  <%= link_to 'Ok', '#', {class: 'btn btn-info', data: {dismiss: 'modal'}} %>
+</div>
+
+
+  <script type="text/javascript">
+      $(".js-select2").select2()
+  </script>

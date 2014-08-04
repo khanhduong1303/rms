@@ -3,7 +3,7 @@ class FacilitiesController < ApplicationController
   before_action :set_facilities, only: [:index, :create, :update, :destroy]
   before_action :set_hightlight
   respond_to :json, :html, :js
-
+  authorize_resource
   def index
   end
 

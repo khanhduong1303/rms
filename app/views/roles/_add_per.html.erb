@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Permision  </h4>
+</div>
+<%= form_for @per , url: process_role_path,:html=>{ method: :put} ,:remote => true  do |f|  %>
+<div class="modal-body">
+    <%= f.hidden_field :role_id , {value: @role.id} %>
+ <div class="field">
+    <%= f.label :permission_id, "Permision" %><br>
+    <%= f.collection_select  :permission_id, @permission, :id, :per_name ,{},
+      { multiple: true, style: "width: 31em;", class: "js-select2" }%>
+ </div>   
+    
+
+</div>
+<div class="modal-footer">
+  <%= link_to 'Cancel', '#', { class: 'btn btn-default', data: { dismiss: 'modal'} } %>
+<%= f.submit "Update" , :class => "btn btn-success" %> 
+
+</div>
+ <% end%>
+
+  <script type="text/javascript">
+      $(".js-select2").select2()
+  </script>

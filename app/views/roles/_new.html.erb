@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add New Roles  </h4>
+</div>
+<%= form_for @per_role , url: create_roles_path , remote: true  do |f|  %>
+<div class="modal-body">
+     
+     <%= f.label :role_id,'Role Name', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :role_id, {:class => 'form-control',style:"width: 15em;",required: true} %>
+    </div>
+ <div class="field">
+    <%= f.label :permission_id, "Permision" %><br>
+    <%= f.collection_select  :permission_id, @permission, :id, :per_name ,{},
+      { multiple: true, style: "width: 31em;", class: "js-select2" }%>
+ </div>   
+    
+
+</div>
+<div class="modal-footer">
+  <%= link_to 'Cancel', '#', { class: 'btn btn-default', data: { dismiss: 'modal'} } %>
+<%= f.submit "Create" , :class => "btn btn-success" %> 
+
+</div>
+ <% end%>
+
+  <script type="text/javascript">
+      $(".js-select2").select2()
+  </script>

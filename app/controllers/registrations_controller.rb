@@ -1,8 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
-
+ authorize_resource :class => false 
 
   def profile
-    session[:menustatus]=nil
+   
     render layout: "application"
   end
 

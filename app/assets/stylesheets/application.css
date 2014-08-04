@@ -11,6 +11,7 @@
  * file per style scope.
  *
 //require bootstrap
+ *= require select2
  *= require bootstrap-datetimepicker
  *= require bootstrap-timepicker
  *= require dataTables/jquery.dataTables
@@ -160,5 +161,7 @@ form.form_in_place input[type='submit']{
     min-width: 50px;
 }
 /*end format best_in_place*/
-
+div.btn-group{
+    display: inline-block;
+}
 

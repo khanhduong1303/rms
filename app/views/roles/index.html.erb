@@ -1,0 +1,136 @@
+<div class="author-header">
+  
+  <%= link_to new_roles_path, {class: 'btn btn-link', remote: true} do %>
+      <span class="glyphicon glyphicon-plus"></span> Add New Role
+  <% end %>
+   
+  
+  <ul class="nav nav-tabs" role="tablist">
+
+  <li><%=link_to "Manage User" , admins_path %></li>
+   <li class="active"><a href="#">Manage Role</a></li>
+<div></div>
+</ul>
+
+</div>
+
+<div class= "role-content">
+<div class="select">
+<%= render "select_content" %>
+</div>
+<div class= "content">
+</div>
+</div>
+<div id="form-modal" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div id="form-content" class="modal-content">
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+
+   <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirmation </h4>
+      </div>
+      <div class="modal-body">
+     <p></p>
+    
+      </div>
+      
+      <div class="modal-footer">
+       <div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      <a class = "btn btn-danger delete" href="#">Delete</a>
+   
+      </div>
+    </div>
+
+
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+    // var id = $('div.select select').val();
+    // if (id != 'all')
+    // {
+     
+    //   $.ajax({  
+    //     url : "roles/show" ,
+    //     type : "get" ,
+    //     data: {"id": id} ,
+    //     dataType: "script",
+    //     success: function(){ } ,
+    //     error: function(){ }
+    //           });
+    // }
+
+
+       $(document).on('change',".select select" , function(){
+       	
+       	var rid = $(this).val();
+        if (rid != 'all'){
+       	param = {"id":rid};
+         $.ajax({
+       	
+      url : "roles/show" ,
+      type : "get" ,
+      data: param ,
+      dataType: "script",
+      success: function(){ } ,
+      error: function(){ }
+    });
+       }
+       else{
+        $('div.content').html('');
+       }
+  });
+//End of event change combobox
+ $(document).on('click', 'a.delete-confirm' , function(){
+
+        var perid = [];
+        $( "input:checked" ).each(function(){
+        perid.push($(this).val());
+    });
+        if($.isEmptyObject(perid)){
+     $('#myModal').find('p').text("Please choose atleast one permission to remove! ");
+    $('#myModal').find('a.delete').hide();
+  
+        } else {
+   $('#myModal').find('p').text("Are you sure to remove these permission?");
+    $('#myModal').find('a.delete').show();
+
+        }
+    });
+ $('a.delete').click(function(e){
+  e.preventDefault();
+    var perid = [];
+    var rid ;
+    rid = $('#role_id').val()
+    $( "input:checked" ).each(function(){
+        perid.push($(this).val());
+    });
+    param = {
+     "role_id"      :  rid ,
+    "permission_id" : perid  
+   
+    };
+    $.ajax({
+  url : "remove_multiple" ,
+  type : "post" ,
+  data: param ,
+  dataType: "script",
+  success: function(){ } ,
+  error: function(){ }
+    });
+ });
+
+
+	});
+
+</script>

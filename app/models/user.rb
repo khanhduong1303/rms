@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   has_many :events, dependent: :destroy
   has_many :bookings
   has_many :feedbacks
+  has_many :user_roles , dependent: :destroy
+  has_many :roles , :through => :user_roles
+  has_many :permissions , :through => :roles
+  has_many :functions, :through => :permissions 
 
 
 #setup avartar
@@ -25,8 +29,8 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :username, presence: true
   validates :phone, presence: true
-  validates :postal_code, presence: true
-  validates :enquiry, presence: true
+ # validates :postal_code, presence: true
+ # validates :enquiry, presence: true
   validates :username, length: {minimum: 4, maximun: 14}
   validates :username, uniqueness: true
 
