@@ -44,6 +44,10 @@ gem 'remotipart', '~> 1.2'
 gem 'jquery-datatables-rails', '~> 2.1.10.0.3'
 # best_in_place gem, same as x-editable
 gem 'best_in_place', github: 'bernat/best_in_place'
+# gem i18n
+gem 'rails-i18n', '~> 4.0.0'
+# gem redis-server (store i18n)
+gem 'redis'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
