@@ -109,7 +109,6 @@ Rails.application.routes.draw do
   end
 
   resource :guard_house, only: [:edit] do
-
   end
 
   resources :house_rules do
@@ -117,6 +116,8 @@ Rails.application.routes.draw do
       get 'confirm'
     end
   end
+
+  resources :guard_house_images
 
   resources :privileges, only: []
 
@@ -232,7 +233,7 @@ Rails.application.routes.draw do
       collection do
         get 'privileges' => 'privileges#index'
         get 'privilege_detail' => 'privileges#privilege_detail'
-        get 'redeem_previlege' => 'privileges#redeem_previlege'
+        post 'redeem_previlege' => 'privileges#redeem_previlege'
       end
       member do
       end
@@ -242,6 +243,24 @@ Rails.application.routes.draw do
       collection do
       end
       member do
+      end
+      end
+
+    resource :about_us, only: [], path: 'api' do
+      collection do
+        get 'about_us' => 'about_us#about_us'
+      end
+      end
+
+    resource :tech_supports, only: [], path: 'api' do
+      collection do
+        get 'tech_support' => 'tech_supports#tech_support'
+      end
+      end
+
+    resource :contact_us, only: [], path: 'api' do
+      collection do
+        post 'send_contact_us' => 'contact_us#send_contact_us'
       end
     end
 
@@ -257,6 +276,21 @@ Rails.application.routes.draw do
       end
       member do
         get 'service_detail' => 'services#show'
+      end
+    end
+
+    resource :chats, only: [], path: 'api' do
+      collection do
+        post 'request_friend' => 'chats#request_friend'
+        post 'confirm_friend_request' => 'chats#confirm_friend_request'
+        get 'friend_list' => 'chats#friend_list'
+        get 'pending_request' => 'chats#pending_request'
+        get 'neightbours' => 'chats#neightbours'
+        post 'send_chat_message' => 'chats#send_chat_message'
+        post 'create_group_chat' => 'chats#create_group_chat'
+        post 'send_chat_group' => 'chats#send_chat_group'
+        get 'history_chat_group_list' => 'chats#history_chat_group_list'
+        get 'history_chat_individual_list' => 'chats#history_chat_individual_list'
       end
     end
 

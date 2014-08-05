@@ -6,6 +6,11 @@
 #   cities = City.save([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.save(name: 'Emanuel', city: cities.first)
 #function Condo
+r = Role.create(role_name: "Super Admin" ,condo_id: nil)
+r1= Role.create(role_name: "Admin" , condo_id: 1)
+r2= Role.create(role_name: "Admin" , condo_id: 2)
+
+
  p = Permission.create(per_name: "viewCondo")
  Function.create(action: "index", object: "Condo",permission_id: p.id)
  p = Permission.create(per_name: "editCondo")

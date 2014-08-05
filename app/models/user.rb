@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   has_many :functions, :through => :permissions 
 
   has_many :privileges, dependent: :destroy
+  has_many :group_chats
+  has_many :group_chat_members
 
 
 

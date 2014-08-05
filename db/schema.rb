@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731030326) do
+ActiveRecord::Schema.define(version: 20140805042939) do
+
+  create_table "about_us", force: true do |t|
+    t.string   "information"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "bookings", force: true do |t|
     t.date     "date_submit"
@@ -52,6 +58,16 @@ ActiveRecord::Schema.define(version: 20140731030326) do
     t.string   "top_year"
     t.integer  "num_of_units"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contact_us", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "message"
+    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -158,10 +174,39 @@ ActiveRecord::Schema.define(version: 20140731030326) do
     t.datetime "updated_at"
   end
 
+  create_table "friend_lists", force: true do |t|
+    t.integer  "request_user"
+    t.integer  "confirm_user"
+    t.boolean  "is_confirm"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "functions", force: true do |t|
     t.integer  "permission_id"
     t.string   "action"
     t.string   "object"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_chat_lists", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_chat_members", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "group_chat_list_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_chats", force: true do |t|
+    t.string   "message_content"
+    t.integer  "group_chat_list_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -196,6 +241,14 @@ ActiveRecord::Schema.define(version: 20140731030326) do
     t.string   "title"
     t.text     "content"
     t.integer  "condo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "individual_chats", force: true do |t|
+    t.integer  "sending_user"
+    t.integer  "receiving_user"
+    t.string   "message_content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -280,6 +333,14 @@ ActiveRecord::Schema.define(version: 20140731030326) do
     t.datetime "updated_at"
   end
 
+  create_table "tech_supports", force: true do |t|
+    t.string   "address"
+    t.string   "phone"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "time_slots", force: true do |t|
     t.integer  "facility_id"
     t.time     "slot_start"
@@ -324,6 +385,7 @@ ActiveRecord::Schema.define(version: 20140731030326) do
     t.datetime "avatar_updated_at"
     t.string   "authentication_token"
     t.boolean  "active",                 default: false
+    t.boolean  "is_status",              default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
