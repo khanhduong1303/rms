@@ -220,6 +220,24 @@ Rails.application.routes.draw do
       end
       member do
       end
+      end
+
+    resource :about_us, only: [], path: 'api' do
+      collection do
+        get 'about_us' => 'about_us#about_us'
+      end
+      end
+
+    resource :tech_supports, only: [], path: 'api' do
+      collection do
+        get 'tech_support' => 'tech_supports#tech_support'
+      end
+      end
+
+    resource :contact_us, only: [], path: 'api' do
+      collection do
+        post 'send_contact_us' => 'contact_us#send_contact_us'
+      end
     end
 
     resource :service_category, only: [], path: 'api' do

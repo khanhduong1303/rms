@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731144459) do
+ActiveRecord::Schema.define(version: 20140805042939) do
+
+  create_table "about_us", force: true do |t|
+    t.string   "information"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "bookings", force: true do |t|
     t.date     "date_submit"
@@ -52,6 +58,16 @@ ActiveRecord::Schema.define(version: 20140731144459) do
     t.string   "top_year"
     t.integer  "num_of_units"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contact_us", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "message"
+    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -313,6 +329,14 @@ ActiveRecord::Schema.define(version: 20140731144459) do
     t.datetime "icon_path_updated_at"
     t.string   "service_category_id"
     t.string   "integer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tech_supports", force: true do |t|
+    t.string   "address"
+    t.string   "phone"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
