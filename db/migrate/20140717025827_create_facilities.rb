@@ -11,7 +11,7 @@ class CreateFacilities < ActiveRecord::Migration
       t.datetime :image_path_updated_at
       t.boolean :active, default: true
       t.integer :facility_category_id, null: false
-
+      t.integer :user_id , null: false
       t.timestamps
     end
   end

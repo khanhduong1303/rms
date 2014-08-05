@@ -90,10 +90,12 @@
             break;
          }
       },
-    	error: function(){}
+    	error: function(request){
+        if (request.status == 403)
+     {alert("Hi i love you")}
+      }
         });
 	});
-
   $(document).on('click', 'a.delete-confirm' , function(){
   
         var uid = [];

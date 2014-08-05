@@ -7,6 +7,13 @@ class ApplicationController < ActionController::Base
 def after_sign_in_path_for(resource)
   homes_path
 end
+def routing_error
+  raise ActionController::RoutingError.new(params[:path])
+end
+def render_not_found
+  render :file => "#{Rails.root}/public/404.html", :status => 403, :layout => false
+end
+rescue_from ActionController::RoutingError, :with => :render_not_found  
 rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.html do
@@ -23,7 +30,7 @@ rescue_from CanCan::AccessDenied do |exception|
         render json: { status: 403, message: "You are not allowed to access this resource." } , status: :forbidden
       end
       format.js do 
-        render js: "$('#app-Modal').modal('show');"
+        render js: " window.location = '/422.html'"
        end 
     end
   end

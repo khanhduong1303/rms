@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :bulletins, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :bookings
+  has_many :facilities , dependent: :destroy
   has_many :feedbacks
 
   has_many :user_roles , dependent: :destroy

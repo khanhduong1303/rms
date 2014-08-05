@@ -76,11 +76,11 @@ class FacilitiesController < ApplicationController
   end
 
   def set_facilities
-    @facilities = current_user.condo.facilities
+    @facilities = current_user.facilities
   end
 
   def facility_params
-    params.require(:facility).permit(:name, :booking_price, :deposit_price, :note, :image_path, :facility_category_id)
+    params.require(:facility).permit(:name, :booking_price, :deposit_price, :note, :image_path, :facility_category_id , :user_id)
   end
 
   def set_hightlight

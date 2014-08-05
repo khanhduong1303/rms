@@ -9,7 +9,7 @@
     <li><%= link_to  "#" , remote: true do  %>
     <span class='glyphicon glyphicon-user'> </span> List User<% end %>    
     </li>
-    <li><%= link_to  '#' , remote: true do  %>
+    <li><%= link_to  '#' , class: "rename" do  %>
     <span class='glyphicon glyphicon-refresh'> </span> Rename<% end %>    
     </li>
     <li><%= link_to  confirm_drop_path(@role.id) , remote: true do  %>

@@ -69,9 +69,37 @@
     //     error: function(){ }
     //           });
     // }
+    $(document).on('blur', "h3 input" , function(){
+          var rid = $(".select select").val();
+          var name = $(this).val();
+      
+
+    param= {"role_id" : rid , 
+              "name"   : name};
+            $.ajax({
+        
+      url : "roles/rename" ,
+      type : "get" ,
+      data: param ,
+      dataType: "script",
+      success: function(){ } ,
+      error: function(){ }
+    });  
 
 
-       $(document).on('change',".select select" , function(){
+
+
+    });
+    $(document).on('click', ".rename", function(e){
+      e.preventDefault();
+      var name = $('h3 button').text();
+
+      $('h3').html('<input type="text" class="form-control" style="width: 10em;" >');
+      $('h3 input').val($.trim(name)).select()
+      // $('h3 input').select();
+    });
+    
+    $(document).on('change',".select select" , function(){
        	
        	var rid = $(this).val();
         if (rid != 'all'){

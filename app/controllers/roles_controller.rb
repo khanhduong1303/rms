@@ -92,7 +92,17 @@ class RolesController < ApplicationController
       
 
      end
-
+     def rename_role
+     role = params[:role_id]
+     name = params[:name]
+     @role = Role.find(role)
+     if name  != ""
+     @role.role_name = name 
+     @role.save
+     end 
+     @permission = @role.permissions  
+     @roles = current_user.condo.roles.where('role_name != "Admin" ')
+     end
      def remove_multiple
             role = params[:role_id]
            

@@ -7,4 +7,5 @@ class Role < ActiveRecord::Base
 
 
   validates :role_name, presence: true
+  validates :role_name, uniqueness: true
 end

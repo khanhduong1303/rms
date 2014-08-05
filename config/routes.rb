@@ -20,11 +20,13 @@ Rails.application.routes.draw do
 
 
 #resources :event_images
+
   resources :admins , :only => [:index , :new]
   get 'admins/roles' , to: 'roles#index' , as: 'roles'
   get 'admins/confirm_drop/:id' , to: 'roles#confirm_drop' , as: 'confirm_drop'
   delete 'admins/drop_role/:id',to: 'roles#drop_role' , as: 'drop_role' 
   get 'admins/roles/show' , to: 'roles#show' 
+  get 'admins/roles/rename' , to: 'roles#rename_role'
   get 'admins/roles/new' , to: 'roles#new' , as: 'new_roles' 
   post 'admins/roles/new' , to: 'roles#create' , as: 'create_roles' 
   post 'admins/remove_multiple' , to: 'roles#remove_multiple' , as: 'remove_multiple' 
@@ -212,6 +214,8 @@ Rails.application.routes.draw do
       end
     end
 
+    
+
     resource :form, only: [], path: 'api' do
       collection do
         get 'forms' => 'forms#index'
@@ -267,5 +271,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+
+
+  get "*path", :to => "application#routing_error"
 end
 

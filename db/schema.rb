@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20140731030326) do
-
-
 
   create_table "bookings", force: true do |t|
     t.date     "date_submit"
@@ -94,6 +91,7 @@ ActiveRecord::Schema.define(version: 20140731030326) do
     t.datetime "image_path_updated_at"
     t.boolean  "active",                  default: true
     t.integer  "facility_category_id",                   null: false
+    t.integer  "user_id",                                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -106,10 +104,14 @@ ActiveRecord::Schema.define(version: 20140731030326) do
   end
 
   create_table "facility_statuses", force: true do |t|
-    t.integer  "facility_id"
+    t.string   "image_path_file_name"
+    t.string   "image_path_content_type"
+    t.integer  "image_path_file_size"
+    t.datetime "image_path_updated_at"
     t.date     "close_from"
     t.date     "close_to"
     t.text     "reason"
+    t.integer  "facility_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -246,20 +248,6 @@ ActiveRecord::Schema.define(version: 20140731030326) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "condo_id"
-  end
-
-  create_table "service_abouts", force: true do |t|
-    t.string   "image_path_file_name"
-    t.string   "image_path_content_type"
-    t.integer  "image_path_file_size"
-    t.datetime "image_path_updated_at"
-    t.text     "description"
-    t.string   "call_to_order"
-    t.string   "email"
-    t.text     "more_info"
-    t.integer  "service_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "service_categories", force: true do |t|

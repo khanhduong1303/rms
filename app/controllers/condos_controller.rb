@@ -1,7 +1,7 @@
 class CondosController < ApplicationController
   before_action :set_hightlight
   respond_to :json, :html, :js
-
+  authorize_resource
   def index
     @condo = current_user.condo
 

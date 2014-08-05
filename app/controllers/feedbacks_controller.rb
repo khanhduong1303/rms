@@ -1,6 +1,7 @@
 class FeedbacksController < ApplicationController
 	  before_action :set_hightlight
 	  respond_to :html, :json , :js
+	    authorize_resource
 	def index
 		@feedbacks = current_user.condo.feedbacks.where(:archive=> false).paginate(:page => params[:page],  :per_page => 5)	
 	end
@@ -77,7 +78,7 @@ class FeedbacksController < ApplicationController
 	def show_archive
     end
 
-
+private
     def reply_params
       params.require(:feedback_reply).permit(:content, :feedback_id)
     end
