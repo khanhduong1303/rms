@@ -3,6 +3,7 @@ class HouseRulesController < ApplicationController
   before_action :set_house_rules, only: [:index, :create, :update, :destroy]
   before_action :set_highlight
   respond_to :html, :js, :json
+  authorize_resource
 
   def index
   end

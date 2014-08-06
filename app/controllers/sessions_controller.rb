@@ -4,6 +4,10 @@ class SessionsController < Devise::SessionsController
   def new
     @condo = Condo.all
     super
-
   end
+  # def create
+  #   # params[:user].merge!(remember_me: 1)
+  #   super
+  # end
+
 end

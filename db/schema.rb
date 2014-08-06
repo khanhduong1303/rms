@@ -269,9 +269,9 @@ ActiveRecord::Schema.define(version: 20140805042939) do
 
   create_table "permissions", force: true do |t|
     t.string   "per_name"
+    t.string   "describe"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "describe"
   end
 
   create_table "privilege_users", force: true do |t|
