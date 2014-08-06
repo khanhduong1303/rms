@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
-
-#api routes
+  devise_scope :user do
+    get 'user/profile/:id', to: 'registrations#profile', as: 'profile'
+    patch 'user/change_pass', to: 'registrations#change_password', as: 'change_pass'
+    patch 'user/add_avatar', to: 'registrations#add_avatar', as: 'add_avatar'
+  end
+  devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
+# api routes
   namespace :api, defaults: {format: 'json'} do
     devise_scope :user do
       post 'change_pass', to: 'registrations#change_password', as: 'change_pass'
       post 'edit_profile', to: 'registrations#edit_profile', as: 'edit_profile'
       post 'log_out', to: 'sessions#sign_out', as: 'log_out'
       get 'profile', to: 'registrations#profile', as: 'profile'
-      devise_for :users
+      # devise_for :users
       post 'log_in', to: 'sessions#sign_in'
 
     end
@@ -127,12 +132,7 @@ Rails.application.routes.draw do
 
   resources :service_categories, only: []
 
-  devise_scope :user do
-    get 'user/profile/:id', to: 'registrations#profile', as: 'profile'
-    patch 'user/change_pass', to: 'registrations#change_password', as: 'change_pass'
-    patch 'user/add_avatar', to: 'registrations#add_avatar', as: 'add_avatar'
-  end
-  devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
+
 
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".

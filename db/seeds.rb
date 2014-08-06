@@ -6,9 +6,9 @@
 #   cities = City.save([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.save(name: 'Emanuel', city: cities.first)
 #function Condo
-r = Role.create(role_name: "Super Admin" ,condo_id: nil)
-r1= Role.create(role_name: "Admin" , condo_id: 1)
-r2= Role.create(role_name: "Admin" , condo_id: 2)
+# r = Role.create(role_name: "Super Admin" ,condo_id: nil)
+# r1= Role.create(role_name: "Admin" , condo_id: 1)
+# r2= Role.create(role_name: "Admin" , condo_id: 2)
 
 
  p = Permission.create(per_name: "viewCondo")
@@ -63,3 +63,35 @@ r2= Role.create(role_name: "Admin" , condo_id: 2)
  Function.create(action: "index", object: "Role" ,permission_id: p.id)
   p = Permission.create(per_name: "manageRole")
  Function.create(action: "manage", object: "Role",permission_id: p.id)
+ #function event
+   p = Permission.create(per_name: "viewEvent")
+ Function.create(action: "index", object: "Event" ,permission_id: p.id)
+ Function.create(action: "show", object: "Event" ,permission_id: p.id)
+  p = Permission.create(per_name: "manageEvent")
+ Function.create(action: "manage", object: "Event",permission_id: p.id)
+  #function booking
+   p = Permission.create(per_name: "viewBooking")
+ Function.create(action: "index", object: "Booking" ,permission_id: p.id)
+  p = Permission.create(per_name: "manageBooking")
+ Function.create(action: "manage", object: "Booking",permission_id: p.id)
+ #function guard house
+    p = Permission.create(per_name: "viewGuardHouse")
+ Function.create(action: "index", object: "GuardHouse" ,permission_id: p.id)
+  p = Permission.create(per_name: "manageGuardHouse")
+ Function.create(action: "manage", object: "GuardHouse",permission_id: p.id)
+  #function Form
+    p = Permission.create(per_name: "viewForm")
+ Function.create(action: "index", object: "Form" ,permission_id: p.id)
+  p = Permission.create(per_name: "manageForm")
+ Function.create(action: "manage", object: "Form",permission_id: p.id)
+ #function bulletin
+     p = Permission.create(per_name: "viewBulletin")
+ Function.create(action: "index", object: "Bulletin" ,permission_id: p.id)
+Function.create(action: "show", object: "Bulletin" ,permission_id: p.id)
+  p = Permission.create(per_name: "manageBulletin")
+ Function.create(action: "manage", object: "Bulletin",permission_id: p.id)
+ #function HouseRule
+     p = Permission.create(per_name: "viewHouseRule")
+ Function.create(action: "index", object: "HouseRule" ,permission_id: p.id)
+  p = Permission.create(per_name: "manageHouseRule")
+ Function.create(action: "manage", object: "HouseRule",permission_id: p.id)

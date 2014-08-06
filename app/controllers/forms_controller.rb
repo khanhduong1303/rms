@@ -2,9 +2,9 @@ class FormsController < ApplicationController
   before_action :set_form, only: [:show, :edit, :update, :confirm, :destroy]
   before_action :set_form_catogires, only: [:index, :new, :create, :edit, :update, :destroy]
   before_action :set_highlight
-
+  
   respond_to :html, :js, :json
-
+authorize_resource
   def index
   end
 
