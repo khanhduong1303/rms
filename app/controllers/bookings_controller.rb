@@ -66,7 +66,7 @@ class BookingsController < ApplicationController
         @users.each do |u|
           if !u.bookings.blank?
             u.bookings.each do |book|
-              if book.time_slot.facility.facility_category_id==category_id.to_f
+              if book.time_slot.facility.facility_category_id==category_id.to_i
                 @bookings << book
               end
             end
