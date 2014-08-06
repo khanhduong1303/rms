@@ -12,7 +12,9 @@ authorize_resource
       @users.each do |u|
         if !u.bookings.blank?
           u.bookings.each do |book|
-            @bookings << book
+            if book.time_slot.facility.user_id==current_user.id.to_i
+              @bookings << book
+            end
           end
         end
       end
@@ -53,7 +55,9 @@ authorize_resource
         @users.each do |u|
           if !u.bookings.blank?
             u.bookings.each do |book|
-              @bookings << book
+              if book.time_slot.facility.user_id==current_user.id.to_i
+                @bookings << book
+              end
             end
           end
         end
@@ -66,7 +70,7 @@ authorize_resource
         @users.each do |u|
           if !u.bookings.blank?
             u.bookings.each do |book|
-              if book.time_slot.facility.facility_category_id==category_id.to_i
+              if book.time_slot.facility.facility_category_id==category_id.to_i && book.time_slot.facility.user_id==current_user.id.to_i
                 @bookings << book
               end
             end
