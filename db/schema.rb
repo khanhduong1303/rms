@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729171252) do
+ActiveRecord::Schema.define(version: 20140730074908) do
 
   create_table "bookings", force: true do |t|
     t.date     "date_submit"
@@ -48,6 +48,30 @@ ActiveRecord::Schema.define(version: 20140729171252) do
     t.string   "top_year"
     t.integer  "num_of_units"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "course_users", force: true do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "courses", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "instructor"
+    t.float    "price"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "image_path_file_name"
+    t.string   "image_path_content_type"
+    t.integer  "image_path_file_size"
+    t.datetime "image_path_updated_at"
+    t.text     "more_info"
+    t.integer  "condo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -239,20 +263,6 @@ ActiveRecord::Schema.define(version: 20140729171252) do
 
   create_table "roles", force: true do |t|
     t.string   "role_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "service_abouts", force: true do |t|
-    t.string   "image_path_file_name"
-    t.string   "image_path_content_type"
-    t.integer  "image_path_file_size"
-    t.datetime "image_path_updated_at"
-    t.text     "description"
-    t.string   "call_to_order"
-    t.string   "email"
-    t.text     "more_info"
-    t.integer  "service_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

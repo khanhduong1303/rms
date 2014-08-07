@@ -249,6 +249,8 @@ Rails.application.routes.draw do
     resource :course, only: [], path: 'api' do
       member do
         post 'join_course' => 'course_users#create'
+        get 'cancel' => 'course_users#destroy'
+        get 'has_join' => 'course_users#show'
       end
     end
 
