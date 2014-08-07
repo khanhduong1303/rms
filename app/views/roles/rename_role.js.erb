@@ -1,0 +1,8 @@
+<% if @role.errors.any? %>
+alert('The role name you want to change is not available');
+<% else %>
+$('div.select').html('<%= j render 'select_content' %>')
+$('div.select select').val('<%= @role.id%>');
+$('div.content').html('<%= j render 'role_content' %>')
+
+<% end %>

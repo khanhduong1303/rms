@@ -3,6 +3,7 @@ class GuardHousesController < ApplicationController
   #before_action :set_guard_houses, only: [:update]
   before_action :set_highlight
   respond_to :html, :js, :json
+  authorize_resource
 
   def index
     @guard_house_images = current_user.condo.guard_house_images

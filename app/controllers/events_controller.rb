@@ -1,10 +1,15 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_hightlight
+  authorize_resource
   # GET /events
   # GET /events.json
   def index
-    @events = Event.where(:user_id => current_user.id)
+    if current_user.roles.where(role_name: 'Admin').size > 0
+      @events = Event.all
+      else
+        @events = Event.where(:user_id => current_user.id)
+    end
   end
 
   # GET /events/1

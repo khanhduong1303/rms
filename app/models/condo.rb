@@ -1,5 +1,5 @@
 class Condo < ActiveRecord::Base
-
+  has_many :roles, dependent: :destroy
   has_many :users, dependent: :destroy
   has_many :feedback_categories
   has_many :feedbacks , through: :feedback_categories

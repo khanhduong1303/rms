@@ -1,0 +1,4 @@
+$('#form-modal .modal-dialog').hasClass('modal-sm')  ? $('.modal-dialog').removeClass('modal-sm') : ''
+// $('.modal-dialog').addClass('modal-sm')
+$('#form-content').html('<%= escape_javascript(render 'add_per') %>');
+$('#form-modal').modal('show');

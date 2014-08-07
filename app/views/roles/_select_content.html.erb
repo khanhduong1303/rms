@@ -1,0 +1,11 @@
+<select class="form-control">
+    <option value="all" id="all"  'selected' %>
+      --Select a role--
+    </option>
+    <% @roles.each do |r| %>
+        <option  id="<%= r.id %>" value="<%= r.id %>">
+        <%= r.role_name %>
+
+        </option>
+    <% end %>
+  </select>

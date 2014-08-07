@@ -1,2 +1,18 @@
 vi:
+  home:
+    nav:
+      home: 'Trang chủ'
+      bookings: 'Đặt chỗ'
+      bulletins: 'Thông báo'
+      condo_info: 'Chung cư'
+      events: 'Sự kiện'
+      facilities: 'Cơ sở vật chất'
+      feedback: 'Phản hồi'
+      forms: 'Biểu mẫu'
+      guard_house: 'An ninh'
+      house_rules: 'Quy định'
+    header:
+      sign_out: 'Đăng xuất'
+      admin_page: 'Trang quản trị'
+      setting: 'Thiết lập'
 

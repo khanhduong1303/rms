@@ -8,6 +8,7 @@ gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use bootstrap for stylesheets
+
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'bootstrap-generators', '~> 3.1.1'
 
@@ -29,6 +30,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring', group: :development
+#gem for authoriation
+gem "select2-rails"
+gem 'cancan', '1.6.0'
 gem 'devise'
 gem "paperclip", "~> 4.1"
 
@@ -44,6 +48,10 @@ gem 'remotipart', '~> 1.2'
 gem 'jquery-datatables-rails', '~> 2.1.10.0.3'
 # best_in_place gem, same as x-editable
 gem 'best_in_place', github: 'bernat/best_in_place'
+# gem i18n
+gem 'rails-i18n', '~> 4.0.0'
+# gem redis-server (store i18n)
+gem 'redis'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

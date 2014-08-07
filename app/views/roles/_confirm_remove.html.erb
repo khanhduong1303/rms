@@ -1,0 +1,10 @@
+<div class="modal-header">
+  <h4 class="modal-title">Remove permission</h4>
+</div>
+<div class="modal-body">
+  <span>Confirm remove this facility?</span>
+</div>
+<div class="modal-footer">
+  <%= link_to 'Confirm', remove_permission_path(@pr), {class: 'btn btn-danger', method: :delete, remote: true} %>
+  <%= link_to 'Cancel', '#', {class: 'btn btn-default', data: {dismiss: 'modal'}} %>
+</div>

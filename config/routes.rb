@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
-
-#api routes
+  devise_scope :user do
+    get 'user/profile/:id', to: 'registrations#profile', as: 'profile'
+    patch 'user/change_pass', to: 'registrations#change_password', as: 'change_pass'
+    patch 'user/add_avatar', to: 'registrations#add_avatar', as: 'add_avatar'
+  end
+  devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
+# api routes
   namespace :api, defaults: {format: 'json'} do
     devise_scope :user do
       post 'change_pass', to: 'registrations#change_password', as: 'change_pass'
       post 'edit_profile', to: 'registrations#edit_profile', as: 'edit_profile'
       post 'log_out', to: 'sessions#sign_out', as: 'log_out'
       get 'profile', to: 'registrations#profile', as: 'profile'
-      devise_for :users
+      # devise_for :users
       post 'log_in', to: 'sessions#sign_in'
 
     end
@@ -20,6 +25,28 @@ Rails.application.routes.draw do
 
 
 #resources :event_images
+
+  resources :admins , :only => [:index , :new]
+  get 'admins/roles' , to: 'roles#index' , as: 'roles'
+  get 'admins/confirm_drop/:id' , to: 'roles#confirm_drop' , as: 'confirm_drop'
+  delete 'admins/drop_role/:id',to: 'roles#drop_role' , as: 'drop_role'
+  get 'admins/roles/show' , to: 'roles#show'
+  get 'admins/roles/rename' , to: 'roles#rename_role'
+  get 'admins/roles/new' , to: 'roles#new' , as: 'new_roles'
+  post 'admins/roles/new' , to: 'roles#create' , as: 'create_roles'
+  post 'admins/remove_multiple' , to: 'roles#remove_multiple' , as: 'remove_multiple'
+  get 'admins/roles/add/:id' , to: 'roles#add_permission' , as: 'add_permission'
+  put 'admins/process' , to: 'roles#process_add_permission' , as: 'process_role'
+  get 'roles/cofirm/:rid/:pid', to: 'roles#confirm_remove' , as: 'confirm_remove'
+  delete 'roles/remove_permsion/:id' ,to: 'roles#remove_permission' , as: "remove_permission"
+  get 'admin/manage_user/:id' ,to: 'admins#manage' , as: "manage_user"
+  get'admin/delete_confirm/:id' ,to: 'admins#confirm' , as: "confirm_delete"
+  delete'admin/delete_user/:id' ,to: 'admins#destroy' , as: "delete_user"
+  post 'admin/add_role' , to: 'admins#process_add_role' , as: "processs_add_role"
+  delete 'admin/remove_role/:uid/:rid' , to: 'admins#remove_role' , as: "remove_role"
+  post  'admin/change_active'  , to: 'admins#change_active'
+  post  'admin/create_user' , to: "admins#create_user" , as: "create_user"
+  post 'admins/destroy_multiple' , to: "admins#destroy_multiple"
   resources :condos
   post 'condos/images', to: 'condos#create_image', as: 'create_image'
   resources :feedbacks, :only => [:index, :destroy]
@@ -87,7 +114,6 @@ Rails.application.routes.draw do
   end
 
   resource :guard_house, only: [:edit] do
-
   end
 
   resources :house_rules do
@@ -95,6 +121,8 @@ Rails.application.routes.draw do
       get 'confirm'
     end
   end
+
+  resources :guard_house_images
 
   resources :privileges, only: []
 
@@ -107,13 +135,6 @@ Rails.application.routes.draw do
   resources :courses, only: []
 
   resources :course_users, only: []
-
-  devise_scope :user do
-    get 'user/profile/:id', to: 'registrations#profile', as: 'profile'
-    patch 'user/change_pass', to: 'registrations#change_password', as: 'change_pass'
-    patch 'user/add_avatar', to: 'registrations#add_avatar', as: 'add_avatar'
-  end
-  devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".
@@ -196,6 +217,8 @@ Rails.application.routes.draw do
       end
     end
 
+
+
     resource :form, only: [], path: 'api' do
       collection do
         get 'forms' => 'forms#index'
@@ -208,8 +231,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :privilege, only: [], path: 'api' do
+    resource :privileges, only: [], path: 'api' do
       collection do
+        get 'privileges' => 'privileges#index'
+        get 'privilege_detail' => 'privileges#privilege_detail'
+        post 'redeem_previlege' => 'privileges#redeem_previlege'
       end
       member do
       end
@@ -219,6 +245,24 @@ Rails.application.routes.draw do
       collection do
       end
       member do
+      end
+      end
+
+    resource :about_us, only: [], path: 'api' do
+      collection do
+        get 'about_us' => 'about_us#about_us'
+      end
+      end
+
+    resource :tech_supports, only: [], path: 'api' do
+      collection do
+        get 'tech_support' => 'tech_supports#tech_support'
+      end
+      end
+
+    resource :contact_us, only: [], path: 'api' do
+      collection do
+        post 'send_contact_us' => 'contact_us#send_contact_us'
       end
     end
 
@@ -246,11 +290,26 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :course, only: [], path: 'api' do
+    resource :course_user, only: [], path: 'api' do
       member do
         post 'join_course' => 'course_users#create'
         get 'cancel' => 'course_users#destroy'
         get 'has_join' => 'course_users#show'
+      end
+    end
+
+    resource :chats, only: [], path: 'api' do
+      collection do
+        post 'request_friend' => 'chats#request_friend'
+        post 'confirm_friend_request' => 'chats#confirm_friend_request'
+        get 'friend_list' => 'chats#friend_list'
+        get 'pending_request' => 'chats#pending_request'
+        get 'neightbours' => 'chats#neightbours'
+        post 'send_chat_message' => 'chats#send_chat_message'
+        post 'create_group_chat' => 'chats#create_group_chat'
+        post 'send_chat_group' => 'chats#send_chat_group'
+        get 'history_chat_group_list' => 'chats#history_chat_group_list'
+        get 'history_chat_individual_list' => 'chats#history_chat_individual_list'
       end
     end
 
@@ -265,5 +324,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+
+
+  get "*path", :to => "application#routing_error"
 end
 

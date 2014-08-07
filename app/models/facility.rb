@@ -1,4 +1,5 @@
 class Facility < ActiveRecord::Base
+  belongs_to :user
   belongs_to :facility_category
   has_many :time_slots, dependent: :destroy
   has_many :facility_statuses, dependent: :destroy

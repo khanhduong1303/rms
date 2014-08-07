@@ -1,0 +1,15 @@
+<% if @check ==0 %>
+<% if @flag %>
+$('div.select').html('<%= j render 'select_content' %>')
+$('div.select select').val('<%= @role.id%>');
+$('div.content').html('<%= j render 'role_content' %>')
+$('#form-modal').modal('hide');
+
+<% else %>
+$('#form-content').html('<%= escape_javascript(render 'new') %>');
+$('<div id="errors"><p>Please correct the following <%= pluralize(@role.errors.count, "error") %>:</p><ul><% @role.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %></ul></div>').insertBefore('#form-modal .modal-body');
+<% end %>
+<% else %>
+$('#form-content').html('<%= escape_javascript(render 'new') %>');
+$('<div id="errors"><p>Role Name is available</p></div>').insertBefore('#form-modal .modal-body');
+<% end %>

@@ -1,0 +1,44 @@
+
+<table class="table table-bordered test">
+<thead>
+<tr><th></th><th>Join date</th><th>Email</th><th>Active/Inactive</th><th>Manipulate</th></tr>
+</thead>
+<tbody>
+<% @users.each do |user| %>
+<tr>
+<td><%=check_box_tag "User_id[]",user.id%></td>
+<td><%= user.created_at %></td>
+<td><%= user.email %></td>
+<td>
+  <select class="form-control user-active" data-uid="<%= user.id %>">
+            <option value='active' <%= user.active ? 'selected' : '' %>>Active</option>
+            <option value='inactive' <%= !user.active ? 'selected' : '' %>>Inactive</option>
+  </select>
+</td>
+<td>
+<%= link_to  confirm_delete_path(user.id)  , :class => 'btn btn-danger' ,remote: true do %>
+<span class='glyphicon glyphicon-trash'></span>
+<% end %>
+&nbsp;
+<%= link_to manage_user_path(user.id) , :class => 'btn btn-info' ,remote: true  do%>
+<span class= 'glyphicon glyphicon-cog'> </span>
+<% end%>
+</td>
+		
+</tr>
+<% end %>
+</tbody>
+</table>
+<p>   <a   data-toggle="modal" data-target="#myModal" href="#" class="btn btn-danger delete-confirm">Delete</a>
+  <a   data-toggle="modal" data-target="#myModal" href="#" class="btn btn-default block-confirm">Block</a></p>
+
+<script type="text/javascript">
+	 $('.test').dataTable({
+        // sDom: 'Rlfrtip',
+        bProcessing: true,
+        bDeferRender: true,
+        sAjaxSource: $('.datatable').data('source'),
+        sPaginationType: "full_numbers",
+        bStateSave: true
+    });
+</script>

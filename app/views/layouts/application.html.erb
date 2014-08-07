@@ -28,12 +28,31 @@
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
       <div class="text-right">
         <% if user_signed_in? %>
-           <span>
+        <% if can? :index, User %> 
+        Hi, <%= current_user.username %>
+          <div class="btn-group">
+         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+         Action <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+    <li>  <%= link_to t('home.header.sign_out'), destroy_user_session_path, method: :delete %>
+    </li>
+    <li>
+       <%= link_to t('home.header.admin_page'), admins_path %>
+    </li>
+    <li>
+       <%= link_to t('home.header.setting'), profile_path(current_user) %>
+    </li>
+        </ul>
+        </div>
+         <% else %>
+                <span>
              Hi, <%= current_user.username %>
              <%= link_to profile_path(current_user), class: "glyphicon glyphicon-cog" do
              end %>
-             <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+             <%= link_to t('home.header.sign_out'), destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
            </span>
+         <% end %>  
         <% end %>
       </div>
     </div>
@@ -43,16 +62,16 @@
 
   <div class="row padding-20-px">
     <div class="col-lg-12">
-      <%= link_to 'Home', homes_path, {class: "btn btn-primary menu #{session[:menustatus] == 'home' ? 'active' : ''}"} %>
-      <%= link_to 'Bookings', bookings_path, {'data-no-turbolink' => true, class: "btn btn-primary menu #{session[:menustatus] == 'bookings' ? 'active' : ''}"} %>
-      <%= link_to 'Bulletins', bulletins_path, {class: "btn btn-primary menu #{session[:menustatus] == 'bulletins' ? 'active' : ''}"} %>
-      <%= link_to 'Condo Info', condos_path, {class: "btn btn-primary menu #{session[:menustatus] == 'condoInfos' ? 'active' : ''}"} %>
-      <%= link_to 'Events', events_path, {class: "btn btn-primary menu #{session[:menustatus] == 'events' ? 'active' : ''}"} %>
-      <%= link_to 'Facilities', facilities_path, {class: "btn btn-primary menu #{session[:menustatus] == 'facilities' ? 'active' : ''}"} %>
-      <%= link_to 'Feedback', feedbacks_path, {class: "btn btn-primary menu #{session[:menustatus] == 'feedbacks' ? 'active' : ''}"} %>
-      <%= link_to 'Forms', forms_path, {class: "btn btn-primary menu #{session[:menustatus] == 'forms' ? 'active' : ''}"} %>
-      <%= link_to 'Guard House', guard_houses_path, {class: "btn btn-primary menu #{session[:menustatus] == 'guard_houses' ? 'active' : ''}"} %>
-      <%= link_to 'House Rules', house_rules_path, {class: "btn btn-primary menu #{session[:menustatus] == 'house_rules' ? 'active' : ''}"} %>
+      <%= link_to t('home.nav.home'), homes_path, {class: "btn btn-primary menu #{session[:menustatus] == 'home' ? 'active' : ''}"} %>
+      <%= link_to t('home.nav.bookings'), bookings_path, {'data-no-turbolink' => true, class: "btn btn-primary menu #{session[:menustatus] == 'bookings' ? 'active' : ''}"} %>
+      <%= link_to t('home.nav.bulletins'), bulletins_path, {class: "btn btn-primary menu #{session[:menustatus] == 'bulletins' ? 'active' : ''}"} %>
+      <%= link_to t('home.nav.condo_info'), condos_path, {class: "btn btn-primary menu #{session[:menustatus] == 'condoInfos' ? 'active' : ''}"} %>
+      <%= link_to t('home.nav.events'), events_path, {class: "btn btn-primary menu #{session[:menustatus] == 'events' ? 'active' : ''}"} %>
+      <%= link_to t('home.nav.facilities'), facilities_path, {class: "btn btn-primary menu #{session[:menustatus] == 'facilities' ? 'active' : ''}"} %>
+      <%= link_to t('home.nav.feedback'), feedbacks_path, {class: "btn btn-primary menu #{session[:menustatus] == 'feedbacks' ? 'active' : ''}"} %>
+      <%= link_to t('home.nav.forms'), forms_path, {class: "btn btn-primary menu #{session[:menustatus] == 'forms' ? 'active' : ''}"} %>
+      <%= link_to t('home.nav.guard_house'), guard_houses_path, {class: "btn btn-primary menu #{session[:menustatus] == 'guard_houses' ? 'active' : ''}"} %>
+      <%= link_to t('home.nav.house_rules'), house_rules_path, {class: "btn btn-primary menu #{session[:menustatus] == 'house_rules' ? 'active' : ''}"} %>
     </div>
   </div>
 
@@ -72,6 +91,41 @@
       <p>© Innoria Company</p>
     </div>
   </div>
+</div>
+
+
+
+
+<div class="modal fade" id="app-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+
+   <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Error</h4>
+      </div>
+      <div class="modal-body">
+          <div>
+        <h3>The change you wanted was rejected.</h3>
+
+        <p>Maybe you tried to change something you didn't have access to.</p>
+        </div>
+     <p>If you are the application owner check the logs for more information.</p>
+
+    
+      </div>
+      
+      <div class="modal-footer">
+       <div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+
+   
+      </div>
+    </div>
+
+
+</div>
+</div>
 </div>
 </body>
 </html>

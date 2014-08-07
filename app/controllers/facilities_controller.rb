@@ -1,9 +1,10 @@
 class FacilitiesController < ApplicationController
   before_action :set_facility, only: [:edit, :update, :change_active, :confirm, :destroy]
   before_action :set_facilities, only: [:index, :create, :update, :destroy]
+  before_action :set_admin_facilities, only: [:index, :create, :update, :destroy]
   before_action :set_hightlight
   respond_to :json, :html, :js
-
+  authorize_resource
   def index
   end
 
@@ -76,11 +77,18 @@ class FacilitiesController < ApplicationController
   end
 
   def set_facilities
-    @facilities = current_user.condo.facilities
+    @facilities = current_user.facilities
+  end
+  def set_admin_facilities
+     if current_user.roles.where('role_name = "Admin"').size >0 
+
+      @facilities = current_user.condo.facilities
+
+     end  
   end
 
   def facility_params
-    params.require(:facility).permit(:name, :booking_price, :deposit_price, :note, :image_path, :facility_category_id)
+    params.require(:facility).permit(:name, :booking_price, :deposit_price, :note, :image_path, :facility_category_id , :user_id)
   end
 
   def set_hightlight

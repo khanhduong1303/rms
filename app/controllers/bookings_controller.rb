@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:update, :destroy]
   #before_action :set_bookings, only: [:index]
   before_action :set_hightlight
-
+authorize_resource
   def index
     session[:category_id_temp]='all';
     @users = User.where(condo_id: current_user.condo_id)
@@ -12,7 +12,9 @@ class BookingsController < ApplicationController
       @users.each do |u|
         if !u.bookings.blank?
           u.bookings.each do |book|
-            @bookings << book
+            if book.time_slot.facility.user_id==current_user.id.to_i
+              @bookings << book
+            end
           end
         end
       end
@@ -53,7 +55,9 @@ class BookingsController < ApplicationController
         @users.each do |u|
           if !u.bookings.blank?
             u.bookings.each do |book|
-              @bookings << book
+              if book.time_slot.facility.user_id==current_user.id.to_i
+                @bookings << book
+              end
             end
           end
         end
@@ -66,7 +70,7 @@ class BookingsController < ApplicationController
         @users.each do |u|
           if !u.bookings.blank?
             u.bookings.each do |book|
-              if book.time_slot.facility.facility_category_id==category_id.to_f
+              if book.time_slot.facility.facility_category_id==category_id.to_i && book.time_slot.facility.user_id==current_user.id.to_i
                 @bookings << book
               end
             end
