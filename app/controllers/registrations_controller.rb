@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
  authorize_resource :class => false 
-
+  before_action :set_hightlight
   def profile
    
     render layout: "application"
@@ -104,6 +104,10 @@ class RegistrationsController < Devise::RegistrationsController
       end
 
     end
+  end
+  private
+  def set_hightlight
+    session[:menustatus] = ''
   end
 
 end
