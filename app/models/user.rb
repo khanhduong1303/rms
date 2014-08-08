@@ -19,9 +19,13 @@ class User < ActiveRecord::Base
   has_many :user_roles , dependent: :destroy
   has_many :roles , :through => :user_roles
   has_many :permissions , :through => :roles
-  has_many :functions, :through => :permissions 
+  has_many :functions, :through => :permissions
 
   has_many :privileges, dependent: :destroy
+  has_many :privilege_user, dependent: :destroy
+
+  has_many :course_users, dependent: :destroy
+
   has_many :group_chats
   has_many :group_chat_members
 

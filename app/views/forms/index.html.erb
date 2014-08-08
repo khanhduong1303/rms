@@ -1,8 +1,8 @@
 <div class="form-header">
-  View:
-  <%= collection_select :form_category, :id, @form_categories, :id, :name, {prompt: 'All'}, {class: 'form-control'} %>
+  <%= t('.view') %>
+  <%= collection_select :form_category, :id, @form_categories, :id, :name, {prompt: t('.all')}, {class: 'form-control'} %>
   <%= link_to new_form_path, {class: 'btn btn-link', remote: true} do %>
-      <span class="glyphicon glyphicon-plus"></span> Add New Form
+      <span class="glyphicon glyphicon-plus"></span> <%= t('.add') %>
   <% end %>
   <hr>
 </div>

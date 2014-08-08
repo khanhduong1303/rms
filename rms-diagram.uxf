@@ -11,18 +11,18 @@
     <panel_attributes>bt=*
 users
 --
-username: string
-password: string
-avatar_path: string
 name: string
-phone: string
+password: string
 email: string
+avatar_path: string
+phone: string
 company: string
 enquiry: string
-postal_code: string
-country: string
 city: string
 state: string
+country: string
+postal_code: string
+privacy: boolean
 /condo_id: integer/</panel_attributes>
     <additional_attributes/>
   </element>
@@ -562,10 +562,9 @@ bg=</panel_attributes>
     </coordinates>
     <panel_attributes>bg=orange
 Nhật ký...
-*30/07/2014:*
-- Thêm privileges, privilege_users
-- Thêm service_categories, services
-- Thêm courses, course_users</panel_attributes>
+*01/08/2014:*
+- Xoá cột username ở users
+- Thêm cột privacy ở users</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -737,8 +736,8 @@ more_info: text
     <coordinates>
       <x>960</x>
       <y>770</y>
-      <w>140</w>
-      <h>40</h>
+      <w>150</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>30;30;130;30</additional_attributes>
@@ -749,7 +748,7 @@ more_info: text
       <x>1160</x>
       <y>320</y>
       <w>140</w>
-      <h>170</h>
+      <h>180</h>
     </coordinates>
     <panel_attributes>bt=*
 courses
@@ -760,6 +759,7 @@ instructor: string
 price: float
 phone: string
 email: string
+image_path :string
 more_info: text
 /condo_id: integer/</panel_attributes>
     <additional_attributes/>
@@ -805,11 +805,11 @@ user_id: integer</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>940</x>
-      <y>460</y>
+      <y>470</y>
       <w>310</w>
-      <h>210</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;190;290;190;290;80;290;30</additional_attributes>
+    <additional_attributes>30;180;290;180;290;70;290;30</additional_attributes>
   </element>
 </diagram>

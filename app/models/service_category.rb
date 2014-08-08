@@ -4,5 +4,8 @@ class ServiceCategory < ActiveRecord::Base
 
   has_attached_file :icon_path, styles: {icon: '64x64#'}, default_url: '/images/fav.svg'
   validates_attachment :icon_path, size: {:in => 0..1.megabytes}, content_type: {:content_type => /^image\/(jpeg|png|gif|tiff)$/}
+
+  validates :name, :condo_id, presence: true
+  validates :condo_id, numericality: true
 end
 

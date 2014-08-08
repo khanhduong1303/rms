@@ -1,11 +1,11 @@
 <div class="modal-header">
-  <h4 class="modal-title">Delete</h4>
+  <h4 class="modal-title"><%= t('bulletins.delete') %></h4>
 </div>
 <div class="modal-body">
-  <span>Confirm delete bulletin?</span>
+  <span><%= t('bulletins.confirm_delete_bulletin') %></span>
 </div>
 <div class="modal-footer">
-  <%= link_to 'Confirm', bulletin_path(@bulletin), {class: 'btn btn-danger', method: :delete, remote: true} %>
-  <%= link_to 'Cancel', '#', {class: 'btn btn-default', data: {dismiss: 'modal'}} %>
+  <%= link_to t('bulletins.confirm'), bulletin_path(@bulletin), {class: 'btn btn-danger', method: :delete, remote: true} %>
+  <%= link_to t('bulletins.cancel'), '#', {class: 'btn btn-default', data: {dismiss: 'modal'}} %>
 </div>
 

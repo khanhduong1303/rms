@@ -1,0 +1,36 @@
+en:
+  forms:
+    index:
+      view: 'View:'
+      all: 'All'
+      add: 'Add New Form'
+      delete: 'Delete Form'
+      edit: 'Edit Form'
+      show: 'View Form'
+
+    form:
+      categories: 'Categories:'
+      browse: 'Browse'
+      create: 'Add'
+      update: 'Save'
+      cancel: 'Cancel'
+
+    save:
+      create_success: 'Form was successfully created!'
+      update_success: 'Form was successfully updated!'
+
+    confirm:
+      confirm: 'Delete'
+      confirm_delete_form: 'Confirm delete form?'
+      destroy: 'Confirm'
+      cancel: 'Cancel'
+
+    destroy:
+      destroy_success: 'Form was successfully destroyed!'
+
+  helpers:
+    label:
+      form:
+        title: 'Title:'
+        form_path_file_name: 'Upload form:'
+

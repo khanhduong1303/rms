@@ -6,9 +6,9 @@
   </h4>
 </div>
 <div class="modal-body">
-  <p><b>Date: </b><%= @bulletin.date.strftime("%d/%m/%Y") %></p>
-
-  <p><b>Content:</b></p>
+  <%= label :bulletin, :date %> <span><%= @bulletin.date.strftime("%d/%m/%Y") %></span>
+  <br>
+  <%= label :bulletin, :content %>
   <%= simple_format @bulletin.content, {class: 'keep-format'} %>
 </div>
 
