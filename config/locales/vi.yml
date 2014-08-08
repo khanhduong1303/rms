@@ -15,4 +15,6 @@ vi:
       sign_out: 'Đăng xuất'
       admin_page: 'Trang quản trị'
       setting: 'Thiết lập'
+      action: 'Tùy chọn'
+      hi: 'Chào, '
 

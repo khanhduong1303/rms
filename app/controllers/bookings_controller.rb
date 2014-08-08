@@ -2,6 +2,7 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:update, :destroy]
   #before_action :set_bookings, only: [:index]
   before_action :set_hightlight
+  included ActionController::MimeResponds
 authorize_resource
   def index
     session[:category_id_temp]='all';
@@ -42,6 +43,14 @@ authorize_resource
   end
 
   def confirm
+  end
+
+  def getLanguage
+    if session[:language].nil? || session[:language]=='en'
+      render json: {val:'dataTables.english.lang'}
+    else
+      render json: {val:'dataTables.vietnamese.lang'}
+    end
   end
 
   def filter

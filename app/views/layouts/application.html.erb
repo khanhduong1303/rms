@@ -28,32 +28,36 @@
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
       <div class="text-right">
         <% if user_signed_in? %>
-        <% if can? :index, User %> 
-        Hi, <%= current_user.username %>
-          <div class="btn-group">
-         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-         Action <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-    <li>  <%= link_to t('home.header.sign_out'), destroy_user_session_path, method: :delete %>
-    </li>
-    <li>
-       <%= link_to t('home.header.admin_page'), admins_path %>
-    </li>
-    <li>
-       <%= link_to t('home.header.setting'), profile_path(current_user) %>
-    </li>
-        </ul>
-        </div>
-         <% else %>
+            <% if can? :index, User %>
+                <%= t('home.header.hi')%><%= current_user.username %>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <%= t('home.header.action')%> <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>  <%= link_to t('home.header.sign_out'), destroy_user_session_path, method: :delete %>
+                    </li>
+                    <li>
+                      <%= link_to t('home.header.admin_page'), admins_path %>
+                    </li>
+                    <li>
+                      <%= link_to t('home.header.setting'), profile_path(current_user) %>
+                    </li>
+                  </ul>
+                </div>
+            <% else %>
                 <span>
              Hi, <%= current_user.username %>
-             <%= link_to profile_path(current_user), class: "glyphicon glyphicon-cog" do
-             end %>
-             <%= link_to t('home.header.sign_out'), destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+                  <%= link_to profile_path(current_user), class: "glyphicon glyphicon-cog" do
+                  end %>
+                  <%= link_to t('home.header.sign_out'), destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
            </span>
-         <% end %>  
+            <% end %>
         <% end %>
+        <div>
+          <a onclick="setLanguage('vi');"><%= image_tag 'vi.png' %></a>
+          <a onclick="setLanguage('en')"><%= image_tag 'en.png' %></a>
+        </div>
       </div>
     </div>
   </div>
@@ -88,45 +92,53 @@
 
   <div class="row">
     <div class="footer">
-      <p>© Innoria Company</p>
+      <p>© Innoria Company - Project RMS v07082014</p>
     </div>
   </div>
 </div>
 
 
-
-
 <div class="modal fade" id="app-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
 
-   <div class="modal-content">
+    <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">Error</h4>
       </div>
       <div class="modal-body">
-          <div>
-        <h3>The change you wanted was rejected.</h3>
+        <div>
+          <h3>The change you wanted was rejected.</h3>
 
-        <p>Maybe you tried to change something you didn't have access to.</p>
+          <p>Maybe you tried to change something you didn't have access to.</p>
         </div>
-     <p>If you are the application owner check the logs for more information.</p>
+        <p>If you are the application owner check the logs for more information.</p>
 
-    
+
       </div>
-      
+
       <div class="modal-footer">
-       <div>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+        <div>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
 
-   
+
+        </div>
       </div>
+
+
     </div>
-
-
-</div>
-</div>
+  </div>
 </div>
 </body>
 </html>
+
+<script>
+
+      function setLanguage(val){
+          $.post('/homes/setLanguage', {val:val},function(){
+              location.reload(true);
+          });
+      }
+</script>
 

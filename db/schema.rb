@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805042939) do
+ActiveRecord::Schema.define(version: 20140808030638) do
 
   create_table "about_us", force: true do |t|
     t.string   "information"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ads_banners", force: true do |t|
+    t.string   "title"
+    t.string   "name"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -97,6 +108,7 @@ ActiveRecord::Schema.define(version: 20140805042939) do
   end
 
   create_table "facilities", force: true do |t|
+    t.integer  "user_id",                                null: false
     t.string   "name",                                   null: false
     t.float    "booking_price",                          null: false
     t.float    "deposit_price",                          null: false

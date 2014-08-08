@@ -88,6 +88,7 @@ Rails.application.routes.draw do
       post 'deleteColection'
       post 'updateStatus'
       get 'confirm'
+      get 'getLanguage'
     end
   end
 
@@ -150,7 +151,11 @@ Rails.application.routes.draw do
 #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
 # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :homes, only: [:index]
+  resources :homes, only: [:index,:setLanguage] do
+    collection do
+      post 'setLanguage' => 'homes#setLanguage'
+    end
+  end
 
 # Example resource route with options:
 #   resources :products do
