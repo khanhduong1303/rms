@@ -2,31 +2,31 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
-    <div><%= f.label :username %>
+    <div><%= f.label :username , t('user.profile.username') %>
       <br/>
       <%= f.text_field :username, autofocus: true %></div>
     <div><%= f.label :email %>
       <br/>
-      <%= f.email_field :email %></div>
+      <%= f.email_field :email,t('user.profile.email') %></div>
     <div><%= f.label :phone, "Phone No" %>
       <br/>
       <%= f.text_field :phone %></div>
-    <div><%= f.label :condo_id, "Condominium Name" %>
+    <div><%= f.label :condo_id, t('user.sign_up.condo_name') %>
       <br/>
       <%= f.collection_select :condo_id, @condo, :id, :name %>
     </div>
-    <div><%= f.label :postal_code, "Postal Code" %>
+    <div><%= f.label :postal_code, t('user.sign_up.postal_code') %>
       <br/>
       <%= f.text_field :postal_code %></div>
-    <div><%= f.label :enquiry %>
+    <div><%= f.label :enquiry ,t('user.sign_up.enquiry')%>
       <br/>
       <%= f.text_area :enquiry %></div>
 
-    <div><%= f.label :password %>
+    <div><%= f.label :password ,t('user.sign_up.password') %>
       <br/>
       <%= f.password_field :password, autocomplete: "off" %></div>
 
-    <div><%= f.label :password_confirmation %>
+    <div><%= f.label :password_confirmation,t('user.sign_up.password_confirmation') %>
       <br/>
       <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 

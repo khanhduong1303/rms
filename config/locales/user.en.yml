@@ -1,0 +1,32 @@
+en:
+  user:
+    profile:
+      setting: "Settings"
+      organisation: "Organisation Profile"
+      username: "UserName:"
+      name: "Name:"
+      company: "Company :"
+      email: "Email:"
+      country: "Country :"
+      city: "City :"
+      zip: "Zip :"
+      phone: "Phone :"
+      button_edit: "Edit Organisation Profile"
+      chang_your_pass: "Change your password"
+      current_password: "Current password"
+      password: "New password"
+      password_confirmation: "Confirm new password"
+      btn_savechange: "Save change"
+      btn_cancel: "Cancel"
+      btn_submit: "Submit"
+      upload_photo: "Upload a New Photo"
+    sign_up:
+      condo_name: "Condominium Name"
+      postal_code: "Postal Code"
+      enquiry: "Enquiry"
+      password: "Password"
+      password_confirmation: "Confirm password"
+      join_us: "Join us to enjoy our service"
+      btn_cancel: "Cancel"
+      btn_signup: "Sign up"            
+

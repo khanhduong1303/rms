@@ -7,35 +7,39 @@
       <div class="col-xs-8">
         <h4><b><%= facility.name %></b></h4>
 
-        <p>Catetory: <%= facility.facility_category.name %></p>
+        <p><%=t('facility.index.category') %>: <%= facility.facility_category.name %></p>
 
-        <p>Facility Code: <%= facility.id %></p>
+        <p><%=t('facility.index.facility_code') %>: <%= facility.id %></p>
 
-        <p>Booking Price: <%= facility.booking_price %></p>
+        <p><%=t('facility.index.booking_price') %>: <%= facility.booking_price %></p>
 
-        <p>Deposit Price: <%= facility.deposit_price %></p>
+        <p><%=t('facility.index.deposit_price') %>: <%= facility.deposit_price %></p>
 
-        <p>Note: <%= facility.note %></p>
+        <p><%=t('facility.index.note') %>: <%= facility.note %></p>
       </div>
 
       <div class="col-xs-2 facility-center">
         <div class="facility-vcenter">
           <select class="form-control change-active" data-facility-id="<%= facility.id %>">
-            <option value="active" <%= facility.active ? 'selected' : '' %>>Active</option>
-            <option value="inactive" <%= !facility.active ? 'selected' : '' %>>Inactive</option>
+            <option value="active" <%= facility.active ? 'selected' : '' %>><%=t('facility.index.actice') %></option>
+            <option value="inactive" <%= !facility.active ? 'selected' : '' %>><%=t('facility.index.inactive') %></option>
           </select>
 
           <%= link_to confirm_facility_path(facility), {class: 'btn btn-link', remote: true} do %>
-              <span class="glyphicon glyphicon-trash"></span> Delete Facility
+              <span class="glyphicon glyphicon-trash"></span> 
+<%=t('facility.index.delete_facility') %>
           <% end %>
           <%= link_to edit_facility_path(facility), {class: 'btn btn-link', remote: true} do %>
-              <span class="glyphicon glyphicon-pencil"></span> Edit Facility
+              <span class="glyphicon glyphicon-pencil"></span>
+<%=t('facility.index.edit_facility') %>
           <% end %>
           <%= link_to new_facility_status_path, {class: 'btn btn-link facility-status', remote: true, data: {'facility-id' => facility.id}} do %>
-              <span class="glyphicon glyphicon-calendar"></span> Facility Status
+              <span class="glyphicon glyphicon-calendar"></span>
+<%=t('facility.index.facility_status') %>
           <% end %>
           <%= link_to facility_timeslot_path(facility), {class: 'edit-button btn btn-link', remote: true} do %>
-              <span class="glyphicon glyphicon-time"></span> Facility Time Slots
+              <span class="glyphicon glyphicon-time"></span> 
+<%=t('facility.index.facility_time') %>
           <% end %>
         </div>
       </div>

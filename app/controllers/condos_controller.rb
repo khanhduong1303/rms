@@ -22,7 +22,7 @@ class CondosController < ApplicationController
         end
       end
 
-      redirect_to condos_path, notice: 'Event was successfully updated.'
+      redirect_to condos_path, notice: t('condo.controller.condo_info')
 
 
     else

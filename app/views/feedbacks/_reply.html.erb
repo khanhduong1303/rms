@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Reply to <b><%= @feedback.user.name %></b> about <b><%= @feedback.title%> </b></h4>
+  <h4 class="modal-title"><%= t('feedback.index.reply_to') %> <b><%= @feedback.user.name %></b> <%= t('feedback.index.about') %> <b><%= @feedback.title%> </b></h4>
 </div>
 <%= form_for @reply , url: reply_path, :remote => true  do |f|  %>
 <div class="modal-body">
@@ -8,8 +8,8 @@
 
 </div>
 <div class="modal-footer">
-  <%= link_to 'Cancel', '#', { class: 'btn btn-default', data: { dismiss: 'modal'} } %>
-<%= f.submit "Submit" , :class => "btn btn-success" %> 
+  <%= link_to t("feedback.index.btn_cancel"), '#', { class: 'btn btn-default', data: { dismiss: 'modal'} } %>
+<%= f.submit t("feedback.index.btn_submit") , :class => "btn btn-success" %> 
 
 </div>
  <% end%>	

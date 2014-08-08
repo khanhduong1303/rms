@@ -1,0 +1,58 @@
+
+vi:
+  devise:
+    confirmations:
+      confirmed: "Xác nhận tài khoản thành công!"
+      send_instructions: "Bạn sẽ nhận được email hướng dẫn xác nhận tài khoản trong vài phút nữa"
+      send_paranoid_instructions: "Nếu email của bạn có trong hệ thống, bạn sẽ nhận được email hướng dẫn xác nhận tài khoản trong một vài phút nữa."
+    failure:
+      already_authenticated: "Bạn đã đăng nhập"
+      inactive: "Tài khoản của bạn chưa được kích hoạt"
+      invalid: " Email hoặc mật khẩu không chính xác"
+      locked: "Tài khoản của bạn đã bị khóa"
+      last_attempt: "You have one more attempt before your account will be locked."
+      not_found_in_database: "Email hoặc mật khẩu không chính xác"
+      timeout: "Phiên làm việc của bạn đã kết thúc, bạn cần đăng nhập lại để tiếp tục."
+      unauthenticated: "Bạn cần phải đăng nhập hoặc đăng ký trước khi tiếp tục"
+      unconfirmed: "Bạn cần phải xác nhận tài khoản trước khi tiếp tục"
+    mailer:
+      confirmation_instructions:
+        subject: "Confirmation instructions"
+      reset_password_instructions:
+        subject: "Reset password instructions"
+      unlock_instructions:
+        subject: "Unlock Instructions"
+    omniauth_callbacks:
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      success: "Successfully authenticated from %{kind} account."
+    passwords:
+      no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
+      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      updated: "Your password was changed successfully. You are now signed in."
+      updated_not_active: "Your password was changed successfully."
+    registrations:
+      destroyed: "Bye! Your account was successfully cancelled. We hope to see you again soon."
+      signed_up: "Welcome! You have signed up successfully."
+      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please open the link to activate your account."
+      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address."
+      updated: "You updated your account successfully."
+    sessions:
+      signed_in: "Đăng nhập thành công."
+      signed_out: "Đăng xuất thành công."
+    unlocks:
+      send_instructions: "Bạn sẽ nhận được email hướng dẫn cách mở khóa tài khoản trong vài phút nữa."
+      send_paranoid_instructions: "Nếu tài khoản của bạn tồn tại, bạn sẽ nhận được email hướng dẫn cách mở khóa tài khoản trong vài phút nữa"
+      unlocked: "Tài khoản của bạn đã được mở khóa thành công. Vui lòng đăng nhập để tiếp tục"
+  errors:
+    messages:
+      already_confirmed: "was already confirmed, please try signing in"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "has expired, please request a new one"
+      not_found: "not found"
+      not_locked: "was not locked"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"

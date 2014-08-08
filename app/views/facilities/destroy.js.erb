@@ -1,7 +1,7 @@
 <% if @facility.errors.any? %>
 
 <% else %>
-$('#notifications').html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>Facility was successfully destroyed!</div>')
+$('#notifications').html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><%= j(t('facility.notify.destroy_success')) %></div>')
 $('#list-facility').html('<%= escape_javascript(render 'index') %>')
 $('#facility-modal').modal('hide')
 

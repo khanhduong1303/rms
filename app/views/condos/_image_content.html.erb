@@ -1,7 +1,7 @@
 <% @condo.condo_images.each do |i| %>
     <div>
       <%= image_tag i.image.url(:small), :class => "img-thumbnail" %> </br>
-      <%= check_box_tag 'image_id[]', i.id %> Delete
+      <%= check_box_tag 'image_id[]', i.id %> <%= t('condo.table.delete')%>
     </div>
 <% end %>
 

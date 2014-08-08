@@ -1,0 +1,22 @@
+en:
+  condo:
+    button:
+      edit: "Edit Condo Info"
+      add_photo: "Add more photo"
+      cancel: "Cancel"
+      save: "Save"
+      submit: "Submit"      
+    table:
+      project: "Project"
+      project_type: "Project type"
+      developer: "Developer"
+      tenure: "Tenure"
+      topyear: "TOP Year"
+      unit: "# of Units"
+      description: "Description: "
+      photo_gallery: "Photo Gallery"
+      header: "Add new photos"
+      button_add: "Add"
+      delete: "Delete"
+    controller:
+      condo_info: "Condo Infomation was successfully updated."

@@ -1,5 +1,5 @@
 <div class="condoinfo-header">
-  <h4>Edit Condo Infos</h4>
+  <h4><%= t('condo.button.edit') %></h4>
   <hr>
 </div>
 <div class="condoinfo-content">
@@ -13,45 +13,45 @@
       <%= form_for @condo, :html => {:role => "form"} do |f| %>
           <table class="condo">
             <tr>
-              <th>Project</th>
+              <th><%= t('condo.table.project') %></th>
               <th><%= f.text_field :name, class: "form-control" %></th>
             </tr>
             <tr>
-              <td>Project type</td>
+              <td><%= t('condo.table.project_type') %></td>
               <td><%= f.text_field :property_type, class: "form-control" %></td>
             </tr>
             <tr>
-              <td>Developer</td>
+              <td><%= t('condo.table.developer') %></td>
               <td><%= f.text_field :developer, class: "form-control" %></td>
             </tr>
             <tr>
-              <td>Tenure</td>
+              <td><%= t('condo.table.tenure') %></td>
               <td><%= f.text_field :tenure, class: "form-control" %></td>
             </tr>
             <tr>
-              <td>TOP Year</td>
+              <td><%= t('condo.table.topyear') %></td>
               <td><%= f.text_field :top_year, class: "form-control" %></td>
             </tr>
             <tr>
-              <td># of Units</td>
+              <td><%= t('condo.table.unit') %></td>
               <td> <%= f.text_field :num_of_units, class: "form-control" %></td>
             </tr>
           </table>
-          <p><b>Description: </b></br>
+          <p><b><%= t('condo.table.description') %></b></br>
             <%= f.text_area :description, {class: "form-control", :rows => "3"} %>
           </p>
 
           <div class="image-container">
-            <b>Photo Gallery: </b></br>
-            <a data-toggle="modal" data-target="#myModal" href="#" class="btn btn-default">Add More Photos</a>
+            <b><%= t('condo.table.photo_gallery') %></b></br>
+            <a data-toggle="modal" data-target="#myModal" href="#" class="btn btn-default"><%= t('condo.button.add_photo') %></a>
 
             <div class="image-content">
               <%= render "image_content" %>
             </div>
           </div>
           <div class="end-float"></div>
-          <%= link_to "Cancel", condos_path, class: "btn btn-default" %>
-          <%= f.submit "Save", class: "btn btn-success" %>
+          <%= link_to t('condo.button.cancel'), condos_path, class: "btn btn-default" %>
+          <%= f.submit t('condo.button.save'), class: "btn btn-success" %>
       <% end %>
     </div>
 
@@ -65,16 +65,16 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
-                  <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Upload a New Photo </h4>
+                  <span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+                <h4 class="modal-title" id="myModalLabel"><%= t('condo.table.header') %></h4>
               </div>
               <div class="modal-body">
                  <div class='up_pic'><%= f.file_field :image, :multiple => true %></div>
-                 <a class="add_more btn btn-default">Add More</a>
+                 <a class="add_more btn btn-default"><%= t('condo.table.button_add') %></a>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <%= f.submit "Submit", :class => "btn btn-success" %>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><%= t('condo.button.cancel') %></button>
+                <%= f.submit t('condo.button.submit'), :class => "btn btn-success" %>
               </div>
             </div>
         <% end %>

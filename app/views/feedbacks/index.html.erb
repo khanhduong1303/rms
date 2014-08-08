@@ -1,15 +1,15 @@
 <div class="feedback-header">
   
   <a   data-toggle="modal" data-target="#myModal" href="#" class="btn btn-link delete-confirm">
-<span class = "glyphicon glyphicon-trash"></span>Delete Feedbacks</a>
+<span class = "glyphicon glyphicon-trash"></span><%= t('feedback.index.delete_feedback') %></a>
 <a   data-toggle="modal" data-target="#myModal" href="#" class="btn btn-link move-confirm">
-<span class = "glyphicon glyphicon-arrow-right"></span>Move to Archive</a>
+<span class = "glyphicon glyphicon-arrow-right"></span><%= t('feedback.index.move_archive') %></a>
  
    
   
   <ul class="nav nav-tabs" role="tablist">
-  <li class="active"><a href="#">Current</a></li>
-  <li><%=link_to "Archive" , feedbacks_archive_path %></li>
+  <li class="active"><a href="#"><%= t('feedback.index.current') %></a></li>
+  <li><%=link_to t('feedback.index.archive') , feedbacks_archive_path %></li>
 <div></div>
 </ul>
 
@@ -34,8 +34,8 @@
 
    <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Confirmation </h4>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><%= t('feedback.index.close') %></span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= t('feedback.index.confirm') %></h4>
       </div>
       <div class="modal-body">
      <p></p>
@@ -44,9 +44,9 @@
       
       <div class="modal-footer">
        <div>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-      <a class = "btn btn-danger delete" href="#">Delete</a>
-       <a class = "btn btn-danger move" href="#">Move</a>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('feedback.index.btn_cancel') %></button>
+      <a class = "btn btn-danger delete" href="#"><%= t('feedback.index.btn_delete') %></a>
+       <a class = "btn btn-danger move" href="#"><%= t('feedback.index.btn_move') %></a>
       </div>
     </div>
 
@@ -63,11 +63,11 @@ var feedid = [];
         feedid.push($(this).val());
     });
         if($.isEmptyObject(feedid)){
-     $('#myModal').find('p').text("Please choose atleast one feedback to delete! ");
+     $('#myModal').find('p').text("<%= t('feedback.index.please_choose_delete_feedback') %>");
     $('#myModal').find('a.delete').hide();
       $('#myModal').find('a.move').hide();
         } else {
-   $('#myModal').find('p').text("Are you sure to delete these feedbacks?");
+   $('#myModal').find('p').text("<%= t('feedback.index.sure_delete_feedback') %>");
     $('#myModal').find('a.delete').show();
     $('#myModal').find('a.move').hide();
         }
@@ -78,11 +78,11 @@ var feedid = [];
         feedid.push($(this).val());
     });
         if($.isEmptyObject(feedid)){
-     $('#myModal').find('p').text("Please choose atleast one feedback to move! ");
+     $('#myModal').find('p').text("<%= t('feedback.index.please_choose_move_feedback') %>");
     $('#myModal').find('a.delete').hide();
       $('#myModal').find('a.move').hide();
         } else {
-   $('#myModal').find('p').text("Are you sure to move these feedbacks to archive?");
+   $('#myModal').find('p').text("<%= t('feedback.index.sure_move_feedback') %>");
     $('#myModal').find('a.delete').hide();
     $('#myModal').find('a.move').show();
         }

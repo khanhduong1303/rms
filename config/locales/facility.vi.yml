@@ -1,0 +1,32 @@
+vi:
+  facility:
+    index:
+      add_new_facility: "Thêm dịch vụ mới"
+      category: "Loại"
+      name: "Tên dịch vụ"
+      facility_code: "Mã dịch vụ"
+      booking_price: "Phí thuê"
+      deposit_price: "Đặt cọc"
+      note: "Lưu ý"
+      actice: "Hoạt động"
+      inactive: "Không hoạt động"
+      delete_facility: "Xóa dịch vụ"
+      edit_facility: "Chỉnh sửa"
+      facility_status: "Trạng thái dịch vụ"
+      facility_time: "Thời gian biểu"
+      delete: "Xóa dịch vụ"
+      confirm_delete: "Bạn có chắc muốn xóa bỏ dịch vụ này?"
+      btn_confirm: "Xác nhận"
+      btn_cancel: "Hủy"
+      btn_save: "Lưu"
+      btn_add: "Thêm"
+      edit_timeslot: "Chỉnh sủa thời gian"
+      add_timeslot: "Thêm thời gian"
+      to: "tới"
+      timeslot: "Thời gian"
+      peak: "Cao điểm"
+    notify:
+      destroy_success: "Xóa dịch vụ thành công"
+      create_success: "Tạo dịch vụ mới thành công"
+      update_success: "Cập nhật thông tin dịch vụ thành công"
+

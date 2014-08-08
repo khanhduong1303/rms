@@ -1,6 +1,6 @@
-<h3>Settings</h3>
+<h3><%= t("user.profile.setting") %></h3>
 <hr/>
-<h4>Organisation Profile</h4>
+<h4><%= t("user.profile.organisation") %></h4>
 <div class="row">
   <div class="col-sm-3">
     <div class="image">
@@ -21,28 +21,28 @@
        :role => "form"}) do |f| %>
           <%= devise_error_messages! %>
         <div class="form-group">
-          <div class="col-sm-2"><%= f.label :name, :class => 'control-label' %>
+          <div class="col-sm-2"><%= f.label :name,t("user.profile.name") , :class => 'control-label' %>
           </div>
           <div class='col-sm-8'>
             <%= f.text_field :name, autofocus: true, :class => "form-control" %></div>
         </div>
         <div class="form-group">
           <div class="col-sm-2">
-            <%= f.label :company, :class => ' control-label' %>
+            <%= f.label :company, t("user.profile.company"),:class => ' control-label' %>
           </div>
           <div class='col-sm-8'>
             <%= f.text_field :company, :class => "form-control" %></div>
         </div>
         <div class="form-group">
           <div class="col-sm-2">
-            <%= f.label :country, :class => 'control-label' %>
+            <%= f.label :country,t("user.profile.country"), :class => 'control-label' %>
           </div>
           <div class='col-sm-8'>
             <%= f.text_field :country, :class => "form-control" %></div>
         </div>
         <div class="form-group">
           <div class="col-sm-2">
-            <%= f.label :city, :class => 'control-label' %>
+            <%= f.label :city,t("user.profile.city") ,:class => 'control-label' %>
           </div>
           <div class='col-sm-8'>
             <%= f.text_field :city, :class => "form-control" %></div>
@@ -51,7 +51,7 @@
 
         <div class="form-group">
           <div class="col-sm-2">
-            <%= f.label :phone, "Phone No", :class => 'control-label' %>
+            <%= f.label :phone,t("user.profile.phone"), :class => 'control-label' %>
           </div>
           <div class='col-sm-8'>
             <%= f.text_field :phone, :class => "form-control" %></div>
@@ -59,14 +59,14 @@
 
         <div class="form-group">
           <div class="col-sm-2">
-            <%= f.label :postal_code, "Postal Code", :class => 'control-label' %></div>
+            <%= f.label :postal_code,t("user.profile.zip"), :class => 'control-label' %></div>
           <div class='col-sm-8'>
             <%= f.text_field :postal_code, :class => "form-control" %></div>
         </div>
 
         <div class="col-sm-offset-2 col-sm-8">
-          <%= link_to "Cancel", profile_path(current_user), class: "btn btn-danger" %>
-          <%= f.submit "Save", class: "btn btn-success" %>
+          <%= link_to t("user.profile.btn_cancel"), profile_path(current_user), class: "btn btn-danger" %>
+          <%= f.submit t("user.profile.btn_savechange"), class: "btn btn-success" %>
         </div>
     <% end %>
   </div>
@@ -84,7 +84,7 @@
    <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Upload a New Photo </h4>
+        <h4 class="modal-title" id="myModalLabel"><%= t('user.profile.upload_photo') %></h4>
       </div>
       <div class="modal-body">
       <%= f.label :avatar do %>
@@ -98,8 +98,8 @@
       
       <div class="modal-footer">
        <div>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-      <%= f.submit "Submit", :class => "btn btn-success" %></div>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><%= t('user.profile.btn_cancel') %></button>
+      <%= f.submit t('user.profile.btn_submit'), :class => "btn btn-success" %></div>
       </div>
     </div>
 

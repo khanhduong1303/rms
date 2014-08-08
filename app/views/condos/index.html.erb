@@ -1,7 +1,7 @@
 <div class="condoinfo-header">
 
   <%= link_to edit_condo_path(@condo), {class: 'btn btn-link'} do %>
-      <span class="glyphicon glyphicon-pencil"></span> Edit Condo Infos
+      <span class="glyphicon glyphicon-pencil"></span> <%= t('condo.button.edit') %>
   <% end %>
   <div></div>
   <hr>
@@ -18,36 +18,36 @@
   </div>
   <table class="condo">
     <tr>
-      <th>Project</th>
+      <th><%= t('condo.table.project') %></th>
       <th><%= @condo.name %></th>
     </tr>
     <tr>
-      <td>Project type</td>
+      <td><%= t('condo.table.project_type') %></td>
       <td><%= @condo.property_type %></td>
     </tr>
     <tr>
-      <td>Developer</td>
+      <td><%= t('condo.table.developer') %></td>
       <td><%= @condo.developer %></td>
     </tr>
     <tr>
-      <td>Tenure</td>
+      <td><%= t('condo.table.tenure') %></td>
       <td><%= @condo.tenure %></td>
     </tr>
     <tr>
-      <td>TOP Year</td>
+      <td><%= t('condo.table.topyear') %></td>
       <td><%= @condo.top_year %></td>
     </tr>
     <tr>
-      <td># of Units</td>
+      <td><%= t('condo.table.unit') %></td>
       <td> <%= @condo.num_of_units %></td>
     </tr>
   </table>
-  <b>Description:</b> </br>
+  <b><%= t('condo.table.description') %></b> </br>
 
   <blockquote>
     <%= @condo.description %>
   </blockquote>
-  <b>Photo Galery:</b> </br>
+  <b><%= t('condo.table.photo_gallery') %></b> </br>
   <div class="image-content">
     <% @condo.condo_images.each do |i| %>
         <%= image_tag i.image.url(:small), :class => "img-thumbnail" %>

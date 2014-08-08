@@ -1,11 +1,11 @@
 <div class="modal-header">
-  <h4 class="modal-title">Delete</h4>
+  <h4 class="modal-title"><%= t('facility.index.delete') %></h4>
 </div>
 <div class="modal-body">
-  <span>Confirm delete facility?</span>
+  <span><%= t('facility.index.confirm_delete') %></span>
 </div>
 <div class="modal-footer">
-  <%= link_to 'Confirm', facility_path(@facility), {class: 'btn btn-danger', method: :delete, remote: true} %>
-  <%= link_to 'Cancel', '#', {class: 'btn btn-default', data: {dismiss: 'modal'}} %>
+  <%= link_to t('facility.index.btn_confirm') , facility_path(@facility), {class: 'btn btn-danger', method: :delete, remote: true} %>
+  <%= link_to t('facility.index.btn_cancel'), '#', {class: 'btn btn-default', data: {dismiss: 'modal'}} %>
 </div>
 

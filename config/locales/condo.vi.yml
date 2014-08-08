@@ -1,0 +1,23 @@
+vi:
+  condo:
+    button:
+      edit: "Chỉnh sữa"
+      add_photo: "Thêm hình ảnh"
+      cancel: "Hủy"
+      save: "Lưu"
+      submit: "Lưu"  
+    table:
+      project: "Dự án"
+      project_type: "Loại"
+      developer: "Phát triển"
+      tenure: "Nhiệm kỳ"
+      topyear: "Số năm"
+      unit: "Dân cư"
+      description: "Miêu tả: "
+      photo_gallery: "Thư viện ảnh"
+      header: "Thêm hình ảnh mới"
+      button_add: "Thêm"
+      delete: "Xóa"
+    controller:
+      condo_info: "Cập nhật thành công"
+

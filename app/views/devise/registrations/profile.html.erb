@@ -1,6 +1,6 @@
-<h3>Settings</h3>
+<h3><%= t('user.profile.setting') %></h3> 
 <hr/>
-<h4>Organisation Profile</h4>
+<h4><%= t('user.profile.organisation') %></h4>
 <div class="row">
   <div class="col-sm-3">
     <% if current_user.avatar? %>
@@ -12,25 +12,25 @@
     <% end %>
   </div>
   <div class="col-sm-6">
-    <p><b>UserName:</b> <%= current_user.username %> </p>
+    <p><b><%= t('user.profile.username') %></b> <%= current_user.username %> </p>
 
-    <p><b>Name: </b>  <%= current_user.name %> </p>
+    <p><b><%= t('user.profile.name') %> </b>  <%= current_user.name %> </p>
 
-    <p><b>Company :</b> <%= current_user.company %> </p>
+    <p><b><%= t('user.profile.company') %></b> <%= current_user.company %> </p>
 
-    <p><b>Email:</b> <%= current_user.email %> </p>
+    <p><b><%= t('user.profile.email') %></b> <%= current_user.email %> </p>
 
-    <p><b>Country :</b> <%= current_user.country %> </p>
+    <p><b><%= t('user.profile.country') %></b> <%= current_user.country %> </p>
 
-    <p><b>City :</b> <%= current_user.city %> </p>
+    <p><b><%= t('user.profile.city') %></b> <%= current_user.city %> </p>
 
-    <p><b>Zip :</b> <%= current_user.postal_code %> </p>
+    <p><b><%= t('user.profile.zip') %></b> <%= current_user.postal_code %> </p>
 
-    <p><b>Phone :</b> <%= current_user.phone %> </p>
+    <p><b><%= t('user.profile.phone') %></b> <%= current_user.phone %> </p>
   </div>
   <div class="col-sm-1">
     <%= link_to edit_user_registration_path, {class: "btn btn-link"} do %>
-        <span class="glyphicon glyphicon-pencil"></span> Edit Organisation Profile
+        <span class="glyphicon glyphicon-pencil"></span> <%= t('user.profile.button_edit') %>
     <% end %>
   </div>
 </div>

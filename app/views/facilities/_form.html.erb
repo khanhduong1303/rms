@@ -15,35 +15,35 @@
       <%= f.hidden_field :user_id , {value: current_user.id} %>
       <% end %>
         <div class="form-group form-inline">
-          <%= f.label :name %>:
+          <%= f.label :name ,t('facility.index.name') %>:
           <%= f.text_field :name, {class: "form-control", placeholder: 'Name of facility'} %>
         </div>
 
         <div class="form-group form-inline">
-          <%= f.label :facility_category_id, "Categories:" %>
+          <%= f.label :facility_category_id, t('facility.index.category') %>:
           <%= f.collection_select :facility_category_id, @facility_categories, :id, :name, {}, {class: 'form-control'} %>
         </div>
 
         <div class="form-group form-inline">
-          <%= f.label :booking_price %>:
+          <%= f.label :booking_price,t('facility.index.booking_price') %>:
           <%= f.text_field :booking_price, {class: "form-control", placeholder: 'Booking price'} %>
         </div>
 
         <div class="form-group form-inline">
-          <%= f.label :deposit_price %>:
+          <%= f.label :deposit_price , t('facility.index.deposit_price') %>:
           <%= f.text_field :deposit_price, {class: "form-control", placeholder: 'Deposit price'} %>
         </div>
 
         <%= f.file_field :image_path, {id: 'file-box', style: 'display:none'} %>
 
         <div class="form-group">
-          <%= f.label :note %>:
+          <%= f.label :note ,t('facility.index.note') %>:
           <%= f.text_area :note, class: "form-control", rows: 2 %>
         </div>
 
         <div class="text-right">
-          <%= link_to 'Cancel', facilities_path, class: 'btn btn-danger' %>
-          <%= f.submit class: "btn btn-success", value: @facility.persisted? ? 'Save' : 'Add' %>
+          <%= link_to t('facility.index.btn_cancel'), facilities_path, class: 'btn btn-danger' %>
+          <%= f.submit class: "btn btn-success", value: @facility.persisted? ?  t('facility.index.btn_save') :  t('facility.index.btn_add') %>
         </div>
       </div>
     </div>

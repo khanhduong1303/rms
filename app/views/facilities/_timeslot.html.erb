@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Edit TimeSlot</h4>
+  <h4 class="modal-title"><%=  t('facility.index.edit_timeslot') %></h4>
 </div>
 <%= form_for(@timeslot, url: add_timeslot_path, :remote => true, html: {:class => "form-horizontal", :role => "form"}) do |f| %>
     <div class="modal-body">
@@ -7,7 +7,7 @@
         <%= render 'content_timeslot' %>
       </table>
       <%= f.hidden_field :facility_id, {value: @facility.id} %>
-      <%= f.label :slot_start, 'Add TimeSlot' %>
+      <%= f.label :slot_start, t('facility.index.add_timeslot') %>
 
       <div class="row">
         <div class='col-sm-3'>
@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class='col-sm-1'>
-          <p>To</p>
+          <p><%=  t('facility.index.to') %></p>
         </div>
         <div class='col-sm-3'>
           <div class='input-group date' id='datetimepicker2'>
@@ -27,8 +27,8 @@
         </div>
       </div>
       <div class="btn">
-        <%= link_to 'Cancel', '#', {class: 'btn btn-danger', data: {dismiss: 'modal'}} %>
-        <%= f.submit "Submit", class: "btn btn-success" %>
+        <%= link_to  t('facility.index.btn_cancel'), '#', {class: 'btn btn-danger', data: {dismiss: 'modal'}} %>
+        <%= f.submit t('facility.index.btn_add'), class: "btn btn-success" %>
       </div>
     </div>
 <% end %>

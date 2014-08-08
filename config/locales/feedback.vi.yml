@@ -1,0 +1,32 @@
+vi:
+  feedback:
+    index:
+      delete_feedback: "Xóa phản hồi"
+      move_archive: "Di chuyển "
+      restore_feedback: "Phục hồi"
+      current: "Hiện tại"
+      archive: "Lưu trữu"
+      confirm: "Xác nhận"
+      close: "Đóng"
+      btn_cancel: "Hủy"
+      btn_delete: "Xóa"
+      btn_move: "Di chuyển"
+      btn_reply: "Trả lời"
+      btn_submit: "Đồng ý"
+      btn_restore: "Phục hồi"
+      btn_confirm: "Xác nhận"
+      confirm_delete: "Bạn có chắc xóa phản hồi này"
+      feedback_no_reply: "Phản hồi chưa được trả lời"
+      view_reply: "Xem trả lời"
+      reply_to: "Trả lời cho"
+      about: "về vấn đề"
+      please_choose_delete_feedback: "Chọn ít nhất 1 phẩn hồi để xóa"
+      sure_delete_feedback: "Bạn có chắc xóa những phản hồi này"
+      please_choose_restore_feedback: "Chọn ít nhất 1 phản hồi để hồi phục"
+      sure_restore_feedback: "Bạn có chắc muốn hồi phục phản hồi này"
+      please_choose_move_feedback: "Chọn ít nhất 1 phản hồi để lưu trữ"
+      sure_move_feedback: "Bạn có chắc lưu trữ phẩn hồi này"
+
+
+
+

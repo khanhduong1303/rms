@@ -19,7 +19,7 @@
    <% if feedback.feedback_reply %>
    <p><%= feedback.feedback_reply.content %></p>
    <% else %>
-   <p>The Feedback haven't replied </p>
+   <p><%= t('feedback.index.feedback_no_reply') %></p>
    <%end %>
    </div>
 </div>
@@ -28,17 +28,22 @@
 
         <% if feedback.archive %>
          <%= link_to confirm_feedback_path(feedback), { class: 'btn btn-link', remote: true } do %>
-          <span class="glyphicon glyphicon-trash"></span> Delete 
+          <span class="glyphicon glyphicon-trash"></span> 
+          <%= t('feedback.index.btn_delete') %>
         <% end %>
         <% else %>
         <%= link_to create_reply_path(feedback), { class: 'btn btn-link', remote: true } do %>
-          <span class="glyphicon glyphicon-share-alt"></span> Reply
+          <span class="glyphicon glyphicon-share-alt"></span>
+      <%= t('feedback.index.btn_reply') %>
         <% end %>
+        </br>
         <%= link_to confirm_feedback_path(feedback), { class: 'btn btn-link', remote: true } do %>
-          <span class="glyphicon glyphicon-trash"></span> Delete 
-        <% end %>
+          <span class="glyphicon glyphicon-trash"></span>
+          <%= t('feedback.index.btn_delete') %>
+        <% end %></br>
         <%= link_to "#", { class: 'btn btn-link view', remote: true} do %>
-          <span class="glyphicon glyphicon-eye-open"></span> View Reply
+          <span class="glyphicon glyphicon-eye-open"></span> 
+        <%= t('feedback.index.view_reply') %> 
         <% end %>
 
         <% end %>

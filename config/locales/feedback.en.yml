@@ -1,0 +1,30 @@
+en:
+  feedback:
+    index:
+      delete_feedback: "Delete Feedbacks"
+      move_archive: "Move to Archive"
+      restore_feedback: "Restore from Archive"
+      current: "Current"
+      archive: "Archive"
+      confirm: "Confirmation"
+      close: "Close"
+      btn_cancel: "Cancel"
+      btn_delete: "Delete"
+      btn_move: "Move"
+      btn_reply: "Reply"
+      btn_submit: "Submit"
+      btn_restore: "Restore"
+      btn_confirm: "Confirm"
+      confirm_delete: "Are you sure to delete this feedbacks"
+      feedback_no_reply: "The Feedback haven't replied"
+      view_reply: "View Reply"
+      reply_to: "Reply to"
+      about: "about"
+      please_choose_delete_feedback: "Please choose atleast one feedback to delete!"
+      sure_delete_feedback: "Are you sure to delete these feedbacks?"
+      please_choose_restore_feedback: "Please choose atleast 1 feedback to restore!"
+      sure_restore_feedback: "Are you sure to restore these feedbacks?"
+      please_choose_move_feedback: "Please choose atleast 1 feedback to move!"
+      sure_move_feedback: "Are you sure to move these feedbacks?"
+
+
