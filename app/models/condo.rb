@@ -13,7 +13,6 @@ class Condo < ActiveRecord::Base
   has_many :guard_house_images, through: :guard_houses
   has_many :service_categories, dependent: :destroy
   has_many :services, through: :service_category
-
-
+  has_many :courses, dependent: :destroy
 end
 

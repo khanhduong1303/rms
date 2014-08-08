@@ -1,11 +1,11 @@
 <div class="modal-header">
-  <h4 class="modal-title">Delete</h4>
+  <h4 class="modal-title"><%= t('bookings.btn_delete') %></h4>
 </div>
 <div class="modal-body">
-  <p>Confirm delete booking?</p>
+  <p><%= t('bookings.view') %></p>
 </div>
 <div class="modal-footer">
-  <%= link_to 'Confirm', '#', {onclick: 'deleteBooking()', class: 'btn btn-danger', remote: true} %>
-  <%= link_to 'Cancel', '#', {class: 'btn btn-default', data: {dismiss: 'modal'}} %>
+  <%= link_to t('bookings.btn_confirm'), '#', {onclick: 'deleteBooking()', class: 'btn btn-danger', remote: true} %>
+  <%= link_to t('bookings.btn_cancel'), '#', {class: 'btn btn-default', data: {dismiss: 'modal'}} %>
 </div>
 

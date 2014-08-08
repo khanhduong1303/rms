@@ -2,6 +2,7 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:update, :destroy]
   #before_action :set_bookings, only: [:index]
   before_action :set_hightlight
+  included ActionController::MimeResponds
 authorize_resource
   def index
     session[:category_id_temp]='all';
@@ -12,7 +13,9 @@ authorize_resource
       @users.each do |u|
         if !u.bookings.blank?
           u.bookings.each do |book|
-            @bookings << book
+            if book.time_slot.facility.user_id==current_user.id.to_i
+              @bookings << book
+            end
           end
         end
       end
@@ -42,6 +45,14 @@ authorize_resource
   def confirm
   end
 
+  def getLanguage
+    if session[:language].nil? || session[:language]=='en'
+      render json: {val:'dataTables.english.lang'}
+    else
+      render json: {val:'dataTables.vietnamese.lang'}
+    end
+  end
+
   def filter
     category_id = params[:id]
     session[:category_id_temp]=category_id;
@@ -53,7 +64,9 @@ authorize_resource
         @users.each do |u|
           if !u.bookings.blank?
             u.bookings.each do |book|
-              @bookings << book
+              if book.time_slot.facility.user_id==current_user.id.to_i
+                @bookings << book
+              end
             end
           end
         end
@@ -66,7 +79,7 @@ authorize_resource
         @users.each do |u|
           if !u.bookings.blank?
             u.bookings.each do |book|
-              if book.time_slot.facility.facility_category_id==category_id.to_f
+              if book.time_slot.facility.facility_category_id==category_id.to_i && book.time_slot.facility.user_id==current_user.id.to_i
                 @bookings << book
               end
             end

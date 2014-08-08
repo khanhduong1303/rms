@@ -1,3 +1,5 @@
+$('#edit-guard-house .btn-link').hide()
+$('#edit-guard-house').append('<h3><%=t('guard_house.edit_guard_house_page')%></h3>')
 $('#content-guard-house').html('<%= escape_javascript render 'form' %>')
 $('#guard-house-image-content').html('<%= escape_javascript render 'guard_house_images' %>')
 

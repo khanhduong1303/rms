@@ -4,7 +4,7 @@ $("ul.errors").html('')
 $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
 <% end %>
 <% else %>
-$('#notifications').html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>House Rule was successfully <%= !@persisted ? 'created!' : 'updated!' %></div>')
+$('#notifications').html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><%= !@persisted ? t('.create_success') : t('.update_success') %></div>')
 $('#new-house-rule').html('')
 $('#list-house-rule').html('<%= escape_javascript(render 'index') %>')
 

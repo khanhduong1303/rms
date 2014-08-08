@@ -14,13 +14,13 @@
     <% end %>
     <%= f.hidden_field :user_id, {value: current_user.id} %>
     <div class="form-group">
-      <%= f.label 'Name:', :class => "col-sm-2 control-label" %>
+      <%= f.label t('events.name'), :class => "col-sm-2 control-label" %>
       <div class="col-sm-5">
         <%= f.text_field :name, :class => "form-control" %>
       </div>
     </div>
     <div class="form-group">
-      <%= f.label 'Date:', :class => "col-sm-2 control-label" %>
+      <%= f.label t('events.date'), :class => "col-sm-2 control-label" %>
       <div class="col-sm-5">
         <div class="input-group date" id='datetime-picker' data-date-format="DD/MM/YYYY">
           <%= f.text_field :date, {id: 'textFieldDate', class: "form-control", placeholder: 'DD/MM/YYYY', value: @event.date.try(:strftime, "%d/%m/%Y"), readOnly: true} %>
@@ -29,27 +29,27 @@
       </div>
     </div>
     <div class="form-group">
-      <%= f.label 'Time:', :class => "col-sm-2 control-label" %>
+      <%= f.label t('events.time'), :class => "col-sm-2 control-label" %>
       <div class="col-sm-5">
         <%= f.time_select :event_start, :class => "form-control" %>
         To  <%= f.time_select :event_end, :class => "form-control" %>
       </div>
     </div>
     <div class="form-group">
-      <%= f.label :location, :class => "col-sm-2 control-label" %>
+      <%= f.label t('events.location'), :class => "col-sm-2 control-label" %>
       <div class="col-sm-5">
         <%= f.text_field :location, :class => "form-control" %>
       </div>
     </div>
     <div class="form-group">
-      <%= f.label :organiser, :class => "col-sm-2 control-label" %>
+      <%= f.label t('events.organiser'), :class => "col-sm-2 control-label" %>
       <div class="col-sm-5">
         <%= f.text_field :organiser, :class => "form-control" %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :description, :class => "col-sm-2 control-label" %>
+      <%= f.label t('events.description'), :class => "col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= f.text_area :description, :class => "form-control", rows: 2 %>
       </div>
@@ -58,13 +58,13 @@
 
     <% if  @event.persisted? %>
         <div class="form-group">
-          <%= f.label 'Photos:', :class => "col-sm-2 control-label" %>
+          <%= f.label t('events.photo'), :class => "col-sm-2 control-label" %>
           <br>
 
           <div class="col-sm-10">
             <%= f.file_field :image, :multiple => true %>
             <br>
-            <button id="addMorePhoto" type="button" class="btn btn-default">Add more photo</button>
+            <button id="addMorePhoto" type="button" class="btn btn-default"><%= t('events.add_more_photo')%></button>
           </div>
           <div class="col-sm-12 paddingTop20px">
             <div class="div-frame margin-auto">
@@ -81,21 +81,21 @@
         </div>
     <% else %>
         <div class="form-group">
-          <%= f.label 'Upload photos:', :class => "col-sm-2 control-label" %>
+          <%= f.label t('events.upload_photo'), :class => "col-sm-2 control-label" %>
           <br>
 
           <div class="col-sm-10">
             <%= f.file_field :image, :multiple => true %>
             <br>
-            <button id="addMorePhoto" type="button" class="btn btn-default">Add more photo</button>
+            <button id="addMorePhoto" type="button" class="btn btn-default"><%=t('events.add_more_photo')%></button>
           </div>
         </div>
     <% end %>
 
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-8 align-center">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        <%= f.submit :class => "btn btn-success", :value => @event.persisted? ? 'Save' : 'Submit' %>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><%= t('events.cancel')%></button>
+        <%= f.submit :class => "btn btn-success", :value => @event.persisted? ? t('events.save') : t('events.submit') %>
       </div>
     </div>
 <% end %>

@@ -1,0 +1,11 @@
+en:
+  guard_house:
+    edit_guard_house: 'Edit guard house'
+    guard_house_on_duty: 'Guard house on duty'
+    no_content: 'No content'
+    upload_photo: 'Upload photos: '
+    add_more_photo: 'Add more photo'
+    close: 'Close'
+    telephone: 'Telephone: '
+    edit_guard_house_page: 'Edit guard house page'
+    delete: 'Delete'

@@ -48,7 +48,7 @@ rescue_from CanCan::AccessDenied do |exception|
 
   private
   def set_user_language
-    I18n.locale = 'vi'
+    I18n.locale = !session[:language].nil? ? session[:language]:'en'
   end
 
 end

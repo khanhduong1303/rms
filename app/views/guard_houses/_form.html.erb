@@ -11,7 +11,8 @@
   </div>
   <br>
   <div class="form-group form-inline">
-    <%= f.label 'Tele' + :phone.to_s + ': ' %>
+    <%#= f.label 'Tele' + :phone.to_s + ': ' %>
+    <%= f.label t('guard_house.telephone')%>
     <%= f.text_field :phone, { id: 'phone-text-input', class: 'form-control' } %>
   </div>
 <% end %>

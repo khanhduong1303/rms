@@ -1,9 +1,9 @@
 <div class="">
-  <b class="floatLeft">Guards on duty</b>
+  <b class="floatLeft"><%= t('guard_house.guard_house_on_duty')%></b>
 
   <div class="text-right">
-    <button type="button" id = 'modal-guard-house-image' class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">Add more
-      photo
+    <button type="button" id = 'modal-guard-house-image' class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">
+      <%= t('guard_house.add_more_photo')%>
     </button>
   </div>
 </div>
@@ -21,7 +21,7 @@
                     <%= best_in_place guard_house_image, :name,url:'/home', :type => :input, :nil => "Click to edit!" %>
 
                     <br><br>
-                    <%= check_box_tag 'image_id[]', guard_house_image.id %> Delete
+                    <%= check_box_tag 'image_id[]', guard_house_image.id %> <%= t('guard_house.delete')%>
                   </div>
               <% end %>
             </div>
@@ -29,8 +29,8 @@
         </div>
     <% end %>
         <div class="text-center">
-        <%= f.submit "Cancel", :class => "btn btn-danger" %>
-        <%= f.submit "Submit", :class => "btn btn-success" %>
+        <%= f.submit t('events.cancel'), :class => "btn btn-danger" %>
+        <%= f.submit t('events.submit'), :class => "btn btn-success" %>
         </div>
         <% end %>
   </div>

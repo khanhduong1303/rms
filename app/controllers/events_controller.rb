@@ -5,7 +5,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.where(:user_id => current_user.id)
+    if current_user.roles.where(role_name: 'Admin').size > 0
+      @events = Event.all
+      else
+        @events = Event.where(:user_id => current_user.id)
+    end
   end
 
   # GET /events/1

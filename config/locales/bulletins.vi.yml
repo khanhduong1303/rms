@@ -1,0 +1,25 @@
+vi:
+  bulletins:
+    view: 'Hiển thị:'
+    all: 'Tất cả'
+    add_bulletin: 'Thêm Thông báo'
+    delete_bulletin: 'Xoá thông báo'
+    edit_bulletin: 'Sửa thông báo'
+    view_more: 'Hiển thị chi tiết'
+    please_click_view_more: '<b>... (còn tiếp, vui lòng chọn Hiển thị chi tiết)</b>'
+    title: 'Tiêu đề'
+    add: 'Thêm'
+    save: 'Lưu'
+    cancel: 'Huỷ bỏ'
+    confirm: 'Xác nhận'
+    confirm_delete_bulletin: 'Xác nhận xoá thông báo?'
+    add_success: 'Thông báo đã được thêm thành công!'
+    update_success: 'Thông báo đã được sửa thành công'
+    delete_success: 'Thông báo đã được xoá thành công!'
+  helpers:
+    label:
+      bulletin:
+        date: 'Ngày:'
+        content: 'Nội dung:'
+        send_notify: 'Gửi thông báo đến cư dân qua EleApps'
+

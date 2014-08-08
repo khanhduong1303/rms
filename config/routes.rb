@@ -29,12 +29,12 @@ Rails.application.routes.draw do
   resources :admins , :only => [:index , :new]
   get 'admins/roles' , to: 'roles#index' , as: 'roles'
   get 'admins/confirm_drop/:id' , to: 'roles#confirm_drop' , as: 'confirm_drop'
-  delete 'admins/drop_role/:id',to: 'roles#drop_role' , as: 'drop_role' 
-  get 'admins/roles/show' , to: 'roles#show' 
+  delete 'admins/drop_role/:id',to: 'roles#drop_role' , as: 'drop_role'
+  get 'admins/roles/show' , to: 'roles#show'
   get 'admins/roles/rename' , to: 'roles#rename_role'
-  get 'admins/roles/new' , to: 'roles#new' , as: 'new_roles' 
-  post 'admins/roles/new' , to: 'roles#create' , as: 'create_roles' 
-  post 'admins/remove_multiple' , to: 'roles#remove_multiple' , as: 'remove_multiple' 
+  get 'admins/roles/new' , to: 'roles#new' , as: 'new_roles'
+  post 'admins/roles/new' , to: 'roles#create' , as: 'create_roles'
+  post 'admins/remove_multiple' , to: 'roles#remove_multiple' , as: 'remove_multiple'
   get 'admins/roles/add/:id' , to: 'roles#add_permission' , as: 'add_permission'
   put 'admins/process' , to: 'roles#process_add_permission' , as: 'process_role'
   get 'roles/cofirm/:rid/:pid', to: 'roles#confirm_remove' , as: 'confirm_remove'
@@ -43,8 +43,8 @@ Rails.application.routes.draw do
   get'admin/delete_confirm/:id' ,to: 'admins#confirm' , as: "confirm_delete"
   delete'admin/delete_user/:id' ,to: 'admins#destroy' , as: "delete_user"
   post 'admin/add_role' , to: 'admins#process_add_role' , as: "processs_add_role"
-  delete 'admin/remove_role/:uid/:rid' , to: 'admins#remove_role' , as: "remove_role" 
-  post  'admin/change_active'  , to: 'admins#change_active' 
+  delete 'admin/remove_role/:uid/:rid' , to: 'admins#remove_role' , as: "remove_role"
+  post  'admin/change_active'  , to: 'admins#change_active'
   post  'admin/create_user' , to: "admins#create_user" , as: "create_user"
   post 'admins/destroy_multiple' , to: "admins#destroy_multiple"
   resources :condos
@@ -88,6 +88,7 @@ Rails.application.routes.draw do
       post 'deleteColection'
       post 'updateStatus'
       get 'confirm'
+      get 'getLanguage'
     end
   end
 
@@ -132,7 +133,9 @@ Rails.application.routes.draw do
 
   resources :service_categories, only: []
 
+  resources :courses, only: []
 
+  resources :course_users, only: []
 
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".
@@ -150,7 +153,11 @@ Rails.application.routes.draw do
 #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
 # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :homes, only: [:index]
+  resources :homes, only: [:index,:setLanguage] do
+    collection do
+      post 'setLanguage' => 'homes#setLanguage'
+    end
+  end
 
 # Example resource route with options:
 #   resources :products do
@@ -215,7 +222,7 @@ Rails.application.routes.draw do
       end
     end
 
-    
+
 
     resource :form, only: [], path: 'api' do
       collection do
@@ -276,6 +283,23 @@ Rails.application.routes.draw do
       end
       member do
         get 'service_detail' => 'services#show'
+      end
+    end
+
+    resource :course, only: [], path: 'api' do
+      collection do
+        get 'courses' => 'courses#index'
+      end
+      member do
+        get 'course_detail' => 'courses#show'
+      end
+    end
+
+    resource :course_user, only: [], path: 'api' do
+      member do
+        post 'join_course' => 'course_users#create'
+        get 'cancel' => 'course_users#destroy'
+        get 'has_join' => 'course_users#show'
       end
     end
 

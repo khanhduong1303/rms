@@ -1,11 +1,11 @@
 <div class="modal-header">
-  <h4 class="modal-title">Delete</h4>
+  <h4 class="modal-title"><%= t('.confirm') %></h4>
 </div>
 <div class="modal-body">
-  <span>Confirm delete form?</span>
+  <span><%= t('.confirm_delete_form') %></span>
 </div>
 <div class="modal-footer">
-  <%= link_to 'Confirm', form_path(@form), {class: 'btn btn-danger', method: :delete, remote: true} %>
-  <%= link_to 'Cancel', '#', {class: 'btn btn-default', data: {dismiss: 'modal'}} %>
+  <%= link_to t('.destroy'), form_path(@form), {class: 'btn btn-danger', method: :delete, remote: true} %>
+  <%= link_to t('.cancel'), '#', {class: 'btn btn-default', data: {dismiss: 'modal'}} %>
 </div>
 

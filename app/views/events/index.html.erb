@@ -1,7 +1,7 @@
 <div  id="loadbody">
   <div class="text-right">
   <%= link_to new_event_path, { id: 'addNewEvent', class: 'btn btn-link', remote: true } do %>
-    <span class="glyphicon glyphicon-plus"></span> Add New Event
+    <span class="glyphicon glyphicon-plus"></span><%= t('events.add_new_event') %>
   <% end %>
   </div>
   <hr>
@@ -24,7 +24,7 @@
 
           <div class="row">
             <div class="col-sm-2">
-              Date:
+              <%=t('events.date')%>
             </div>
             <div class="col-sm-10">
               <%= event.date.strftime '%d/%m/%Y' %>
@@ -33,7 +33,7 @@
 
           <div class="row">
             <div class="col-sm-2">
-              Time:
+              <%=t('events.time')%>
             </div>
             <div class="col-sm-10">
               <%= event.event_start.strftime('%I:%M %P') if !event.event_start.nil? %>
@@ -43,7 +43,7 @@
 
           <div class="row">
             <div class="col-sm-2">
-              Location:
+              <%=t('events.location')%>
             </div>
             <div class="col-sm-10">
               <%= event.location %>
@@ -52,7 +52,7 @@
 
           <div class="row">
             <div class="col-sm-2">
-              Organiser:
+              <%=t('events.organiser')%>
             </div>
             <div class="col-sm-10">
               <%= event.organiser %>
@@ -61,7 +61,7 @@
 
           <div class="row">
             <div class="col-sm-2">
-              Description:
+              <%=t('events.description')%>
             </div>
             <div class="col-sm-10">
               <%= event.description.truncate(150, separator: ' ', omission: '... (click "View more" to see detail)') %>
@@ -69,11 +69,11 @@
           </div>
         </div>
         <div class="col-sm-2">
-          <a class="glyphicon glyphicon-trash"><%= link_to ' Delete event', event, method: :delete, data: {confirm: 'Confirm delete Event?'} %></a>
+          <a class="glyphicon glyphicon-trash"><%= link_to t('events.delete_event'), event, method: :delete, data: {confirm: t('events.confirm_delete_event')} %></a>
           <br>
-          <a class="glyphicon glyphicon-pencil"><%= link_to ' Edit event', edit_event_path(event), :remote => true %></a>
+          <a class="glyphicon glyphicon-pencil"><%= link_to t('events.edit_event'), edit_event_path(event), :remote => true %></a>
           <br><br>
-          <%= link_to 'Show more', event, :class => 'btn btn-info', :remote => true %>
+          <%= link_to t('events.show_more'), event, :class => 'btn btn-info', :remote => true %>
         </div>
       </div>
       <hr>
@@ -86,7 +86,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">New event</h4>
+        <h4 class="modal-title" id="myModalLabel"><%= t('events.add_new_event') %></h4>
       </div>
       <div class="modal-body" id="loadNew">
         ...

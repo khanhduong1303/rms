@@ -23,16 +23,24 @@
 //= require best_in_place
 //= require best_in_place.purr
 //= require_tree .
-
+var language;
 jQuery(function () {
-    $('.datatable').dataTable({
-        // sDom: 'Rlfrtip',
-        bProcessing: true,
-        bDeferRender: true,
-        sAjaxSource: $('.datatable').data('source'),
-        sPaginationType: "full_numbers",
-        bStateSave: true
+
+    $.get('/bookings/getLanguage',function(data){
+        language = data.val
+        $('.datatable').dataTable({
+            "language": {
+                "url": language
+            },
+            // sDom: 'Rlfrtip',
+            bProcessing: true,
+            bDeferRender: true,
+            sAjaxSource: $('.datatable').data('source'),
+            sPaginationType: "full_numbers",
+            bStateSave: true
+        });
     });
+
 //    add bootstrap in best_in_place
     $('.best_in_place').best_in_place()
     $(document).on('click','.in_place_class',function(){

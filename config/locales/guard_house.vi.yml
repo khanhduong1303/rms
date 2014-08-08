@@ -1,0 +1,11 @@
+vi:
+  guard_house:
+    edit_guard_house: 'Chỉnh sửa nhà bảo vệ'
+    guard_house_on_duty: 'Bảo vệ'
+    no_content: 'Rỗng'
+    upload_photo: 'Tải hình ảnh lên: '
+    add_more_photo: 'Thêm hình ảnh'
+    close: 'Đóng'
+    telephone: 'Điện thoại: '
+    edit_guard_house_page: 'Trang chỉnh sửa nhà bảo vệ'
+    delete: 'Xóa'

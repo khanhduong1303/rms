@@ -3,17 +3,17 @@
 
     <%= f.hidden_field :condo_id, {value: current_user.condo_id} %>
     <div class="form-group" style="width:50%">
-      <%= f.text_field :title, {class: 'form-control', placeholder: 'Title'} %>
+      <%= f.text_field :title, {class: 'form-control', placeholder: t('.title') } %>
     </div>
 
     <div class="form-group">
-      <%= f.label :content %>:
+      <%= f.label :content %>
       <%= f.text_area :content, class: "form-control", rows: 5 %>
     </div>
 
     <div class="text-right">
-      <%= link_to 'Cancel', house_rules_path, class: 'btn btn-danger' %>
-      <%= f.submit class: "btn btn-success", value: @house_rule.persisted? ? 'Save' : 'Add' %>
+      <%= link_to t('.cancel'), house_rules_path, class: 'btn btn-danger' %>
+      <%= f.submit class: "btn btn-success", value: @house_rule.persisted? ? t('.update') : t('.create') %>
     </div>
     </div>
 <% end %>
