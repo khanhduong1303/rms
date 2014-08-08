@@ -4,14 +4,14 @@
         <div class="row">
           <div class="col-lg-10 col-md-10 col-sm-9 col-xs-8">
             <p><b><%= form.title %></b></p>
-            <%= link_to 'View Form', form_path(form), {class: 'btn btn-default', remote: true} %>
+            <%= link_to t('.show'), form_path(form), {class: 'btn btn-default', remote: true} %>
           </div>
           <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
             <%= link_to confirm_form_path(form), {class: 'btn btn-link', remote: true} do %>
-                <span class="glyphicon glyphicon-trash"></span> Delete Form
+                <span class="glyphicon glyphicon-trash"></span> <%= t('.delete') %>
             <% end %>
             <%= link_to edit_form_path(form), {class: 'btn btn-link', remote: true} do %>
-                <span class="glyphicon glyphicon-trash"></span> Edit Form
+                <span class="glyphicon glyphicon-trash"></span> <%= t('.edit') %>
             <% end %>
           </div>
         </div>

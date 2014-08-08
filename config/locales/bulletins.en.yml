@@ -1,0 +1,25 @@
+en:
+  bulletins:
+    view: 'View:'
+    all: 'All'
+    add_bulletin: 'Add New Bulletin'
+    delete_bulletin: 'Delete Bulletin'
+    edit_bulletin: 'Edit Bulletin'
+    view_more: 'View More'
+    please_click_view_more: '<b>... (continued, please click View More)</b>'
+    title: 'Title'
+    add: 'Add'
+    save: 'Save'
+    cancel: 'Cancel'
+    confirm: 'Confirm'
+    confirm_delete_bulletin: 'Confirm delete bulletin?'
+    add_success: 'Bulletin was successfully created'
+    update_success: 'Bulletin was successfully updated'
+    delete_success: 'Bulletin was successfully destroyed!'
+  helpers:
+    label:
+      bulletin:
+        date: 'Date:'
+        content: 'Content:'
+        send_notify: 'Send notification to resident through EleApps'
+

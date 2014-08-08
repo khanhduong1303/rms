@@ -1,0 +1,13 @@
+vi:
+  facility_statuses:
+    form:
+      create: 'Chấp nhận'
+      cancel: 'Huỷ bỏ'
+
+  helpers:
+    label:
+      facility_status:
+        close_from: 'Đóng từ'
+        close_to: 'Đóng đến'
+        reason: 'Lý do đóng cửa:'
+

@@ -2,9 +2,9 @@
   <button type="button" class="close" data-dismiss="modal">
     <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
   <% if @form.persisted? %>
-      <span>Edit Form</span>
+      <span><%= t('forms.index.edit') %></span>
   <% else %>
-      <span>Add New Form</span>
+      <span><%= t('forms.index.add') %></span>
   <% end %>
 </div>
 
@@ -13,27 +13,27 @@
       <ul class="errors"></ul>
 
       <div class="form-group form-inline">
-        <label>Categories:</label>
+        <label><%= t('.categories') %></label>
         <%= f.collection_select :form_category_id, @form_categories, :id, :name, {}, {class: 'form-control'} %>
       </div>
 
       <div class="form-group form-inline">
-        <%= f.label :title %>:
+        <%= f.label :title %>
         <%= f.text_field :title, {class: 'form-control'} %>
       </div>
 
       <%= f.file_field :form_path, {id: 'file-box', class: 'hidden'} %>
       <div class="form-group">
-        <label>Upload form:</label>
+        <%= f.label :form_path_file_name %>
 
         <div class="input-group">
           <%= f.text_field :form_path_file_name, {id: 'input-file', class: 'form-control', readonly: true} %>
-          <span class="btn btn-default input-group-addon btn-browse">Browse</span>
+          <span class="btn btn-default input-group-addon btn-browse"><%= t('.browse') %></span>
         </div>
       </div>
 
       <div class="form-button">
-        <%= f.submit class: 'btn btn-success', value: @form.persisted? ? 'Save' : 'Add' %>
+        <%= f.submit class: 'btn btn-success', value: @form.persisted? ? t('.update') : t('.create') %>
       </div>
   <% end %>
 </div>

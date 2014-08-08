@@ -1,0 +1,33 @@
+en:
+  house_rules:
+    index:
+      add: 'Add New House Rule'
+      delete: 'Delete House Rule'
+      edit: 'Edit House Rule'
+      show: 'View More'
+      please_click_view_more: '<b>... (continued, please click View More)</b>'
+
+    form:
+      title: 'Title'
+      create: 'Add'
+      update: 'Save'
+      cancel: 'Cancel'
+
+    save:
+      create_success: 'House rule was successfully created'
+      update_success: 'House rule was successfully updated'
+
+    confirm:
+      confirm: 'Delete'
+      confirm_delete_house_rule: 'Confirm delete house rule?'
+      destroy: 'Confirm'
+      cancel: 'Cancel'
+
+    destroy:
+      destroy_success: 'House rule was successfully destroyed!'
+
+  helpers:
+    label:
+      house_rule:
+        content: 'Content:'
+

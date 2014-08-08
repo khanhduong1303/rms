@@ -1,0 +1,13 @@
+en:
+  facility_statuses:
+    form:
+      create: 'Submit'
+      cancel: 'Cancel'
+
+  helpers:
+    label:
+      facility_status:
+        close_from: 'Close form'
+        close_to: 'Close to'
+        reason: 'Reasons for Closure'
+

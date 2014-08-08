@@ -1,0 +1,33 @@
+vi:
+  house_rules:
+    index:
+      add: 'Thêm Qui định'
+      delete: 'Xoá Qui định'
+      edit: 'Sửa Qui định'
+      show: 'Hiển thị chi tiêt'
+      please_click_view_more: '<b>... (còn tiếp, vui lòng nhấn Hiển thị chi tiết)</b>'
+
+    form:
+      title: 'Tiêu đề'
+      create: 'Thêm'
+      update: 'Lưu'
+      cancel: 'Huỷ bỏ'
+
+    save:
+      create_success: 'Qui định đã thêm thành công!'
+      update_success: 'Qui định đã cập nhật thành công!'
+
+    confirm:
+      confirm: 'Xoá'
+      confirm_delete_house_rule: 'Xác nhận xoá Qui định?'
+      destroy: 'Xác nhận'
+      cancel: 'Huỷ bỏ'
+
+    destroy:
+      destroy_success: 'Qui định đã xoá thành công!'
+
+  helpers:
+    label:
+      house_rule:
+        content: 'Nội dung:'
+

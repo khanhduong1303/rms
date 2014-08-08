@@ -1,0 +1,36 @@
+vi:
+  forms:
+    index:
+      view: 'Hiển thị:'
+      all: 'Tất cả'
+      add: 'Thêm Biểu mẫu'
+      delete: 'Xoá Biểu mẫu'
+      edit: 'Sửa Biểu mẫu'
+      show: 'Hiển thị Biểu mẫu'
+
+    form:
+      categories: 'Phân loại:'
+      browse: 'Duyệt'
+      create: 'Thêm'
+      update: 'Lưu'
+      cancel: 'Huỷ bỏ'
+
+    save:
+      create_success: 'Biểu mẫu đã được thêm thành công!'
+      update_success: 'Biểu mẫu đã được cập nhật thành công!'
+
+    confirm:
+      confirm: 'Xoá'
+      confirm_delete_form: 'Xác nhận xoá biểu mẫu?'
+      destroy: 'Xác nhận'
+      cancel: 'Huỷ bỏ'
+
+    destroy:
+      destroy_success: 'Biễu mẫu đã được xoá thành công!'
+
+  helpers:
+    label:
+      form:
+        title: 'Tiêu đề:'
+        form_path_file_name: 'Tải lên biểu mẫu:'
+
