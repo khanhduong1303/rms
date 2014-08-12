@@ -45,9 +45,4 @@ class Api::PrivilegesController < ApplicationController
       # render json: {:status=>"Fail", :message=>'Join fail', :data=>nil}
     end
   end
-
-  private
-  def PublicFunction.data_json status, message, total, results=nil
-    return {:status => status, :message => message, :total => total, :results => results}
-  end
 end
