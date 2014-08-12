@@ -1,9 +1,10 @@
 class BookingsController < ApplicationController
+  layout 'menu'
   before_action :set_booking, only: [:update, :destroy]
   #before_action :set_bookings, only: [:index]
   before_action :set_hightlight
   included ActionController::MimeResponds
-authorize_resource
+  authorize_resource
   def index
     session[:category_id_temp]='all';
     @users = User.where(condo_id: current_user.condo_id)
