@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       post 'log_out', to: 'sessions#sign_out', as: 'log_out'
       get 'profile', to: 'registrations#profile', as: 'profile'
       # devise_for :users
+      post 'sign_up' , to: 'registrations#create'
       post 'log_in', to: 'sessions#sign_in'
 
     end
