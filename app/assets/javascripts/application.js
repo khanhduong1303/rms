@@ -28,6 +28,8 @@ jQuery(function () {
 
     $.get('/bookings/getLanguage',function(data){
         language = data.val
+    });
+
         $('.datatable').dataTable({
             "language": {
                 "url": language
@@ -39,7 +41,6 @@ jQuery(function () {
             sPaginationType: "full_numbers",
             bStateSave: true
         });
-    });
 
 //    add bootstrap in best_in_place
     $('.best_in_place').best_in_place()

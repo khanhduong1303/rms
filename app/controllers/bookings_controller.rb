@@ -1,5 +1,4 @@
 class BookingsController < ApplicationController
-  layout 'menu'
   before_action :set_booking, only: [:update, :destroy]
   #before_action :set_bookings, only: [:index]
   before_action :set_hightlight
