@@ -128,7 +128,6 @@ ActiveRecord::Schema.define(version: 20140808030638) do
   end
 
   create_table "facilities", force: true do |t|
-    t.integer  "user_id",                                null: false
     t.string   "name",                                   null: false
     t.float    "booking_price",                          null: false
     t.float    "deposit_price",                          null: false
