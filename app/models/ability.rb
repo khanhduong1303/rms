@@ -19,6 +19,8 @@ class Ability
      
     can :manage , :session
     can :manage , :registration
+    can :setLanguage , :home
+    can :getLanguage , Booking 
 
 
 

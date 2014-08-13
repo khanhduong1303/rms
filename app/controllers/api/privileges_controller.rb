@@ -4,17 +4,25 @@ class Api::PrivilegesController < ApplicationController
   def index
     limit = params[:limit].to_i
     page = params[:page].to_i
+    if params[:user_id].nil?
+      return render json: PublicFunction.data_json('failed', 'Missing user_id parameter', 0, nil)
+    end
+    @users = Condo.find(User.find(params[:user_id]).condo_id).users
+    arr_group_id  = []
+    @users.each do |user|
+      arr_group_id << user.id
+    end
     if page < 1 or limit < 1
-      @privileges = Privilege.limit(10)
+      @privileges = Privilege.limit(10).where("user_id in (#{arr_group_id.join(',')})")
       return render json: PublicFunction.data_json('success', 'Privilege list', @privileges.size, @privileges)
     end
 
     if limit > 0 and page > 0
-      @privileges = Privilege.limit(limit).offset(page*limit-limit)
+      @privileges = Privilege.limit(limit).offset(page*limit-limit).where("user_id in (#{arr_group_id.join(',')})")
       if @privileges.size > 0
         return render json: PublicFunction.data_json('success', 'Privilege list', @privileges.size, @privileges)
       else
-        @privileges = Privilege.limit(10)
+        @privileges = Privilege.limit(10).where("user_id in (#{arr_group_id.join(',')})")
         return render json: PublicFunction.data_json('success', 'Privilege list', @privileges.size, @privileges)
       end
     end
@@ -23,9 +31,9 @@ class Api::PrivilegesController < ApplicationController
   def privilege_detail
     privilege_id = params[:privilege_id]
     if Privilege.where(:id => privilege_id).size > 0
-      render json: PublicFunction.data_json('success', 'Show events', 1, Privilege.find(privilege_id))
+      render json: PublicFunction.data_json('success', 'Show Privilege', 1, Privilege.find(privilege_id))
     else
-      render json: PublicFunction.data_json('failed', 'Event not found', 0, nil)
+      render json: PublicFunction.data_json('failed', 'Privilege not found', 0, nil)
     end
   end
 
@@ -37,6 +45,9 @@ class Api::PrivilegesController < ApplicationController
       if User.where(:id => params[:user_id]).size < 1
         return render json: PublicFunction.data_json('failed', 'User not found', 0, nil)
       end
+      if PrivilegeUser.where(user_id: params[:user_id], privilege_id: params[:privilege_id]).size > 0
+        return render json: PublicFunction.data_json('failed', 'Can\'t redeem again', 0, nil)
+      end
       @redeem = PrivilegeUser.create(:user_id => params[:user_id], :privilege_id => params[:privilege_id])
       return render json: PublicFunction.data_json('success', 'Redeem success', 1, @redeem)
       # render json: {:status=>"Success", :message=>'Joined', :data=>@join_event}
@@ -44,10 +55,5 @@ class Api::PrivilegesController < ApplicationController
       render json: PublicFunction.data_json('failed', 'Missing parameter', 0, nil)
       # render json: {:status=>"Fail", :message=>'Join fail', :data=>nil}
     end
-  end
-
-  private
-  def PublicFunction.data_json status, message, total, results=nil
-    return {:status => status, :message => message, :total => total, :results => results}
   end
 end
