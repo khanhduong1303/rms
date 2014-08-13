@@ -23,9 +23,9 @@ class Api::PrivilegesController < ApplicationController
   def privilege_detail
     privilege_id = params[:privilege_id]
     if Privilege.where(:id => privilege_id).size > 0
-      render json: PublicFunction.data_json('success', 'Show events', 1, Privilege.find(privilege_id))
+      render json: PublicFunction.data_json('success', 'Show Privilege', 1, Privilege.find(privilege_id))
     else
-      render json: PublicFunction.data_json('failed', 'Event not found', 0, nil)
+      render json: PublicFunction.data_json('failed', 'Privilege not found', 0, nil)
     end
   end
 
