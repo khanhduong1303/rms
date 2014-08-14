@@ -13,16 +13,19 @@ class Api::PrivilegesController < ApplicationController
       arr_group_id << user.id
     end
     if page < 1 or limit < 1
-      @privileges = Privilege.limit(10).where("user_id in (#{arr_group_id.join(',')})")
+      @results = Privilege.limit(10).where("user_id in (#{arr_group_id.join(',')})")
+      @privileges = process_results @results, []
       return render json: PublicFunction.data_json('success', 'Privilege list', @privileges.size, @privileges)
     end
 
     if limit > 0 and page > 0
-      @privileges = Privilege.limit(limit).offset(page*limit-limit).where("user_id in (#{arr_group_id.join(',')})")
+      @results = Privilege.limit(limit).offset(page*limit-limit).where("user_id in (#{arr_group_id.join(',')})")
+      @privileges = process_results @results, []
       if @privileges.size > 0
         return render json: PublicFunction.data_json('success', 'Privilege list', @privileges.size, @privileges)
       else
-        @privileges = Privilege.limit(10).where("user_id in (#{arr_group_id.join(',')})")
+        @results = Privilege.limit(10).where("user_id in (#{arr_group_id.join(',')})")
+        @privileges = process_results @results, []
         return render json: PublicFunction.data_json('success', 'Privilege list', @privileges.size, @privileges)
       end
     end
@@ -31,7 +34,7 @@ class Api::PrivilegesController < ApplicationController
   def privilege_detail
     privilege_id = params[:privilege_id]
     if Privilege.where(:id => privilege_id).size > 0
-      render json: PublicFunction.data_json('success', 'Show Privilege', 1, Privilege.find(privilege_id))
+      render json: PublicFunction.data_json('success', 'Show Privilege', 1, process_results(Privilege.where(id:privilege_id), {}) )
     else
       render json: PublicFunction.data_json('failed', 'Privilege not found', 0, nil)
     end
@@ -55,5 +58,52 @@ class Api::PrivilegesController < ApplicationController
       render json: PublicFunction.data_json('failed', 'Missing parameter', 0, nil)
       # render json: {:status=>"Fail", :message=>'Join fail', :data=>nil}
     end
+  end
+
+  def process_results results=nil, type=[]
+    if type.is_a?(Array)
+      privileges_data=type
+      i=0
+      results.each do |privilege|
+        temp = Hash.new
+        temp[:id]= privilege.id
+        temp[:location]= privilege.location
+        temp[:price]= privilege.price
+        temp[:distance]= privilege.distance
+        temp[:date_expiry]=privilege.date_expiry
+        temp[:description]=privilege.description
+        temp[:user_id]=privilege.user_id
+        temp[:created_at]=privilege.created_at
+        temp[:updated_at]=privilege.updated_at
+        temp[:name]=privilege.name
+        temp[:phone]=privilege.phone
+        temp[:date_time_detail]=privilege.date_time_detail
+        temp[:image_path]=privilege.image_path.url
+        privileges_data[i] = temp
+        #temp[b.status] = b.status
+        #facilities[i][:ok] = 'ok'
+        i+=1
+      end
+      return privileges_data
+    else
+      results.each do |privilege|
+        temp = Hash.new
+        temp[:id]= privilege.id
+        temp[:location]= privilege.location
+        temp[:price]= privilege.price
+        temp[:distance]= privilege.distance
+        temp[:date_expiry]=privilege.date_expiry
+        temp[:description]=privilege.description
+        temp[:user_id]=privilege.user_id
+        temp[:created_at]=privilege.created_at
+        temp[:updated_at]=privilege.updated_at
+        temp[:name]=privilege.name
+        temp[:phone]=privilege.phone
+        temp[:date_time_detail]=privilege.date_time_detail
+        temp[:image_path]=privilege.image_path.url
+        return temp
+      end
+    end
+
   end
 end
