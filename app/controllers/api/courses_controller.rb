@@ -1,13 +1,11 @@
 class Api::CoursesController < Api::ApiController
-  before_action :set_course, only: [:show]
-  before_action :set_courses, only: [:index]
   skip_before_action :authenticate_user_from_token!
 
   def index
     limit = params[:limit].to_i
     page = params[:page].to_i
     if params[:condo_id].nil?
-      return render json: PublicFunction.data_json('failed', 'Missing user_id parameter', 0, nil)
+      return render json: PublicFunction.data_json('failed', 'Missing user_id parameter', 0, {})
     end
     if page < 1 or limit < 1
       @results = Course.limit(10).where(condo_id:params[:condo_id])
@@ -33,7 +31,7 @@ class Api::CoursesController < Api::ApiController
     if Course.where(:id => course_id ).size > 0
       render json: PublicFunction.data_json('success', 'Show Course', 1, process_results(Course.where(id:course_id ), {}) )
     else
-      render json: PublicFunction.data_json('failed', 'Course not found', 0, nil)
+      render json: PublicFunction.data_json('failed', 'Course not found', 0, {})
     end
   end
   
