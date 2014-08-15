@@ -6,13 +6,14 @@ class CreatePrivileges < ActiveRecord::Migration
       t.float :price
       t.string :distance
       t.date :date_expiry
-      t.text :description
       t.attachment :image_path
-      t.integer :user_id
       t.string :phone
       t.string :date_time_detail
+      t.text :description
+      t.integer :user_id
 
       t.timestamps
     end
   end
 end
+

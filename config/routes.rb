@@ -304,6 +304,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :merchants, only: [], path: 'api' do
+      collection do
+        post 'request_merchant' => 'merchants#create'
+      end
+    end
+
     resource :chats, only: [], path: 'api' do
       collection do
         post 'request_friend' => 'chats#request_friend'

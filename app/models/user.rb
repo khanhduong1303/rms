@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
                        :size => {:in => 0..3.megabytes},
                        :content_type => {:content_type => /^image\/(jpeg|png|gif|tiff)$/}
   validates :email, uniqueness: true
-  validates :username, presence: true
+#  validates :username, presence: true
   validates :phone, presence: true
  # validates :postal_code, presence: true
  # validates :enquiry, presence: true
