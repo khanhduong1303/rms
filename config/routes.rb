@@ -264,11 +264,11 @@ Rails.application.routes.draw do
       collection do
         get 'tech_support' => 'tech_supports#tech_support'
       end
-      end
+    end
 
     resource :contact_us, only: [], path: 'api' do
       collection do
-        post 'send_contact_us' => 'contact_us#send_contact_us'
+        post 'send_contact_us' => 'contact_us#create'
       end
     end
 
