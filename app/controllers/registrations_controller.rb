@@ -1,8 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
- authorize_resource :class => false 
+ authorize_resource :class => false
   before_action :set_hightlight
   def profile
-   
+
     render layout: "application"
   end
 
@@ -111,3 +111,4 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
 end
+

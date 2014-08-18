@@ -1,15 +1,18 @@
-class Api::ContactUsController < ApplicationController
-  include ActionController::MimeResponds
-  # http_basic_authenticate_with name: "admin", password: "rms.innoria"
-  skip_before_filter :authenticate_user!
+class Api::ContactUsController < Api::ApiController
+  skip_before_action :authenticate_user_from_token!
 
-  def send_contact_us
-    if !params[:name].nil? && !params[:email].nil? && !params[:phone].nil? && !params[:message].nil? && !params[:role].nil?
-      @send_contact_us = ContactUs.create(name:params[:name], email:params[:email], phone:params[:phone], message:params[:message], role:params[:role])
+  def create
+    @send_contact_us = ContactUs.create(contact_us_params)
+    if @send_contact_us.valid?
       return render json: PublicFunction.data_json('success', 'Send message success!', 1, @send_contact_us)
     else
-      return render json: PublicFunction.data_json('failed', 'Missing parameters!',0,nil)
+      return render json: PublicFunction.data_json('failed', @send_contact_us.errors.messages, 0, nil)
     end
   end
 
+  private
+    def contact_us_params
+      params.permit(:name, :email, :phone, :message, :role)
+    end
 end
+
