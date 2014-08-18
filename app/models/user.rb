@@ -38,7 +38,8 @@ class User < ActiveRecord::Base
                        :size => {:in => 0..3.megabytes},
                        :content_type => {:content_type => /^image\/(jpeg|png|gif|tiff)$/}
   validates :email, uniqueness: true
-  validates :name, :phone, :password_confirmation, presence: true
+  validates :phone, :password_confirmation, presence: true
+#  validates :name, presence: true
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

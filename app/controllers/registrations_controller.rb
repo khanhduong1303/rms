@@ -1,8 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
- authorize_resource :class => false 
+ authorize_resource :class => false
   before_action :set_hightlight
   def profile
-   
+
     render layout: "application"
   end
 
@@ -30,7 +30,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    new_params = params.require(:user).permit(:username,
+    new_params = params.require(:user).permit(:name,
                                               :avatar, :email, :password,
                                               :password_confirmation,
                                               :current_password,
@@ -111,3 +111,4 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
 end
+
