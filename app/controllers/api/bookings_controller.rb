@@ -4,11 +4,20 @@ class Api::BookingsController < ApplicationController
   skip_before_filter :authenticate_user!
 
   def index
-    @booking_facilities = Facility.where(:active => true)
+    begin
+      @users = Condo.find(User.find(params[:user_id]).condo_id).users
+      arr_group_id  = []
+      @users.each do |user|
+        arr_group_id << user.id
+      end
+    rescue
+      return render json: PublicFunction.data_json('failed', 'user_id not found', 0, nil)
+    end
+    @booking_facilities = Facility.where("active=true and user_id in (#{arr_group_id.join(',')})")
     if @booking_facilities.size > 0
-      render json: PublicFunction.data_json('success', 'Booking list', @booking_facilities.size, @booking_facilities)
+      return render json: PublicFunction.data_json('success', 'Booking list', @booking_facilities.size, @booking_facilities)
     else
-      render json: PublicFunction.data_json('failed', 'Booking list', 0, nil)
+      return render json: PublicFunction.data_json('failed', 'Booking list', 0, nil)
     end
   end
 
