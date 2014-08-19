@@ -74,8 +74,15 @@ class Api::BookingsController < ApplicationController
     end
   end
 
-  def show
-
+  def booking_detail
+    if params[:booking_facility_id].nil?
+      return render json: PublicFunction.data_json('failed', 'Missing parameter \'booking_facility_id\'', 0, nil)
+    end
+    begin
+      return render json: PublicFunction.data_json('success', 'Show booking facility detail!', 1, Facility.find(params[:booking_facility_id]))
+    rescue
+      return render json: PublicFunction.data_json('failed', 'Error!', 0, nil)
+    end
   end
 
 end

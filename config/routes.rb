@@ -333,6 +333,7 @@ Rails.application.routes.draw do
         get 'booking_facilities' => 'bookings#index'
         post 'make_a_booking' => 'bookings#make_a_booking'
         get 'check_booking' => 'bookings#check_booking'
+        get 'booking_detail' => 'bookings#booking_detail'
       end
     end
   end
