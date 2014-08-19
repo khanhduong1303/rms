@@ -337,6 +337,15 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api, path: nil do
+    resources :guard_houses, only: [], path: 'api' do
+      collection do
+        get 'guard_houses'
+      end
+    end
+  end
+
+
 
 
   get "*path", :to => "application#routing_error"

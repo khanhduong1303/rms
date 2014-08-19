@@ -36,7 +36,7 @@ class Api::BookingsController < ApplicationController
 
   def make_a_booking
     if !params[:user_id].nil? && !params[:preferred_date].nil? && !params[:time_slot_id].nil?
-      @booking = Booking.create(time_slot_id:params[:time_slot_id], date_submit:params[:preferred_date], user_id:params[:user_id], status:'Waiting')
+      @booking = Booking.create(time_slot_id:params[:time_slot_id], date_submit:params[:preferred_date], user_id:params[:user_id], status:'Reserved')
       if @booking
         return render json: PublicFunction.data_json('success', 'Booking success', 1, @booking)
       else
@@ -72,7 +72,10 @@ class Api::BookingsController < ApplicationController
         render json: PublicFunction.data_json('failed', 'User_id not found', 0, nil)
       end
     end
+  end
 
+  def show
 
   end
+
 end
