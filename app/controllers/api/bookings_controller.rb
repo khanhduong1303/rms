@@ -4,12 +4,34 @@ class Api::BookingsController < ApplicationController
   skip_before_filter :authenticate_user!
 
   def index
-    @booking_facilities = Facility.where(:active => true)
-    if @booking_facilities.size > 0
-      render json: PublicFunction.data_json('success', 'Booking list', @booking_facilities.size, @booking_facilities)
-    else
-      render json: PublicFunction.data_json('failed', 'Booking list', 0, nil)
+    begin
+      @users = Condo.find(User.find(params[:user_id]).condo_id).users
+      arr_group_id  = []
+      @users.each do |user|
+        arr_group_id << user.id
+      end
+    rescue
+      return render json: PublicFunction.data_json('failed', 'user_id not found', 0, nil)
     end
+    begin
+      @booking_facilities = []
+      FacilityCategory.all.each do |cate|
+        temp = {}
+        temp[:category_id] = cate.id
+        temp[:category] = cate.name
+        temp[:facilities] = Facility.where("active=true and user_id in (#{arr_group_id.join(',')}) and facility_category_id=#{cate.id}")
+        @booking_facilities << temp
+      end
+      # @booking_facilities = Facility.where("active=true and user_id in (#{arr_group_id.join(',')})")
+      if @booking_facilities.size > 0
+        return render json: PublicFunction.data_json('success', 'Facility list', @booking_facilities.size, @booking_facilities)
+      else
+        return render json: PublicFunction.data_json('failed', 'Facility list', 0, nil)
+      end
+    rescue
+      return render json: PublicFunction.data_json('failed', 'Load facility error', 0, nil)
+    end
+
   end
 
   def make_a_booking
