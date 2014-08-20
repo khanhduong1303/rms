@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       post 'log_in', to: 'sessions#sign_in'
 
     end
-    get 'condos_list', to: 'condos#list', as: 'listcondo'
+    get 'condos', to: 'condos#list', as: 'listcondo'
     get 'condos_detail', to: 'condos#show', as: 'showcondo'
     post 'send_feedback', to: 'feedbacks#create'
     get 'list_cat', to: 'feedbacks#list_cat' 
@@ -267,11 +267,11 @@ Rails.application.routes.draw do
       collection do
         get 'tech_support' => 'tech_supports#tech_support'
       end
-      end
+    end
 
     resource :contact_us, only: [], path: 'api' do
       collection do
-        post 'send_contact_us' => 'contact_us#send_contact_us'
+        post 'send_contact_us' => 'contact_us#create'
       end
     end
 
@@ -304,6 +304,12 @@ Rails.application.routes.draw do
         post 'join_course' => 'course_users#create'
         get 'cancel' => 'course_users#destroy'
         get 'has_join' => 'course_users#show'
+      end
+    end
+
+    resources :merchants, only: [], path: 'api' do
+      collection do
+        post 'request_merchant' => 'merchants#create'
       end
     end
 

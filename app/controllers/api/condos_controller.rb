@@ -1,7 +1,7 @@
 class Api::CondosController < ActionController::Base
   respond_to :json
   before_filter :find_project, :only => [:show, :update, :destroy]
-  before_filter :authenticate_user_from_token!
+#  before_filter :authenticate_user_from_token!
 
   def list
 
@@ -54,4 +54,5 @@ class Api::CondosController < ActionController::Base
   end
 
 
-end	
+end
+
