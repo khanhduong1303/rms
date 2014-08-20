@@ -1,0 +1,95 @@
+<%= form_for @service, remote: true do |f| %>
+    <ul class="errors"></ul>
+    <div class="row">
+
+      <div class="col-xs-2">
+        <div class="img-preview">
+          <%= image_tag @service.image_path.url(:default), { id: 'img-thumbnail', class: 'img-thumbnail', size: '150x150' } %>
+        </div>
+      </div>
+
+      <div class="col-xs-10">
+      <% if @service.persisted? %>
+      <%= f.hidden_field :user_id , {value: @service.user_id} %>
+      <% else %>
+      <%= f.hidden_field :user_id , {value: current_user.id} %>
+      <% end %>
+        <div class="form-group form-inline">
+          <%= f.label :name ,t('service.index.name') %>:
+          <%= f.text_field :name, {class: "form-control"} %>
+        </div>
+
+        <div class="form-group form-inline">
+          <%= f.label :service_category_id, t('service.index.category') %>:
+          <%= f.collection_select :service_category_id, @service_categories, :id, :name, {}, {class: 'form-control'} %>
+        </div>
+
+        <div class="form-group form-inline">
+          <%= f.label :email,t('service.index.email') %>:
+          <%= f.text_field :email, {class: "form-control"} %>
+        </div>
+        <div class="form-group form-inline">
+          <%= f.label :address,t('service.index.address') %>:
+          <%= f.text_field :address, {class: "form-control"} %>
+        </div>
+        <div class="form-group form-inline">
+          <%= f.label :call_to_order,t('service.index.callorder') %>:
+          <%= f.text_field :call_to_order, {class: "form-control"} %>
+        </div>
+        <div class="form-group form-inline">
+          <%= f.label :email,t('service.index.email') %>:
+          <%= f.text_field :email, {class: "form-control"} %>
+        </div>
+
+        <div class="form-group form-inline">
+          <%= f.label :web_page , t('service.index.web_page') %>:
+          <%= f.text_field :web_page, {class: "form-control"} %>
+        </div>
+        <div class="form-group form-inline">
+          <%= f.label :order_hours , t('service.index.order_hours') %>:
+          <%= f.text_field :order_hours, {class: "form-control"} %>
+        </div>
+  
+
+        <%= f.file_field :image_path, {id: 'file-box', style: 'display:none'} %>
+
+        <div class="form-group">
+          <%= f.label :description , t('service.index.description') %>:
+          <%= f.text_area :description, class: "form-control" ,rows: 2 %>
+        </div>
+        <div class="form-group">
+          <%= f.label :term  ,t('service.index.term') %>:
+          <%= f.text_area :term, class: "form-control", rows: 2 %>
+        </div>
+
+        <div class="text-right">
+          <%= link_to t('service.index.btn_cancel'), services_path, class: 'btn btn-danger' %>
+          <%= f.submit class: "btn btn-success", value: @service.persisted? ?  t('service.index.btn_save') :  t('service.index.btn_add') %>
+        </div>
+      </div>
+    </div>
+<% end %>
+<script type="text/javascript">
+    $(document).on('click', '#img-thumbnail', function () {
+        $('input[id=file-box]').click();
+    })
+
+    function handleFileSelect(evt) {
+      var files = evt.target.files; // FileList object
+      f = files[0]
+      // Only process image files.
+      if (f.type.match('image.*')) {
+        var reader = new FileReader();
+        reader.onload = (function (theFile) {
+          return function (e) {
+            // alert(e.target.result);
+            document.getElementById("img-thumbnail").src = e.target.result;
+          };
+        })(f);
+
+        // Read in the image file as a data URL.
+        reader.readAsDataURL(f);
+      }
+    }
+    document.getElementById('file-box').addEventListener('change', handleFileSelect, false);
+</script>

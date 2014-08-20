@@ -3,8 +3,17 @@ class HomesController < ApplicationController
   before_action :authenticate_user!, :only => [:index]
   before_action :set_hightlight
   authorize_resource :class => false 
+    layout "blank" , only: :unauthor
   def index
+    unless current_user.active
+      redirect_to active_path
+    end
+      
   end
+  def unauthor
+
+
+  end  
 
   def setLanguage
     session[:language]=params[:val]

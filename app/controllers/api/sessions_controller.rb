@@ -46,7 +46,8 @@ class Api::SessionsController < Devise::RegistrationsController
           message: "You sign in successfuly",
           result: {
               authentication_token: user.authentication_token,
-              email: user.email
+              email: user.email , 
+              id: user.id
           }
       }
       return

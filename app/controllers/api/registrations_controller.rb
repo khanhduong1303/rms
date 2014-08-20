@@ -101,6 +101,8 @@ class Api::RegistrationsController < Devise::RegistrationsController
   def change_password
     user = User.where(:authentication_token => params[:authentication_token]).first
     if user
+      if params[:user][:password] 
+          if params[:user][:password_confirmation] 
       new_params = params.require(:user).permit(:current_password, :password,
                                                 :password_confirmation)
       is_valid = user.update_with_password(new_params)
@@ -123,6 +125,28 @@ class Api::RegistrationsController < Devise::RegistrationsController
         }
 
       end
+       else
+          render json: {
+            status: "fail",
+            message:  [
+    "Password confirmation can't be blank"
+  ],
+            result: {
+
+            }
+        }
+       end
+     else
+      render json: {
+            status: "fail",
+            message:  [
+    "Password can't be blank"
+  ],
+            result: {
+
+            }
+        }
+     end
     else
       render json: {
           status: "fail",
@@ -147,6 +171,6 @@ class Api::RegistrationsController < Devise::RegistrationsController
 
 
   def user_params
-    params[:user].permit(:username, :email, :phone, :condo_id, :postal_code, :enquiry, :password, :password_confirmation)
+    params[:user].permit(:username, :email, :phone, :condo_id, :postal_code, :enquiry, :password, :password_confirmation , :current_password)
   end
 end

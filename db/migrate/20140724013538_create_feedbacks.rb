@@ -6,6 +6,7 @@ class CreateFeedbacks < ActiveRecord::Migration
       t.boolean :archive ,default: false
       t.integer :user_id
       t.integer :feedback_category_id
+      t.attachment :image
       t.timestamps
     end
   end

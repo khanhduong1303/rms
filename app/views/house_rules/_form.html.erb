@@ -1,9 +1,18 @@
 <%= form_for @house_rule, remote: true do |f| %>
     <ul class="errors"></ul>
 
-    <%= f.hidden_field :condo_id, {value: current_user.condo_id} %>
     <div class="form-group" style="width:50%">
       <%= f.text_field :title, {class: 'form-control', placeholder: t('.title') } %>
+    </div>
+      <% unless @house_rule.persisted? %>
+     <div class="form-group" style="width:30%">
+      <select class="form-control" name="house_rule[houserule_category_id]">
+        <% @cat.each do |c| %>
+       <option value="<%= c.id %>"> <%=c.name %> </option> 
+        <% end %> 
+      <option value="new">New Category</option> 
+      </select>
+            <% end %> 
     </div>
 
     <div class="form-group">
