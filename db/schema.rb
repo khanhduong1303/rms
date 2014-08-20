@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814085046) do
+
+ActiveRecord::Schema.define(version: 20140818092421) do
+
 
   create_table "about_us", force: true do |t|
     t.string   "information"
@@ -183,6 +185,10 @@ ActiveRecord::Schema.define(version: 20140814085046) do
     t.boolean  "archive",              default: false
     t.integer  "user_id"
     t.integer  "feedback_category_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -271,7 +277,14 @@ ActiveRecord::Schema.define(version: 20140814085046) do
   create_table "house_rules", force: true do |t|
     t.string   "title"
     t.text     "content"
+    t.integer  "houserule_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "houserule_categories", force: true do |t|
     t.integer  "condo_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -377,8 +390,19 @@ ActiveRecord::Schema.define(version: 20140814085046) do
     t.string   "icon_path_content_type"
     t.integer  "icon_path_file_size"
     t.datetime "icon_path_updated_at"
-    t.string   "service_category_id"
-    t.string   "integer"
+    t.string   "image_path_file_name"
+    t.string   "image_path_content_type"
+    t.integer  "image_path_file_size"
+    t.datetime "image_path_updated_at"
+    t.text     "description"
+    t.string   "call_to_order"
+    t.string   "address"
+    t.string   "email"
+    t.string   "web_page"
+    t.string   "order_hours"
+    t.text     "term"
+    t.integer  "service_category_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

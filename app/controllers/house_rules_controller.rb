@@ -13,10 +13,15 @@ class HouseRulesController < ApplicationController
 
   def new
     @house_rule = HouseRule.new
+    @cat = current_user.condo.houserule_categories
   end
 
   def create
     @house_rule = HouseRule.create(house_rule_params)
+    if params[:house_rule][:category_name]
+    cat = HouseruleCategory.create(condo_id: current_user.condo_id , name: params[:house_rule][:category_name])
+    @house_rule.update(houserule_category_id: cat.id )
+     end
     @persisted = false
   end
 
@@ -41,11 +46,11 @@ class HouseRulesController < ApplicationController
   end
 
   def set_house_rules
-    @house_rules = HouseRule.where(condo_id: current_user.condo_id)
+    @house_rules = current_user.condo.house_rules
   end
 
   def house_rule_params
-    params.require(:house_rule).permit(:title, :content, :condo_id)
+    params.require(:house_rule).permit(:title, :content, :houserule_category_id )
   end
 
   def set_highlight

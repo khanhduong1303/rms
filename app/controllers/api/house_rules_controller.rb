@@ -2,12 +2,20 @@ class Api::HouseRulesController < Api::ApiController
   skip_before_action :authenticate_user_from_token!
   def index
     begin
-      @house_rules = HouseRule.select(:id, :title, :content).where(condo_id: params[:condo_id])
+      @rule_categories = HouseruleCategory.where(condo_id: params[:condo_id])
     rescue Exception => e
-      @house_rules = nil
+      @rule_categories = nil
     end
-    unless @house_rules.nil?
-      render json: {status: 'success', message: 'Found house rules', total: @house_rules.length, data: @house_rules}, status: :ok
+    unless @rule_categories.nil?
+      @rules = []
+      @rule_categories.each do |rule_category|
+        temp = []
+        rule_category.house_rules.each do |rule|
+          temp << {title: rule.title, content: rule.content }
+        end
+        @rules << {houserule_category_name: rule_category.name, total: rule_category.house_rules.size, house_rules: temp}
+      end
+      render json: {status: 'success', message: 'Found forms', total: @rule_categories.length, data: @rules}, status: :ok
     else
       render json: {status: 'failed', message: 'Not found house rules', data: {}}, status: :not_found
     end
