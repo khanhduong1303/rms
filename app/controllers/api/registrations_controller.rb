@@ -83,7 +83,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
   end
 
   def change_password
-    user = User.where(:authentication_token => params[:authentication_token]).first
+    user = User.where(:authentication_token => params[:token]).first
     if user
       new_params = params.permit(:current_password, :password, :password_confirmation)
       is_valid = user.update_with_password(new_params)
