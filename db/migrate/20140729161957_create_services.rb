@@ -6,10 +6,13 @@ class CreateServices < ActiveRecord::Migration
       t.attachment :image_path
       t.text :description
       t.string :call_to_order
+      t.string :address
       t.string :email
-      t.text :more_info
+      t.string :web_page
+      t.string :order_hours
+      t.text :term
       t.integer :service_category_id
-
+      t.integer :user_id 
       t.timestamps
     end
   end

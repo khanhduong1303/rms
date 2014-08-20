@@ -18,4 +18,16 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(document).on("change", "select.form-control", function(){
+    if($(this).val() == "new"){
+
+      $(this).parent().html('<input type="text" placeholder="Please type new category of House rule" name="house_rule[category_name]"  class="form-control">');
+    }
+  });
+});
+
+
+</script>
 

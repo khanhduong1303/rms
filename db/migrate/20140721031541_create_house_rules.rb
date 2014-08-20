@@ -3,7 +3,7 @@ class CreateHouseRules < ActiveRecord::Migration
     create_table :house_rules do |t|
       t.string :title
       t.text :content
-      t.integer :condo_id
+      t.integer :houserule_category_id 
 
       t.timestamps
     end

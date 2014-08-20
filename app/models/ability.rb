@@ -14,9 +14,9 @@ class Ability
 
      end  
      
-    can :index , :home 
+
    end 
-     
+    can :manage , :home 
     can :manage , :session
     can :manage , :registration
     can :setLanguage , :home

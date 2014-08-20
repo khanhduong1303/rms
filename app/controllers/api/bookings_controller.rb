@@ -36,19 +36,21 @@ class Api::BookingsController < ApplicationController
 
   def make_a_booking
     if !params[:user_id].nil? && !params[:preferred_date].nil? && !params[:time_slot_id].nil?
-      @booking = Booking.create(time_slot_id:params[:time_slot_id], date_submit:params[:preferred_date], user_id:params[:user_id], status:'Waiting')
+      @booking = Booking.create(time_slot_id:params[:time_slot_id], date_submit:Time.now , date_expiry:1.days.from_now , date_book:params[:preferred_date], user_id:params[:user_id], status:'Reserved')
       if @booking
         return render json: PublicFunction.data_json('success', 'Booking success', 1, @booking)
       else
-        render json: PublicFunction.data_json('failed', 'Booking list', 0, nil)
+        return render json: PublicFunction.data_json('failed', 'Booking list', 0, nil)
       end
+    else
+      return render json: PublicFunction.data_json('failed', 'Missing parameter', 0, nil)
     end
   end
 
   def check_booking
     user = params[:user_id]
     if user.nil?
-      render json: PublicFunction.data_json('failed', 'Missing parameter', 0, nil)
+      return render json: PublicFunction.data_json('failed', 'Missing parameter', 0, nil)
     else
       if User.where(id: user).size > 0
         @booking = User.find(user).bookings
@@ -67,12 +69,25 @@ class Api::BookingsController < ApplicationController
           i+=1
         end
         # facilities[0].status = 'booked'
-        render json: PublicFunction.data_json('success', 'Check booking list', @facilities.size, @facilities)
+        return render json: PublicFunction.data_json('success', 'Check booking list', @facilities.size, @facilities)
       else
-        render json: PublicFunction.data_json('failed', 'User_id not found', 0, nil)
+        return render json: PublicFunction.data_json('failed', 'User_id not found', 0, nil)
       end
     end
-
-
   end
+
+  def booking_detail
+    if params[:booking_facility_id].nil?
+      return render json: PublicFunction.data_json('failed', 'Missing parameter \'booking_facility_id\'', 0, nil)
+    end
+    begin
+      temp = {}
+      temp[:facility] = Facility.find(params[:booking_facility_id])
+      temp[:time_slots] = Facility.find(params[:booking_facility_id]).time_slots.nil? ? nil : Facility.find(params[:booking_facility_id]).time_slots
+      return render json: PublicFunction.data_json('success', 'Show booking facility detail!', 1, temp)
+    rescue
+      return render json: PublicFunction.data_json('failed', 'Error!', 0, nil)
+    end
+  end
+
 end

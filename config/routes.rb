@@ -20,13 +20,14 @@ Rails.application.routes.draw do
     get 'condos', to: 'condos#list', as: 'listcondo'
     get 'condos_detail', to: 'condos#show', as: 'showcondo'
     post 'send_feedback', to: 'feedbacks#create'
+    get 'list_cat', to: 'feedbacks#list_cat' 
 
 
   end
 
 
 #resources :event_images
-
+  get 'active' , to: 'homes#unauthor' , as: 'active'
   resources :admins , :only => [:index , :new]
   get 'admins/roles' , to: 'roles#index' , as: 'roles'
   get 'admins/confirm_drop/:id' , to: 'roles#confirm_drop' , as: 'confirm_drop'
@@ -50,6 +51,7 @@ Rails.application.routes.draw do
   post 'admins/destroy_multiple' , to: "admins#destroy_multiple"
   resources :condos
   post 'condos/images', to: 'condos#create_image', as: 'create_image'
+  resources :services
   resources :feedbacks, :only => [:index, :destroy]
   get 'feedbacks/moves', to: "feedbacks#move_archive", as: 'archive'
   get 'feedbacks/destroymultiple', to: "feedbacks#destroy_multiple", as: 'destroy_feedbacks'
@@ -206,6 +208,7 @@ Rails.application.routes.draw do
         get 'events' => 'events#index'
       end
       member do
+        get 'list_user' => 'events#list_user'
         get 'event_detail' => 'events#show'
         get 'event_detail_photo' => 'events#event_photo'
         post 'join_event' => 'events#join_event'
@@ -324,9 +327,19 @@ Rails.application.routes.draw do
         get 'booking_facilities' => 'bookings#index'
         post 'make_a_booking' => 'bookings#make_a_booking'
         get 'check_booking' => 'bookings#check_booking'
+        get 'booking_detail' => 'bookings#booking_detail'
       end
     end
   end
+
+  namespace :api, path: nil do
+    resources :guard_houses, only: [], path: 'api' do
+      collection do
+        get 'guard_houses'
+      end
+    end
+  end
+
 
 
 

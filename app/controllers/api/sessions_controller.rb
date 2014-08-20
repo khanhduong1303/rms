@@ -31,6 +31,7 @@ class Api::SessionsController < Devise::RegistrationsController
 
     if user.valid_password?(params[:password])
       render json: {
+
           status: 'success',
           message: 'You sign in successfuly',
           data: {
@@ -39,6 +40,7 @@ class Api::SessionsController < Devise::RegistrationsController
               name: user.name,
               token: user.authentication_token,
               condo_id: user.condo.id
+
           }
       }
       return
