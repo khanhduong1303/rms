@@ -5,8 +5,8 @@ class Api::RegistrationsController < Devise::RegistrationsController
     user = User.new(user_params)
     if user.save
       render json: {
-          status: "success",
-          message: "You sign up successfuly",
+          status: 'success',
+          message: 'You sign up successfuly',
           data: {
               user_id: user.id,
               email: user.email,
@@ -17,9 +17,9 @@ class Api::RegistrationsController < Devise::RegistrationsController
       }
       return
     else
-      warden.custom_failure!
+      warden.custom_failedure!
       render json: {
-          status: "fails",
+          status: 'failed',
           message: user.errors,
           data: {}
       }
@@ -27,11 +27,11 @@ class Api::RegistrationsController < Devise::RegistrationsController
   end
 
   def profile
-    user = User.where(:authentication_token => params[:authentication_token]).first
+    user = User.where(:authentication_token => params[:token]).first
     if user
       render json: {
-          status: "success",
-          message: "Your profile",
+          status: 'success',
+          message: 'Your profile',
           data: {
               image: user.avatar.url(:big),
               email: user.email,
@@ -46,8 +46,8 @@ class Api::RegistrationsController < Devise::RegistrationsController
       }
     else
       render json: {
-          status: "fail",
-          message: "You can sign in/sign up to do it",
+          status: 'failed',
+          message: 'You can sign in/sign up to do it',
           data: {}
       }, status: 404
     end
@@ -56,27 +56,27 @@ class Api::RegistrationsController < Devise::RegistrationsController
   def edit_profile
     new_params = params.permit(:username, :avatar, :email, :password, :password_confirmation, :current_password, :company, :name, :city, :country, :postal_code, :phone)
 
-    user = User.where(:authentication_token => params[:authentication_token]).first
+    user = User.where(:authentication_token => params[:token]).first
     if user
       is_valid = user.update_without_password(new_params)
 
       if is_valid
         render json: {
-            status: "success",
-            message: "You edit profile successfuly",
+            status: 'success',
+            message: 'You edit profile successfuly',
             data: {}
         }
       else
         render json: {
-            status: "fail",
+            status: 'failed',
             message: user.errors.full_messages,
             data: {}
         }
       end
     else
       render json: {
-          status: "fail",
-          message: "You can sign in/sign up to do it",
+          status: 'failed',
+          message: 'You can sign in/sign up to do it',
           data: {}
       }, status: 404
     end
@@ -85,27 +85,41 @@ class Api::RegistrationsController < Devise::RegistrationsController
   def change_password
     user = User.where(:authentication_token => params[:token]).first
     if user
-      new_params = params.permit(:current_password, :password, :password_confirmation)
-      is_valid = user.update_with_password(new_params)
-      if is_valid
-        render json: {
-            status: "success",
-            message: "You change password successfuly",
+      if params[:password]
+        if params[:password_confirmation]
+          new_params = params.permit(:current_password, :password, :password_confirmation)
+          is_valid = user.update_with_password(new_params)
+          if is_valid
+            render json: {
+                status: 'success',
+                message: 'You change password successfuly',
+                data: {}
+            }
+          else
+            render json: {
+                status: 'failed',
+                message: user.errors.full_messages,
+                data: {}
+            }
+          end
+        else
+          render json: {
+            status: 'failed',
+            message:  'Password confirmation can not be blank',
             data: {}
-        }
+          }
+        end
       else
-
-        render json: {
-            status: "fail",
-            message: user.errors.full_messages,
+       render json: {
+            status: 'failed',
+            message:  'Password can not be blank',
             data: {}
-        }
-
+       }
       end
     else
       render json: {
-          status: "fail",
-          message: "You can sign in/sign up to do it",
+          status: 'failed',
+          message: 'You can sign in/sign up to do it',
           data: {}
       }, status: 404
     end

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 # api routes
   namespace :api, defaults: {format: 'json'} do
     devise_scope :user do
-      post 'change_pass', to: 'registrations#change_password', as: 'change_pass'
+      post 'change_password', to: 'registrations#change_password', as: 'change_password'
       post 'edit_profile', to: 'registrations#edit_profile', as: 'edit_profile'
       post 'log_out', to: 'sessions#sign_out', as: 'log_out'
       get 'profile', to: 'registrations#profile', as: 'profile'
@@ -243,26 +243,17 @@ Rails.application.routes.draw do
         get 'privilege_detail' => 'privileges#privilege_detail'
         post 'redeem_previlege' => 'privileges#redeem_previlege'
       end
+    end
+
+    resource :about_us, only: [], path: 'api' do
       member do
+        get 'about_us'
       end
     end
 
-    resource :privilege_user, only: [], path: 'api' do
-      collection do
-      end
+    resource :tech_support, only: [], path: 'api' do
       member do
-      end
-      end
-
-    resource :about_us, only: [], path: 'api' do
-      collection do
-        get 'about_us' => 'about_us#about_us'
-      end
-      end
-
-    resource :tech_supports, only: [], path: 'api' do
-      collection do
-        get 'tech_support' => 'tech_supports#tech_support'
+        get 'tech_support'
       end
     end
 
