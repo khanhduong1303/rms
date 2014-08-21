@@ -1,7 +1,4 @@
-class Api::GuardHousesController < Api::ApiController #ApplicationController
-  include ActionController::MimeResponds
-  # skip_before_filter :authenticate_user!
-
+class Api::GuardHousesController < Api::ApiController
   def guard_houses
     if params[:condo_id].nil?
       return render json: PublicFunction.data_json('failed', 'condo_id not found', 0, nil)
@@ -17,3 +14,4 @@ class Api::GuardHousesController < Api::ApiController #ApplicationController
     end
   end
 end
+

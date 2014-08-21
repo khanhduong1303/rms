@@ -1,9 +1,4 @@
-class Api::EventsController < Api::ApiController #ApplicationController
-  include ActionController::MimeResponds
-  #before_action :authenticate_user!, :except => [:index, :show, :event_photo, :join_event]
-  # http_basic_authenticate_with name: "admin", password: "admin"
-  # skip_before_filter :authenticate_user!
-
+class Api::EventsController < Api::ApiController
   def index
     if User.where(id: params[:user_id] ).size < 1
       return render json: data_json('failed', 'Missing user_id', 0, nil)
@@ -53,13 +48,13 @@ class Api::EventsController < Api::ApiController #ApplicationController
   if JoinEvent.where(:event_id => event_id , :user_id => user_id).size >0
      user_join = true
    else
-    user_join = false 
-   end 
-    render json: {:status => "success", :message => "Number resident", 
+    user_join = false
+   end
+    render json: {:status => "success", :message => "Number resident",
                     :results => {
-                          :user_join => user_join , 
+                          :user_join => user_join ,
                           :num_user =>  num_user
-                                 }   
+                                 }
                   }
   end
 
@@ -103,3 +98,4 @@ class Api::EventsController < Api::ApiController #ApplicationController
     return {:status => status, :message => message, :total => total, :results => results}
   end
 end
+

@@ -66,6 +66,18 @@ class Api::PrivilegesController < Api::ApiController #ApplicationController
     if params[:user_id].nil? || params[:user_id].blank?
       return render json: PublicFunction.data_json('failed', 'Missing user_id parameter', 0, nil)
     end
+    begin
+      arr_group_id  = []
+      PrivilegeUser.where(user_id: params[:user_id]).each do |pri_ur|
+        arr_group_id << pri_ur.privilege_id
+      end
+      @results = Privilege.where("id in (#{arr_group_id.join(',')})")
+      @privileges = process_results @results, []
+      return render json: PublicFunction.data_json('success', 'My privilege list', @privileges.size, @privileges)
+    rescue
+      return render json: PublicFunction.data_json('failed', 'Error load my privileges!', 0, nil)
+    end
+
   end
 
   def process_results results=nil, type=[]

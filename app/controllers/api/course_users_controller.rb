@@ -1,6 +1,5 @@
 class Api::CourseUsersController < Api::ApiController
   before_action :set_course_user, only: [:show, :destroy]
-  skip_before_action :authenticate_user_from_token!
 
   def create
     begin
