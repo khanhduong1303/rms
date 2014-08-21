@@ -15,7 +15,7 @@ class Api::SessionsController < Devise::RegistrationsController
   #     render json: {
   #       status: 'success',
   #       message: 'You sign in successfuly',
-  #       data:{
+  #       results:{
   #         auth_token: resource.authentication_token,
   #         email: resource.email
   #              }
@@ -34,7 +34,7 @@ class Api::SessionsController < Devise::RegistrationsController
 
           status: 'success',
           message: 'You sign in successfuly',
-          data: {
+          results: {
               user_id: user.id,
               email: user.email,
               name: user.name,
@@ -62,13 +62,13 @@ class Api::SessionsController < Devise::RegistrationsController
       render json: {
           status: 'success',
           message: 'You sign out successfuly, Session is deleted ',
-          data: {}
+          results: {}
       }
     else
       render json: {
           status: 'failed',
           message: 'You need sign in or sign up first',
-          data: {}
+          results: {}
       }
     end
   end
@@ -79,7 +79,7 @@ class Api::SessionsController < Devise::RegistrationsController
       render json: {
           status: 'failed',
           message: 'Error with your login or password',
-          data: {}
+          results: {}
       }
     end
 end

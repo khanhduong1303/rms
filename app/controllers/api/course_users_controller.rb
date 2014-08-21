@@ -5,7 +5,7 @@ class Api::CourseUsersController < Api::ApiController
   def create
     begin
       @course_user = CourseUser.create(course_user_params)
-      render json: { status: 'success', message: 'Create join success', data: {} }, status: :ok
+      render json: { status: 'success', message: 'Create join success', results: {} }, status: :ok
     rescue ArgumentError => e
       # Do nothing
     end
@@ -13,18 +13,18 @@ class Api::CourseUsersController < Api::ApiController
 
   def show
     if @course_user.present?
-      render json: { status: 'success', message: 'Has join', data: {} }, status: :ok
+      render json: { status: 'success', message: 'Has join', results: {} }, status: :ok
     else
-      render json: { status: 'success', message: 'Has not join', data: {} }, status: :ok
+      render json: { status: 'success', message: 'Has not join', results: {} }, status: :ok
     end
   end
 
   def destroy
     begin
       @course_user.destroy
-      render json: { status: 'success', message: 'Delete join success', data: {} }, status: :ok
+      render json: { status: 'success', message: 'Delete join success', results: {} }, status: :ok
     rescue NoMethodError => e
-      render json: { status: 'failed', message: 'Not found join', data: {} }, status: :not_found
+      render json: { status: 'failed', message: 'Not found join', results: {} }, status: :not_found
     end
   end
 
@@ -33,7 +33,7 @@ class Api::CourseUsersController < Api::ApiController
       begin
         params.permit(:course_id, :user_id)
       rescue ActionController::ParameterMissing => e
-        render json: { status: 'failed', message: e.message, data: {} }
+        render json: { status: 'failed', message: e.message, results: {} }
       end
     end
 

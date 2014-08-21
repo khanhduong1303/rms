@@ -7,7 +7,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
       render json: {
           status: 'success',
           message: 'You sign up successfuly',
-          data: {
+          results: {
               user_id: user.id,
               email: user.email,
               name: user.name,
@@ -21,18 +21,18 @@ class Api::RegistrationsController < Devise::RegistrationsController
       render json: {
           status: 'failed',
           message: user.errors,
-          data: {}
+          results: {}
       }
     end
   end
 
   def profile
-    user = User.where(:authentication_token => params[:token]).first
+    user = User.where(:authentication_token => params[:auth_token]).first
     if user
       render json: {
           status: 'success',
           message: 'Your profile',
-          data: {
+          results: {
               image: user.avatar.url(:big),
               email: user.email,
               username: user.username,
@@ -48,7 +48,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
       render json: {
           status: 'failed',
           message: 'You can sign in/sign up to do it',
-          data: {}
+          results: {}
       }, status: 404
     end
   end
@@ -56,7 +56,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
   def edit_profile
     new_params = params.permit(:username, :avatar, :email, :password, :password_confirmation, :current_password, :company, :name, :city, :country, :postal_code, :phone)
 
-    user = User.where(:authentication_token => params[:token]).first
+    user = User.where(:authentication_token => params[:auth_token]).first
     if user
       is_valid = user.update_without_password(new_params)
 
@@ -64,26 +64,26 @@ class Api::RegistrationsController < Devise::RegistrationsController
         render json: {
             status: 'success',
             message: 'You edit profile successfuly',
-            data: {}
+            results: {}
         }
       else
         render json: {
             status: 'failed',
             message: user.errors.full_messages,
-            data: {}
+            results: {}
         }
       end
     else
       render json: {
           status: 'failed',
           message: 'You can sign in/sign up to do it',
-          data: {}
+          results: {}
       }, status: 404
     end
   end
 
   def change_password
-    user = User.where(:authentication_token => params[:token]).first
+    user = User.where(:authentication_token => params[:auth_token]).first
     if user
       if params[:password]
         if params[:password_confirmation]
@@ -93,34 +93,34 @@ class Api::RegistrationsController < Devise::RegistrationsController
             render json: {
                 status: 'success',
                 message: 'You change password successfuly',
-                data: {}
+                results: {}
             }
           else
             render json: {
                 status: 'failed',
                 message: user.errors.full_messages,
-                data: {}
+                results: {}
             }
           end
         else
           render json: {
             status: 'failed',
             message:  'Password confirmation can not be blank',
-            data: {}
+            results: {}
           }
         end
       else
        render json: {
             status: 'failed',
             message:  'Password can not be blank',
-            data: {}
+            results: {}
        }
       end
     else
       render json: {
           status: 'failed',
           message: 'You can sign in/sign up to do it',
-          data: {}
+          results: {}
       }, status: 404
     end
   end

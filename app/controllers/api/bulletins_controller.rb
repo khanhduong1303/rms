@@ -5,17 +5,17 @@ class Api::BulletinsController < Api::ApiController
 
   def index
     unless @bulletins.nil?
-      render json: {status: 'success', message: 'Found bulletins', total: @total, data: @bulletins}, status: :ok
+      render json: {status: 'success', message: 'Found bulletins', total: @total, results: @bulletins}, status: :ok
     else
-      render json: {status: 'failed', message: 'Not found bulletins', data: {}}, status: :not_found
+      render json: {status: 'failed', message: 'Not found bulletins', results: {}}, status: :not_found
     end
   end
 
   def show
     if !@bulletin.nil?
-      render json: {status: 'success', message: 'Found bulletin', data: @bulletin}, status: :ok
+      render json: {status: 'success', message: 'Found bulletin', results: @bulletin}, status: :ok
     else
-      render json: {status: 'failed', message: 'Not found bulletin', data: {}}, status: :not_found
+      render json: {status: 'failed', message: 'Not found bulletin', results: {}}, status: :not_found
     end
   end
 
