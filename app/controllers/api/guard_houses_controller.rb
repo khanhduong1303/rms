@@ -1,6 +1,6 @@
-class Api::GuardHousesController < ApplicationController
+class Api::GuardHousesController < Api::ApiController #ApplicationController
   include ActionController::MimeResponds
-  skip_before_filter :authenticate_user!
+  # skip_before_filter :authenticate_user!
 
   def guard_houses
     if params[:condo_id].nil?

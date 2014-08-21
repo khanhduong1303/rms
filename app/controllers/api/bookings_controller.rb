@@ -1,7 +1,7 @@
-class Api::BookingsController < ApplicationController
+class Api::BookingsController < Api::ApiController #ApplicationController
   include ActionController::MimeResponds
   # http_basic_authenticate_with name: "admin", password: "rms.innoria"
-  skip_before_filter :authenticate_user!
+  # skip_before_filter :authenticate_user!
 
   def index
     begin

@@ -1,8 +1,8 @@
-class Api::EventsController < ApplicationController
+class Api::EventsController < Api::ApiController #ApplicationController
   include ActionController::MimeResponds
   #before_action :authenticate_user!, :except => [:index, :show, :event_photo, :join_event]
   # http_basic_authenticate_with name: "admin", password: "admin"
-  skip_before_filter :authenticate_user!
+  # skip_before_filter :authenticate_user!
 
   def index
     if User.where(id:params[:user_id]).size < 1
