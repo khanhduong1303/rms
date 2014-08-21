@@ -1,5 +1,5 @@
-class Api::PrivilegesController < ApplicationController
-  skip_before_action :authenticate_user!
+class Api::PrivilegesController < Api::ApiController #ApplicationController
+  # skip_before_action :authenticate_user!
 
   def index
     limit = params[:limit].to_i

@@ -1,15 +1,13 @@
-class Api::TechSupportsController < ApplicationController
-  include ActionController::MimeResponds
-  # http_basic_authenticate_with name: "admin", password: "rms.innoria"
-  skip_before_filter :authenticate_user!
+class Api::TechSupportsController < Api::ApiController
+  skip_before_action :authenticate_user_from_token!
 
   def tech_support
-    if TechSupport.all.size > 0
-      @tech_support = TechSupport.all
-      render json: PublicFunction.data_json('success', 'All Tech support', 1, @tech_support)
+    @tech_support = TechSupport.first
+    unless @tech_support.nil?
+      render json: {status: 'success', message: 'Tech Support found', data: @tech_support}
     else
-      render json: PublicFunction.data_json('success', 'Tech support is null', 0, nil)
+      render json: {status: 'failed', message: 'Tech Support not found', data: {}}
     end
   end
-
 end
+

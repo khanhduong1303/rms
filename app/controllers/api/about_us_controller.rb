@@ -1,13 +1,13 @@
-class Api::AboutUsController < ApplicationController
-  include ActionController::MimeResponds
-  skip_before_action :authenticate_user!
+class Api::AboutUsController < Api::ApiController
+  skip_before_action :authenticate_user_from_token!
+
   def about_us
-    if AboutUs.all.size > 0
-      @about_us = AboutUs.last
-      render json: PublicFunction.data_json('success', 'About us', 1, @about_us)
+    @about_us = AboutUs.first
+    unless @about_us.nil?
+      render json: {status: 'success', message: 'About Us found', data: @about_us}
     else
-      render json: PublicFunction.data_json('success', 'About us is null', 0, nil)
+      render json: {status: 'failed', message: 'About Us not found', data: {}}
     end
   end
-
 end
+

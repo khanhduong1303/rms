@@ -1,10 +1,14 @@
-class Api::EventsController < Api::ApiController
+class Api::EventsController < Api::ApiController #ApplicationController
   include ActionController::MimeResponds
   #before_action :authenticate_user!, :except => [:index, :show, :event_photo, :join_event]
+  # http_basic_authenticate_with name: "admin", password: "admin"
   # skip_before_filter :authenticate_user!
 
   def index
-    event = User.find_by_authentication_token(params[:auth_token]).condo.events
+    if User.where(id: params[:user_id] ).size < 1
+      return render json: data_json('failed', 'Missing user_id', 0, nil)
+    end
+    event = User.find(params[:user_id]).condo.events
     limit = params[:limit].to_i
     page = params[:page].to_i
     if page < 1 or limit < 1

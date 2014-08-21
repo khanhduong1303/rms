@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
   included ActionController::MimeResponds
   authorize_resource
   def index
-    session[:category_id_temp]='all';
+    session[:category_id_temp]='all'
     @users = User.where(condo_id: current_user.condo_id)
     @categories = FacilityCategory.where(condo_id: current_user.condo_id)
     if @users.size > 0
@@ -13,8 +13,10 @@ class BookingsController < ApplicationController
       @users.each do |u|
         if !u.bookings.blank?
           u.bookings.each do |book|
-            if book.time_slot.facility.user_id==current_user.id.to_i
-              @bookings << book
+            if !book.time_slot.nil?
+              if book.time_slot.facility.user_id==current_user.id.to_i
+                @bookings << book
+              end
             end
           end
         end
