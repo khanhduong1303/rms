@@ -57,7 +57,7 @@ class Api::SessionsController < Devise::RegistrationsController
   def sign_out
     user = User.where(:authentication_token => params[:authentication_token]).first
     if user
-      user.authentication_token= nil
+      user.authentication_token = nil
       user.save
       render json: {
           status: 'success',
