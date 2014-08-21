@@ -38,7 +38,7 @@ class Api::SessionsController < Devise::RegistrationsController
               user_id: user.id,
               email: user.email,
               name: user.name,
-              token: user.authentication_token,
+              auth_token: user.authentication_token,
               condo_id: user.condo.id
 
           }
