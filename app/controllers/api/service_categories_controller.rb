@@ -6,12 +6,12 @@ class Api::ServiceCategoriesController < Api::ApiController
     rescue Exception => e
       service_categories = nil
     end
-    result = []
+    results = []
 service_categories.each do |s|
-  result << {name: s.name , icon_path: s.icon_path.url , id: s.id}
+  results << {name: s.name , icon_path: s.icon_path.url , id: s.id}
 end
     unless service_categories.nil?
-      render json: {status: 'success', message: 'Found service categories', total: service_categories.length, results: result }, status: :ok
+      render json: {status: 'success', message: 'Found service categories', total: service_categories.length, results: results }, status: :ok
     else
       render json: {status: 'failed', message: 'Not found service categories', results: {}}, status: :not_found
     end

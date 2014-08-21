@@ -17,10 +17,11 @@
 
 # Ignore other unneeded files.
 # database.yml
-doc/
-*.swp
-*~
-.project
-.DS_Store
-.idea
-.secret
+/doc/
+/*.swp
+/*~
+/.project
+/.DS_Store
+/.idea
+/.secret
+/public/system/*

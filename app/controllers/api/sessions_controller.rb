@@ -3,28 +3,6 @@ class Api::SessionsController < Devise::RegistrationsController
   skip_before_filter :verify_authenticity_token
   respond_to :json
 
-  # def create
-  #   build_resource
-  #   resource = User.find_for_database_authentication(
-  #     email: params[:email]
-  #   )
-  #   return invalid_login_attempt unless resource
-
-  #   if resource.valid_password?(params[:password])
-  #     sign_in('user', resource)
-  #     render json: {
-  #       status: 'success',
-  #       message: 'You sign in successfuly',
-  #       results:{
-  #         auth_token: resource.authentication_token,
-  #         email: resource.email
-  #              }
-  #     }
-  #     return
-  #   end
-  #   invalid_login_attempt
-  # end
-
   def sign_in
     user = User.find_for_database_authentication(email: params[:email])
     return invalid_login_attempt unless user
@@ -48,14 +26,8 @@ class Api::SessionsController < Devise::RegistrationsController
     invalid_login_attempt
   end
 
-  # def destroy
-  #     user = User.where(:authentication_token => params[:authentication_token]).first
-  #     user.authentication_token= nil
-  #     user.save
-  #   render :json => { :message => ['Session deleted.'] },  :success => true, :status => :ok
-  # end
   def sign_out
-    user = User.where(:authentication_token => params[:authentication_token]).first
+    user = User.where(:authentication_token => params[:auth_token]).first
     if user
       user.authentication_token = nil
       user.save

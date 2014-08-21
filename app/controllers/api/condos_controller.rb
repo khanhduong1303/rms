@@ -2,28 +2,24 @@ class Api::CondosController < Api::ApiController
   respond_to :json
   before_filter :find_project, :only => [:show, :update, :destroy]
   skip_before_filter :authenticate_user_from_token! , :only => [:list]
-  def list
 
+  def list
     condo = Condo.all
-    result = condo.collect { |c| {:id => c.id, :name => c.name} }
+    results = condo.collect { |c| {:id => c.id, :name => c.name} }
     render json: {
         status: "success",
         message: "List Condo",
-        result: result
-
+        results: results
     }
-
   end
 
   def show
     render json: {
         status: "success",
         message: "Condo Detaile",
-        result: @condo
-
+        results: @condo
     }
   end
-
 
   def find_project
     @condo = Condo.find(params[:id])
@@ -31,27 +27,8 @@ class Api::CondosController < Api::ApiController
     render json: {
         status: "false",
         message: "The condo you were looking is not be found",
-        result: {}
-
+        results: {}
     }
-
   end
-
-  private
-  def authenticate_user_from_token!
-    user = User.find_by_authentication_token(params[:authentication_token])
-    unless user
-      render json: {
-          status: "false",
-          message: "You need sign in/sign up to continue",
-          result: {}
-
-      }, status: 401
-    end
-
-
-  end
-
-
 end
 
