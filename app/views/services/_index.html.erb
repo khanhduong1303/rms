@@ -1,0 +1,38 @@
+<% @services.each do |s| %>
+    <div class="row service-<%= s.id %>">
+      <div class="col-xs-2">
+        <%= image_tag s.image_path.url(:default), { :class => 'img-thumbnail', size: '150x150' } %>
+      </div>
+
+      <div class="col-xs-8">
+        <h4><b><%= s.name %></b></h4>
+
+        <p><%=t('service.index.category') %>: <%= s.service_category.name %></p>
+        <p><%=t('service.index.email') %>: <%= s.email %></p>
+        <p><%=t('service.index.address') %>: <%= s.address %></p>
+        <p><%=t('service.index.call_to_order') %>: <%= s.call_to_order %></p>
+        <p><%=t('service.index.web_page') %>: <%= s.web_page %></p>
+        <p><%=t('service.index.order_hours') %>: <%= s.order_hours %></p>
+        <p><%=t('service.index.description') %>: <%= s.description %></p>
+        <p><%=t('service.index.term') %>: <%= s.term %></p>
+      </div>
+
+      <div class="col-xs-2 facility-center">
+        <div class="facility-vcenter">
+
+          <%= link_to confirm_service_path(s.id), {class: 'btn btn-link', remote: true} do %>
+              <span class="glyphicon glyphicon-trash"></span> 
+<%=t('service.index.delete_service') %>
+          <% end %>
+          <%= link_to edit_service_path(s.id), {class: 'btn btn-link', remote: true} do %>
+              <span class="glyphicon glyphicon-pencil"></span>
+<%=t('service.index.edit_service') %>
+          <% end %>
+
+        </div>
+      </div>
+
+    </div>
+    <hr>
+<% end %>
+

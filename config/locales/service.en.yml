@@ -2,3 +2,23 @@ en:
   service:
     index:
       add_new_service: "Add new Service"
+      category: "Category"
+      email: "Email"
+      address: "Address"
+      call_to_order: "Phone"
+      web_page: "Web"
+      order_hours: "Order hours"
+      description: "Description"
+      term: "Term & Privacy"
+      delete_service: "Delete Service"
+      edit_service: "Edit Service"
+      btn_cancel: "Cancel"
+      btn_save: "Save"
+      btn_add: "Add"
+      delete: "Remove Service"
+      confirm_delete: "Are you sure to remove this service?"
+      btn_confirm: "Confirm"
+    notify:
+      destroy_success: "Destroy successfully"
+      create_success: "Create successfully"
+      update_success: "Update successfully"

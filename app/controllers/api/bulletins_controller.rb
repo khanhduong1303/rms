@@ -1,21 +1,20 @@
 class Api::BulletinsController < Api::ApiController
   before_action :set_bulletin, only: [:show]
   before_action :set_bulletins, only: [:index]
-  skip_before_action :authenticate_user_from_token!
 
   def index
     unless @bulletins.nil?
-      render json: {status: 'success', message: 'Found bulletins', total: @total, data: @bulletins}, status: :ok
+      render json: {status: 'success', message: 'Found bulletins', total: @total, results: @bulletins}, status: :ok
     else
-      render json: {status: 'failed', message: 'Not found bulletins', data: {}}, status: :not_found
+      render json: {status: 'failed', message: 'Not found bulletins', results: {}}, status: :not_found
     end
   end
 
   def show
     if !@bulletin.nil?
-      render json: {status: 'success', message: 'Found bulletin', data: @bulletin}, status: :ok
+      render json: {status: 'success', message: 'Found bulletin', results: @bulletin}, status: :ok
     else
-      render json: {status: 'failed', message: 'Not found bulletin', data: {}}, status: :not_found
+      render json: {status: 'failed', message: 'Not found bulletin', results: {}}, status: :not_found
     end
   end
 
@@ -32,7 +31,7 @@ class Api::BulletinsController < Api::ApiController
       begin
         @limit = params[:limit]
         @page = params[:page]
-        token = params[:authentication_token]
+        token = params[:auth_token]
         @limit = @limit.nil? ? 5 : @limit.to_i
         @page = @page.nil? ? 1 : @page.to_i
         condo = User.find_by_authentication_token(token).condo

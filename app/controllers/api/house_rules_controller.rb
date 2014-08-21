@@ -15,9 +15,9 @@ class Api::HouseRulesController < Api::ApiController
         end
         @rules << {houserule_category_name: rule_category.name, total: rule_category.house_rules.size, house_rules: temp}
       end
-      render json: {status: 'success', message: 'Found forms', total: @rule_categories.length, data: @rules}, status: :ok
+      render json: {status: 'success', message: 'Found forms', total: @rule_categories.length, results: @rules}, status: :ok
     else
-      render json: {status: 'failed', message: 'Not found house rules', data: {}}, status: :not_found
+      render json: {status: 'failed', message: 'Not found house rules', results: {}}, status: :not_found
     end
   end
 end

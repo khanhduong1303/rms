@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h4 class="modal-title"><%= t('service.index.delete') %></h4>
+</div>
+<div class="modal-body">
+  <span><%= t('service.index.confirm_delete') %></span>
+</div>
+<div class="modal-footer">
+  <%= link_to t('service.index.btn_confirm') , service_path(@service), {class: 'btn btn-danger', method: :delete, remote: true} %>
+  <%= link_to t('service.index.btn_cancel'), '#', {class: 'btn btn-default', data: {dismiss: 'modal'}} %>
+</div>
+

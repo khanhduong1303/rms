@@ -1,0 +1,3 @@
+var className = '.service-' + <%= @service.id %>;
+$(className).html('<%= escape_javascript(render 'form') %>');
+$(className).removeClass('row');

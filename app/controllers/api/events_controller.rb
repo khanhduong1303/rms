@@ -1,11 +1,10 @@
-class Api::EventsController < ApplicationController
+class Api::EventsController < Api::ApiController
   include ActionController::MimeResponds
   #before_action :authenticate_user!, :except => [:index, :show, :event_photo, :join_event]
-  http_basic_authenticate_with name: "admin", password: "admin"
-  skip_before_filter :authenticate_user!
+  # skip_before_filter :authenticate_user!
 
   def index
-    event = User.find(params[:user_id]).condo.events
+    event = User.find_by_authentication_token(params[:auth_token]).condo.events
     limit = params[:limit].to_i
     page = params[:page].to_i
     if page < 1 or limit < 1
@@ -24,7 +23,7 @@ class Api::EventsController < ApplicationController
            temp[:date] = event.date
            temp[:image]= event.event_images.first.image.url(:thumb)
            @full_event << temp
-        end
+      end
         return render json: data_json('success', 'Event list',event.size, @full_event)
       else
         @events = event.limit(10)
@@ -44,7 +43,8 @@ class Api::EventsController < ApplicationController
 
   def list_user
     event_id = params[:event_id]
-    user_id = params[:user_id]
+    u = User.find_by_authentication_token(params[:auth_token])
+    user_id = u.id
     num_user = JoinEvent.where(:event_id => event_id).size
   if JoinEvent.where(:event_id => event_id , :user_id => user_id).size >0
      user_join = true
@@ -86,8 +86,8 @@ class Api::EventsController < ApplicationController
       if User.where(:id => params[:user_id]).size < 1
         return render json: data_json('failed', 'User not found', 0, nil)
       end
-      @join_event = JoinEvent.create(:user_id => params[:user_id], :event_id => params[:event_id])
-      return render json: data_json('success', 'Joined', 1, @join_event)
+        @join_event = JoinEvent.create(:user_id => params[:user_id], :event_id => params[:event_id])
+        return render json: data_json('success', 'Joined', 1, @join_event)
       # render json: {:status=>"Success", :message=>'Joined', :data=>@join_event}
     else
       render json: data_json('failed', 'Missing parameter', 0, nil)

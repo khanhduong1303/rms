@@ -9,7 +9,7 @@ class Api::FeedbacksController < Api::ApiController
       render json: {
     status: "success",
     message:  "You have sent 1 feedback ",
-    result: {
+    results: {
              
             }
       } 
@@ -19,7 +19,7 @@ class Api::FeedbacksController < Api::ApiController
       render json: {
     status: "fails",
     message:  feed.errors,
-    result:{
+    results:{
              
             }
       } , status: 422
@@ -31,7 +31,7 @@ class Api::FeedbacksController < Api::ApiController
          render json: {
         status: "success",
         message: "list feedback category" ,
-        result:  @cat 
+        results:  @cat 
       }, status: 200 
   end  
     def ensure_params_exist
@@ -39,7 +39,7 @@ class Api::FeedbacksController < Api::ApiController
       render json: {
         status: false,
         message: "feedback params is missing" ,
-        result: {}
+        results: {}
       }, status: 422 
     end
 

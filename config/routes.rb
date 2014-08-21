@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   resources :condos
   post 'condos/images', to: 'condos#create_image', as: 'create_image'
   resources :services
+  get 'services/confirms/:id', to: "services#confirm", as: 'confirm_service'
   resources :feedbacks, :only => [:index, :destroy]
   get 'feedbacks/moves', to: "feedbacks#move_archive", as: 'archive'
   get 'feedbacks/destroymultiple', to: "feedbacks#destroy_multiple", as: 'destroy_feedbacks'
