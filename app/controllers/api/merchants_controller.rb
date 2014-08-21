@@ -4,9 +4,9 @@ class Api::MerchantsController < Api::ApiController
   def create
     @merchant = Merchant.create(merchant_params)
     if @merchant.valid?
-      render json: { status: 'success', message: 'Merchant create success', data: {} }, status: :created
+      render json: { status: 'success', message: 'Merchant create success', results: {} }, status: :created
     else
-      render json: { status: 'failed', message: @merchant.errors.messages, data: {} }, status: :ok
+      render json: { status: 'failed', message: @merchant.errors.messages, results: {} }, status: :ok
     end
   end
 
@@ -15,3 +15,4 @@ class Api::MerchantsController < Api::ApiController
       params.permit(:name, :email, :phone)
     end
 end
+

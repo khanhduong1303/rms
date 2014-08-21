@@ -13,7 +13,7 @@ end
     unless service_categories.nil?
       render json: {status: 'success', message: 'Found service categories', total: service_categories.length, results: result }, status: :ok
     else
-      render json: {status: 'failed', message: 'Not found service categories', data: {}}, status: :not_found
+      render json: {status: 'failed', message: 'Not found service categories', results: {}}, status: :not_found
     end
   end
 end
