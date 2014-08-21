@@ -1,7 +1,7 @@
 class Api::FeedbacksController < Api::ApiController
 	def create
     image = feedback_param(params[:image])
-    feed = Feedback.new(:feedback_category_id => params[:feedback_category_id], :title => params[:title] , :content => params[:content] , :user_id => params[:user_id] ,
+    feed = Feedback.new(:feedback_category_id => params[:subject_id], :title => params[:title] , :content => params[:content] , :user_id => params[:user_id] ,
     :image =>   image.open )
     if feed.save
       render json: {
@@ -24,7 +24,7 @@ class Api::FeedbacksController < Api::ApiController
     end
   end
   def list_cat
-     @cat =  User.find(params[:user_id]).condo.feedback_categories.collect {|c| [c.name, c.id]}
+     @cat =  Condo.find(params[:condo_id]).feedback_categories.collect {|c| [c.name, c.id]}
 
          render json: {
         status: "success",

@@ -1,16 +1,9 @@
 class Api::EventsController < Api::ApiController
   def index
-    if User.where(id: params[:user_id] ).size < 1
-      return render json: data_json('failed', 'Missing user_id', 0, nil)
-    end
-    event = User.find(params[:user_id]).condo.events
+  if params[:condo_id]
+    event = Condo.find(params[:condo_id]).events
     limit = params[:limit].to_i
     page = params[:page].to_i
-    if page < 1 or limit < 1
-    @events = event.limit(10)
-      return render json: data_json('success', 'Event list', event.size, @events.to_json(:include => :event_images))
-    end
-
     if limit > 0 and page > 0
       @events = event.limit(limit).offset(page*limit-limit)
       if @events.size > 0
@@ -22,13 +15,18 @@ class Api::EventsController < Api::ApiController
            temp[:date] = event.date
            temp[:image]= event.event_images.first.image.url(:thumb)
            @full_event << temp
-      end
-        return render json: data_json('success', 'Event list',event.size, @full_event)
+                      end
+       return render json: data_json('success', 'Event list',event.size, @full_event)
       else
-        @events = event.limit(10)
-        return render json: data_json('success', 'Event list', event.size, @events.to_json(:include => :event_images))
+        return render json: data_json('success', 'Not found Event')   
       end
+
+    else
+    return render json: data_json('fails', 'limit and page is not true' )   
     end
+  else
+    return render json: data_json('failed', 'Missing condo_id')
+  end  
   end
 
   def show
@@ -42,8 +40,8 @@ class Api::EventsController < Api::ApiController
 
   def list_user
     event_id = params[:event_id]
-    u = User.find_by_authentication_token(params[:auth_token])
-    user_id = u.id
+   
+    user_id = params[:user_id]
     num_user = JoinEvent.where(:event_id => event_id).size
   if JoinEvent.where(:event_id => event_id , :user_id => user_id).size >0
      user_join = true
@@ -80,7 +78,7 @@ class Api::EventsController < Api::ApiController
   def join_event
     if !params[:user_id].nil? and !params[:event_id].nil?
       if Event.where(:id => params[:event_id]).size < 1
-        return render json: data_json('failed', 'Event not found', 0, nil)
+        return render json: data_json('failed', 'Event not found')
       end
       if User.where(:id => params[:user_id]).size < 1
         return render json: data_json('failed', 'User not found', 0, nil)
@@ -89,13 +87,13 @@ class Api::EventsController < Api::ApiController
         return render json: data_json('success', 'Joined', 1, @join_event)
       # render json: {:status=>"Success", :message=>'Joined', :data=>@join_event}
     else
-      render json: data_json('failed', 'Missing parameter', 0, nil)
+      render json: data_json('failed', 'Missing parameter')
       # render json: {:status=>"Fail", :message=>'Join fail', :data=>nil}
     end
   end
   private
-  def data_json status, message, total, results=nil
+  def data_json status, message, total =0, results={}
     return {:status => status, :message => message, :total => total, :results => results}
-  end
+    end
 end
 
