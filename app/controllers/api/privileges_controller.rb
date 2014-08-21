@@ -60,6 +60,14 @@ class Api::PrivilegesController < Api::ApiController #ApplicationController
     end
   end
 
+  def my_privileges
+    limit = params[:limit].to_i
+    page = params[:page].to_i
+    if params[:user_id].nil? || params[:user_id].blank?
+      return render json: PublicFunction.data_json('failed', 'Missing user_id parameter', 0, nil)
+    end
+  end
+
   def process_results results=nil, type=[]
     if type.is_a?(Array)
       privileges_data=type
