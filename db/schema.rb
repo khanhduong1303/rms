@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20140818092421) do
-
 
   create_table "about_us", force: true do |t|
     t.string   "information"
@@ -185,10 +183,6 @@ ActiveRecord::Schema.define(version: 20140818092421) do
     t.boolean  "archive",              default: false
     t.integer  "user_id"
     t.integer  "feedback_category_id"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -390,19 +384,8 @@ ActiveRecord::Schema.define(version: 20140818092421) do
     t.string   "icon_path_content_type"
     t.integer  "icon_path_file_size"
     t.datetime "icon_path_updated_at"
-    t.string   "image_path_file_name"
-    t.string   "image_path_content_type"
-    t.integer  "image_path_file_size"
-    t.datetime "image_path_updated_at"
-    t.text     "description"
-    t.string   "call_to_order"
-    t.string   "address"
-    t.string   "email"
-    t.string   "web_page"
-    t.string   "order_hours"
-    t.text     "term"
-    t.integer  "service_category_id"
-    t.integer  "user_id"
+    t.string   "service_category_id"
+    t.string   "integer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

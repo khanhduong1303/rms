@@ -48,10 +48,10 @@
             <td><%= book.time_slot.facility.currency(book.time_slot.facility.deposit_price) if !book.time_slot.facility.deposit_price.blank? %></td>
             <td>
               <select class="form-control" id="bookStatus<%= book.id %>" data-id="<%= book.id %>" onchange="updateBookStatus(this.id)">
-                <option <%= 'selected' if book.status.upcase == 'WAITING' %> value="Booked"><%= t('bookings.table.waiting_status') %></option>
+                <!--<option <%= 'selected' if book.status.upcase == 'WAITING' %> value="Booked"><%= t('bookings.table.waiting_status') %></option>-->
                 <option <%= 'selected' if book.status.upcase == 'BOOKED' %> value="Booked"><%= t('bookings.table.booked_status')%></option>
                 <option <%= 'selected' if book.status.upcase == 'RESERVED' %> value="Reserved"><%= t('bookings.table.reserved_status')%></option>
-                <option <%= 'selected' if book.status.upcase == 'CLOSED' %> value="Closed"><%= t('bookings.table.closed_status')%></option>
+                <!--<option <%= 'selected' if book.status.upcase == 'CLOSED' %> value="Closed"><%= t('bookings.table.closed_status')%></option>-->
               </select>
             </td>
           </tr>
