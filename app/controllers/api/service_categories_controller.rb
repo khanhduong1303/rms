@@ -1,5 +1,4 @@
 class Api::ServiceCategoriesController < Api::ApiController
-  skip_before_action :authenticate_user_from_token!
   def index
     begin
       service_categories = ServiceCategory.where(condo_id: params[:condo_id])

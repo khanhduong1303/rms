@@ -1,6 +1,6 @@
 class Api::ApiController < ActionController::Base
   respond_to :json
-  before_filter :authenticate_user_from_token!
+  before_action :authenticate_user_from_token!
 
   def authenticate_user_from_token!
     user = User.find_by_authentication_token(params[:auth_token])

@@ -1,6 +1,4 @@
-class Api::ChatsController < ApplicationController
-  include ActionController::MimeResponds
-  skip_before_filter :authenticate_user!
+class Api::ChatsController < Api::ApiController
   def request_friend
     if !params[:request_user_id].nil? && !params[:confirm_user_id].nil?
        if User.where(id:params[:request_user_id]).size < 1
@@ -204,3 +202,4 @@ class Api::ChatsController < ApplicationController
     end
   end
 end
+

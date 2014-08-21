@@ -1,7 +1,5 @@
 class Api::FeedbacksController < Api::ApiController
-	 # before_filter :ensure_params_exist , :only => [:create ]
-	  skip_before_action :authenticate_user_from_token!
-	def create 
+	def create
     image = feedback_param(params[:image])
     feed = Feedback.new(:feedback_category_id => params[:feedback_category_id], :title => params[:title] , :content => params[:content] , :user_id => params[:user_id] ,
     :image =>   image.open )
@@ -10,17 +8,17 @@ class Api::FeedbacksController < Api::ApiController
     status: "success",
     message:  "You have sent 1 feedback ",
     results: {
-             
+
             }
-      } 
+      }
       return
     else
-    
+
       render json: {
     status: "fails",
     message:  feed.errors,
     results:{
-             
+
             }
       } , status: 422
     end
@@ -31,24 +29,16 @@ class Api::FeedbacksController < Api::ApiController
          render json: {
         status: "success",
         message: "list feedback category" ,
-        results:  @cat 
-      }, status: 200 
-  end  
-    def ensure_params_exist
-      return unless params[:feedback].blank?
-      render json: {
-        status: false,
-        message: "feedback params is missing" ,
-        results: {}
-      }, status: 422 
-    end
+        results:  @cat
+      }, status: 200
+  end
 
  def feedback_param(image_data)
 @tempfile = Tempfile.new('image')
 @tempfile.binmode
 @tempfile.write Base64.decode64(image_data[:file_data])
 @tempfile.rewind
- 
+
 ActionDispatch::Http::UploadedFile.new(
 :tempfile => @tempfile,
 :content_type => image_data[:content_type],
@@ -56,3 +46,4 @@ ActionDispatch::Http::UploadedFile.new(
 )
 end
 end
+

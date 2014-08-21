@@ -1,6 +1,4 @@
 class Api::FormsController < Api::ApiController
-  skip_before_action :authenticate_user_from_token!
-
   def index
     begin
       @form_categories = FormCategory.where(condo_id: params[:condo_id])

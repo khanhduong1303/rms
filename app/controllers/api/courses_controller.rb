@@ -1,6 +1,4 @@
 class Api::CoursesController < Api::ApiController
-  skip_before_action :authenticate_user_from_token!
-
   def index
     limit = params[:limit].to_i
     page = params[:page].to_i
@@ -34,8 +32,8 @@ class Api::CoursesController < Api::ApiController
       render json: PublicFunction.data_json('failed', 'Course not found', 0, {})
     end
   end
-  
-  
+
+
   private
   def process_results results=nil, type=[]
     if type.is_a?(Array)
@@ -80,6 +78,6 @@ class Api::CoursesController < Api::ApiController
       end
     end
   end
-  
+
 end
 
