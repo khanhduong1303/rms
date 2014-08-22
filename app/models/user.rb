@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
 
   belongs_to :condo
   has_many :join_events, :dependent => :destroy
-  has_many :bulletins, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :bookings
   has_many :facilities , dependent: :destroy

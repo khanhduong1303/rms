@@ -41,11 +41,11 @@ class BulletinsController < ApplicationController
   end
 
   def set_bulletins
-    @bulletins = Bulletin.where(user_id: current_user.id).order(date: :desc)
+    @bulletins = Bulletin.where(condo_id: current_user.condo_id).order(date: :desc)
   end
 
   def bulletin_params
-    params.require(:bulletin).permit(:title, :date, :content, :send_notify, :user_id)
+
   end
 
   def set_highlight
