@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get 'condos', to: 'condos#list', as: 'listcondo'
     get 'condos_detail', to: 'condos#show', as: 'showcondo'
     post 'send_feedback', to: 'feedbacks#create'
-    get 'list_cat', to: 'feedbacks#list_cat' 
+    get 'list_subject', to: 'feedbacks#list_cat' 
 
 
   end
