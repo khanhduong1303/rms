@@ -14,20 +14,24 @@ class Api::BulletinsController < Api::ApiController
         @page = @page.nil? ? 1 : @page.to_i
         condo = Condo.find(params[:condo_id])
         @total = condo.bulletins.all.count
-        @bulletins = condo.bulletins.select(:id, :title, :date ,:content).where(send_notify: true).limit(@limit).offset((@page - 1) * @limit).order(date: :desc)
+        @bulletins = condo.bulletins.where(send_notify: true).limit(@limit).offset((@page - 1) * @limit).order(date: :desc)
+        results = []
     rescue Exception => e
         @bulletins = nil
     end
     unless @bulletins.nil?
-      render json: {status: 'success', message: 'Found bulletins', total: @total, results: @bulletins}, status: :ok
+      @bulletins.each do |b|
+        results << {id: b.id , title: b.title ,date: b.date ,content: b.content ,image_path_thump: b.image_path.url(:thumb)  }
+       end 
+      render json: {status: 'success', message: 'Found bulletins', total: @total, results: results}, status: :ok
     else
       render json: {status: 'failed', message: 'Not bulletins available', results: {}}, status: :not_found
     end
   end
 
   def show
-    if !@bulletin.nil?
-      render json: {status: 'success', message: 'Found bulletin', results: @bulletin}, status: :ok
+    if !@result.nil?
+      render json: {status: 'success', message: 'Found bulletin', results:  @result}, status: :ok
     else
       render json: {status: 'failed', message: 'Not found bulletin', results: {}}, status: :not_found
     end
@@ -36,9 +40,14 @@ class Api::BulletinsController < Api::ApiController
   private
     def set_bulletin
       begin
-        @bulletin = Bulletin.select(:id, :title, :date, :content).find(params[:bulletin_id])
+        b = Bulletin.find(params[:bulletin_id])
+        if b.nil?
+        @result = nil
+        else
+        @result = {id: b.id , title: b.title ,date: b.date ,content: b.content ,image_path_thump: b.image_path.url(:thumb) , image_path:  b.image_path.url }
+        end
       rescue ActiveRecord::RecordNotFound => e
-        @bulletin = nil
+        @result = nil
       end
     end
 

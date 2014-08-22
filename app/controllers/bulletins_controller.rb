@@ -45,7 +45,7 @@ class BulletinsController < ApplicationController
   end
 
   def bulletin_params
-
+    params.require(:bulletin).permit(:title, :date, :content, :send_notify, :condo_id , :image_path)
   end
 
   def set_highlight
