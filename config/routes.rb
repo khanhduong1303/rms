@@ -245,6 +245,8 @@ Rails.application.routes.draw do
       collection do
         get 'privileges' => 'privileges#index'
         get 'privilege_detail' => 'privileges#privilege_detail'
+        get 'my_privileges'
+        post 'delete_privilege'
         post 'redeem_previlege' => 'privileges#redeem_previlege'
       end
     end

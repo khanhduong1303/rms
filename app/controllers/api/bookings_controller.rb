@@ -62,6 +62,7 @@ class Api::BookingsController < Api::ApiController
           temp[:deposit_price]= book.time_slot.facility.deposit_price
           temp[:note]= book.time_slot.facility.note
           temp[:status]=book.status
+          temp[:book_id] = book.id
           @facilities[i] = temp
           #temp[b.status] = b.status
           #facilities[i][:ok] = 'ok'

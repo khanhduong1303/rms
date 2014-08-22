@@ -1,4 +1,6 @@
-class Api::PrivilegesController < Api::ApiController
+class Api::PrivilegesController < Api::ApiController #ApplicationController
+  # skip_before_action :authenticate_user!
+
   def index
     limit = params[:limit].to_i
     page = params[:page].to_i
@@ -58,6 +60,39 @@ class Api::PrivilegesController < Api::ApiController
     end
   end
 
+  def my_privileges
+    if params[:user_id].nil? || params[:user_id].blank?
+      return render json: PublicFunction.data_json('failed', 'Missing user_id parameter', 0, nil)
+    end
+    begin
+      arr_group_id  = []
+      PrivilegeUser.where(user_id: params[:user_id]).each do |pri_ur|
+        arr_group_id << pri_ur.privilege_id
+      end
+      @results = Privilege.where("id in (#{arr_group_id.join(',')})")
+      @privileges = process_results @results, []
+      return render json: PublicFunction.data_json('success', 'My privilege list', @privileges.size, @privileges)
+    rescue
+      return render json: PublicFunction.data_json('failed', 'Error load my privileges!', 0, nil)
+    end
+  end
+
+  def delete_privilege
+    if params[:privilege_id].nil? || params[:privilege_id].blank?
+      return render json: PublicFunction.data_json('failed', 'Missing privilege_id parameter', 0, nil)
+    end
+    begin
+      if PrivilegeUser.where(privilege_id:params[:privilege_id]).size > 0
+        PrivilegeUser.destroy(PrivilegeUser.find_by_privilege_id(params[:privilege_id]))
+        return render json: PublicFunction.data_json('success', 'Delete privilege was success!', 1, {})
+      else
+        return render json: PublicFunction.data_json('failed', 'privilege_id not found!', 0, nil)
+      end
+    rescue
+      return render json: PublicFunction.data_json('failed', 'Error delete privilege!', 0, nil)
+    end
+  end
+
   def process_results results=nil, type=[]
     if type.is_a?(Array)
       privileges_data=type
@@ -105,4 +140,3 @@ class Api::PrivilegesController < Api::ApiController
 
   end
 end
-
