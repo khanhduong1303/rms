@@ -61,8 +61,6 @@ class Api::PrivilegesController < Api::ApiController #ApplicationController
   end
 
   def my_privileges
-    limit = params[:limit].to_i
-    page = params[:page].to_i
     if params[:user_id].nil? || params[:user_id].blank?
       return render json: PublicFunction.data_json('failed', 'Missing user_id parameter', 0, nil)
     end
@@ -77,7 +75,22 @@ class Api::PrivilegesController < Api::ApiController #ApplicationController
     rescue
       return render json: PublicFunction.data_json('failed', 'Error load my privileges!', 0, nil)
     end
+  end
 
+  def delete_privilege
+    if params[:privilege_id].nil? || params[:privilege_id].blank?
+      return render json: PublicFunction.data_json('failed', 'Missing privilege_id parameter', 0, nil)
+    end
+    begin
+      if PrivilegeUser.where(privilege_id:params[:privilege_id]).size > 0
+        PrivilegeUser.destroy(PrivilegeUser.find_by_privilege_id(params[:privilege_id]))
+        return render json: PublicFunction.data_json('success', 'Delete privilege was success!', 1, {})
+      else
+        return render json: PublicFunction.data_json('failed', 'privilege_id not found!', 0, nil)
+      end
+    rescue
+      return render json: PublicFunction.data_json('failed', 'Error delete privilege!', 0, nil)
+    end
   end
 
   def process_results results=nil, type=[]
