@@ -4,10 +4,15 @@ class BookingsController < ApplicationController
   before_action :set_hightlight
   included ActionController::MimeResponds
   authorize_resource
+
   def index
     session[:category_id_temp]='all'
     @users = User.where(condo_id: current_user.condo_id)
-    @categories = FacilityCategory.where(condo_id: current_user.condo_id)
+    if current_user.roles.where('role_name = "Admin"').size >0
+      @categories = FacilityCategory.where(condo_id: current_user.condo_id)
+    else
+      @categories = FacilityCategory.where(user_id: current_user.id)
+    end
     if @users.size > 0
       @bookings = []
       @users.each do |u|
@@ -49,16 +54,20 @@ class BookingsController < ApplicationController
 
   def getLanguage
     if session[:language].nil? || session[:language]=='en'
-      render json: {val:'dataTables.english.lang'}
+      render json: {val: 'dataTables.english.lang'}
     else
-      render json: {val:'dataTables.vietnamese.lang'}
+      render json: {val: 'dataTables.vietnamese.lang'}
     end
   end
 
   def filter
     category_id = params[:id]
     session[:category_id_temp]=category_id;
-    @categories = FacilityCategory.where(condo_id: current_user.condo_id)
+    if current_user.roles.where('role_name = "Admin"').size >0
+      @categories = FacilityCategory.where(condo_id: current_user.condo_id)
+    else
+      @categories = FacilityCategory.where(user_id: current_user.id)
+    end
     if category_id=='all'
       @users = User.where(condo_id: current_user.condo_id)
       if @users.size > 0
@@ -66,8 +75,10 @@ class BookingsController < ApplicationController
         @users.each do |u|
           if !u.bookings.blank?
             u.bookings.each do |book|
-              if book.time_slot.facility.user_id==current_user.id.to_i
-                @bookings << book
+              if !book.time_slot.nil?
+                if book.time_slot.facility.user_id==current_user.id.to_i
+                  @bookings << book
+                end
               end
             end
           end
@@ -81,8 +92,10 @@ class BookingsController < ApplicationController
         @users.each do |u|
           if !u.bookings.blank?
             u.bookings.each do |book|
-              if book.time_slot.facility.facility_category_id==category_id.to_i && book.time_slot.facility.user_id==current_user.id.to_i
-                @bookings << book
+              if !book.time_slot.nil?
+                if book.time_slot.facility.facility_category_id==category_id.to_i && book.time_slot.facility.user_id==current_user.id.to_i
+                  @bookings << book
+                end
               end
             end
           end
