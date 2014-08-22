@@ -10,10 +10,20 @@ class Api::EventsController < Api::ApiController
          @full_event = []
          @events.each do |event|
            temp = Hash.new
+
            temp[:id]= event.id
+           temp[:time_start] = event.event_start
+           temp[:time_end] = event.event_end
            temp[:name]= event.name
            temp[:date] = event.date
-           temp[:image]= event.event_images.first.image.url(:thumb)
+          if  event.event_images.size > 0
+          temp[:image]= event.event_images.first.image.url(:thumb)
+          else
+          temp[:image] = "/images/no-image.jpg"
+          end  
+         
+           temp[:organiser] = event.organiser
+
            @full_event << temp
                       end
        return render json: data_json('success', 'Event list',event.size, @full_event)

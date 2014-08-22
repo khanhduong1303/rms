@@ -14,7 +14,7 @@ class Condo < ActiveRecord::Base
   has_many :service_categories, dependent: :destroy
   has_many :services, through: :service_category
   has_many :courses, dependent: :destroy
-  has_many :bulletins , through: :users
+  has_many :bulletins ,dependent: :destroy
   has_many :events , through: :users
   has_many :houserule_categories , dependent: :destroy
   has_many :house_rules , through: :houserule_categories

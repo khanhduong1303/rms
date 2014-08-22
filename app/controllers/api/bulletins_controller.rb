@@ -4,6 +4,7 @@ class Api::BulletinsController < Api::ApiController
   def index
     unless params[:condo_id]
       render json: {status: 'failed', message: 'missing params condo id ', results: {}}, status: :not_found
+      return
     end
     begin
         @limit = params[:limit]
