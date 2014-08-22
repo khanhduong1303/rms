@@ -3,7 +3,7 @@ class Api::CoursesController < Api::ApiController
     limit = params[:limit].to_i
     page = params[:page].to_i
     if params[:condo_id].nil?
-      return render json: PublicFunction.data_json('failed', 'Missing user_id parameter', 0, {})
+      return render json: PublicFunction.data_json('failed', 'Missing condo_id parameter', 0, {})
     end
     if page < 1 or limit < 1
       @results = Course.limit(10).where(condo_id:params[:condo_id])
