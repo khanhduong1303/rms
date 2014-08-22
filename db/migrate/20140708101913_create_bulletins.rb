@@ -4,6 +4,7 @@ class CreateBulletins < ActiveRecord::Migration
       t.string :title, null: false
       t.date :date, null: false
       t.text :content, null: false
+      t.attachment :image_path
       t.boolean :send_notify, default: true
       t.integer :user_id, null: false
 

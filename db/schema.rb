@@ -42,11 +42,15 @@ ActiveRecord::Schema.define(version: 20140818092421) do
   end
 
   create_table "bulletins", force: true do |t|
-    t.string   "title",                      null: false
-    t.date     "date",                       null: false
-    t.text     "content",                    null: false
-    t.boolean  "send_notify", default: true
-    t.integer  "user_id",                    null: false
+    t.string   "title",                                  null: false
+    t.date     "date",                                   null: false
+    t.text     "content",                                null: false
+    t.string   "image_path_file_name"
+    t.string   "image_path_content_type"
+    t.integer  "image_path_file_size"
+    t.datetime "image_path_updated_at"
+    t.boolean  "send_notify",             default: true
+    t.integer  "user_id",                                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

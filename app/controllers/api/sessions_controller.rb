@@ -9,7 +9,6 @@ class Api::SessionsController < Devise::RegistrationsController
 
     if user.valid_password?(params[:password])
       render json: {
-
           status: 'success',
           message: 'You sign in successfuly',
           results: {
@@ -18,7 +17,6 @@ class Api::SessionsController < Devise::RegistrationsController
               name: user.name,
               auth_token: user.authentication_token,
               condo_id: user.condo.id
-
           }
       }
       return
@@ -27,7 +25,7 @@ class Api::SessionsController < Devise::RegistrationsController
   end
 
   def sign_out
-    user = User.where(:authentication_token => params[:auth_token]).first
+    user = User.find_by(authentication_token: params[:auth_token])
     if user
       user.authentication_token = nil
       user.save
