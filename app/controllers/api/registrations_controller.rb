@@ -17,7 +17,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
       }
       return
     else
-      warden.custom_failedure!
+      # warden.custom_failedure!
       render json: {
           status: 'failed',
           message: user.errors,
