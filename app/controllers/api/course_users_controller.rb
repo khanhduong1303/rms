@@ -4,7 +4,7 @@ class Api::CourseUsersController < Api::ApiController
   def create
     begin
       @course_user = CourseUser.create(course_user_params)
-      render json: { status: 'success', message: 'Create join success', results: {} }, status: :ok
+      render json: { status: 'success', message: 'Create join success', results: @course_user }, status: :ok
     rescue ArgumentError => e
       # Do nothing
     end
