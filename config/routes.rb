@@ -246,7 +246,7 @@ Rails.application.routes.draw do
         get 'privileges' => 'privileges#index'
         get 'privilege_detail' => 'privileges#privilege_detail'
         get 'my_privileges'
-        post 'delete_privilege'
+        post 'delete_my_privilege'
         post 'redeem_previlege' => 'privileges#redeem_previlege'
       end
     end
@@ -331,6 +331,7 @@ Rails.application.routes.draw do
         post 'make_a_booking' => 'bookings#make_a_booking'
         get 'check_booking' => 'bookings#check_booking'
         get 'booking_detail' => 'bookings#booking_detail'
+        post 'delete_my_booking' => 'bookings#delete_my_booking'
       end
     end
   end

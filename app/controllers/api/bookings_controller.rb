@@ -90,5 +90,21 @@ class Api::BookingsController < Api::ApiController
     end
   end
 
+  def delete_my_booking
+    if params[:booking_id].nil? || params[:booking_id].blank?
+      return render json: PublicFunction.data_json('failed', 'Missing parameter \'booking_id\'', 0, nil)
+    end
+    begin
+      if Booking.where(id:params[:booking_id]).size > 0
+        Booking.destroy(Booking.find(params[:booking_id]))
+        return render json: PublicFunction.data_json('success', 'Delete booking was success!', 1, {})
+      else
+        return render json: PublicFunction.data_json('failed', 'booking_id not found!', 0, nil)
+      end
+    rescue
+      return render json: PublicFunction.data_json('failed', 'Error delete booking!', 0, nil)
+    end
+  end
+
 end
 

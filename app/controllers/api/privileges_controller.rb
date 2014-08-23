@@ -77,7 +77,7 @@ class Api::PrivilegesController < Api::ApiController #ApplicationController
     end
   end
 
-  def delete_privilege
+  def delete_my_privilege
     if params[:privilege_id].nil? || params[:privilege_id].blank?
       return render json: PublicFunction.data_json('failed', 'Missing privilege_id parameter', 0, nil)
     end
