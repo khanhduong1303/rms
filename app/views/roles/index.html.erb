@@ -56,19 +56,19 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-    // var id = $('div.select select').val();
-    // if (id != 'all')
-    // {
+    var id = $('div.select select').val();
+    if (id != 'nil')
+    {
      
-    //   $.ajax({  
-    //     url : "roles/show" ,
-    //     type : "get" ,
-    //     data: {"id": id} ,
-    //     dataType: "script",
-    //     success: function(){ } ,
-    //     error: function(){ }
-    //           });
-    // }
+      $.ajax({  
+        url : "roles/show" ,
+        type : "get" ,
+        data: {"id": id} ,
+        dataType: "script",
+        success: function(){ } ,
+        error: function(){ }
+              });
+    }
     $(document).on('blur', "h3 input" , function(){
           var rid = $(".select select").val();
           var name = $(this).val();
@@ -102,7 +102,7 @@
     $(document).on('change',".select select" , function(){
        	
        	var rid = $(this).val();
-        if (rid != 'all'){
+        if (rid != 'nil'){
        	param = {"id":rid};
          $.ajax({
        	

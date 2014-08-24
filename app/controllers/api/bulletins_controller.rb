@@ -21,7 +21,7 @@ class Api::BulletinsController < Api::ApiController
     end
     unless @bulletins.nil?
       @bulletins.each do |b|
-        results << {id: b.id , title: b.title ,date: b.date ,content: b.content ,image_path_thump: b.image_path.url(:thumb)  }
+        results << {id: b.id , title: b.title ,date: b.date ,content: b.content ,image_path_thumb: b.image_path.url(:thumb)  }
        end 
       render json: {status: 'success', message: 'Found bulletins', total: @total, results: results}, status: :ok
     else
