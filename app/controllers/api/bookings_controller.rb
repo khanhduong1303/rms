@@ -15,7 +15,8 @@ class Api::BookingsController < Api::ApiController
         temp = {}
         temp[:category_id] = cate.id
         temp[:category] = cate.name
-        temp[:facilities] = Facility.where("active=true and user_id in (#{arr_group_id.join(',')}) and facility_category_id=#{cate.id}")
+        fc_temp = Facility.where("active=true and user_id in (#{arr_group_id.join(',')}) and facility_category_id=#{cate.id}")
+        temp[:facilities] = process_results fc_temp
         @booking_facilities << temp
       end
       # @booking_facilities = Facility.where("active=true and user_id in (#{arr_group_id.join(',')})")
@@ -61,6 +62,7 @@ class Api::BookingsController < Api::ApiController
           temp[:booking_price]= book.time_slot.facility.booking_price
           temp[:deposit_price]= book.time_slot.facility.deposit_price
           temp[:note]= book.time_slot.facility.note
+          temp[:image_path]= book.time_slot.facility.image_path.url
           temp[:status]=book.status
           temp[:book_id] = book.id
           @facilities[i] = temp
@@ -106,5 +108,28 @@ class Api::BookingsController < Api::ApiController
     end
   end
 
+  private
+  def process_results results=nil
+      booking_data=[]
+      i=0
+      results.each do |booking|
+        temp = Hash.new
+        temp[:id]= booking.id
+        temp[:user_id]= booking.user_id
+        temp[:name]= booking.name
+        temp[:booking_price]= booking.booking_price
+        temp[:deposit_price]=booking.deposit_price
+        temp[:note]=booking.note
+        temp[:active]=booking.active
+        temp[:created_at]=booking.created_at
+        temp[:updated_at]=booking.updated_at
+        temp[:facility_category_id]=booking.facility_category_id
+        temp[:image_path]=booking.image_path.url
+        booking_data[i] = temp
+        i+=1
+      end
+      return booking_data
+  end
+  
 end
 
