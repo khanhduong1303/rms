@@ -1,0 +1,6 @@
+<% if @rs = 1 %>
+$('.archive'+<%=@event_id%>).html('<a class="glyphicon glyphicon-arrow-right"><%= link_to t('events.archive'), archive_event_path(@event_id), :remote => true %></a>')
+delayedAlert("<%= t('events.unarchived') %>",1000)
+<% else %>
+delayedAlert("<%= t('events.unarchived_err') %>",1000)
+<% end %>
