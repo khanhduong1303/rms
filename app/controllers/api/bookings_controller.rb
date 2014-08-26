@@ -32,8 +32,8 @@ class Api::BookingsController < Api::ApiController
 
   def make_a_booking
     if !params[:user_id].nil? && !params[:preferred_date].nil? && !params[:time_slot_id].nil?
-      if Booking.where(user_id:params[:user_id], time_slot_id:params[:time_slot_id]).size > 0
-        return render json: PublicFunction.data_json('failed', 'Can\'t booking again', 0, nil)
+      if Booking.where(date_book:params[:preferred_date].to_date, time_slot_id:params[:time_slot_id]).size > 0
+        return render json: PublicFunction.data_json('failed', 'Booking existed!', 0, nil)
       end
       @booking = Booking.create(time_slot_id:params[:time_slot_id], date_submit:Time.now , date_expiry:1.days.from_now , date_book:params[:preferred_date], user_id:params[:user_id], status:'Reserved')
       if @booking
@@ -87,6 +87,22 @@ class Api::BookingsController < Api::ApiController
       return render json: PublicFunction.data_json('success', 'Show booking facility detail!', 1, temp)
     rescue
       return render json: PublicFunction.data_json('failed', 'Error!', 0, nil)
+    end
+  end
+
+  def delete_my_booking
+    if params[:booking_id].nil? || params[:booking_id].blank?
+      return render json: PublicFunction.data_json('failed', 'Missing parameter \'booking_id\'', 0, nil)
+    end
+    begin
+      if Booking.where(id:params[:booking_id]).size > 0
+        Booking.destroy(Booking.find(params[:booking_id]))
+        return render json: PublicFunction.data_json('success', 'Delete booking was success!', 1, {})
+      else
+        return render json: PublicFunction.data_json('failed', 'booking_id not found!', 0, nil)
+      end
+    rescue
+      return render json: PublicFunction.data_json('failed', 'Error delete booking!', 0, nil)
     end
   end
 
