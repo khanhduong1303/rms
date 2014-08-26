@@ -43,7 +43,8 @@ class Api::RegistrationsController < Devise::RegistrationsController
               country: user.country,
               city: user.city,
               postal_code: user.postal_code,
-              phone: user.phone
+              phone: user.phone ,
+              interest: user.interest
           }
       }
     else
@@ -56,11 +57,19 @@ class Api::RegistrationsController < Devise::RegistrationsController
   end
 
   def edit_profile
-    new_params = params.permit(:username, :avatar, :email, :password, :password_confirmation, :current_password, :company, :name, :city, :country, :postal_code, :phone)
-
+   
     user = User.where(:authentication_token => params[:auth_token]).first
     if user
-      is_valid = user.update_without_password(new_params)
+      is_valid = false
+        if params[:image]
+        image = read_image(params[:image])
+      is_valid = user.update_without_password(
+      interest: params[:interest] , city: params[:city] ,  name: params[:name] , phone: params[:phone] , avatar: image.open
+
+        )else
+        is_valid = user.update_without_password(
+       interest: params[:interest] ,  city: params[:city] ,  name: params[:name] , phone: params[:phone] )
+        end
 
       if is_valid
         render json: {
@@ -130,6 +139,18 @@ class Api::RegistrationsController < Devise::RegistrationsController
   protected
     def user_params
       params.permit(:name, :email, :phone, :city, :password, :password_confirmation, :condo_id)
+    end
+    def read_image(image_data)
+      @tempfile = Tempfile.new('image')
+@tempfile.binmode
+@tempfile.write Base64.decode64(image_data[:file_data])
+@tempfile.rewind
+
+ActionDispatch::Http::UploadedFile.new(
+:tempfile => @tempfile,
+:content_type => image_data[:content_type],
+:filename => image_data[:filename]
+)
     end
 end
 

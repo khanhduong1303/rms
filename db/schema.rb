@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818092421) do
+ActiveRecord::Schema.define(version: 20140826023231) do
 
   create_table "about_us", force: true do |t|
     t.string   "information"
@@ -310,6 +310,15 @@ ActiveRecord::Schema.define(version: 20140818092421) do
     t.datetime "updated_at"
   end
 
+  create_table "merchants", force: true do |t|
+    t.string   "name",                       null: false
+    t.string   "email",                      null: false
+    t.string   "phone"
+    t.boolean  "archive",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "per_roles", force: true do |t|
     t.integer  "role_id"
     t.integer  "permission_id"
@@ -440,6 +449,7 @@ ActiveRecord::Schema.define(version: 20140818092421) do
     t.string   "authentication_token"
     t.boolean  "active",                 default: false
     t.boolean  "is_status",              default: true
+    t.text     "interest"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
