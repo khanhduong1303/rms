@@ -1,4 +1,6 @@
-<% @house_rules.each do |house_rule| %>
+<% @cat.each do |cat| %>
+<p class="alert alert-info"><%= cat.name %></p>
+<% cat.house_rules.each do |house_rule| %>
     <div class="my-row house-rule-<%= house_rule.id %>">
       <div class="my-col-8">
         <h4><b><%= house_rule.title %></b></h4>
@@ -21,3 +23,4 @@
     <hr>
 <% end %>
 
+<% end %>

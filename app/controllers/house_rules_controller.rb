@@ -46,7 +46,7 @@ class HouseRulesController < ApplicationController
   end
 
   def set_house_rules
-    @house_rules = current_user.condo.house_rules
+    @cat = current_user.condo.houserule_categories
   end
 
   def house_rule_params
