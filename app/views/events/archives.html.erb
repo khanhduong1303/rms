@@ -1,7 +1,7 @@
 <div  id="loadbody">
   <ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a href="/events"><%= t('events.event_list') %></a></li>
-    <li><a href="/events/archives"><%= t('events.archived_list') %></a></li>
+    <li><a href="/events"><%= t('events.event_list') %></a></li>
+    <li class="active"><a href="/events/archives"><%= t('events.archived_list') %></a></li>
     <div class="text-right">
       <%= link_to new_event_path, { id: 'addNewEvent', class: 'btn btn-link', remote: true } do %>
           <span class="glyphicon glyphicon-plus"></span><%= t('events.add_new_event') %>
@@ -10,7 +10,7 @@
   </ul>
 
   <% @events.each do |event| %>
-      <div class="row margin-top-20">
+      <div class="row margin-top-20 element<%= event.id%>">
         <div class="col-sm-2 align-center">
           <% if event.event_images.size > 0 %>
               <%= image_tag event.event_images[0].image.url(:thumb), :class => 'img-thumbnail' %>
@@ -77,17 +77,17 @@
           <a class="glyphicon glyphicon-pencil"><%= link_to t('events.edit_event'), edit_event_path(event), :remote => true %></a>
           <br>
           <div class="archive<%= event.id%>">
-          <% if event.archived == false %>
-              <a class="glyphicon glyphicon-arrow-right"><%= link_to t('events.archive'), archive_event_path(event), :remote => true %></a>
-          <% else %>
-              <a class="glyphicon glyphicon-arrow-left"><%= link_to t('events.unarchive'), unarchive_event_path(event), :remote => true %></a>
-          <% end %>
-        </div>
+            <% if event.archived == false %>
+                <a class="glyphicon glyphicon-arrow-right"><%= link_to t('events.archive'), archive_event_path(event), :remote => true, :onClick => 'hide_event('+event.id.to_s+')' %></a>
+            <% else %>
+                <a class="glyphicon glyphicon-arrow-left"><%= link_to t('events.unarchive'), unarchive_event_path(event), :remote => true, :onClick => 'hide_event('+event.id.to_s+')' %></a>
+            <% end %>
+          </div>
           <br><br>
           <%= link_to t('events.show_more'), event, :class => 'btn btn-info', :remote => true %>
         </div>
+        <div class="col-md-12"><hr></div>
       </div>
-      <hr>
   <% end %>
 </div>
 <!-- Modal -->
@@ -109,4 +109,11 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  function hide_event(val){
+      $('.element'+val).find('hr').hide()
+      $('.element'+val).fadeOut(500);
+  }
+</script>
 

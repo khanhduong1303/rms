@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826023231) do
+
+ActiveRecord::Schema.define(version: 20140826040535) do
 
   create_table "about_us", force: true do |t|
     t.string   "information"
@@ -36,33 +37,29 @@ ActiveRecord::Schema.define(version: 20140826023231) do
     t.date     "date_book"
     t.string   "status"
     t.integer  "user_id"
-    t.integer  "facility_time_slot_id"
+    t.integer  "time_slot_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "bulletins", force: true do |t|
-    t.string   "title",                                  null: false
-    t.date     "date",                                   null: false
-    t.text     "content",                                null: false
-    t.string   "image_path_file_name"
-    t.string   "image_path_content_type"
-    t.integer  "image_path_file_size"
-    t.datetime "image_path_updated_at"
-    t.boolean  "send_notify",             default: true
-    t.integer  "condo_id",                               null: false
+    t.string   "title",                      null: false
+    t.date     "date",                       null: false
+    t.text     "content",                    null: false
+    t.boolean  "send_notify", default: true
+    t.integer  "user_id",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "condo_images", force: true do |t|
+    t.integer  "condo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "condo_id"
   end
 
   create_table "condos", force: true do |t|
@@ -133,9 +130,11 @@ ActiveRecord::Schema.define(version: 20140826023231) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "archived",    default: false
   end
 
   create_table "facilities", force: true do |t|
+    t.integer  "user_id",                                null: false
     t.string   "name",                                   null: false
     t.float    "booking_price",                          null: false
     t.float    "deposit_price",                          null: false
@@ -146,7 +145,6 @@ ActiveRecord::Schema.define(version: 20140826023231) do
     t.datetime "image_path_updated_at"
     t.boolean  "active",                  default: true
     t.integer  "facility_category_id",                   null: false
-    t.integer  "user_id",                                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -159,14 +157,10 @@ ActiveRecord::Schema.define(version: 20140826023231) do
   end
 
   create_table "facility_statuses", force: true do |t|
-    t.string   "image_path_file_name"
-    t.string   "image_path_content_type"
-    t.integer  "image_path_file_size"
-    t.datetime "image_path_updated_at"
+    t.integer  "facility_id"
     t.date     "close_from"
     t.date     "close_to"
     t.text     "reason"
-    t.integer  "facility_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -191,10 +185,6 @@ ActiveRecord::Schema.define(version: 20140826023231) do
     t.boolean  "archive",              default: false
     t.integer  "user_id"
     t.integer  "feedback_category_id"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -353,6 +343,9 @@ ActiveRecord::Schema.define(version: 20140826023231) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "date_time_detail"
   end
 
   create_table "roles", force: true do |t|
@@ -360,6 +353,20 @@ ActiveRecord::Schema.define(version: 20140826023231) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "condo_id"
+  end
+
+  create_table "service_abouts", force: true do |t|
+    t.string   "image_path_file_name"
+    t.string   "image_path_content_type"
+    t.integer  "image_path_file_size"
+    t.datetime "image_path_updated_at"
+    t.text     "description"
+    t.string   "call_to_order"
+    t.string   "email"
+    t.text     "more_info"
+    t.integer  "service_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "service_categories", force: true do |t|
@@ -379,19 +386,8 @@ ActiveRecord::Schema.define(version: 20140826023231) do
     t.string   "icon_path_content_type"
     t.integer  "icon_path_file_size"
     t.datetime "icon_path_updated_at"
-    t.string   "image_path_file_name"
-    t.string   "image_path_content_type"
-    t.integer  "image_path_file_size"
-    t.datetime "image_path_updated_at"
-    t.text     "description"
-    t.string   "call_to_order"
-    t.string   "address"
-    t.string   "email"
-    t.string   "web_page"
-    t.string   "order_hours"
-    t.text     "term"
-    t.integer  "service_category_id"
-    t.integer  "user_id"
+    t.string   "service_category_id"
+    t.string   "integer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -421,12 +417,12 @@ ActiveRecord::Schema.define(version: 20140826023231) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -446,8 +442,8 @@ ActiveRecord::Schema.define(version: 20140826023231) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "active"
     t.string   "authentication_token"
-    t.boolean  "active",                 default: false
     t.boolean  "is_status",              default: true
     t.text     "interest"
   end
