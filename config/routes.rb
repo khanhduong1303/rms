@@ -63,7 +63,16 @@ Rails.application.routes.draw do
   post 'feedbacks/destroy_multiple', to: "feedbacks#destroy_multiple"
   post 'feedbacks/move_multiple', to: "feedbacks#move_multiple"
   get 'feedbacks/archive', to: "feedbacks#index_archive", as: "feedbacks_archive"
-  resources :events
+  resources :events do
+    collection do
+      get 'archives'
+    end
+    member do
+      get 'archive'
+      get 'unarchive'
+    end
+  end
+
   resources :facilities do
     get 'timeslot'
     member do
@@ -207,6 +216,7 @@ Rails.application.routes.draw do
     resource :event, only: [], path: 'api' do
       collection do
         get 'events' => 'events#index'
+        get 'event_archives' => 'events#event_archives'
       end
       member do
         get 'list_user' => 'events#list_user'
