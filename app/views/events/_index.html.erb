@@ -1,9 +1,13 @@
 
-<div class="text-right">
-  <%= link_to new_event_path, { id: 'addNewEvent', class: 'btn btn-link', remote: true } do %>
-    <span class="glyphicon glyphicon-plus"></span><% t('events.add_new_event')%>
-  <% end %>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="/events"><%= t('events.event_list') %></a></li>
+  <li><a href="/events/archives"><%= t('events.archived_list') %></a></li>
+  <div class="text-right">
+    <%= link_to new_event_path, { id: 'addNewEvent', class: 'btn btn-link', remote: true } do %>
+        <span class="glyphicon glyphicon-plus"></span><%= t('events.add_new_event') %>
+    <% end %>
   </div>
+</ul>
   <hr>
 
 <% @events.each do |event| %>
