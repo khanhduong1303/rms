@@ -59,13 +59,14 @@ class Api::BookingsController < Api::ApiController
         @booking.each do |book|
           temp = Hash.new
           if !book.time_slot.nil?
-          temp[:name]= book.time_slot.facility.name
-          temp[:booking_price]= book.time_slot.facility.booking_price
-          temp[:deposit_price]= book.time_slot.facility.deposit_price
-          temp[:note]= book.time_slot.facility.note
-          temp[:image_path]= book.time_slot.facility.image_path.url
+          temp[:name]= book.facility.name
+          temp[:booking_price]= book.facility.booking_price
+          temp[:deposit_price]= book.facility.deposit_price
+          temp[:note]= book.facility.note
+          temp[:image_path]= book.facility.image_path.url
           temp[:status]=book.status
           temp[:book_id] = book.id
+          temp[:facility_category_id]=book.facility.facility_category_id
           end
           @facilities[i] = temp
           #temp[b.status] = b.status
