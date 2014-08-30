@@ -138,7 +138,7 @@ Rails.application.routes.draw do
 
   resources :guard_house_images
 
-  resources :privileges, only: []
+  resources :privileges
 
   resources :privilege_users, only: []
 

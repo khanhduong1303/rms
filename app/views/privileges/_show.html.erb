@@ -1,0 +1,36 @@
+<div class="row margin-top-20">
+  <div class="col-md-2 align-center">
+    <%= image_tag @privilege.image_path.url(:thumb), :class => 'img-thumbnail' %>
+  </div>
+  <div class="col-md-10 form-group form-inline  in_place_class">
+    <div class="col-md-12">
+      <%= best_in_place @privilege,:name %>
+      &nbsp;
+      <%= link_to '', edit_privilege_path(@privilege), class: 'glyphicon glyphicon-pencil fontSize20', remote: true %>
+      &nbsp;
+      <%= link_to '', @privilege, method: :delete, class: 'glyphicon glyphicon-trash fontSize20', data: {confirm: 'Are you sure?'}, remote: true %>
+    </div>
+    <div class="col-md-12">
+      <div class="col-md-2 text-right"> <%= label_tag t('privileges.location') %></div>
+      <div class="col-md-4"><%= best_in_place @privilege,:location, :nil => "Click to edit!" %></div>
+      <div class="col-md-2 text-right"><%= label_tag t('privileges.price') %></div>
+      <div class="col-md-4"><%= best_in_place @privilege,:price, :nil => "Click to edit!" %></div>
+    </div>
+    <div class="col-md-12">
+      <div class="col-md-2 text-right"> <%= label_tag t('privileges.distance') %></div>
+      <div class="col-md-4"><%= best_in_place @privilege,:distance, :nil => "Click to edit!" %></div>
+      <div class="col-md-2 text-right"><%= label_tag t('privileges.date_expiry') %></div>
+      <div class="col-md-4"><%= best_in_place @privilege,:date_expiry, :nil => "Click to edit!" %></div>
+    </div>
+    <div class="col-md-12">
+      <div class="col-md-2 text-right"> <%= label_tag t('privileges.phone') %></div>
+      <div class="col-md-4"><%= best_in_place @privilege,:phone, :nil => "Click to edit!" %></div>
+      <div class="col-md-2 text-right"><%= label_tag t('privileges.date_time_detail') %></div>
+      <div class="col-md-4"><%= best_in_place @privilege,:date_time_detail, :nil => "Click to edit!" %></div>
+    </div>
+    <div class="col-md-12">
+      <div class="text-right height-15 width-110"> <%= label_tag t('privileges.description') %></div>
+      <%= @privilege.description %>
+    </div>
+  </div>
+</div>

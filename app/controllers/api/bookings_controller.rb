@@ -67,6 +67,12 @@ class Api::BookingsController < Api::ApiController
           temp[:status]=book.status
           temp[:book_id] = book.id
           temp[:facility_category_id]=book.facility.facility_category_id
+          begin
+            cate = FacilityCategory.find(book.facility.facility_category_id).name
+          rescue
+            cate = ""
+          end
+          temp[:facility_category_name]=cate
           end
           @facilities[i] = temp
           #temp[b.status] = b.status
