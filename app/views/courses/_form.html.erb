@@ -1,0 +1,60 @@
+<%= form_for(@course, remote:true) do |f| %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+      <% @course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <fieldset>
+      <!--<legend><a href="#">New privileges</a></legend>-->
+      <a><%= f.submit class:'legend' %></a>
+      <div class="form-group form-inline col-md-12 text-right form-privileges">
+        <div class="col-md-4">
+          <%= f.label t('privileges.name'), class: 'margin-left-20' %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="col-md-4">
+          <%= f.label t('privileges.price'), class: 'margin-left-20' %>
+          <%= f.text_field :price, class: 'form-control' %>
+        </div>
+        <div class="col-md-4">
+          <%= f.label t('courses.instructor') %>
+          <%= f.text_field :instructor, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group form-inline col-md-12 text-right">
+        <div class="col-md-4">
+          <%= f.label t('privileges.phone') %>
+          <%= f.text_field :phone, class: 'form-control' %>
+        </div>
+        <div class="col-md-4">
+          <%= f.label t('courses.email') %>
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
+        <div class="col-md-4">
+          <%= f.label t('privileges.image_path'), class: 'pull-left margin-top-5' %>
+          <%= f.file_field :image_path %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <%= f.label t('privileges.description') %>
+        <br>
+        <%= f.text_area :description, class: 'form-control' %>
+      </div>
+      <div class="col-md-12">
+        <br>
+        <%= f.label t('courses.more_info') %>
+        <br>
+        <%= f.text_area :more_info, class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= hidden_field_tag 'course[condo_id]', current_user.condo_id.to_i %>
+      </div>
+    </fieldset>
+<% end %>

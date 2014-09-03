@@ -146,7 +146,7 @@ Rails.application.routes.draw do
 
   resources :service_categories, only: []
 
-  resources :courses, only: []
+  resources :courses
 
   resources :course_users, only: []
 

@@ -1,0 +1,48 @@
+<%= render 'form' %>
+<% unless @courses.blank? %>
+    <% @courses.each do |course| %>
+        <div class="row margin-top-20">
+          <div class="col-md-2 align-center">
+            <%= image_tag course.image_path.url(:thumb), :class => 'img-thumbnail' %>
+          </div>
+          <div class="col-md-10 form-group form-inline  in_place_class">
+            <div class="col-md-12">
+              <%= best_in_place course, :name %>
+              &nbsp;
+              <%= link_to '', course, class: 'glyphicon glyphicon-eye-open fontSize20', remote: true %>
+              &nbsp;
+              <%= link_to '', edit_course_path(course), class: 'glyphicon glyphicon-pencil fontSize20', remote: true %>
+              &nbsp;
+              <%= link_to '', course, method: :delete, class: 'glyphicon glyphicon-trash fontSize20', data: {confirm: 'Are you sure?'}, remote: true %>
+            </div>
+            <div class="col-md-12">
+              <div class="col-md-2 text-right"> <%= label_tag t('privileges.price') %></div>
+              <div class="col-md-4"><%= best_in_place course, :price, :nil => "Click to edit!" %></div>
+              <div class="col-md-2 text-right"><%= label_tag t('courses.instructor') %></div>
+              <div class="col-md-4"><%= best_in_place course, :instructor, :nil => "Click to edit!" %></div>
+            </div>
+            <div class="col-md-12">
+              <div class="col-md-2 text-right"> <%= label_tag t('privileges.phone') %></div>
+              <div class="col-md-4"><%= best_in_place course, :phone, :nil => "Click to edit!" %></div>
+              <div class="col-md-2 text-right"><%= label_tag t('courses.email') %></div>
+              <div class="col-md-4"><%= best_in_place course, :email, :nil => "Click to edit!" %></div>
+            </div>
+            <div class="col-md-12">
+              <div class="text-right height-15 width-110"> <%= label_tag t('privileges.description') %></div>
+              <%= course.description.truncate(150, separator: ' ', omission: '....') %>
+            </div>
+            <div class="col-md-12">
+              <div class="text-right height-15 width-110"> <%= label_tag t('courses.more_info') %></div>
+              <%= course.more_info.truncate(150, separator: ' ', omission: '....') %>
+            </div>
+          </div>
+        </div>
+        <hr>
+    <% end %>
+<% else %>
+    <h4></h4>
+<% end %>
+
+
+
+
