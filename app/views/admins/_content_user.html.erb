@@ -1,7 +1,12 @@
 
 <table class="table table-bordered test">
 <thead>
-<tr><th></th><th>Join date</th><th>Email</th><th>Active/Inactive</th><th>Manipulate</th></tr>
+<tr>
+<th></th>
+<th><%= sort_link "created_at" , "Join Date" %></th>
+<th><%= sort_link  "email" %> </th>
+<th>Active/Inactive</th>
+<th>Manipulate</th></tr>
 </thead>
 <tbody>
 <% @users.each do |user| %>
@@ -27,18 +32,52 @@
 		
 </tr>
 <% end %>
+<tr>
+<td></td>
+<td colspan="4"> 
+<%= will_paginate @users , :params => {controller: "admins" , action: "index" }  %>
+
+</td>
+</tr>
 </tbody>
 </table>
 <p>   <a   data-toggle="modal" data-target="#myModal" href="#" class="btn btn-danger delete-confirm">Delete</a>
   <a   data-toggle="modal" data-target="#myModal" href="#" class="btn btn-default block-confirm">Block</a></p>
 
 <script type="text/javascript">
-	 $('.test').dataTable({
-        // sDom: 'Rlfrtip',
-        bProcessing: true,
-        bDeferRender: true,
-        sAjaxSource: $('.datatable').data('source'),
-        sPaginationType: "full_numbers",
-        bStateSave: true
-    });
+ $(document).ready(function(){
+$(".test th a.asc").append("<span class='glyphicon glyphicon-chevron-up'></span>");
+$(".test th a.desc").append("<span class='glyphicon glyphicon-chevron-down'></span>");
+
+
+
+//  $("#user_search").submit(function() {
+//  $.get('/admins', $(this).serialize(), null, "script");
+// });
+
+
+
+// $(".test th a").hover(function(){
+//   if ($(this).hasClass("current")){
+//     if($(this).hasClass("asc")) {
+//   $(this).append("<span class='glyphicon glyphicon-chevron-up'></span>");
+//                                 }
+//      else                       {
+//   $(this).append("<span class='glyphicon glyphicon-chevron-down'></span>");
+//                                 } 
+//                                   } 
+//                                 } 
+//                                 ,
+//     function(){
+// $(this).find("span").remove();}
+//                               );
+ });
+	 // $('.test').dataTable({
+  //       // sDom: 'Rlfrtip',
+  //       bProcessing: true,
+  //       bDeferRender: true,
+  //       sAjaxSource: $('.datatable').data('source'),
+  //       sPaginationType: "full_numbers",
+  //       bStateSave: true
+  //   });
 </script>

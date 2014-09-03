@@ -14,10 +14,20 @@
 </div>
 
 <div class= "author-content">
+<div class= "container">
+<%= form_tag admins_path, :method => 'get', :id => "user_search" do %>
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<p>
+<%= text_field_tag :search, params[:search] %>
+<%= submit_tag "Search", :name => nil %>
+</p>
 
+<% end %>
 <div class= 'user-content'>
 
 <%= render 'content_user' %>
+</div>
 </div>
 </div>
 <div id="admin-modal" class="modal fade" tabindex="-1">
@@ -134,7 +144,36 @@
     });
  });
 
+ $("#user_search").submit(function() {
+// $.get('/admins', $(this).serialize(), null, "script");
+  jQuery.ajax({
+           type: "get" ,
+           url:    $("#user_search").attr("action"),
+           data: $("#user_search").serialize(),
+           dataType: "script",
+           success: function() {
+                    },
+           async:   true
+      });
+  return false ; 
 
+});
+
+
+
+ $("#user_search input").keyup(function() {
+$.get($("#user_search").attr("action"), $("#user_search").serialize(), null, "script");
+ history.replaceState(null, "" , $("#user_search").attr("action") + "?" +$("#user_search").serialize() )
+});
+ $("table.test th , div.pagination").on("click" , "a" , function (){
+  $.getScript($(this).attr('href'));
+  history.pushState(null, "" , $(this).attr('href'))
+  return false ; 
+});
+ 
+ window.onpopstate= function(){
+$.getScript(location.href)
+ }
 
 </script>
 

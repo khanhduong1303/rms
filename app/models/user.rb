@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
+   
   belongs_to :condo
   has_many :join_events, :dependent => :destroy
   has_many :events, dependent: :destroy
@@ -27,7 +27,9 @@ class User < ActiveRecord::Base
 
   has_many :group_chats
   has_many :group_chat_members
-
+  scope :antiad ,-> {
+joins("LEFT JOIN `user_roles` ON `user_roles`.`user_id` = `users`.`id` LEFT JOIN `roles` ON `roles`.`id` = `user_roles`.`role_id`").where("roles.role_name is null or role_name != 'Admin' ").group("users.id")
+}
 
 
 #setup avartar
@@ -53,6 +55,14 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
+   def self.search(search=nil)
+    if search
+    where('email LIKE ?', "%#{search}%")
+    else
+    where('1 = 1')
+    end
+    end
+
 
   def ensure_authentication_token
     if authentication_token.blank?

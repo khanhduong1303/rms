@@ -1,7 +1,7 @@
 <% @services.each do |s| %>
     <div class="row service-<%= s.id %>">
       <div class="col-xs-2">
-        <%= image_tag s.image_path.url(:default), { :class => 'img-thumbnail', size: '150x150' } %>
+        <%= image_tag s.image_path.url(:thumbnail), { :class => 'img-thumbnail', size: '150x150' } %>
       </div>
 
       <div class="col-xs-8">
