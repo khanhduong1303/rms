@@ -8,11 +8,14 @@ div.author-header {
 }
 div.author-content{
 	margin-top : 10px; 
+  .container {
+    width : 80% ;
+    margin : 0px auto;
+    
    .user-content{
-  width : 60% ;
-   margin : 0px auto;
    table {
    margin-top: 10px;   
+   }
    }
    }
 }

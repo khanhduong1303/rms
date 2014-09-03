@@ -11,18 +11,19 @@
       <%= f.hidden_field :user_id, {value: @user.id} %>
 
         <div class="field">
+        <%= f.label :role_id , "Roles" %>
     <%= f.collection_select  :role_id, @role, :id, :role_name ,{},
       { multiple: true, style: "width: 31em;", class: "js-select2" }%>
-          <%= f.submit "Add", class: "btn btn-success" %>
+         
         </div>   
     
-      <% end %>
+    
     </div>
     <div class="modal-footer">
-  
-  <%= link_to 'Ok', '#', {class: 'btn btn-info', data: {dismiss: 'modal'}} %>
+   <%= f.submit "Add", class: "btn btn-success" %>
+  <%= link_to 'Cancel', '#', {class: 'btn btn-danger', data: {dismiss: 'modal'}} %>
 </div>
-
+<% end %>
 
   <script type="text/javascript">
       $(".js-select2").select2()

@@ -2,7 +2,7 @@
 $("input#user_password").val('');
 $("input#user_password_confirmation").val('');
 $("div#errors").remove();
-$('<div id="errors"><p>Please correct the following <%= pluralize(@user.errors.count, "error") %>:</p><ul><% @user.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %></ul></div>').insertBefore('#admin-modal .modal-body');
+$('<div id="errors" class="alert alert-warning"><p>Please correct the following <%= pluralize(@user.errors.count, "error") %>:</p><ul><% @user.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %></ul></div>').insertAfter('#admin-modal .modal-body');
 <% else %>
 $('div.user-content').html('<%= j render 'content_user' %>')
 $('#admin-modal').modal('hide');

@@ -41,13 +41,17 @@
 <% end %>
 <tr>
 <td></td>
-<td colspan="3"> <a   data-toggle="modal" data-target="#myModal" href="#" class="btn btn-danger delete-confirm"><span class='glyphicon glyphicon-trash'></span>Remove</a>  
+<td colspan="3">
+<%if  @permission.size > 0  %>
+ <a   data-toggle="modal" data-target="#myModal" href="#" class="btn btn-danger delete-confirm"><span class='glyphicon glyphicon-trash'></span>Remove</a>
+ <% end %>
 <%= link_to  add_permission_path(@role.id) , class: "btn btn-info" , remote: true do%>
 <span class='glyphicon glyphicon-plus'></span>Add permissions
 <% end %>
 
 </td>
 </tr>
+
 </table>
 
 <%end%>
