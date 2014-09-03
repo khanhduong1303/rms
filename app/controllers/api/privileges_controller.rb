@@ -111,7 +111,7 @@ class Api::PrivilegesController < Api::ApiController #ApplicationController
         temp[:name]=privilege.name
         temp[:phone]=privilege.phone
         temp[:date_time_detail]=privilege.date_time_detail
-        temp[:image_path]=privilege.image_path.url
+        temp[:image_path]=privilege.image_path.url(:large)
         privileges_data[i] = temp
         #temp[b.status] = b.status
         #facilities[i][:ok] = 'ok'
@@ -133,7 +133,7 @@ class Api::PrivilegesController < Api::ApiController #ApplicationController
         temp[:name]=privilege.name
         temp[:phone]=privilege.phone
         temp[:date_time_detail]=privilege.date_time_detail
-        temp[:image_path]=privilege.image_path.url
+        temp[:image_path]=privilege.image_path.url(:large)
         return temp
       end
     end

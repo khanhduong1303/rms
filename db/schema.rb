@@ -450,7 +450,6 @@ ActiveRecord::Schema.define(version: 20140826040535) do
     t.string   "authentication_token"
     t.boolean  "active",                 default: false
     t.boolean  "is_status",              default: true
-    t.text     "interest"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

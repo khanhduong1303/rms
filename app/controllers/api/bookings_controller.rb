@@ -15,7 +15,8 @@ class Api::BookingsController < Api::ApiController
         temp = {}
         temp[:category_id] = cate.id
         temp[:category] = cate.name
-        temp[:facilities] = Facility.where("active=true and user_id in (#{arr_group_id.join(',')}) and facility_category_id=#{cate.id}")
+        fc_temp = Facility.where("active=true and user_id in (#{arr_group_id.join(',')}) and facility_category_id=#{cate.id}")
+        temp[:facilities] = process_results fc_temp
         @booking_facilities << temp
       end
       # @booking_facilities = Facility.where("active=true and user_id in (#{arr_group_id.join(',')})")
@@ -57,12 +58,22 @@ class Api::BookingsController < Api::ApiController
         i=0
         @booking.each do |book|
           temp = Hash.new
-          temp[:name]= book.time_slot.facility.name
-          temp[:booking_price]= book.time_slot.facility.booking_price
-          temp[:deposit_price]= book.time_slot.facility.deposit_price
-          temp[:note]= book.time_slot.facility.note
+          if !book.time_slot.nil?
+          temp[:name]= book.facility.name
+          temp[:booking_price]= book.facility.booking_price
+          temp[:deposit_price]= book.facility.deposit_price
+          temp[:note]= book.facility.note
+          temp[:image_path]= book.facility.image_path.url
           temp[:status]=book.status
           temp[:book_id] = book.id
+          temp[:facility_category_id]=book.facility.facility_category_id
+          begin
+            cate = FacilityCategory.find(book.facility.facility_category_id).name
+          rescue
+            cate = ""
+          end
+          temp[:facility_category_name]=cate
+          end
           @facilities[i] = temp
           #temp[b.status] = b.status
           #facilities[i][:ok] = 'ok'
@@ -106,5 +117,28 @@ class Api::BookingsController < Api::ApiController
     end
   end
 
+  private
+  def process_results results=nil
+      booking_data=[]
+      i=0
+      results.each do |booking|
+        temp = Hash.new
+        temp[:id]= booking.id
+        temp[:user_id]= booking.user_id
+        temp[:name]= booking.name
+        temp[:booking_price]= booking.booking_price
+        temp[:deposit_price]=booking.deposit_price
+        temp[:note]=booking.note
+        temp[:active]=booking.active
+        temp[:created_at]=booking.created_at
+        temp[:updated_at]=booking.updated_at
+        temp[:facility_category_id]=booking.facility_category_id
+        temp[:image_path]=booking.image_path.url
+        booking_data[i] = temp
+        i+=1
+      end
+      return booking_data
+  end
+  
 end
 

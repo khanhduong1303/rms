@@ -1,0 +1,42 @@
+<%= render 'form' %>
+<% @privileges.each do |pri| %>
+    <div class="row margin-top-20">
+      <div class="col-md-2 align-center">
+        <%= image_tag pri.image_path.url(:thumb), :class => 'img-thumbnail' %>
+      </div>
+      <div class="col-md-10 form-group form-inline">
+        <div class="col-md-12">
+          <%= pri.name %>
+          &nbsp;
+          <%= link_to '', pri, method: :delete, class: 'glyphicon glyphicon-eye-open fontSize20', remote: true %>
+          &nbsp;
+          <%= link_to '', edit_privilege_path(pri), class: 'glyphicon glyphicon-pencil fontSize20', remote: true %>
+          &nbsp;
+          <%= link_to '', pri, method: :delete, class: 'glyphicon glyphicon-trash fontSize20', data: {confirm: 'Are you sure?'}, remote: true %>
+        </div>
+        <div class="col-md-12">
+          <div class="col-md-2 text-right"> <%= label_tag t('privileges.location') %></div>
+          <div class="col-md-4"><%= pri.location %></div>
+          <div class="col-md-2 text-right"><%= label_tag t('privileges.price') %></div>
+          <div class="col-md-4"><%= pri.price %></div>
+        </div>
+        <div class="col-md-12">
+          <div class="col-md-2 text-right"> <%= label_tag t('privileges.distance') %></div>
+          <div class="col-md-4"><%= pri.distance %></div>
+          <div class="col-md-2 text-right"><%= label_tag t('privileges.date_expiry') %></div>
+          <div class="col-md-4"><%= pri.date_expiry %></div>
+        </div>
+        <div class="col-md-12">
+          <div class="col-md-2 text-right"> <%= label_tag t('privileges.phone') %></div>
+          <div class="col-md-4"><%= pri.phone %></div>
+          <div class="col-md-2 text-right"><%= label_tag t('privileges.date_time_detail') %></div>
+          <div class="col-md-4"><%= pri.date_time_detail %></div>
+        </div>
+        <div class="col-md-12">
+          <div class="text-right height-15 width-110"> <%= label_tag t('privileges.description') %></div>
+          <%= pri.description.truncate(150, separator: ' ', omission: '......View more') %>
+        </div>
+      </div>
+    </div>
+    <hr>
+<% end %>

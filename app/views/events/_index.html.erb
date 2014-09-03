@@ -1,9 +1,13 @@
 
-<div class="text-right">
-  <%= link_to new_event_path, { id: 'addNewEvent', class: 'btn btn-link', remote: true } do %>
-    <span class="glyphicon glyphicon-plus"></span><% t('events.add_new_event')%>
-  <% end %>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="/events"><%= t('events.event_list') %></a></li>
+  <li><a href="/events/archives"><%= t('events.archived_list') %></a></li>
+  <div class="text-right">
+    <%= link_to new_event_path, { id: 'addNewEvent', class: 'btn btn-link', remote: true } do %>
+        <span class="glyphicon glyphicon-plus"></span><%= t('events.add_new_event') %>
+    <% end %>
   </div>
+</ul>
   <hr>
 
 <% @events.each do |event| %>
@@ -69,9 +73,17 @@
         </div>
       </div>
       <div class="col-sm-2">
-        <a class="glyphicon glyphicon-trash"><%= link_to "#{t('events.delete_event')}", event, method: :delete, data: {confirm: t('events.confirm_delete_event')} %></a>
+        <a class="glyphicon glyphicon-trash"><%= link_to t('events.delete_event'), event, method: :delete, data: {confirm: t('events.confirm_delete_event')} %></a>
         <br>
         <a class="glyphicon glyphicon-pencil"><%= link_to t('events.edit_event'), edit_event_path(event), :remote => true %></a>
+        <br>
+        <div class="archive<%= event.id%>">
+          <% if event.archived == false %>
+              <a class="glyphicon glyphicon-arrow-right"><%= link_to t('events.archive'), archive_event_path(event), :remote => true %></a>
+          <% else %>
+              <a class="glyphicon glyphicon-arrow-left"><%= link_to t('events.unarchive'), unarchive_event_path(event), :remote => true %></a>
+          <% end %>
+        </div>
         <br><br>
         <%= link_to t('events.show_more'), event, :class => 'btn btn-info', :remote => true %>
       </div>

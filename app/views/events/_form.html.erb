@@ -104,7 +104,9 @@
 <script type="text/javascript">
     $(function () {
         $('#datetime-picker').datetimepicker({
-            pickTime: false
+            pickTime: false,
+            dateFormat: 'dd/mm/yyyy',
+            minDate: Date()
         });
     });
 </script>

@@ -1,0 +1,11 @@
+en:
+  privileges:
+    location: 'Location: '
+    price: 'Price: '
+    name: 'Name: '
+    distance: 'Distance: '
+    date_expiry: 'Expiry: '
+    phone: 'Phone: '
+    date_time_detail: 'Detail date: '
+    image_path: 'Image: '
+    description: 'Description: '
