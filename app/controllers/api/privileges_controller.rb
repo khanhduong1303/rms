@@ -106,6 +106,7 @@ class Api::PrivilegesController < Api::ApiController #ApplicationController
         temp[:date_expiry]=privilege.date_expiry
         temp[:description]=privilege.description
         temp[:user_id]=privilege.user_id
+        temp[:email]=privilege.user.email
         temp[:created_at]=privilege.created_at
         temp[:updated_at]=privilege.updated_at
         temp[:name]=privilege.name
@@ -128,6 +129,7 @@ class Api::PrivilegesController < Api::ApiController #ApplicationController
         temp[:date_expiry]=privilege.date_expiry
         temp[:description]=privilege.description
         temp[:user_id]=privilege.user_id
+        temp[:email]=privilege.user.email
         temp[:created_at]=privilege.created_at
         temp[:updated_at]=privilege.updated_at
         temp[:name]=privilege.name
