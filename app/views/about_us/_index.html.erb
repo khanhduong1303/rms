@@ -1,0 +1,13 @@
+<%= render 'form' %>
+<div class="row margin-top-20">
+    <% @about_us.each do |about_u| %>
+    <div class="col-md-12">
+      <%= about_u.created_at.strftime '%d/%m/%Y' %>
+      <%= link_to '', about_u, method: :delete, remote:true, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-trash fontSize20 margin-left-20' %>
+    </div>
+    <div class="col-md-12 in_place_class">
+      <%= best_in_place about_u, :information, type: :textarea, nil:'Click to edit!' %>
+    </div>
+    <div class="col-md-12"><hr></div>
+    <% end %>
+</div>

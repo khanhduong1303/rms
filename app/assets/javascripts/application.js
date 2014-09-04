@@ -46,6 +46,7 @@ jQuery(function () {
     $('.best_in_place').best_in_place()
     $(document).on('click','.in_place_class',function(){
         $('.in_place_class span form input:text').addClass('form-control input-sm');
+        $('.in_place_class span form textarea').addClass('form-control');
         $('.in_place_class span form input:button').addClass('btn btn-danger');
         $('.in_place_class span form input:submit').addClass('btn btn-primary');
     });

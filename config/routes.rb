@@ -148,6 +148,8 @@ Rails.application.routes.draw do
 
   resources :courses
 
+  resources :about_us
+
   resources :course_users, only: []
 
 # The priority is based upon order of creation: first created -> highest priority.
