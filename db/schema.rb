@@ -384,6 +384,10 @@ ActiveRecord::Schema.define(version: 20140826040535) do
     t.string   "image_path_content_type"
     t.integer  "image_path_file_size"
     t.datetime "image_path_updated_at"
+    t.string   "our_menu_file_name"
+    t.string   "our_menu_content_type"
+    t.integer  "our_menu_file_size"
+    t.datetime "our_menu_updated_at"
     t.text     "description"
     t.string   "call_to_order"
     t.string   "address"
@@ -450,6 +454,7 @@ ActiveRecord::Schema.define(version: 20140826040535) do
     t.string   "authentication_token"
     t.boolean  "active",                 default: false
     t.boolean  "is_status",              default: true
+    t.text     "interest"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

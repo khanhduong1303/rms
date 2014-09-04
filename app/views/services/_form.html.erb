@@ -36,7 +36,18 @@
           <%= f.label :call_to_order,t('service.index.call_to_order') %>:
           <%= f.text_field :call_to_order, {class: "form-control"} %>
         </div>
-
+     
+                   
+       
+         <div class="form-group form-inline">
+          <%= f.label :our_menu , t('service.index.our_menu') %>
+       <div class="input-group choose">
+             <%= f.text_field :our_menu_file_name, { class: 'form-control', readonly: true} %>
+            <span class="input-group-addon" style="cursor: pointer" =>Browse</span>
+      </div>
+     
+        <%= f.file_field :our_menu, {id: 'our_menu' , class: 'hidden'} %>
+      </div>
 
         <div class="form-group form-inline">
           <%= f.label :web_page , t('service.index.web_page') %>:
@@ -89,4 +100,16 @@
       }
     }
     document.getElementById('file-box').addEventListener('change', handleFileSelect, false);
+
+
+ $(document).on('click', '.choose', function () {
+        $('input[id=our_menu]').click();
+    })
+    $('input[id=our_menu]').change(function () {
+          $("div.choose input").val($(this).val());
+    });
+
+
+
+
 </script>

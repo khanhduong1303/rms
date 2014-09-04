@@ -1,16 +1,16 @@
 <% if @user.roles.size >0 %>
   <table class="table table-bordered">
     <tr>
-      <th>Role</th>
+      <th><%= t('admin.manage.role') %></th>
       <th></th>
     </tr>
     <% @user.roles.each do |role| %>
         <tr>
           <td> <%= role.role_name %> </td>
-          <td><%= link_to "Remove" , remove_role_path(@user.id, role.id) , method: "delete", remote: true,:class => "btn btn-danger" %></td>
+          <td><%= link_to t('admin.manage.remove') , remove_role_path(@user.id, role.id) , method: "delete", remote: true,:class => "btn btn-danger" %></td>
         </tr>
     <% end %>
   </table>  
 <% else %>
-<p><b><%= @user.username %></b> has not any role , You can asign role for him ! </p>
+<p><b><%= @user.username %></b> <%= t('admin.manage.has_not_role') %></p>
 <% end %>
