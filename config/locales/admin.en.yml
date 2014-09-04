@@ -1,0 +1,36 @@
+en:
+  admin:
+    index:
+      email: "Email"
+      join_date: "Join Date"
+      active: "Active"
+      inactive: "Inactive"
+      active_inactive: "Active/Inactives"
+      manipulate: "Manipulate"
+      block: "Block"
+      delete: "Delete"
+    new:
+      close: "Close"
+      create: "Create"
+      email: "Email"
+      username: "UserName"
+      phone: "Phone No"
+      password: "Password"
+      password_confirm: "Password Confirmation"
+      create_new_user: "Create a new Users"
+    confirm:
+      destroy_user: "Destroy User"
+      you_really_want: "Are you realy want to destroy this user?"
+      confirm: "Confirm"
+      cancel: "Cancel"
+    manage:
+      manage_user_role: "Manage User Role"
+      role: "Roles"
+      add: "Add"
+      remove: "Remove"
+      has_not_role: "has not any role , You can asign role for him !"
+
+
+
+
+

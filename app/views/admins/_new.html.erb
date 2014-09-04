@@ -3,22 +3,22 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Create a new User</h4>
+        <h4 class="modal-title" id="myModalLabel"><%=t('admin.new.create_new_user') %> </h4>
       </div>
       <div class="modal-body">
 
         <div class="form-group">
-          <%= f.label :username, :class => 'col-sm-4 control-label' %>
+          <%= f.label :username,t('admin.new.username') , :class => 'col-sm-4 control-label' %>
           <div class='col-sm-8'>
             <%= f.text_field :username, autofocus: true, :class => "form-control" %></div>
         </div>
         <div class="form-group">
-          <%= f.label :email, :class => 'col-sm-4 control-label' %>
+          <%= f.label :email, t('admin.new.email'), :class => 'col-sm-4 control-label' %>
           <div class='col-sm-8'>
             <%= f.email_field :email, :class => "form-control" %></div>
         </div>
         <div class="form-group">
-          <%= f.label :phone, "Phone No", :class => 'col-sm-4 control-label' %>
+          <%= f.label :phone, t('admin.new.phone'), :class => 'col-sm-4 control-label' %>
           <div class='col-sm-8'>
             <%= f.text_field :phone, :class => "form-control" %></div>
         </div>
@@ -26,12 +26,12 @@
       
     
         <div class="form-group">
-          <%= f.label :password, :class => 'col-sm-4 control-label' %>
+          <%= f.label :password ,  t('admin.new.password'), :class => 'col-sm-4 control-label' %>
           <div class='col-sm-8'>
             <%= f.password_field :password, autocomplete: "off", :class => "form-control" %></div>
         </div>
         <div class="form-group">
-          <%= f.label :password_confirmation, :class => 'col-sm-4 control-label' %>
+          <%= f.label :password_confirmation ,t('admin.new.password_confirm'), :class => 'col-sm-4 control-label' %>
           <div class='col-sm-8'>
             <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control" %>
           </div>
@@ -41,8 +41,9 @@
       </div>
       <div class="modal-footer">
         <div>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          <%= f.submit "Create", :class => "btn btn-success" %></div>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+          <%= t('admin.new.close')%></button>
+          <%= f.submit t('admin.new.create'), :class => "btn btn-success" %></div>
       </div>
 
 <% end %>

@@ -33,7 +33,7 @@ class ServicesController < ApplicationController
     @services = Service.where(user_id: current_user.id)
   end   
   def service_params
-    params.require(:service).permit(:name,:call_to_order, :address,:description,:term ,:web_page ,:email,:order_hours , :image_path, :service_category_id , :user_id)
+    params.require(:service).permit(:our_menu, :name,:call_to_order, :address,:description,:term ,:web_page ,:email,:order_hours , :image_path, :service_category_id , :user_id)
   end
 
 end

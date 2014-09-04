@@ -4,6 +4,7 @@ class CreateServices < ActiveRecord::Migration
       t.string :name
       t.attachment :icon_path
       t.attachment :image_path
+      t.attachment :our_menu
       t.text :description
       t.string :call_to_order
       t.string :address

@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Manage User Role</h4>
+  <h4 class="modal-title"><%= t('admin.manage.manage_user_role') %></h4>
 </div>
 <%= form_for(@user_role, url: processs_add_role_path, :remote => true, html: {:class => "form-horizontal", :role => "form"}) do |f| %>
     <div class="modal-body">
@@ -11,7 +11,7 @@
       <%= f.hidden_field :user_id, {value: @user.id} %>
 
         <div class="field">
-        <%= f.label :role_id , "Roles" %>
+        <%= f.label :role_id , t('admin.manage.role') %>
     <%= f.collection_select  :role_id, @role, :id, :role_name ,{},
       { multiple: true, style: "width: 31em;", class: "js-select2" }%>
          
@@ -20,8 +20,8 @@
     
     </div>
     <div class="modal-footer">
-   <%= f.submit "Add", class: "btn btn-success" %>
-  <%= link_to 'Cancel', '#', {class: 'btn btn-danger', data: {dismiss: 'modal'}} %>
+   <%= f.submit t('admin.manage.add'), class: "btn btn-success" %>
+  <%= link_to t('admin.confirm.cancel'), '#', {class: 'btn btn-danger', data: {dismiss: 'modal'}} %>
 </div>
 <% end %>
 
