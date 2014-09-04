@@ -12,12 +12,12 @@ class Api::CoursesController < Api::ApiController
     end
 
     if limit > 0 and page > 0
-      @results = Courses.limit(limit).offset(page*limit-limit).where(condo_id:params[:condo_id])
+      @results = Course.limit(limit).offset(page*limit-limit).where(condo_id:params[:condo_id])
       @courses = process_results @results, []
       if @courses.size > 0
         return render json: PublicFunction.data_json('success', 'Courses list', @courses.size, @courses)
       else
-        @results = Courses.limit(10).where(condo_id:params[:condo_id])
+        @results = Course.limit(10).where(condo_id:params[:condo_id])
         @courses = process_results @results, []
         return render json: PublicFunction.data_json('success', 'Courses list', @courses.size, @courses)
       end
