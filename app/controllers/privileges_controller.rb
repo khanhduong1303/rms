@@ -70,5 +70,4 @@ class PrivilegesController < ApplicationController
     end
   end
 
-
 end
