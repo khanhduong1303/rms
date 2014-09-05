@@ -1,0 +1,37 @@
+<%= form_for(@tech_support, remote:true) do |f| %>
+  <% if @tech_support.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tech_support.errors.count, "error") %> prohibited this tech_support from being saved:</h2>
+
+      <ul>
+      <% @tech_support.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <fieldset>
+      <!--<legend><a href="#">New privileges</a></legend>-->
+      <a><%= f.submit class:'legend' %></a>
+      <div class="form-group form-inline col-md-12 text-right form-privileges">
+        <div class="col-md-4">
+          <%= f.label t('privileges.name'), class: 'margin-left-20' %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="col-md-4">
+          <%= f.label t('privileges.phone'), class: 'margin-left-20' %>
+          <%= f.text_field :phone, class: 'form-control' %>
+        </div>
+        <div class="col-md-4">
+          <%= f.label t('user.profile.email') %>
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <%= f.label t('tech_supports.address') %>
+        <br>
+        <%= f.text_area :address, class: 'form-control' %>
+      </div>
+    </fieldset>
+<% end %>

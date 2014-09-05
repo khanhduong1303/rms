@@ -399,6 +399,7 @@ ActiveRecord::Schema.define(version: 20140826040535) do
     t.string   "address"
     t.string   "phone"
     t.string   "email"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

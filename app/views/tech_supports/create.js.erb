@@ -1,0 +1,6 @@
+<% if @result == 1 %>
+delayedAlert('<%= @message %>', 1000);
+$('#content-body').html('<%= j render 'index'%>')
+<% else %>
+delayedAlert('<%= @message %>', 1000);
+<% end %>

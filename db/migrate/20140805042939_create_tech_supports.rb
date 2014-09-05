@@ -4,6 +4,7 @@ class CreateTechSupports < ActiveRecord::Migration
       t.string :address
       t.string :phone
       t.string :email
+      t.string :name
 
       t.timestamps
     end
