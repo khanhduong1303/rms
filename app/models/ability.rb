@@ -8,15 +8,13 @@ class Ability
         can function.action.to_sym, function.object.camelize.constantize
     
      end
-     if user.roles.where('role_name = "Admin"').size >0 
-
+     if user.roles.where('role_name = "Admin"').size > 0
      can :manage , :all
-
-     end  
+     end
      
 
-   end 
-    can :manage , :home 
+   end
+    can :manage , :home
     can :manage , :session
     can :manage , :registration
     can :setLanguage , :home

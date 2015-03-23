@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
-	authorize_resource :user , :parent => false
+	# authorize_resource :user , :parent => false
   helper_method :sort_column , :sort_direction
-	# authorize_resource :class => false  
+	authorize_resource :class => false
 respond_to :js ,:html, :json
 def index
 	if current_user.condo_id.nil?
