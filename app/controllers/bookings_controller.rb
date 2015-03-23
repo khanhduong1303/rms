@@ -15,13 +15,19 @@ class BookingsController < ApplicationController
     end
     if @users.size > 0
       @bookings = []
+      @temp = []
       @users.each do |u|
         if !u.bookings.blank?
           u.bookings.each do |book|
             if !book.time_slot.nil?
-              if book.time_slot.facility.user_id==current_user.id.to_i
+              if current_user.roles.where('role_name = "Admin"').size >0
                 @bookings << book
+              else
+                if book.time_slot.facility.user_id==current_user.id.to_i
+                  @bookings << book
+                end
               end
+
             end
           end
         end
@@ -76,9 +82,14 @@ class BookingsController < ApplicationController
           if !u.bookings.blank?
             u.bookings.each do |book|
               if !book.time_slot.nil?
-                if book.time_slot.facility.user_id==current_user.id.to_i
+                if current_user.roles.where('role_name = "Admin"').size >0
                   @bookings << book
+                else
+                  if book.time_slot.facility.user_id==current_user.id.to_i
+                    @bookings << book
+                  end
                 end
+
               end
             end
           end
@@ -93,8 +104,14 @@ class BookingsController < ApplicationController
           if !u.bookings.blank?
             u.bookings.each do |book|
               if !book.time_slot.nil?
-                if book.time_slot.facility.facility_category_id==category_id.to_i && book.time_slot.facility.user_id==current_user.id.to_i
-                  @bookings << book
+                if current_user.roles.where('role_name = "Admin"').size >0
+                  if book.time_slot.facility.facility_category_id==category_id.to_i
+                    @bookings << book
+                  end
+                else
+                  if book.time_slot.facility.facility_category_id==category_id.to_i && book.time_slot.facility.user_id==current_user.id.to_i
+                    @bookings << book
+                  end
                 end
               end
             end
