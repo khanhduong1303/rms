@@ -19,7 +19,7 @@
     <table class="datatable">
       <thead>
       <th><a class="glyphicon glyphicon-ok font-color-green fontSize20"></a></th>
-      <th><%= t('bookings.table.booking_id') %></th>
+      <!--<th><%#= t('bookings.table.booking_id') %></th>-->
       <th><%= t('bookings.table.facility') %></th>
       <th><%= t('bookings.table.date_submit') %></th>
       <th><%= t('bookings.table.date_expiry') %></th>
@@ -36,7 +36,7 @@
             <td>
               <input id="<%= book.id %>" class="selectBook" type="checkbox" value="<%= book.id %>" name="colection[]"/>
             </td>
-            <td><%= book.id %></td>
+            <!--<td><%#= book.id %></td>-->
             <td><%= book.time_slot.facility.name %></td>
             <td><%= book.date_submit.strftime '%d/%m/%Y' if !book.date_submit.blank? %></td>
             <td><%= book.date_expiry.strftime '%d/%m/%Y' if !book.date_expiry.blank? %></td>
@@ -48,10 +48,10 @@
             <td><%= book.time_slot.facility.currency(book.time_slot.facility.deposit_price) if !book.time_slot.facility.deposit_price.blank? %></td>
             <td>
               <select class="form-control" id="bookStatus<%= book.id %>" data-id="<%= book.id %>" onchange="updateBookStatus(this.id)">
-                <option <%= 'selected' if book.status.upcase == 'WAITING' %> value="Booked"><%= t('bookings.table.waiting_status') %></option>
+                <!--<option <%#= 'selected' if book.status.upcase == 'WAITING' %> value="Booked"><%= t('bookings.table.waiting_status') %></option>-->
                 <option <%= 'selected' if book.status.upcase == 'BOOKED' %> value="Booked"><%= t('bookings.table.booked_status')%></option>
                 <option <%= 'selected' if book.status.upcase == 'RESERVED' %> value="Reserved"><%= t('bookings.table.reserved_status')%></option>
-                <option <%= 'selected' if book.status.upcase == 'CLOSED' %> value="Closed"><%= t('bookings.table.closed_status')%></option>
+                <!--<option <%#= 'selected' if book.status.upcase == 'CLOSED' %> value="Closed"><%= t('bookings.table.closed_status')%></option>-->
               </select>
             </td>
           </tr>
@@ -67,3 +67,22 @@
     </div>
   </div>
 </div>
+
+<script>
+//    $(function(){
+//        $.get('/bookings/getLanguage',function(data){
+//            language = data.val;
+//            $('.datatable').dataTable({
+//                "language": {
+//                    "url": "http://rms.innoria.com/" + language
+//                },
+//                // sDom: 'Rlfrtip',
+//                bProcessing: true,
+//                bDeferRender: true,
+//                sAjaxSource: $('.datatable').data('source'),
+//                sPaginationType: "full_numbers",
+//                bStateSave: true
+//            });
+//        });
+//    });
+</script>

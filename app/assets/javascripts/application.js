@@ -26,21 +26,24 @@
 var language;
 jQuery(function () {
 
-    $.get('/bookings/getLanguage',function(data){
-        language = data.val
+    $(function(){
+        $.get('/bookings/getLanguage',function(data){
+            language = data.val;
+            $('.datatable').dataTable({
+                "language": {
+                    "url": 'http://' + $(location).attr('host') + '/'+language
+                },
+                // sDom: 'Rlfrtip',
+                bProcessing: true,
+                bDeferRender: true,
+                sAjaxSource: $('.datatable').data('source'),
+                sPaginationType: "full_numbers",
+                bStateSave: true
+            });
+        });
     });
 
-        $('.datatable').dataTable({
-            "language": {
-                "url": language
-            },
-            // sDom: 'Rlfrtip',
-            bProcessing: true,
-            bDeferRender: true,
-            sAjaxSource: $('.datatable').data('source'),
-            sPaginationType: "full_numbers",
-            bStateSave: true
-        });
+
 
 //    add bootstrap in best_in_place
     $('.best_in_place').best_in_place()

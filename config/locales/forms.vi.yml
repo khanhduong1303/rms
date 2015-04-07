@@ -6,7 +6,7 @@ vi:
       add: 'Thêm Biểu mẫu'
       delete: 'Xoá Biểu mẫu'
       edit: 'Sửa Biểu mẫu'
-      show: 'Hiển thị Biểu mẫu'
+      show: 'Xem/tải biểu mẫu'
 
     form:
       categories: 'Phân loại:'

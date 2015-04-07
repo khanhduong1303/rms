@@ -23,7 +23,8 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-      <%= image_tag 'innoria_logo2.png' %>
+      <% session[:language] == 'vi' ? img_logo = 'rms-logo-vi.png' : img_logo =  'rms-logo-en.png'%>
+      <%= image_tag img_logo %>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
       <div class="text-right">

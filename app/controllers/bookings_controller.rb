@@ -59,7 +59,7 @@ class BookingsController < ApplicationController
   end
 
   def getLanguage
-    if session[:language].nil? || session[:language]=='en'
+    if session[:language]=='en'
       render json: {val: 'dataTables.english.lang'}
     else
       render json: {val: 'dataTables.vietnamese.lang'}

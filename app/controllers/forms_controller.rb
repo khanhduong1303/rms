@@ -9,7 +9,9 @@ authorize_resource
   end
 
   def show
+    redirect_to Form.find(params[:id]).form_path.url
   end
+
 
   def filter
     begin
