@@ -11,6 +11,9 @@ vi:
       forms: 'Biểu mẫu'
       guard_house: 'An ninh'
       house_rules: 'Quy định'
+      service_drop: 'Dịch vụ'
+      introduce_drop: 'Giới thiệu'
+      management_drop: 'Quản lý'
     header:
       sign_out: 'Đăng xuất'
       admin_page: 'Trang quản trị'

@@ -23,7 +23,7 @@ function updateBookStatus(id) {
         if (data.status == 'failed') {
             delayedAlert('Failed!', 1000);
         } else if (data.status == 'success') {
-            delayedAlert('Booking was successfully updated!', 1000)
+            delayedAlert(i18nJs.common.update_success, 1000)
         }
 
     });
@@ -49,7 +49,7 @@ function deleteBooking() {
                 $('table.dataTable  tbody tr:odd').css({ "background-color": "white"})
                 $('table.dataTable  tbody .sorting_1:even').css({ "background-color": "#f1f1f1"})
                 $('#booking-modal').modal('hide')
-                delayedAlert('Booking was successfully destroyed!', 1000)
+                delayedAlert(i18nJs.common.delete_success, 1000)
             }
         });
     }

@@ -32,6 +32,9 @@ en:
       forms: 'Forms'
       guard_house: 'Guard House'
       house_rules: 'House Rules'
+      service_drop: 'Services'
+      introduce_drop: 'Introduce'
+      management_drop: 'Management'
     header:
       sign_out: 'Sign out'
       admin_page: 'Admin page'

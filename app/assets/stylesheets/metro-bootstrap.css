@@ -2482,11 +2482,11 @@ tbody.collapse.in {
   -o-transition: height 0.35s ease;
   transition: height 0.35s ease;
 }
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
+/*@font-face {*/
+  /*font-family: 'Glyphicons Halflings';*/
+  /*src: url('../fonts/glyphicons-halflings-regular.eot');*/
+  /*src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');*/
+/*}*/
 .glyphicon {
   position: relative;
   top: 1px;
@@ -6559,4 +6559,4 @@ a.fa-links:focus {
     display: none;
   }
 }
-/*# sourceMappingURL=/dist/css/metro-bootstrap.css.map */
+/******# sourceMappingURL=/dist/css/metro-bootstrap.css.map ********/

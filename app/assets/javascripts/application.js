@@ -25,10 +25,15 @@
 //= require_tree .
 var language;
 jQuery(function () {
-
-    $(function(){
+    if(localStorage.getItem('i18n') == undefined || localStorage.getItem('i18n') == 'vi'){
+        i18nJs = i18nJs.vi;
+    }else{
+        i18nJs = i18nJs.en;
+    }
+    if(localStorage.getItem('language') == undefined){
         $.get('/bookings/getLanguage',function(data){
             language = data.val;
+            localStorage.setItem('language', language);
             $('.datatable').dataTable({
                 "language": {
                     "url": 'http://' + $(location).attr('host') + '/'+language
@@ -41,7 +46,19 @@ jQuery(function () {
                 bStateSave: true
             });
         });
-    });
+    }else{
+        $('.datatable').dataTable({
+            "language": {
+                "url": 'http://' + $(location).attr('host') + '/'+ localStorage.getItem('language')
+            },
+            bProcessing: true,
+            bDeferRender: true,
+            sAjaxSource: $('.datatable').data('source'),
+            sPaginationType: "full_numbers",
+            bStateSave: true
+        });
+    }
+
 
 
 

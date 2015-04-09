@@ -42,7 +42,7 @@
             <td><%= book.date_expiry.strftime '%d/%m/%Y' if !book.date_expiry.blank? %></td>
             <td><%= book.date_book.strftime '%d/%m/%Y' if !book.date_book.blank? %></td>
             <td><%= book.time_slot.slot_start.strftime "%H:%M" if !book.time_slot.slot_start.blank? %>
-              -<%= book.time_slot.slot_end.strftime "%H:%M" if !book.time_slot.slot_end.blank? %></td>
+              - <%= book.time_slot.slot_end.strftime "%H:%M" if !book.time_slot.slot_end.blank? %></td>
             <td><%= book.user.name %></td>
             <td><%= book.time_slot.facility.currency(book.time_slot.facility.booking_price) if !book.time_slot.facility.booking_price.blank? %></td>
             <td><%= book.time_slot.facility.currency(book.time_slot.facility.deposit_price) if !book.time_slot.facility.deposit_price.blank? %></td>

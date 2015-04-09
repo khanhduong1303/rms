@@ -1,6 +1,7 @@
 en:
   bookings:
     view: 'View:'
+    msg_delete_confirm: 'Are you sure?'
     all: 'All'
     btn_confirm: 'Confirm'
     btn_cancel: 'Cancel'

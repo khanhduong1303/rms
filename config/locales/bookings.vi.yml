@@ -1,6 +1,7 @@
 vi:
   bookings:
     view: 'Hiển thị:'
+    msg_delete_confirm: 'Bạn thật sự muốn xóa?'
     all: 'Tất cả'
     btn_confirm: 'Xác nhận'
     btn_cancel: 'Hủy'
