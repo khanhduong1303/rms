@@ -1,17 +1,17 @@
 <dl class="dl-horizontal">
-  <dt>Date:</dt>
+  <dt><%=t('events.date')%></dt>
   <dd><%= @event.date %></dd>
 
-  <dt>Time:</dt>
+  <dt><%=t('events.time')%></dt>
   <dd><%= @event.event_start.strftime('%I:%M %P') %> To <%= @event.event_end.strftime('%I:%M %P') %></dd>
 
-  <dt>Location:</dt>
+  <dt><%=t('events.location')%></dt>
   <dd><%= @event.location %></dd>
 
-  <dt>Organiser:</dt>
+  <dt><%=t('events.organiser')%></dt>
   <dd><%= @event.organiser %></dd>
 
-  <dt>Description:</dt>
+  <dt><%=t('events.description')%></dt>
   <dd><%= @event.description %></dd>
 </dl>
 <div class="row">

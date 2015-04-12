@@ -1,6 +1,7 @@
 class PrivilegesController < ApplicationController
   before_action :set_privilege, only: [:show, :edit, :update, :destroy]
   include ActionController::MimeResponds
+  before_action :set_hightlight
   def index
     set_privileges
     @privilege = Privilege.new
@@ -20,10 +21,10 @@ class PrivilegesController < ApplicationController
     @privilege = Privilege.new(privilege_params)
       if @privilege.save
         @result=1
-        @message='Privilege was successfully created!'
+        @message=t('common.successfully_created')
       else
         @result=0
-        @message= 'Unsuccess!'
+        @message= t('common.unsuccess')
       end
     set_privileges
     @privilege = Privilege.new
@@ -32,10 +33,10 @@ class PrivilegesController < ApplicationController
   def update
       if @privilege.update(privilege_params)
         @result=1
-        @message='Privilege was successfully updated!'
+        @message=t('common.successfully_updated')
       else
         @result=0
-        @message= 'Unsuccess!'
+        @message= t('common.unsuccess')
       end
       set_privileges
       @privilege = Privilege.new
@@ -44,10 +45,10 @@ class PrivilegesController < ApplicationController
   def destroy
     if @privilege.destroy
       @result=1
-      @message='Privilege was successfully created!'
+      @message=t('common.successfully_destroyed')
     else
       @result=0
-      @message= 'Unsuccess!'
+      @message= t('common.unsuccess')
     end
     set_privileges
     @privilege = Privilege.new
@@ -68,6 +69,10 @@ class PrivilegesController < ApplicationController
     else
       @privileges = Privilege.where(:user_id => current_user.id)
     end
+  end
+
+  def set_hightlight
+    session[:menustatus]='privileges'
   end
 
 end

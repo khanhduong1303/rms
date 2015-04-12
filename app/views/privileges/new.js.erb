@@ -1,0 +1,15 @@
+$('#loadNew').html('<%= j render "form" %>')
+var currentdate = new Date();
+var date_val = currentdate.getDate();
+var month_val = currentdate.getMonth() + 1;
+if (date_val < 10) {
+    date_val = '0' + date_val
+}
+if (month_val < 10) {
+    month_val = '0' + month_val
+}
+var datetime = date_val + "/"
+        + (month_val) + "/"
+        + currentdate.getFullYear();
+$('#textFieldDate-pri').val(datetime);
+$('#myModal').modal()

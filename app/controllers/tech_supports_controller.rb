@@ -28,10 +28,10 @@ class TechSupportsController < ApplicationController
     @tech_support = TechSupport.new(tech_support_params)
     if @tech_support.save
       @result=1
-      @message='Tech support was successfully created!'
+      @message=t('common.successfully_created')
     else
       @result=0
-      @message= 'Unsuccess!'
+      @message= t('common.unsuccess')
     end
     @tech_supports = TechSupport.all.order('id DESC')
     @tech_support = TechSupport.new
@@ -56,10 +56,10 @@ class TechSupportsController < ApplicationController
   def destroy
     if @tech_support.destroy
       @result=1
-      @message='Tech support was successfully destroyed!'
+      @message=t('common.successfully_destroyed')
     else
       @result=0
-      @message= 'Unsuccess!'
+      @message= t('common.unsuccess')
     end
     @tech_supports = TechSupport.all.order('id DESC')
     @tech_support = TechSupport.new

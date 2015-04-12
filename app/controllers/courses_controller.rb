@@ -28,11 +28,11 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
 
       if @course.save
-        @result=1
-        @message='Course was successfully created!'
+        @result = 1
+        @message = t('common.successfully_created')
       else
-        @result=0
-        @message= 'Unsuccess!'
+        @result = 0
+        @message = t('common.unsuccess')
       end
     @course = Course.new
     set_courses
@@ -43,10 +43,10 @@ class CoursesController < ApplicationController
   def update
       if @course.update(course_params)
         @result=1
-        @message='Course was successfully updated!'
+        @message=t('common.successfully_updated')
       else
         @result=0
-        @message= 'Unsuccess!'
+        @message= t('common.unsuccess')
       end
       @course = Course.new
       set_courses
@@ -57,10 +57,10 @@ class CoursesController < ApplicationController
   def destroy
     if @course.destroy
       @result=1
-      @message='Course was successfully created!'
+      @message=t('common.successfully_destroyed')
     else
       @result=0
-      @message= 'Unsuccess!'
+      @message= t('common.unsuccess')
     end
     @course = Course.new
     set_courses

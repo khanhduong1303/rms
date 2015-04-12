@@ -7,17 +7,17 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     if current_user.roles.where(role_name: 'Admin').size > 0
-      @events = Event.all
+      @events = Event.all.order(created_at: :desc)
     else
-      @events = Event.where(:user_id => current_user.id)
+      @events = Event.where(:user_id => current_user.id).order(created_at: :desc)
     end
   end
 
   def archives
     if current_user.roles.where(role_name: 'Admin').size > 0
-      @events = Event.where(archived: 1)
+      @events = Event.where(archived: 1).order(created_at: :desc)
     else
-      @events = Event.where(:user_id => current_user.id, archived: 1)
+      @events = Event.where(:user_id => current_user.id, archived: 1).order(created_at: :desc)
     end
   end
 
@@ -72,7 +72,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-    @events = Event.all
+    @events = Event.all.order(created_at: :desc)
     respond_to do |format|
       if @event.save
         if params[:event][:image]
@@ -80,7 +80,7 @@ class EventsController < ApplicationController
             @event.event_images.create(:image => image)
           end
         end
-        format.html { redirect_to events_path, notice: 'Event was successfully created.' #redirect_to @event
+        format.html { redirect_to events_path, notice: t('common.successfully_created') #redirect_to @event
         }
         format.json {#render :show, status: :created, location: @event
         }
@@ -98,7 +98,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    @events = Event.all
+    @events = Event.all.order(created_at: :desc)
     respond_to do |format|
       if @event.update(event_params)
         if params[:image_id]
@@ -111,7 +111,7 @@ class EventsController < ApplicationController
             @event.event_images.create(:image => image)
           end
         end
-        format.html { redirect_to events_path, notice: 'Event was successfully updated.' #redirect_to @event
+        format.html { redirect_to events_path, notice: t('common.successfully_created') #redirect_to @event
         }
         format.json { render :show, status: :ok, location: @event }
         format.js
@@ -128,7 +128,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to events_url, notice: t('common.successfully_destroyed') }
       format.json { head :no_content }
     end
   end

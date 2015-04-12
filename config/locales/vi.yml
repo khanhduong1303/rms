@@ -9,8 +9,9 @@ vi:
       facilities: 'Cơ sở vật chất'
       feedback: 'Phản hồi'
       forms: 'Biểu mẫu'
-      guard_house: 'An ninh'
+      guard_house: 'Bảo vệ'
       house_rules: 'Quy định'
+      privileges: 'Khuyến mãi'
       service_drop: 'Dịch vụ'
       introduce_drop: 'Giới thiệu'
       management_drop: 'Quản lý'
@@ -20,4 +21,15 @@ vi:
       setting: 'Thiết lập'
       action: 'Tùy chọn'
       hi: 'Chào, '
+    content:
+      more: 'Xem thêm +'
+      last_bulletins: 'Thông báo mới nhất'
+      last_events: 'Sự kiện mới nhất'
+      last_privileges: 'Khuyến mãi mới nhất'
+      date_apply: 'Ngày áp dụng: '
+  common:
+    successfully_created: 'Thêm thành công.'
+    successfully_updated: 'Cập nhật thành công.'
+    successfully_destroyed: 'Xóa thành công.'
+    unsuccess: 'Không thành công.'
 

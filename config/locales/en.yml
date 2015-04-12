@@ -32,6 +32,7 @@ en:
       forms: 'Forms'
       guard_house: 'Guard House'
       house_rules: 'House Rules'
+      privileges: 'Privileges'
       service_drop: 'Services'
       introduce_drop: 'Introduce'
       management_drop: 'Management'
@@ -41,4 +42,15 @@ en:
       setting: 'Setting'
       action: 'Action'
       hi: 'Hi, '
+    content:
+      more: 'More +'
+      last_bulletins: 'Lastest bulletins'
+      last_events: 'Lastest events'
+      last_privileges: 'Lastest privileges'
+      date_apply: 'Applied date: '
+  common:
+    successfully_created: 'Successfully created.'
+    successfully_updated: 'Successfully updated.'
+    successfully_destroyed: 'Successfully destroyed.'
+    unsuccess: 'Unsuccess.'
 

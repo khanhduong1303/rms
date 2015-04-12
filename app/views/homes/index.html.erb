@@ -1,31 +1,76 @@
 <div class="row">
-  <div class="col-md-9 col-xs-7">
+<% if !@bulletins.nil? %>
+  <div class="col-md-4">
+    <h4 class="vertical-center"><%= t('home.content.last_bulletins') %><a href="<%= bulletins_path %>" class="pull-right more-category-title"><%= t('home.nav.bulletins') %> >></a></h4>
+    <hr class="hr-category">
+    <% @bulletins.each do |bulletin| %>
+        <div>
+          <h5 class="category-title"><%= bulletin.title %></h5>
+          <h5><%= t 'home.content.date_apply'%><%= bulletin.date.strftime("%d/%m/%Y") if !bulletin.date.nil? %></h5>
+          <span><%= bulletin.content %></span>
+          <hr>
+        </div>
+    <% end %>
   </div>
-  <div class="col-md-3 col-xs-5 borderLeft2solidBlack">
-    <form>
-      <h3>Tech Support</h3>
-      <hr class="height2black">
-      <div>
-        <a href="#" class="glyphicon glyphicon-envelope fontSize30 floatLeft" id="emailIcon"></a>
-        <select class="form-control width85per float-right" id="emailSelect">
-          <option>Tech@eleAppz.com</option>
-          <option>Admin@eleAppz.com</option>
-          <option>Secure@eleAppz.com</option>
-        </select>
-
-      </div>
-      <br>
-
-      <h3>Testimonies</h3>
-      <hr class="height2black">
-      <p id='testimonyContent'>
-        XXXXXXXXXXXXXXXXXXXXXXX
-        XXXXXXXXXXXXXXXXXXXXXXX
-        XXXXXXXXXXXXXXXXXXXXXXX
-        <br>ABC Condo
-      </p>
-      <input type="submit" name="submitTesti" value="Submit a Testimony" class="btn btn-primary"/>
-    </form>
+<% end %>
+<% if !@events.nil? %>
+  <div class="col-md-4">
+    <h4 class="vertical-center"><%= t('home.content.last_events') %><a href="<%= events_path %>" class="pull-right more-category-title"><%= t('home.nav.events') %> >></a></h4>
+    <hr class="hr-category">
+    <% @events.each do |event| %>
+        <div>
+            <h5 class="category-title"><%= event.name %></h5>
+            <h5><%= t 'home.content.date_apply'%><%= event.date.strftime("%d/%m/%Y") if !event.date.nil? %>  <%= event.event_start.strftime('%H:%M') if !event.event_start.nil? %> - <%= event.event_end.strftime('%H:%M') if !event.event_end.nil? %></h5>
+            <h5><%= t('events.location') %> <%= event.location %></h5>
+            <span><%= event.description %></span>
+          <hr>
+        </div>
+    <% end %>
   </div>
+<% end %>
+<% if !@privileges.nil? %>
+  <div class="col-md-4">
+    <h4 class="vertical-center"><%= t('home.content.last_privileges') %><a href="<%= privileges_path %>" class="pull-right more-category-title"><%= t('home.nav.privileges') %> >></a></h4>
+    <hr class="hr-category">
+    <% @privileges.each do |pri| %>
+        <div>
+          <h5 class="category-title"><%= pri.name %></h5>
+          <h5><%= t 'home.content.date_apply'%><%= pri.date_time_detail %></h5>
+          <span><%= pri.description %></span>
+          <hr>
+        </div>
+    <% end %>
+  </div>
+<% end %>
 </div>
+<!--<div class="row">-->
+  <!--<div class="col-md-9 col-xs-7">-->
+  <!--</div>-->
+  <!--<div class="col-md-3 col-xs-5 borderLeft2solidBlack">-->
+    <!--<form>-->
+      <!--<h3>Tech Support</h3>-->
+      <!--<hr class="height2black">-->
+      <!--<div>-->
+        <!--<a href="#" class="glyphicon glyphicon-envelope fontSize30 floatLeft" id="emailIcon"></a>-->
+        <!--<select class="form-control width85per float-right" id="emailSelect">-->
+          <!--<option>Tech@eleAppz.com</option>-->
+          <!--<option>Admin@eleAppz.com</option>-->
+          <!--<option>Secure@eleAppz.com</option>-->
+        <!--</select>-->
+
+      <!--</div>-->
+      <!--<br>-->
+
+      <!--<h3>Testimonies</h3>-->
+      <!--<hr class="height2black">-->
+      <!--<p id='testimonyContent'>-->
+        <!--XXXXXXXXXXXXXXXXXXXXXXX-->
+        <!--XXXXXXXXXXXXXXXXXXXXXXX-->
+        <!--XXXXXXXXXXXXXXXXXXXXXXX-->
+        <!--<br>ABC Condo-->
+      <!--</p>-->
+      <!--<input type="submit" name="submitTesti" value="Submit a Testimony" class="btn btn-primary"/>-->
+    <!--</form>-->
+  <!--</div>-->
+<!--</div>-->
 

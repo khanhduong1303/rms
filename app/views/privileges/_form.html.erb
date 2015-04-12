@@ -1,4 +1,4 @@
-<%= form_for(@privilege, remote:true) do |f| %>
+<%= form_for(@privilege, remote: true) do |f| %>
     <% if @privilege.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@privilege.errors.count, "error") %> prohibited this privilege from being saved:</h2>
@@ -10,59 +10,56 @@
         </div>
     <% end %>
 
-    <fieldset>
-  <!--<legend><a href="#">New privileges</a></legend>-->
-  <a><%= f.submit class:'legend' %></a>
-  <div class="form-group form-inline col-md-12 text-right form-privileges">
-    <div class="col-md-4">
-      <%= f.label t('privileges.name'), class: 'margin-left-20' %>
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
-    <div class="col-md-4">
-      <%= f.label t('privileges.price'), class: 'margin-left-20' %>
-      <%= f.text_field :price, class: 'form-control' %>
-    </div>
-    <div class="col-md-4">
-      <%= f.label t('privileges.location') %>
-      <%= f.text_field :location, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group form-inline col-md-12 text-right">
-    <div class="col-md-4">
-      <%= f.label t('privileges.distance') %>
-      <%= f.text_field :distance, class: 'form-control' %>
-    </div>
-    <div class="col-md-4">
-      <%= f.label t('privileges.date_expiry'), class: 'margin-left-20' %>
-      <div class="input-group date" id='datetime-picker' data-date-format="DD/MM/YYYY">
-        <%= f.text_field :date_expiry, {id: 'textFieldDate-pri', class: "form-control", placeholder: 'DD/MM/YYYY', value: Time.now.try(:strftime, "%d/%m/%Y"), readOnly: true} %>
-        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    <!--<legend><a href="#">New privileges</a></legend>-->
+<div class="row">
+    <div class="form-group form-inline col-md-12 text-right form-privileges">
+      <div class="col-md-6">
+        <%= f.label t('privileges.name'), class: 'margin-left-20' %>
+        <%= f.text_field :name, class: 'form-control width-60-per' %>
+      </div>
+      <div class="col-md-6">
+        <%= f.label t('privileges.price'), class: 'margin-left-20' %>
+        <%= f.text_field :price, class: 'form-control width-60-per' %>
       </div>
     </div>
-    <div class="col-md-4">
-      <%= f.label t('privileges.phone'), class: 'margin-left-20' %>
-      <%= f.text_field :phone, class: 'form-control' %>
+    <div class="form-group form-inline col-md-12 text-right">
+      <div class="col-md-6">
+        <%= f.label t('privileges.location') %>
+        <%= f.text_field :location, class: 'form-control width-60-per' %>
+      </div>
+      <div class="col-md-6">
+        <%= f.label t('privileges.date_expiry'), class: 'margin-left-20' %>
+        <div class="input-group date" id='datetime-picker' data-date-format="DD/MM/YYYY">
+          <%= f.text_field :date_expiry, {id: 'textFieldDate-pri', class: "form-control", style: 'width: 100% !important', placeholder: 'DD/MM/YYYY', value: Time.now.try(:strftime, "%d/%m/%Y"), readOnly: true} %>
+          <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-inline col-md-12 text-right">
+      <div class="col-md-6">
+        <%= f.label t('privileges.date_time_detail'), class: 'margin-left-20' %>
+        <%= f.text_field :date_time_detail, class: 'form-control width-60-per' %>
+      </div>
+      <div class="col-md-6  form-inline col-md-12 text-right">
+        <input class="pull-right input-sm width-60-per" id="privilege_image_path" name="privilege[image_path]" type="file">
+        <label class="pull-right margin-top-5" for="privilege_Hình : ">Hình : </label>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <%= f.label t('privileges.description') %>
+      <br>
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
+    <div class="form-group form-inline col-md-12 text-center margin-top-20">
+      <div class="col-sm-offset-2 col-sm-8 align-center">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><%= t('events.cancel') %></button>
+        <%= f.submit :class => "btn btn-success", :value => @privilege.persisted? ? t('events.save') : t('events.submit') %>
+      </div>
+    </div>
+    <div class="field">
+      <%= hidden_field_tag 'privilege[user_id]', current_user.id %>
     </div>
   </div>
-  <div class="form-group form-inline col-md-12 text-right">
-    <div class="col-md-6">
-      <%= f.label t('privileges.date_time_detail'), class: 'margin-left-20' %>
-      <%= f.text_field :date_time_detail, class: 'form-control' %>
-    </div>
-    <div class="col-md-6">
-      <%= f.label t('privileges.image_path'), class: 'pull-left margin-top-5' %>
-      <%= f.file_field :image_path, class: 'margin-left-90'%>
-    </div>
-  </div>
-  <div class="col-md-12">
-    <%= f.label t('privileges.description') %>
-    <br>
-    <%= f.text_area :description, class: 'form-control' %>
-  </div>
-  <div class="field">
-    <%= hidden_field_tag 'privilege[user_id]', current_user.id %>
-  </div>
-</fieldset>
 <% end %>
 
 <script type="text/javascript">

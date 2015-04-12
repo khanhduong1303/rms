@@ -41,7 +41,7 @@ class BulletinsController < ApplicationController
   end
 
   def set_bulletins
-    @bulletins = Bulletin.where(condo_id: current_user.condo_id).order(date: :desc)
+    @bulletins = Bulletin.where(condo_id: current_user.condo_id).order(created_at: :desc)
   end
 
   def bulletin_params

@@ -5,7 +5,7 @@ class Api::EventsController < Api::ApiController
       limit = params[:limit].to_i
       page = params[:page].to_i
       if limit > 0 and page > 0
-        @events = event.limit(limit).offset(page*limit-limit)
+        @events = event.limit(limit).offset(page*limit-limit).where(:archived => f)
         if @events.size > 0
           @full_event = []
           @events.each do |event|

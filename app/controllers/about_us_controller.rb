@@ -27,11 +27,11 @@ class AboutUsController < ApplicationController
   def create
     @about_u = AboutUs.new(about_u_params)
     if @about_u.save
-      @result=1
-      @message='Privilege was successfully created!'
+      @result = 1
+      @message = t('common.successfully_created')
     else
-      @result=0
-      @message= 'Unsuccess!'
+      @result = 0
+      @message = t('common.unsuccess')
     end
     @about_us = AboutUs.all.order('id DESC')
     @about_u = AboutUs.new
@@ -49,11 +49,11 @@ class AboutUsController < ApplicationController
   # DELETE /about_us/1.json
   def destroy
     if @about_u.destroy
-      @result=1
-      @message='About us was successfully destroyed!'
+      @result = 1
+      @message = t('common.successfully_destroyed')
     else
       @result=0
-      @message= 'Unsuccess!'
+      @message= t('common.unsuccess')
     end
     @about_us = AboutUs.all.order('id DESC')
     @about_u = AboutUs.new
