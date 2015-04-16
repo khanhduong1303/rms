@@ -39,7 +39,7 @@
 </div>
 
 <script type="text/javascript">
-    $(document).on('click', '.btn-browse', function () {
+    $(document).off('click', '.btn-browse').on('click', '.btn-browse', function () {
         $('input[id=file-box]').click();
     })
     $('input[id=file-box]').change(function () {

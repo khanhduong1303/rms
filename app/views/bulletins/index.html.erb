@@ -1,14 +1,16 @@
 <div class="bulletin-header">
-  <%= t('bulletins.view') %>
-  <select class="form-control">
-    <option><%= t('bulletins.all') %></option>
-  </select>
+  <%#= t('bulletins.view') %>
+  <!--<select class="form-control">-->
+    <!--<option><%= t('bulletins.all') %></option>-->
+  <!--</select>-->
   <%= link_to new_bulletin_path, {class: 'btn btn-link', remote: true} do %>
       <span class="glyphicon glyphicon-plus"></span> <%= t('bulletins.add_bulletin') %>
   <% end %>
+
+</div>
+<div class="row col-md-12">
   <hr>
 </div>
-
 <div id="new-bulletin">
 </div>
 

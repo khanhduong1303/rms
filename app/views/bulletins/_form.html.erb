@@ -20,8 +20,9 @@
     </div>
     <%= f.file_field :image_path , style:"display:none" %>
     <div style="width:50%">
-     <div class="input-group choose" style="margin:15px 0px">
-            <input type="text" class="form-control">
+      <%= f.label :image_path %>
+     <div class="input-group choose">
+            <input type="text" class="form-control" value="<%= @bulletin.image_path_file_name%>">
             <span class="input-group-addon" style="cursor: pointer">Browse</span>
     </div>
     </div>
@@ -46,7 +47,7 @@
         $("#bulletin_image_path").change(function(){
           $("div.choose input").val($(this).val());
         });
-         $(document).on('click', 'div.choose', function(e) {
+         $(document).off('click', 'div.choose').on('click', 'div.choose', function(e) {
            e.preventDefault();
            $('#bulletin_image_path').trigger('click');
          });

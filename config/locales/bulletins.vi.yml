@@ -21,5 +21,6 @@ vi:
       bulletin:
         date: 'Ngày:'
         content: 'Nội dung:'
+        image_path: 'Hình ảnh:'
         send_notify: 'Gửi thông báo đến cư dân qua EleApps'
 

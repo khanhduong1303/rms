@@ -83,7 +83,7 @@
       </div>
       <%#= link_to t('home.nav.bookings'), bookings_path, {'data-no-turbolink' => true, class: "btn btn-primary menu #{session[:menustatus] == 'bookings' ? 'active' : ''}"} %>
       <%= link_to t('home.nav.bulletins'), bulletins_path, {class: "btn btn-primary menu #{session[:menustatus] == 'bulletins' ? 'active' : ''}"} %>
-      <%= link_to t('home.nav.condo_info'), condos_path, {class: "btn btn-primary menu #{session[:menustatus] == 'condoInfos' ? 'active' : ''}"} %>
+      <%#= link_to t('home.nav.condo_info'), condos_path, {class: "btn btn-primary menu #{session[:menustatus] == 'condoInfos' ? 'active' : ''}"} %>
       <%= link_to t('home.nav.events'), events_path, {class: "btn btn-primary menu #{session[:menustatus] == 'events' ? 'active' : ''}"} %>
       <%= link_to t('home.nav.privileges'), privileges_path, {class: "btn btn-primary menu #{session[:menustatus] == 'privileges' ? 'active' : ''}"} %>
       <%= link_to t('home.nav.feedback'), feedbacks_path, {class: "btn btn-primary menu #{session[:menustatus] == 'feedbacks' ? 'active' : ''}"} %>

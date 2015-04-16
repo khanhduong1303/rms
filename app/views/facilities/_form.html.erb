@@ -1,3 +1,8 @@
+<style>
+  .col-md-2{
+      width: 13% !important;
+  }
+</style>
 <%= form_for @facility, remote: true do |f| %>
     <ul class="errors"></ul>
     <div class="row">
@@ -14,24 +19,40 @@
       <% else %>
       <%= f.hidden_field :user_id , {value: current_user.id} %>
       <% end %>
-        <div class="form-group form-inline">
-          <%= f.label :name ,t('facility.index.name') %>:
-          <%= f.text_field :name, {class: "form-control", placeholder: 'Name of facility'} %>
+        <div class="form-group" style="display: flex; align-items: center">
+          <div class="col-md-2 text-right">
+            <%= f.label :name ,t('facility.index.name') %>:
+          </div>
+          <div class="col-md-4">
+            <%= f.text_field :name, {class: "form-control", placeholder: t('facility.index.name')} %>
+          </div>
         </div>
 
-        <div class="form-group form-inline">
-          <%= f.label :facility_category_id, t('facility.index.category') %>:
-          <%= f.collection_select :facility_category_id, @facility_categories, :id, :name, {}, {class: 'form-control'} %>
+        <div class="form-group" style="display: flex; align-items: center">
+          <div class="col-md-2 text-right">
+            <%= f.label :facility_category_id, t('facility.index.category') %>:
+          </div>
+          <div class="col-md-4">
+            <%= f.collection_select :facility_category_id, @facility_categories, :id, :name, {}, {class: 'form-control'} %>
+          </div>
         </div>
 
-        <div class="form-group form-inline">
-          <%= f.label :booking_price,t('facility.index.booking_price') %>:
-          <%= f.text_field :booking_price, {class: "form-control", placeholder: 'Booking price'} %>
+        <div class="form-group" style="display: flex; align-items: center">
+          <div class="col-md-2 text-right">
+            <%= f.label :booking_price,t('facility.index.booking_price') %>:
+          </div>
+          <div class="col-md-4">
+            <%= f.text_field :booking_price, {class: "form-control", placeholder: t('facility.index.booking_price')} %>
+          </div>
         </div>
 
-        <div class="form-group form-inline">
-          <%= f.label :deposit_price , t('facility.index.deposit_price') %>:
-          <%= f.text_field :deposit_price, {class: "form-control", placeholder: 'Deposit price'} %>
+        <div class="form-group" style="display: flex; align-items: center">
+          <div class="col-md-2 text-right">
+            <%= f.label :deposit_price , t('facility.index.deposit_price') %>:
+          </div>
+          <div class="col-md-4">
+            <%= f.text_field :deposit_price, {class: "form-control", placeholder: t('facility.index.deposit_price')} %>
+          </div>
         </div>
 
         <%= f.file_field :image_path, {id: 'file-box', style: 'display:none'} %>
@@ -50,7 +71,11 @@
 <% end %>
 
 <script type="text/javascript">
-    $(document).on('click', '#img-thumbnail', function () {
+    $(function(){
+        formatCurrencies("#facility_booking_price").setIntTypeFormat();
+        formatCurrencies("#facility_deposit_price").setIntTypeFormat();
+    })
+    $(document).off('click', '#img-thumbnail').on('click', '#img-thumbnail', function () {
         $('input[id=file-box]').click();
     })
 

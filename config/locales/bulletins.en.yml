@@ -21,5 +21,6 @@ en:
       bulletin:
         date: 'Date:'
         content: 'Content:'
+        image_path: 'Image:'
         send_notify: 'Send notification to resident through EleApps'
 

@@ -11,7 +11,7 @@ class Form < ActiveRecord::Base
 
   }
   has_attached_file :form_path
-  validates_attachment :form_path, presence: true, :content_type => { :content_type => ['application/pdf', 'application/msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/msword','applicationvnd.ms-word','applicaiton/vnd.openxmlformats-officedocument.wordprocessingm1.document'] }, size: {:in => 0..6.megabytes}
+  validates_attachment :form_path, presence: true, :content_type => { :content_type => ['application/pdf', 'application/msexcel', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/msword' ,'applicationvnd.ms-word', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'] }, size: {:in => 0..6.megabytes}
   # content_type: {content_type: ['application/pdf']}
   validates :title, presence: true
 end

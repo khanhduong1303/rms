@@ -10,6 +10,8 @@
   <br>
   <%= label :bulletin, :content %>
   <%= simple_format @bulletin.content, {class: 'keep-format'} %>
-      <%= image_tag @bulletin.image_path.url, { :class => 'img-rounded', size: '720x400' } %>
+  <div class="row text-center">
+  <%= image_tag @bulletin.image_path.url, { :class => 'img-rounded' } %> <!--, size: '720x400' -->
+  </div>
 </div>
 

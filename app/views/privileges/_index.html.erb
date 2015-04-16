@@ -18,11 +18,11 @@
             <div class="col-md-12">
               <%= best_in_place pri, :name %>
               &nbsp;
-              <%= link_to '', pri, class: 'glyphicon glyphicon-eye-open fontSize20', remote: true %>
+              <%= link_to '', pri, class: 'glyphicon glyphicon-eye-open fontSize15', remote: true %>
               &nbsp;
-              <%= link_to '', edit_privilege_path(pri), class: 'glyphicon glyphicon-pencil fontSize20', remote: true %>
+              <%= link_to '', edit_privilege_path(pri), class: 'glyphicon glyphicon-pencil fontSize15', remote: true %>
               &nbsp;
-              <%= link_to '', pri, method: :delete, class: 'glyphicon glyphicon-trash fontSize20', data: {confirm: 'Are you sure?'}, remote: true %>
+              <%= link_to '', pri, method: :delete, class: 'glyphicon glyphicon-trash fontSize15', data: {confirm: 'Are you sure?'}, remote: true %>
             </div>
             <div class="col-md-12">
               <div class="col-md-2 text-right"> <%= label_tag t('privileges.location') %></div>

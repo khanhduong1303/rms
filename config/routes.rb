@@ -83,7 +83,7 @@ Rails.application.routes.draw do
   post 'facilities/change_active', to: 'facilities#change_active'
   post 'facilities/change_peak', to: 'facilities#change_peak'
   post 'facilities/add_timeslot', to: 'facilities#add_timeslot', as: 'add_timeslot'
-
+  post 'facilities/delete_timeslot/:id', to: 'facilities#delete_timeslot', as: 'delete_timeslot'
 
   resources :facility_statuses, only: [:new, :create]
 

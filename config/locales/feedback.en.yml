@@ -1,11 +1,11 @@
 en:
   feedback:
     index:
-      delete_feedback: "Delete Feedbacks"
-      move_archive: "Move to Archive"
+      delete_feedback: " Delete Feedbacks"
+      move_archive: " Replied"
       restore_feedback: "Restore from Archive"
       current: "Current"
-      archive: "Archive"
+      archive: "Replied"
       confirm: "Confirmation"
       close: "Close"
       btn_cancel: "Cancel"

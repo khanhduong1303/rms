@@ -1,7 +1,10 @@
 <div class="facility-header">
-  View:
-  <select class="form-control">
-    <option>All</option>
+  <%= t('bookings.view') %>
+  <select class="form-control" onchange="filterByCategory(this.value)">
+    <option value="/facilities"><%= t('bookings.all') %></option>
+    <% @category.each do |category| %>
+        <option <%= 'selected' if @category_id.to_i == category.id %> value="/facilities?category=<%= category.id %>"><%= category.name %></option>
+    <% end %>
   </select>
   <%= link_to new_facility_path, {class: 'btn btn-link', remote: true} do %>
       <span class="glyphicon glyphicon-plus"></span> 
@@ -24,3 +27,8 @@
   </div>
 </div>
 
+<script>
+  function filterByCategory(link){
+      window.location = link;
+  }
+</script>

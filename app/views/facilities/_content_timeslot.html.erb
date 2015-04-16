@@ -6,8 +6,10 @@
     <% @timeslots.each do |timeslot| %>
         <tr>
           <td> <%= timeslot.slot_start.strftime('%I:%M %P') %> - <%= timeslot.slot_end.strftime('%I:%M %P') %> </td>
-          <td><a class="btn <%= timeslot.peak ? 'btn-default' : 'btn-primary' %>
-  	peak " href="#" data-tid=<%= timeslot.id %>><%= t('facility.index.peak') %></a></td>
+          <!--<td><a class="btn <%#= timeslot.peak ? 'btn-default' : 'btn-primary' %>
+  	peak " href="#" data-tid=<%#= timeslot.id %>><%#= t('facility.index.peak') %></a>
+          </td> -->
+          <td><%= button_tag t('common.delete'), :type => 'button',:id => timeslot.id, :class => 'btn btn-default delete_timeslot' %></td>
         </tr>
     <% end %>
 <% else %>
@@ -15,6 +17,16 @@
 <% end %>
 <script type="text/javascript">
     $(document).ready(function () {
+        $(document).off('click', '.delete_timeslot').on('click', '.delete_timeslot', function(){
+            $(this).closest('tr').remove();
+            $.post('facilities/delete_timeslot/' + $(this).attr('id')).done(function(data){
+                if(data.result == true){
+                    delayedAlert(i18nJs.common.delete_success, 1000)
+                }else{
+                    delayedAlert(i18nJs.common.delete_unsuccess, 1000)
+                }
+            });
+        })
         $(document).on("click", "a.peak", function (e) {
 
             e.preventDefault();

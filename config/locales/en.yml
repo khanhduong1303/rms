@@ -53,4 +53,5 @@ en:
     successfully_updated: 'Successfully updated.'
     successfully_destroyed: 'Successfully destroyed.'
     unsuccess: 'Unsuccess.'
+    delete: 'Delete'
 

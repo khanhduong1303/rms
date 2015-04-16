@@ -9,7 +9,7 @@
 
         <p><%=t('facility.index.category') %>: <%= facility.facility_category.name %></p>
 
-        <p><%=t('facility.index.facility_code') %>: <%= facility.id %></p>
+        <!--<p><%#=t('facility.index.facility_code') %>: <%= facility.id %></p>-->
 
         <p><%=t('facility.index.booking_price') %>: <%= facility.booking_price %></p>
 
@@ -33,10 +33,10 @@
               <span class="glyphicon glyphicon-pencil"></span>
 <%=t('facility.index.edit_facility') %>
           <% end %>
-          <%= link_to new_facility_status_path, {class: 'btn btn-link facility-status', remote: true, data: {'facility-id' => facility.id}} do %>
-              <span class="glyphicon glyphicon-calendar"></span>
-<%=t('facility.index.facility_status') %>
-          <% end %>
+          <%#= link_to new_facility_status_path, {class: 'btn btn-link facility-status', remote: true, data: {'facility-id' => facility.id}} do %>
+              <!--<span class="glyphicon glyphicon-calendar"></span>-->
+<%#=t('facility.index.facility_status') %>
+          <%# end %>
           <%= link_to facility_timeslot_path(facility), {class: 'edit-button btn btn-link', remote: true} do %>
               <span class="glyphicon glyphicon-time"></span> 
 <%=t('facility.index.facility_time') %>

@@ -6,6 +6,7 @@ class FacilitiesController < ApplicationController
   respond_to :json, :html, :js
   #authorize_resource
   def index
+    @category = FacilityCategory.where(:condo_id => current_user.condo_id)
   end
 
   def new
@@ -34,6 +35,14 @@ class FacilitiesController < ApplicationController
     @facility = Facility.find(params[:time_slot][:facility_id])
     @timeslots = @facility.time_slots
 
+  end
+
+  def delete_timeslot
+    unless TimeSlot.find(params[:id]).nil?
+      TimeSlot.find(params[:id]).destroy!
+      return render json: {'result' => true}
+    end
+    return render json: {'result' => false}
   end
 
   def update
@@ -77,14 +86,22 @@ class FacilitiesController < ApplicationController
   end
 
   def set_facilities
-    @facilities = current_user.facilities
+    @category_id = params[:category]
+    if @category_id.nil?
+      @facilities = current_user.facilities.order(created_at: :desc)
+    else
+      @facilities = current_user.facilities.where(:facility_category_id => @category_id).order(created_at: :desc)
+    end
   end
   def set_admin_facilities
-     if current_user.roles.where('role_name = "Admin"').size >0 
-
-      @facilities = current_user.condo.facilities
-
-     end  
+     if current_user.roles.where('role_name = "Admin"').size >0
+       @category_id = params[:category]
+       if @category_id.nil?
+         @facilities = current_user.condo.facilities.order(created_at: :desc)
+       else
+         @facilities = current_user.condo.facilities.where(:facility_category_id => @category_id).order(created_at: :desc)
+       end
+     end
   end
 
   def facility_params

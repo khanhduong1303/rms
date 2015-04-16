@@ -7,7 +7,7 @@ vi:
       condo_info: 'Chung cư'
       events: 'Sự kiện'
       facilities: 'Cơ sở vật chất'
-      feedback: 'Phản hồi'
+      feedback: 'Góp ý'
       forms: 'Biểu mẫu'
       guard_house: 'Bảo vệ'
       house_rules: 'Quy định'
@@ -32,4 +32,7 @@ vi:
     successfully_updated: 'Cập nhật thành công.'
     successfully_destroyed: 'Xóa thành công.'
     unsuccess: 'Không thành công.'
-
+    delete: 'Xóa'
+  errors:
+    messages:
+      blank: 'không được rỗng.'

@@ -5,7 +5,8 @@ var i18nJs = {
     vi:{
         common: {
             update_success: 'Cập nhật thành công!',
-            delete_success: 'Xóa thành công'
+            delete_success: 'Xóa thành công',
+            delete_unsuccess: 'Xóa không thành công'
         },
        booking:{
 
@@ -14,7 +15,8 @@ var i18nJs = {
     en: {
         common: {
             update_success: 'Booking was successfully updated!',
-            delete_success: 'Booking was successfully destroyed!'
+            delete_success: 'Booking was successfully destroyed!',
+            delete_unsuccess: 'Booking was not successfully destroyed!'
         },
         booking:{
 
