@@ -11,7 +11,7 @@ class Facility < ActiveRecord::Base
   validates :name, :booking_price, :deposit_price, :facility_category_id, presence: true
   validates :name, uniqueness: true
 
-  def currency(val)
+  def self.currency(val)
     "#{ActionController::Base.helpers.number_to_currency(val)}"
   end
 end

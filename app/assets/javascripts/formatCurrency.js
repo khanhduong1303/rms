@@ -97,6 +97,9 @@
                     formatFloat($(selectorNeedFormatCurrency).val());
                 }
             });
+        },
+        formatCurrency: function(string){
+            return formatCurrency(string);
         }
         
     }

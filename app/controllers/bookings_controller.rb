@@ -2,37 +2,78 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:update, :destroy]
   #before_action :set_bookings, only: [:index]
   before_action :set_hightlight
+  # before_action :get_column_dataType
+
   included ActionController::MimeResponds
   authorize_resource
 
   def index
-    session[:category_id_temp]='all'
-    @users = User.where(condo_id: current_user.condo_id)
-    if current_user.roles.where('role_name = "Admin"').size >0
+    # module filter
+    if params[:get_column_dataType].to_i == 1
+      show_array = []
+    column_names = Booking.column_names
+    column_dataType = []
+      unless column_names.nil?
+        column_names.each { |col|
+          temp = {}
+          temp[:key] = col
+          temp[:type] = Booking.columns_hash[col].type.to_s
+          temp[:name] = t("bookings.moduleFilter.#{col}")
+          column_dataType << temp
+        }
+      end
+      return render json: column_dataType
+    end
+    # end module filter
+
+    @category_id = params[:category]
+    if current_user.roles.where('role_name = "Admin"').size > 0
       @categories = FacilityCategory.where(condo_id: current_user.condo_id)
     else
       @categories = FacilityCategory.where(user_id: current_user.id)
     end
-    if @users.size > 0
-      @bookings = []
-      @temp = []
-      @users.each do |u|
-        if !u.bookings.blank?
-          u.bookings.each do |book|
-            if !book.time_slot.nil?
-              if current_user.roles.where('role_name = "Admin"').size >0
-                @bookings << book
-              else
-                if book.time_slot.facility.user_id==current_user.id.to_i
-                  @bookings << book
-                end
-              end
-
-            end
-          end
-        end
+    arrTimeslotId = []
+    unless @category_id.nil?
+      FacilityCategory.find(@category_id).facilities.each do |f|
+        arrTimeslotId =  arrTimeslotId + f.time_slots.select(:id).map(&:id)
       end
     end
+    if arrTimeslotId.size < 1
+      arrTimeslotId << -1
+    end
+    if current_user.roles.where('role_name = "Admin"').size > 0
+      if @category_id.nil?
+        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})")
+      else
+        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").where("time_slot_id in (#{arrTimeslotId.join(',')})")
+      end
+    else
+      if @category_id.nil?
+        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id, :id => current_user.id).select('id').map(&:id).join(',')})")
+      else
+        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id, :id => current_user.id).select('id').map(&:id).join(',')})").where("time_slot_id in (#{arrTimeslotId.join(',')})")
+      end
+    end
+    # if @users.size > 0
+    #   @bookings = []
+    #   @temp = []
+    #   @users.each do |u|
+    #     if !u.bookings.blank?
+    #       u.bookings.each do |book|
+    #         if !book.time_slot.nil?
+    #           if current_user.roles.where('role_name = "Admin"').size >0
+    #             @bookings << book
+    #           else
+    #             if book.time_slot.facility.user_id==current_user.id.to_i
+    #               @bookings << book
+    #             end
+    #           end
+    #
+    #         end
+    #       end
+    #     end
+    #   end
+    # end
   end
 
   def deleteColection
@@ -141,5 +182,6 @@ class BookingsController < ApplicationController
   def set_hightlight
     session[:menustatus] = 'bookings'
   end
+
 end
 

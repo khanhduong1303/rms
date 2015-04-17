@@ -11,9 +11,9 @@
 
         <!--<p><%#=t('facility.index.facility_code') %>: <%= facility.id %></p>-->
 
-        <p><%=t('facility.index.booking_price') %>: <%= facility.booking_price %></p>
+        <p><%=t('facility.index.booking_price') %>: <%= number_format(facility.booking_price) %></p>
 
-        <p><%=t('facility.index.deposit_price') %>: <%= facility.deposit_price %></p>
+        <p><%=t('facility.index.deposit_price') %>: <%= number_format(facility.deposit_price) %></p>
 
         <p><%=t('facility.index.note') %>: <%= facility.note %></p>
       </div>

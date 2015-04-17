@@ -14,7 +14,7 @@ vi:
     cancel: 'Hủy'
     add_new_event: 'Thêm sự kiện'
     delete_event: ' Xóa sự kiện'
-    show_more: ' Xem thêm'
+    show_more: ' Hiển thị chi tiết'
     edit_event: ' Sửa sự kiện'
     confirm_delete_event: 'Xác nhận xóa sự kiện?'
     event_list: ' Sự kiện'

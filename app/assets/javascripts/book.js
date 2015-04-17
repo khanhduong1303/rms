@@ -9,19 +9,27 @@ $(function () {
         } else {
             bookArr.deletByValue(val);
         }
-
     });
-
-    if (category_id_temp != undefined) {
-        $('#' + category_id_temp).attr('selected', 'selected')
-    }
 });
 //function update booking status
-function updateBookStatus(id) {
-    var book_id = $('#' + id).data('id'), book_stt = $('#' + id).val()
+//function updateBookStatus(id) {
+//    var book_id = $('#' + id).data('id'), book_stt = $('#' + id).val()
+//    $.post('/bookings/updateStatus', {book_id: book_id, book_stt: book_stt}, function (data) {
+//        if (data.status == 'failed') {
+//            delayedAlert('Failed!', 1000);
+//        } else if (data.status == 'success') {
+//            delayedAlert(i18nJs.common.update_success, 1000)
+//        }
+//
+//    });
+//}
+function updateBookStatus(thiss){
+    $this = $(thiss);
+    var book_id = $this.data('id');
+    var book_stt = $this.get(0).checked == true ? 'Booked' : '';
     $.post('/bookings/updateStatus', {book_id: book_id, book_stt: book_stt}, function (data) {
         if (data.status == 'failed') {
-            delayedAlert('Failed!', 1000);
+            delayedAlert(i18nJs.common.update_unsuccess, 1000);
         } else if (data.status == 'success') {
             delayedAlert(i18nJs.common.update_success, 1000)
         }
@@ -54,15 +62,7 @@ function deleteBooking() {
         });
     }
 }
-// event change booking categories
-function filterBookCategory(val) {
-    window.location = '/bookings/filter/' + val;
-}
-// temp save category id
-var category_id_temp;
-function tempSelectCategory(id) {
-    category_id_temp = id;
-}
+
 //library array
 function libArray() {
     var arr = [];

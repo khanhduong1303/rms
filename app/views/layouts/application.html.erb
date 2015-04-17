@@ -178,5 +178,11 @@
           }
           localStorage.setItem('language', language);
       }
+
+      $(function(){
+          $.get($(location).attr('pathname') + '?get_column_dataType=1').done(function(rs){
+             console.log(rs)
+          })
+      })
 </script>
 

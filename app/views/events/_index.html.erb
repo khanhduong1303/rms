@@ -68,7 +68,7 @@
             <%=t('events.description')%>
           </div>
           <div class="col-sm-10">
-            <%= event.description %>
+            <%= event.description.truncate(150, separator: ' ', omission: '...') %>
           </div>
         </div>
       </div>

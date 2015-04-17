@@ -25,6 +25,8 @@
 //= require_tree .
 var language;
 jQuery(function () {
+
+
     if(localStorage.getItem('i18n') == undefined || localStorage.getItem('i18n') == 'vi'){
         i18nJs = i18nJs.vi;
     }else{
@@ -34,29 +36,43 @@ jQuery(function () {
         $.get('/bookings/getLanguage',function(data){
             language = data.val;
             localStorage.setItem('language', language);
-            $('.datatable').dataTable({
+            var dTable = $('#booking_table').dataTable({
                 "language": {
                     "url": 'http://' + $(location).attr('host') + '/'+language
                 },
                 // sDom: 'Rlfrtip',
                 bProcessing: true,
                 bDeferRender: true,
-                sAjaxSource: $('.datatable').data('source'),
+                sAjaxSource: $('#booking_table').data('source'),
                 sPaginationType: "full_numbers",
                 bStateSave: true
             });
+            $(document).off('keyup', '#DataTables_Table_0_filter > label > input[type=search]').on('keyup', '#DataTables_Table_0_filter > label > input[type=search]', function () {
+                $this = $(this);
+                dTable
+                    .columns( 3 )
+                    .search( $this.val() )
+                    .draw();
+            } );
         });
     }else{
-        $('.datatable').dataTable({
+        var dTable = $('#booking_table').dataTable({
             "language": {
                 "url": 'http://' + $(location).attr('host') + '/'+ localStorage.getItem('language')
             },
             bProcessing: true,
             bDeferRender: true,
-            sAjaxSource: $('.datatable').data('source'),
+            sAjaxSource: $('#booking_table').data('source'),
             sPaginationType: "full_numbers",
             bStateSave: true
         });
+        $(document).off('keyup', '#DataTables_Table_0_filter > label > input[type=search]').on('keyup', '#DataTables_Table_0_filter > label > input[type=search]', function () {
+            $this = $(this);
+            dTable
+                .columns( 3 )
+                .search( $this.val() )
+                .draw();
+        } );
     }
 
 
