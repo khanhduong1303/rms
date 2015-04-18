@@ -33,15 +33,15 @@ joins("LEFT JOIN `user_roles` ON `user_roles`.`user_id` = `users`.`id` LEFT JOIN
 
 
 #setup avartar
-  has_attached_file :avatar, :styles => {:medium => "200x200>", :small => "140x140>", :big => "250x250>"}, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => {:medium => "200x200#", :small => "140x140#", :big => "250x250#"}, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment :avatar,
                        :size => {:in => 0..3.megabytes},
                        :content_type => {:content_type => /^image\/(jpeg|png|gif|tiff)$/}
   validates :email, uniqueness: true
 
-#  validates :username, presence: true
-  validates :phone, presence: true
+  validates :username, presence: true
+  # validates :phone, presence: true
  # validates :postal_code, presence: true
  # validates :enquiry, presence: true
 #  validates :username, length: {minimum: 4, maximun: 14}

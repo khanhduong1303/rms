@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   include ActionController::MimeResponds
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_hightlight
-  #authorize_resource
+  authorize_resource
   # GET /events
   # GET /events.json
   def index

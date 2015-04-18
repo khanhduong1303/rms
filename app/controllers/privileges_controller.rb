@@ -2,6 +2,7 @@ class PrivilegesController < ApplicationController
   before_action :set_privilege, only: [:show, :edit, :update, :destroy]
   include ActionController::MimeResponds
   before_action :set_hightlight
+  authorize_resource
   def index
     set_privileges
     @privilege = Privilege.new

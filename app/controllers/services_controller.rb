@@ -1,5 +1,6 @@
 class ServicesController < ApplicationController
     respond_to :json, :html, :js
+    authorize_resource
   def index
     @services = Service.where(user_id: current_user.id)
   end 

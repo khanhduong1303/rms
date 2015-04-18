@@ -10,7 +10,7 @@
     </div>
  <div class="field">
     <%= f.label :permission_id, "Permision" %><br>
-    <%= f.collection_select  :permission_id, @permission, :id, :per_name ,{},
+    <%= f.collection_select  :permission_id, @permission, :id, :describe ,{},
       { multiple: true, style: "width: 31em;", class: "js-select2" }%>
  </div>   
     

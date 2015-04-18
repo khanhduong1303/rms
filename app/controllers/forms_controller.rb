@@ -4,7 +4,7 @@ class FormsController < ApplicationController
   before_action :set_highlight
   
   respond_to :html, :js, :json
-authorize_resource
+  authorize_resource
   def index
   end
 

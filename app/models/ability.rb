@@ -9,7 +9,7 @@ class Ability
     
      end
      if user.roles.where('role_name = "Admin"').size > 0
-     can :manage , :all
+        can :manage , :all
      end
      
 

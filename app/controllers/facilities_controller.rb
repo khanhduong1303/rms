@@ -4,7 +4,7 @@ class FacilitiesController < ApplicationController
   before_action :set_admin_facilities, only: [:index, :create, :update, :destroy]
   before_action :set_hightlight
   respond_to :json, :html, :js
-  #authorize_resource
+  authorize_resource
   def index
     @category = FacilityCategory.where(:condo_id => current_user.condo_id)
   end

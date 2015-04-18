@@ -35,7 +35,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
           status: 'success',
           message: 'Your profile',
           results: {
-              image: user.avatar.url(:big),
+              image: user.avatar_file_name.nil? == true ? nil : user.avatar.url(:medium),
               email: user.email,
               username: user.username,
               name: user.name,

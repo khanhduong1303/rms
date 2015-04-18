@@ -2,7 +2,7 @@ class HomesController < ApplicationController
   included ActionController::MimeResponds
   before_action :authenticate_user!, :only => [:index]
   before_action :set_hightlight
-  authorize_resource :class => false 
+  # authorize_resource :class => false
     layout "blank" , only: :unauthor
   def index
     unless current_user.active
