@@ -9,8 +9,8 @@ class HomesController < ApplicationController
       redirect_to active_path
     end
     @bulletins = Bulletin.where('condo_id' => current_user.condo_id).order(:created_at => :desc).take 3
-    @events = User.find_by_id(current_user.id).events.order(:created_at => :desc).take 3
-    @privileges = User.find_by_id(current_user.id).privileges.order(:created_at => :desc).take 3
+    @events = Event.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").order(created_at: :desc).take 3
+    @privileges = Privilege.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").order(created_at: :desc).take 3
   end
   def unauthor
 

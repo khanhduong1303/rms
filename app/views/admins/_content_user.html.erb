@@ -1,60 +1,60 @@
-
-<table class="table table-bordered test">
-<thead>
-<tr>
-<th></th>
-<th><%= sort_link "created_at" , t('admin.index.join_date') %></th>
-<th><%= sort_link  "email" , t('admin.index.email') %> </th>
-<th><%= t('admin.index.active_inactive') %></th>
-<th><%= t('admin.index.manipulate') %></th></tr>
-</thead>
-<tbody>
-<% @users.each do |user| %>
-<tr>
-<td><%=check_box_tag "User_id[]",user.id%></td>
-<td><%= user.created_at %></td>
-<td><%= user.email %></td>
-<td>
-  <select class="form-control user-active" data-uid="<%= user.id %>">
+<table class="table table-bordered datatable">
+  <thead>
+  <tr>
+    <th></th>
+    <th><%= sort_link "created_at", t('admin.index.join_date') %></th>
+    <th><%= sort_link "email", t('admin.index.email') %> </th>
+    <th><%= t('admin.index.active_inactive') %></th>
+    <th><%= t('admin.index.manipulate') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= check_box_tag "User_id[]", user.id %></td>
+        <td><%= user.created_at %></td>
+        <td><%= user.email %></td>
+        <td>
+          <select class="form-control user-active" data-uid="<%= user.id %>">
             <option value='active' <%= user.active ? 'selected' : '' %>>Active</option>
             <option value='inactive' <%= !user.active ? 'selected' : '' %>>Inactive</option>
-  </select>
-</td>
-<td>
-<%= link_to  confirm_delete_path(user.id)  , :class => 'btn btn-danger' ,remote: true do %>
-<span class='glyphicon glyphicon-trash'></span>
-<% end %>
-&nbsp;
-<%= link_to manage_user_path(user.id) , :class => 'btn btn-info' ,remote: true  do%>
-<span class= 'glyphicon glyphicon-cog'> </span>
-<% end%>
-</td>
-		
-</tr>
-<% end %>
-<tr>
-<td></td>
-<td colspan="4"> 
-<%= will_paginate @users , :params => {controller: "admins" , action: "index" }  %>
+          </select>
+        </td>
+        <td>
+          <%= link_to confirm_delete_path(user.id), :class => 'btn btn-danger', remote: true do %>
+              <span class='glyphicon glyphicon-trash'></span>
+          <% end %>
+          &nbsp;
+          <%= link_to manage_user_path(user.id), :class => 'btn btn-info', remote: true do %>
+              <span class='glyphicon glyphicon-cog'> </span>
+          <% end %>
+        </td>
 
-</td>
-</tr>
-</tbody>
+      </tr>
+  <% end %>
+  <!--<tr>-->
+    <!--<td></td>-->
+    <!--<td colspan="4">-->
+      <!--<%#= will_paginate @users, :params => {controller: "admins", action: "index"} %>-->
+
+    <!--</td>-->
+  <!--</tr>-->
+  </tbody>
 </table>
-<p>   <a   data-toggle="modal" data-target="#myModal" href="#" class="btn btn-danger delete-confirm"><%=t('admin.index.delete') %></a>
-  <a   data-toggle="modal" data-target="#myModal" href="#" class="btn btn-default block-confirm"><%= t('admin.index.block') %> </a></p>
+<p>
+  <a data-toggle="modal" data-target="#myModal" href="#" class="btn btn-danger delete-confirm"><%= t('admin.index.delete') %></a>
+  <a data-toggle="modal" data-target="#myModal" href="#" class="btn btn-default block-confirm"><%= t('admin.index.block') %> </a>
+</p>
 
 <script type="text/javascript">
- $(document).ready(function(){
-$(".test th a.asc").append("<span class='glyphicon glyphicon-chevron-up'></span>");
-$(".test th a.desc").append("<span class='glyphicon glyphicon-chevron-down'></span>");
-
+    $(document).ready(function () {
+        $(".test th a.asc").append("<span class='glyphicon glyphicon-chevron-up'></span>");
+        $(".test th a.desc").append("<span class='glyphicon glyphicon-chevron-down'></span>");
 
 
 //  $("#user_search").submit(function() {
 //  $.get('/admins', $(this).serialize(), null, "script");
 // });
-
 
 
 // $(".test th a").hover(function(){
@@ -71,13 +71,13 @@ $(".test th a.desc").append("<span class='glyphicon glyphicon-chevron-down'></sp
 //     function(){
 // $(this).find("span").remove();}
 //                               );
- });
-	 // $('.test').dataTable({
-  //       // sDom: 'Rlfrtip',
-  //       bProcessing: true,
-  //       bDeferRender: true,
-  //       sAjaxSource: $('.datatable').data('source'),
-  //       sPaginationType: "full_numbers",
-  //       bStateSave: true
-  //   });
+    });
+    // $('.test').dataTable({
+    //       // sDom: 'Rlfrtip',
+    //       bProcessing: true,
+    //       bDeferRender: true,
+    //       sAjaxSource: $('.datatable').data('source'),
+    //       sPaginationType: "full_numbers",
+    //       bStateSave: true
+    //   });
 </script>

@@ -36,7 +36,7 @@ jQuery(function () {
         $.get('/bookings/getLanguage',function(data){
             language = data.val;
             localStorage.setItem('language', language);
-            var dTable = $('#booking_table').dataTable({
+            $('.datatable').dataTable({
                 "language": {
                     "url": 'http://' + $(location).attr('host') + '/'+language
                 },
@@ -47,16 +47,9 @@ jQuery(function () {
                 sPaginationType: "full_numbers",
                 bStateSave: true
             });
-            $(document).off('keyup', '#DataTables_Table_0_filter > label > input[type=search]').on('keyup', '#DataTables_Table_0_filter > label > input[type=search]', function () {
-                $this = $(this);
-                dTable
-                    .columns( 3 )
-                    .search( $this.val() )
-                    .draw();
-            } );
         });
     }else{
-        var dTable = $('#booking_table').dataTable({
+        $('.datatable').dataTable({
             "language": {
                 "url": 'http://' + $(location).attr('host') + '/'+ localStorage.getItem('language')
             },
@@ -66,13 +59,6 @@ jQuery(function () {
             sPaginationType: "full_numbers",
             bStateSave: true
         });
-        $(document).off('keyup', '#DataTables_Table_0_filter > label > input[type=search]').on('keyup', '#DataTables_Table_0_filter > label > input[type=search]', function () {
-            $this = $(this);
-            dTable
-                .columns( 3 )
-                .search( $this.val() )
-                .draw();
-        } );
     }
 
 
@@ -88,4 +74,8 @@ jQuery(function () {
     });
 
 });
+
+function refresh(){
+    location.reload();
+}
 

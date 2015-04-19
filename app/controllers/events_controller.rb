@@ -7,7 +7,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     if current_user.roles.where(role_name: 'Admin').size > 0
-      @events = Event.all.order(created_at: :desc)
+      @events = Event.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").order(created_at: :desc)
     else
       @events = Event.where(:user_id => current_user.id).order(created_at: :desc)
     end
@@ -15,7 +15,7 @@ class EventsController < ApplicationController
 
   def archives
     if current_user.roles.where(role_name: 'Admin').size > 0
-      @events = Event.where(archived: 1).order(created_at: :desc)
+      @events = Event.where(archived: 1).where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").order(created_at: :desc)
     else
       @events = Event.where(:user_id => current_user.id, archived: 1).order(created_at: :desc)
     end
@@ -72,7 +72,11 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-    @events = Event.all.order(created_at: :desc)
+    if current_user.roles.where(role_name: 'Admin').size > 0
+      @events = Event.all.order(created_at: :desc)
+    else
+      @events = Event.where(:user_id => current_user.id).order(created_at: :desc)
+    end
     respond_to do |format|
       if @event.save
         if params[:event][:image]
@@ -98,7 +102,11 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    @events = Event.all.order(created_at: :desc)
+    if current_user.roles.where(role_name: 'Admin').size > 0
+      @events = Event.all.order(created_at: :desc)
+    else
+      @events = Event.where(:user_id => current_user.id).order(created_at: :desc)
+    end
     respond_to do |format|
       if @event.update(event_params)
         if params[:image_id]

@@ -12,6 +12,6 @@ module ApplicationHelper
     for s in 0...txt.size do
       rs += txt[txt.size - s - 1]; rs += ',' if (s+1)%3 == 0 && s+1 > 1 && s+1 != txt.size
     end
-    return session[:language] == 'vi' ? rs.reverse! + ' đồng' : rs.reverse!
+    return session[:language] == 'vi' || session[:language].nil? ? rs.reverse! + ' đồng' : rs.reverse!
   end
 end

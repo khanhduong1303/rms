@@ -29,7 +29,7 @@
       </div>
       <div class="col-md-6">
         <%= f.label t('privileges.date_expiry'), class: 'margin-left-20' %>
-        <div class="input-group date" id='datetime-picker' data-date-format="DD/MM/YYYY">
+        <div class="input-group date" id='datetime-picker' data-date-format="DD/MM/YYYY" style="width: 60%;">
           <%= f.text_field :date_expiry, {id: 'textFieldDate-pri', class: "form-control", style: 'width: 100% !important', placeholder: 'DD/MM/YYYY', value: Time.now.try(:strftime, "%d/%m/%Y"), readOnly: true} %>
           <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
         </div>
@@ -45,6 +45,12 @@
         <label class="pull-right margin-top-5" for="privilege_Hình : ">Hình : </label>
       </div>
     </div>
+  <div class="form-group form-inline col-md-12 text-right">
+    <div class="col-md-6">
+      <%= f.label t('privileges.phone'), class: 'margin-left-20' %>
+      <%= f.text_field :phone, class: 'form-control width-60-per' %>
+    </div>
+  </div>
     <div class="col-md-12">
       <%= f.label t('privileges.description') %>
       <br>

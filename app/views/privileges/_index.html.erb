@@ -16,7 +16,7 @@
           </div>
           <div class="col-md-10 form-group form-inline  in_place_class">
             <div class="col-md-12">
-              <%= best_in_place pri, :name %>
+              <%= pri.name %>
               &nbsp;
               <%= link_to '', pri, class: 'glyphicon glyphicon-eye-open fontSize15', remote: true %>
               &nbsp;
@@ -26,21 +26,19 @@
             </div>
             <div class="col-md-12">
               <div class="col-md-2 text-right"> <%= label_tag t('privileges.location') %></div>
-              <div class="col-md-4"><%= best_in_place pri, :location, :nil => "Click to edit!" %></div>
+              <div class="col-md-4"><%= pri.location %></div>
               <div class="col-md-2 text-right"><%= label_tag t('privileges.price') %></div>
-              <div class="col-md-4"><%= best_in_place pri, :price, :nil => "Click to edit!" %></div>
+              <div class="col-md-4"><%= pri.price %></div>
             </div>
             <div class="col-md-12">
-              <div class="col-md-2 text-right"> <%= label_tag t('privileges.distance') %></div>
-              <div class="col-md-4"><%= best_in_place pri, :distance, :nil => "Click to edit!" %></div>
+              <div class="col-md-2 text-right"><%= label_tag t('privileges.date_time_detail') %></div>
+              <div class="col-md-4"><%= pri.date_time_detail %></div>
               <div class="col-md-2 text-right"><%= label_tag t('privileges.date_expiry') %></div>
-              <div class="col-md-4"><%= best_in_place pri, :date_expiry, :nil => "Click to edit!" %></div>
+              <div class="col-md-4"><%= pri.date_expiry %></div>
             </div>
             <div class="col-md-12">
               <div class="col-md-2 text-right"><%= label_tag t('privileges.phone') %></div>
-              <div class="col-md-4"><%= best_in_place pri, :phone, :nil => "Click to edit!" %></div>
-              <div class="col-md-2 text-right"><%= label_tag t('privileges.date_time_detail') %></div>
-              <div class="col-md-4"><%= best_in_place pri, :date_time_detail, :nil => "Click to edit!" %></div>
+              <div class="col-md-4"><%= pri.phone %></div>
             </div>
             <div class="col-md-12">
               <div class="text-right height-15 width-110"> <%= label_tag t('privileges.description') %></div>

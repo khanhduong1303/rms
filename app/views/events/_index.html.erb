@@ -41,7 +41,7 @@
           </div>
           <div class="col-sm-10">
             <%= event.event_start.strftime('%I:%M %P') if !event.event_start.nil? %>
-            To <%= event.event_end.strftime('%I:%M %P') if !event.event_end.nil? %>
+            - <%= event.event_end.strftime('%I:%M %P') if !event.event_end.nil? %>
           </div>
         </div>
 

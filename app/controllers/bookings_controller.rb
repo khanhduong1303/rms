@@ -30,7 +30,7 @@ class BookingsController < ApplicationController
     if current_user.roles.where('role_name = "Admin"').size > 0
       @categories = FacilityCategory.where(condo_id: current_user.condo_id)
     else
-      @categories = FacilityCategory.where(user_id: current_user.id)
+      @categories = FacilityCategory.where(condo_id: current_user.condo_id)
     end
     arrTimeslotId = []
     unless @category_id.nil?
@@ -49,9 +49,22 @@ class BookingsController < ApplicationController
       end
     else
       if @category_id.nil?
-        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id, :id => current_user.id).select('id').map(&:id).join(',')})")
+        arrTimeslotId = []
+        current_user.facilities.each do |f|
+        arrTimeslotId =  arrTimeslotId + f.time_slots.select(:id).map(&:id)
+      end
+        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").where("time_slot_id in (#{arrTimeslotId.join(',')})")
       else
-        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id, :id => current_user.id).select('id').map(&:id).join(',')})").where("time_slot_id in (#{arrTimeslotId.join(',')})")
+        arrTimeslotId = []
+        current_user.facilities.each do |f|
+          if f.facility_category.id == @category_id.to_i
+            arrTimeslotId =  arrTimeslotId + f.time_slots.select(:id).map(&:id)
+          end
+        end
+        if arrTimeslotId.size < 1
+          arrTimeslotId << -1
+        end
+        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").where("time_slot_id in (#{arrTimeslotId.join(',')})")
       end
     end
     # if @users.size > 0

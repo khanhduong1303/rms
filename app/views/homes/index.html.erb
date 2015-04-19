@@ -3,13 +3,15 @@
   <div class="col-md-4">
     <h4 class="vertical-center"><%= t('home.content.last_bulletins') %><a href="<%= bulletins_path %>" class="pull-right more-category-title"><%= t('home.nav.bulletins') %> >></a></h4>
     <hr class="hr-category">
-    <% @bulletins.each do |bulletin| %>
+    <% b = 0; @bulletins.each do |bulletin| %>
+        <% b += 1; if b <= 3 %>
         <div>
           <h5 class="category-title"><%= bulletin.title %></h5>
           <h5><%= t 'home.content.date_apply'%><%= bulletin.date.strftime("%d/%m/%Y") if !bulletin.date.nil? %></h5>
           <span><%= bulletin.content %></span>
           <hr>
         </div>
+        <% end %>
     <% end %>
   </div>
 <% end %>
@@ -17,7 +19,8 @@
   <div class="col-md-4">
     <h4 class="vertical-center"><%= t('home.content.last_events') %><a href="<%= events_path %>" class="pull-right more-category-title"><%= t('home.nav.events') %> >></a></h4>
     <hr class="hr-category">
-    <% @events.each do |event| %>
+    <% e = 0; @events.each do |event| %>
+        <% e += 1; if e <= 3 %>
         <div>
             <h5 class="category-title"><%= event.name %></h5>
             <h5><%= t 'home.content.date_apply'%><%= event.date.strftime("%d/%m/%Y") if !event.date.nil? %>  <%= event.event_start.strftime('%H:%M') if !event.event_start.nil? %> - <%= event.event_end.strftime('%H:%M') if !event.event_end.nil? %></h5>
@@ -25,6 +28,7 @@
             <span><%= event.description %></span>
           <hr>
         </div>
+        <% end %>
     <% end %>
   </div>
 <% end %>
@@ -32,13 +36,15 @@
   <div class="col-md-4">
     <h4 class="vertical-center"><%= t('home.content.last_privileges') %><a href="<%= privileges_path %>" class="pull-right more-category-title"><%= t('home.nav.privileges') %> >></a></h4>
     <hr class="hr-category">
-    <% @privileges.each do |pri| %>
+    <% p = 0; @privileges.each do |pri| %>
+        <% p += 1; if p <= 3 %>
         <div>
           <h5 class="category-title"><%= pri.name %></h5>
           <h5><%= t 'home.content.date_apply'%><%= pri.date_time_detail %></h5>
           <span><%= pri.description %></span>
           <hr>
         </div>
+        <% end %>
     <% end %>
   </div>
 <% end %>

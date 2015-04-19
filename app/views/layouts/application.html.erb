@@ -39,7 +39,7 @@
                     <li>  <%= link_to t('home.header.sign_out'), destroy_user_session_path, method: :delete %>
                     </li>
                     <li>
-                      <%= link_to t('home.header.admin_page'), admins_path %>
+                      <%= link_to t('home.header.admin_page'), admins_path, 'data-no-turbolink' => true %>
                     </li>
                     <li>
                       <%= link_to t('home.header.setting'), profile_path(current_user) %>
