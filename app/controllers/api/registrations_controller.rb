@@ -44,7 +44,8 @@ class Api::RegistrationsController < Devise::RegistrationsController
               city: user.city,
               postal_code: user.postal_code,
               phone: user.phone ,
-              interest: user.interest
+              interest: user.interest,
+              created_at: user.created_at
           }
       }
     else

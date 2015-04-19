@@ -93,7 +93,7 @@ class Api::BookingsController < Api::ApiController
     end
     begin
       temp = {}
-      temp[:facility] = Facility.find(params[:booking_facility_id])
+      temp[:facility] = process_result Facility.find(params[:booking_facility_id])
       temp[:time_slots] = Facility.find(params[:booking_facility_id]).time_slots.nil? ? nil : Facility.find(params[:booking_facility_id]).time_slots
       return render json: PublicFunction.data_json('success', 'Show booking facility detail!', 1, temp)
     rescue
@@ -139,6 +139,21 @@ class Api::BookingsController < Api::ApiController
       end
       return booking_data
   end
-  
+
+  def process_result facility=nil
+      temp = Hash.new
+      temp[:id]= facility.id
+      temp[:user_id]= facility.user_id
+      temp[:name]= facility.name
+      temp[:booking_price]= facility.booking_price
+      temp[:deposit_price]=facility.deposit_price
+      temp[:note]=facility.note
+      temp[:active]=facility.active
+      temp[:created_at]=facility.created_at
+      temp[:updated_at]=facility.updated_at
+      temp[:facility_category_id]=facility.facility_category_id
+      temp[:image_path]=facility.image_path.url
+    return temp
+  end
 end
 
