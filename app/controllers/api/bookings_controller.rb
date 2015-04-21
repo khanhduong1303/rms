@@ -34,13 +34,13 @@ class Api::BookingsController < Api::ApiController
   def make_a_booking
     if !params[:user_id].nil? && !params[:preferred_date].nil? && !params[:time_slot_id].nil?
       if Booking.where(date_book:params[:preferred_date].to_date, time_slot_id:params[:time_slot_id]).size > 0
-        return render json: PublicFunction.data_json('failed', 'Booking existed!', 0, nil)
+        return render json: PublicFunction.data_json('failed', t('bookings.booking_existed'), 0, nil)
       end
       @booking = Booking.create(time_slot_id:params[:time_slot_id], date_submit:Time.now , date_expiry:1.days.from_now , date_book:params[:preferred_date], user_id:params[:user_id], status:'Reserved')
       if @booking
-        return render json: PublicFunction.data_json('success', 'Booking success', 1, @booking)
+        return render json: PublicFunction.data_json('success', t('bookings.booking_success'), 1, @booking)
       else
-        return render json: PublicFunction.data_json('failed', 'Booking list', 0, nil)
+        return render json: PublicFunction.data_json('failed', t('bookings.booking_unsuccess'), 0, nil)
       end
     else
       return render json: PublicFunction.data_json('failed', 'Missing parameter', 0, nil)

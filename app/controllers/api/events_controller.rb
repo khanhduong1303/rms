@@ -5,7 +5,7 @@ class Api::EventsController < Api::ApiController
       limit = params[:limit].to_i
       page = params[:page].to_i
       if limit > 0 and page > 0
-        @events = event.limit(limit).offset(page*limit-limit).where(:archived => false)
+        @events = event.limit(limit).offset(page*limit-limit).where(:archived => false).order(created_at: :desc)
         if @events.size > 0
           @full_event = []
           @events.each do |event|
@@ -23,6 +23,8 @@ class Api::EventsController < Api::ApiController
             end
 
             temp[:organiser] = event.organiser
+            temp[:location] = event.location
+            temp[:description] = event.description
 
             @full_event << temp
           end
@@ -46,7 +48,7 @@ class Api::EventsController < Api::ApiController
       limit = params[:limit].to_i
       page = params[:page].to_i
       if limit > 0 and page > 0
-        @events = event.limit(limit).offset(page*limit-limit).where(archived:1)
+        @events = event.limit(limit).offset(page*limit-limit).where(archived:1).order(created_at: :desc)
         if @events.size > 0
           @full_event = []
           @events.each do |event|

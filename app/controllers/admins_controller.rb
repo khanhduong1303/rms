@@ -12,9 +12,9 @@ class AdminsController < ApplicationController
       # @user    = @alluser - @admin
       #when super admin view page
     else
-      @users = current_user.condo.users.where('users.id != (?) ', current_user.id).antiad.search(params[:search]).order(:created_at => :desc) #order(sort_column + " " + sort_direction)#.paginate(:per_page => 3 , :page => params[:page])
-      #  @admin   = current_user.condo.roles.where('role_name = (?)', 'Admin').first.users
-      # @users   = @alluser - @admin
+      @alluser = current_user.condo.users.where('users.id != (?) ', current_user.id).antiad.search(params[:search]).order(:created_at => :desc) #order(sort_column + " " + sort_direction)#.paginate(:per_page => 3 , :page => params[:page])
+      @admin   = current_user.condo.roles.where('role_name = (?)', 'Admin').first.users
+      @users   = @alluser - @admin
     end
   end
 

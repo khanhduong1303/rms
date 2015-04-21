@@ -1,3 +1,38 @@
 vi:
   admin:
-    index:
+      index:
+        email: "Email"
+        join_date: "Ngày tạo"
+        active: "Hoạt động"
+        inactive: "Không hoạt động"
+        active_inactive: "Duyệt"
+        manipulate: "Chức năng"
+        block: "Khóa"
+        delete: "Xóa"
+        add_user: ' Thêm người dùng'
+        manage_user: 'Quản lý người dùng'
+        manage_role: 'Quản lý quyền'
+        user_name: 'Tên người dùng'
+        phone: 'Di động'
+        city: 'Tỉnh thành'
+        country: 'Quốc tịch'
+      new:
+        close: "Hủy"
+        create: "Lưu"
+        email: "Email"
+        username: "Tên đăng nhập"
+        phone: "Di động"
+        password: "Mật khẩu"
+        password_confirm: "Nhập lại mật khẩu"
+        create_new_user: "Tạo người dùng"
+      confirm:
+        destroy_user: "Xóa người dùng"
+        you_really_want: "Bạn thật sự muốn xóa?"
+        confirm: "Xác nhận"
+        cancel: "Hủy"
+      manage:
+        manage_user_role: "Quản lý quyền"
+        role: "Quyền"
+        add: "Thêm"
+        remove: "Xóa"
+        has_not_role: "Chưa có quyền nào"

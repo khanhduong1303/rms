@@ -14,7 +14,7 @@ class Api::BulletinsController < Api::ApiController
         @page = @page.nil? ? 1 : @page.to_i
         condo = Condo.find(params[:condo_id])
         @total = condo.bulletins.all.count
-        @bulletins = condo.bulletins.where(send_notify: true).limit(@limit).offset((@page - 1) * @limit).order(date: :desc)
+        @bulletins = condo.bulletins.where(send_notify: true).limit(@limit).offset((@page - 1) * @limit).order(created_at: :desc)
         results = []
     rescue Exception => e
         @bulletins = nil

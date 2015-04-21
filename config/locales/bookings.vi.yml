@@ -8,6 +8,9 @@ vi:
     btn_delete: 'Xóa'
     delete_booking: 'Xóa đặt chỗ'
     confirm: 'Xác nhận xóa đặt chỗ'
+    booking_existed: 'Trùng thời gian.'
+    booking_success: 'Đăng ký sử dụng dịch vụ thành công.'
+    booking_unsuccess: 'Đăng ký sử dụng dịch vụ không thành công.'
     table:
       booking_id: 'Mã'
       facility: 'Cơ sở vật chất'

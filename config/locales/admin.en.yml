@@ -9,6 +9,13 @@ en:
       manipulate: "Manipulate"
       block: "Block"
       delete: "Delete"
+      add_user: ' Add user'
+      manage_user: 'Manage User'
+      manage_role: 'Manage Role'
+      user_name: 'Name'
+      phone: 'Phone'
+      city: 'City'
+      country: 'Country'
     new:
       close: "Close"
       create: "Create"
@@ -28,7 +35,7 @@ en:
       role: "Roles"
       add: "Add"
       remove: "Remove"
-      has_not_role: "has not any role , You can asign role for him !"
+      has_not_role: "Has not any role"
 
 
 

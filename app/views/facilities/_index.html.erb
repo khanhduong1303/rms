@@ -21,7 +21,7 @@
       <div class="col-xs-2 facility-center">
         <div class="facility-vcenter">
           <select class="form-control change-active" data-facility-id="<%= facility.id %>">
-            <option value="active" <%= facility.active ? 'selected' : '' %>><%=t('facility.index.actice') %></option>
+            <option value="active" <%= facility.active ? 'selected' : '' %>><%= t('facility.index.actice') %></option>
             <option value="inactive" <%= !facility.active ? 'selected' : '' %>><%=t('facility.index.inactive') %></option>
           </select>
 

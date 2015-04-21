@@ -8,6 +8,9 @@ en:
     btn_delete: 'Delete'
     delete_booking: 'Delete bookings'
     confirm: 'Confirm delete bookings?'
+    booking_existed: 'Booking existed.'
+    booking_success: 'Booking success.'
+    booking_unsuccess: 'Booking not success.'
     table:
       booking_id: 'Booking ID'
       facility: 'Facility'

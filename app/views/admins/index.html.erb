@@ -1,13 +1,13 @@
 <div class="author-header">
 
   <%= link_to new_admin_path, :class => "btn btn-link move-confirm", remote: true do %>
-      <span class="glyphicon glyphicon-arrow-right"></span>Add new user
+      <span class="glyphicon glyphicon-arrow-right"></span><%= t('admin.index.add_user') %>
   <% end %>
 
 
   <ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a href="/">Manage User</a></li>
-    <li><%= link_to "Manage Role", roles_path %></li>
+    <li class="active"><a href="/"><%= t('admin.index.manage_user') %></a></li>
+    <li><%= link_to t('admin.index.manage_role'), roles_path %></li>
     <div></div>
   </ul>
 

@@ -2,8 +2,12 @@
   <thead>
   <tr>
     <th></th>
-    <th><%= sort_link "created_at", t('admin.index.join_date') %></th>
-    <th><%= sort_link "email", t('admin.index.email') %> </th>
+    <th><%= t('admin.index.user_name') %> </th>
+    <th><%= t('admin.index.email') %> </th>
+    <th><%= t('admin.index.phone') %> </th>
+    <th><%= t('admin.index.city') %> </th>
+    <th><%= t('admin.index.country') %> </th>
+    <th><%= t('admin.index.join_date') %></th>
     <th><%= t('admin.index.active_inactive') %></th>
     <th><%= t('admin.index.manipulate') %></th>
   </tr>
@@ -12,19 +16,22 @@
   <% @users.each do |user| %>
       <tr>
         <td><%= check_box_tag "User_id[]", user.id %></td>
-        <td><%= user.created_at %></td>
+        <td><%= user.name %></td>
         <td><%= user.email %></td>
+        <td><%= user.phone %></td>
+        <td><%= user.city %></td>
+        <td><%= user.country %></td>
+        <td><%= user.created_at.strftime('%d/%m/%Y') %></td>
         <td>
           <select class="form-control user-active" data-uid="<%= user.id %>">
-            <option value='active' <%= user.active ? 'selected' : '' %>>Active</option>
-            <option value='inactive' <%= !user.active ? 'selected' : '' %>>Inactive</option>
+            <option value='active' <%= user.active ? 'selected' : '' %>><%= t('facility.index.actice') %></option>
+            <option value='inactive' <%= !user.active ? 'selected' : '' %>><%=t('facility.index.inactive') %></option>
           </select>
         </td>
         <td>
-          <%= link_to confirm_delete_path(user.id), :class => 'btn btn-danger', remote: true do %>
-              <span class='glyphicon glyphicon-trash'></span>
-          <% end %>
-          &nbsp;
+          <%#= link_to confirm_delete_path(user.id), :class => 'btn btn-danger', remote: true do %>
+              <!--<span class='glyphicon glyphicon-trash'></span>-->
+          <%# end %>
           <%= link_to manage_user_path(user.id), :class => 'btn btn-info', remote: true do %>
               <span class='glyphicon glyphicon-cog'> </span>
           <% end %>
