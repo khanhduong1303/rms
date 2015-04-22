@@ -1,21 +1,21 @@
-<%= form_for @user, url: create_user_path ,html: {:class => "form-horizontal" , role: "form" }, remote: true do |f| %>
+<%= form_for @user, url: update_user_path ,html: {:class => "form-horizontal" , role: "form" }, remote: true do |f| %>
 
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel"><%=t('admin.new.create_new_user') %> </h4>
+        <h4 class="modal-title" id="myModalLabel"><%=t('admin.new.update_user') %> </h4>
       </div>
       <div class="modal-body">
 
         <div class="form-group">
           <%= f.label :username,t('admin.new.username') , :class => 'col-sm-4 control-label' %>
           <div class='col-sm-8'>
-            <%= f.text_field :username, autofocus: true, :class => "form-control" %></div>
+            <%= f.text_field :username, autofocus: true, :class => "form-control", 'disabled' => true %></div>
         </div>
         <div class="form-group">
           <%= f.label :email, t('admin.new.email'), :class => 'col-sm-4 control-label' %>
           <div class='col-sm-8'>
-            <%= f.email_field :email, :class => "form-control" %></div>
+            <%= f.email_field :email, :class => "form-control", 'disabled' => true %></div>
         </div>
         <div class="form-group">
           <%= f.label :name, t('admin.new.name'), :class => 'col-sm-4 control-label' %>
@@ -38,21 +38,6 @@
             <%= f.text_field :country, :class => "form-control" %></div>
         </div>
          <%= f.hidden_field :condo_id , {value: current_user.condo_id} %>
-      
-    
-        <div class="form-group">
-          <%= f.label :password ,  t('admin.new.password'), :class => 'col-sm-4 control-label' %>
-          <div class='col-sm-8'>
-            <%= f.password_field :password, autocomplete: "off", :class => "form-control" %></div>
-        </div>
-        <div class="form-group">
-          <%= f.label :password_confirmation ,t('admin.new.password_confirm'), :class => 'col-sm-4 control-label' %>
-          <div class='col-sm-8'>
-            <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control" %>
-          </div>
-        </div>
-
-
       </div>
       <div class="modal-footer">
         <div>
@@ -60,5 +45,4 @@
           <%= t('admin.new.close')%></button>
           <%= f.submit t('admin.new.create'), :class => "btn btn-success" %></div>
       </div>
-
 <% end %>

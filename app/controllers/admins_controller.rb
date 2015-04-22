@@ -22,6 +22,19 @@ class AdminsController < ApplicationController
     @user = User.new
   end
 
+  def edit_user
+    @user = User.find(params[:id])
+  end
+
+  def update_user
+    @user = User.find(params[:id])
+    if @user.update(params[:user].permit(:username, :email, :name, :city, :country, :phone, :condo_id, :postal_code, :enquiry))
+      @result = true
+    else
+      @result = false
+    end
+  end
+
   def create_user
     @user = User.new(user_params)
     @user.save
@@ -101,8 +114,6 @@ class AdminsController < ApplicationController
   end
 
   def destroy_multiple
-
-
     if params[:user_id]
       user = params[:user_id]
       user.each do |u|
@@ -118,7 +129,7 @@ class AdminsController < ApplicationController
   private
 
   def user_params
-    params[:user].permit(:username, :email, :phone, :condo_id, :postal_code, :enquiry, :password, :password_confirmation)
+    params[:user].permit(:username, :email, :name, :city, :country, :phone, :condo_id, :postal_code, :enquiry, :password, :password_confirmation)
   end
 
   def sort_column

@@ -37,6 +37,9 @@ jQuery(function () {
             language = data.val;
             localStorage.setItem('language', language);
             $('.datatable').dataTable({
+                "aoColumnDefs": [
+                    { 'bSortable': false, 'aTargets' : [ 0 ] }
+                ],
                 "language": {
                     "url": 'http://' + $(location).attr('host') + '/'+language
                 },
@@ -50,6 +53,9 @@ jQuery(function () {
         });
     }else{
         $('.datatable').dataTable({
+            "aoColumnDefs": [
+                { 'bSortable': false, 'aTargets' : [ 0 ] }
+            ],
             "language": {
                 "url": 'http://' + $(location).attr('host') + '/'+ localStorage.getItem('language')
             },

@@ -15,7 +15,7 @@
   <tbody>
   <% @users.each do |user| %>
       <tr>
-        <td><%= check_box_tag "User_id[]", user.id %></td>
+        <td><%= check_box_tag "User_id[]", user.id, nil, 'style' => 'margin: 0px 20%;', class: 'selectUser' %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.phone %></td>
@@ -29,11 +29,11 @@
           </select>
         </td>
         <td>
-          <%#= link_to confirm_delete_path(user.id), :class => 'btn btn-danger', remote: true do %>
-              <!--<span class='glyphicon glyphicon-trash'></span>-->
-          <%# end %>
-          <%= link_to manage_user_path(user.id), :class => 'btn btn-info', remote: true do %>
+          <%= link_to manage_user_path(user.id), :class => 'btn btn-primary', remote: true do %>
               <span class='glyphicon glyphicon-cog'> </span>
+          <% end %>
+          <%= link_to edit_user_path(user.id), :class => 'btn btn-primary', remote: true do %>
+          <span class='glyphicon glyphicon-pencil'></span>
           <% end %>
         </td>
 

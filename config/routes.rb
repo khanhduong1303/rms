@@ -48,6 +48,8 @@ Rails.application.routes.draw do
   delete 'admin/remove_role/:uid/:rid' , to: 'admins#remove_role' , as: "remove_role"
   post  'admin/change_active'  , to: 'admins#change_active'
   post  'admin/create_user' , to: "admins#create_user" , as: "create_user"
+  get  'admin/edit_user/:id' , to: "admins#edit_user" , as: "edit_user"
+  patch  'admin/update_user/:id' , to: "admins#update_user" , as: "update_user"
   post 'admins/destroy_multiple' , to: "admins#destroy_multiple"
   resources :condos
   post 'condos/images', to: 'condos#create_image', as: 'create_image'

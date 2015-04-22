@@ -36,7 +36,17 @@ class Api::BookingsController < Api::ApiController
       if Booking.where(date_book:params[:preferred_date].to_date, time_slot_id:params[:time_slot_id]).size > 0
         return render json: PublicFunction.data_json('failed', t('bookings.booking_existed'), 0, nil)
       end
-      @booking = Booking.create(time_slot_id:params[:time_slot_id], date_submit:Time.now , date_expiry:1.days.from_now , date_book:params[:preferred_date], user_id:params[:user_id], status:'Reserved')
+      if TimeSlot.where(id:params[:time_slot_id]).size == 0
+        return render json: PublicFunction.data_json('failed', t('bookings.time_slot_not_exist'), 0, nil)
+      end
+      temp = Hash.new
+      temp[:facility_name] = TimeSlot.find(params[:time_slot_id]).facility.name
+      temp[:user_name] = User.find(params[:user_id]).name.blank? == true ? User.find(params[:user_id]).username : User.find(params[:user_id]).name
+      time_slot = TimeSlot.find(params[:time_slot_id])
+      temp[:time_slot] = time_slot.slot_start.strftime("%H:%M") + ' - ' + TimeSlot.find(params[:time_slot_id]).slot_end.strftime("%H:%M")
+      temp[:booking_price] = time_slot.facility.booking_price
+      temp[:deposit_price] = time_slot.facility.deposit_price
+      @booking = Booking.create(data:temp.to_s,time_slot_id:params[:time_slot_id], date_submit:Time.now , date_expiry:1.days.from_now , date_book:params[:preferred_date], user_id:params[:user_id], status:'Reserved')
       if @booking
         return render json: PublicFunction.data_json('success', t('bookings.booking_success'), 1, @booking)
       else

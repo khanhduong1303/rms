@@ -1,4 +1,13 @@
 module ApplicationHelper
+
+  def hash_to_object hash
+    begin
+      return Hashie::Mash.new hash
+    rescue
+      return nil
+    end
+  end
+
   def sort_link (column, title = nil)
     title ||= column.titleize
     cssclass = column == sort_column ? "current #{sort_direction}" : nil
@@ -13,5 +22,9 @@ module ApplicationHelper
       rs += txt[txt.size - s - 1]; rs += ',' if (s+1)%3 == 0 && s+1 > 1 && s+1 != txt.size
     end
     return session[:language] == 'vi' || session[:language].nil? ? rs.reverse! + ' đồng' : rs.reverse!
+  end
+
+  def string_to_hash string
+    return hash_to_object eval(string.to_s)
   end
 end

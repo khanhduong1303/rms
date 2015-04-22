@@ -7,6 +7,7 @@ class CreateBookings < ActiveRecord::Migration
       t.string :status
       t.integer :user_id
       t.integer :time_slot_id
+      t.string   :data
 
       t.timestamps
     end

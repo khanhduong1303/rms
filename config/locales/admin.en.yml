@@ -14,17 +14,21 @@ en:
       manage_role: 'Manage Role'
       user_name: 'Name'
       phone: 'Phone'
-      city: 'City'
-      country: 'Country'
     new:
       close: "Close"
       create: "Create"
       email: "Email"
+      name: "Name"
+      city: "City"
+      country: "Country"
       username: "UserName"
-      phone: "Phone No"
+      phone: "Phone"
+      city: 'City'
+      country: 'Country'
       password: "Password"
       password_confirm: "Password Confirmation"
-      create_new_user: "Create a new Users"
+      create_new_user: "Create a new user"
+      update_user: 'Update user'
     confirm:
       destroy_user: "Destroy User"
       you_really_want: "Are you realy want to destroy this user?"

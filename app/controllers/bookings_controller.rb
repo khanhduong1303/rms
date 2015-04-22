@@ -43,9 +43,9 @@ class BookingsController < ApplicationController
     end
     if current_user.roles.where('role_name = "Admin"').size > 0
       if @category_id.nil?
-        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})")
+        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").order(:created_at => :desc)
       else
-        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").where("time_slot_id in (#{arrTimeslotId.join(',')})")
+        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").where("time_slot_id in (#{arrTimeslotId.join(',')})").order(:created_at => :desc)
       end
     else
       if @category_id.nil?
@@ -53,7 +53,7 @@ class BookingsController < ApplicationController
         current_user.facilities.each do |f|
         arrTimeslotId =  arrTimeslotId + f.time_slots.select(:id).map(&:id)
       end
-        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").where("time_slot_id in (#{arrTimeslotId.join(',')})")
+        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").where("time_slot_id in (#{arrTimeslotId.join(',')})").order(:created_at => :desc)
       else
         arrTimeslotId = []
         current_user.facilities.each do |f|
@@ -64,7 +64,7 @@ class BookingsController < ApplicationController
         if arrTimeslotId.size < 1
           arrTimeslotId << -1
         end
-        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").where("time_slot_id in (#{arrTimeslotId.join(',')})")
+        @bookings = Booking.where("user_id in (#{User.where(:condo_id => current_user.condo_id).select('id').map(&:id).join(',')})").where("time_slot_id in (#{arrTimeslotId.join(',')})").order(:created_at => :desc)
       end
     end
     # if @users.size > 0
@@ -185,7 +185,7 @@ class BookingsController < ApplicationController
   end
 
   def set_bookings
-    @bookings = Booking.all
+    @bookings = Booking.all.order(:created_at => :desc)
   end
 
   def booking_params

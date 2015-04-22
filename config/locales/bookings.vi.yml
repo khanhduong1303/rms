@@ -11,6 +11,7 @@ vi:
     booking_existed: 'Trùng thời gian.'
     booking_success: 'Đăng ký sử dụng dịch vụ thành công.'
     booking_unsuccess: 'Đăng ký sử dụng dịch vụ không thành công.'
+    time_slot_not_exist: 'Thời gian không tồn tại.'
     table:
       booking_id: 'Mã'
       facility: 'Cơ sở vật chất'

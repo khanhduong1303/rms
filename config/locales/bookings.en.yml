@@ -11,6 +11,7 @@ en:
     booking_existed: 'Booking existed.'
     booking_success: 'Booking success.'
     booking_unsuccess: 'Booking not success.'
+    time_slot_not_exist: 'TimeSlot not exist.'
     table:
       booking_id: 'Booking ID'
       facility: 'Facility'

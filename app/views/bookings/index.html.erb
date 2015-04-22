@@ -18,7 +18,7 @@
   <div class="col-sm-12">
     <table class="datatable" id="booking_table">
       <thead>
-      <th><a class="glyphicon glyphicon-ok font-color-green fontSize20"></a></th>
+      <th><input type="checkbox" style="margin: 0px 20%;" onclick="checkAll(this)" /></th>
       <!--<th><%#= t('bookings.table.booking_id') %></th>-->
       <th><%= t('bookings.table.facility') %></th>
       <th><%= t('bookings.table.date_submit') %></th>
@@ -37,15 +37,14 @@
               <input id="<%= book.id %>" class="selectBook" type="checkbox" value="<%= book.id %>" name="colection[]" style="margin: 0px 20%;"/>
             </td>
             <!--<td><%#= book.id %></td>-->
-            <td><%= book.time_slot.facility.name %></td>
+            <td><%= string_to_hash(book.data).facility_name unless string_to_hash(book.data).blank? %><%#= book.time_slot.facility.name %></td>
             <td><%= book.date_submit.strftime '%d/%m/%Y' if !book.date_submit.blank? %></td>
             <td><%= book.date_expiry.strftime '%d/%m/%Y' if !book.date_expiry.blank? %></td>
             <td><%= book.date_book.strftime '%d/%m/%Y' if !book.date_book.blank? %></td>
-            <td><%= book.time_slot.slot_start.strftime "%H:%M" if !book.time_slot.slot_start.blank? %>
-              - <%= book.time_slot.slot_end.strftime "%H:%M" if !book.time_slot.slot_end.blank? %></td>
-            <td><%= book.user.name %></td>
-            <td><%= number_format(book.time_slot.facility.booking_price) if !book.time_slot.facility.booking_price.blank? %></td>
-            <td><%= number_format(book.time_slot.facility.deposit_price) if !book.time_slot.facility.deposit_price.blank? %></td>
+            <td><%= string_to_hash(book.data).time_slot unless string_to_hash(book.data).blank? %></td>
+            <td><%= string_to_hash(book.data).user_name unless string_to_hash(book.data).blank? %></td>
+            <td><%= number_format(string_to_hash(book.data).booking_price) unless string_to_hash(book.data).blank? %><%#= number_format(book.time_slot.facility.booking_price) if !book.time_slot.facility.booking_price.blank? %></td>
+            <td><%= number_format(string_to_hash(book.data).deposit_price) unless string_to_hash(book.data).blank? %><%#= number_format(book.time_slot.facility.deposit_price) if !book.time_slot.facility.deposit_price.blank? %></td>
             <td>
               <input id="booking_<%= book.id %>" data-id='<%= book.id %>' type="checkbox" <%= 'checked' if book.status.upcase == 'BOOKED' %> style="margin: 0px 38%;" onchange="updateBookStatus(this)"/>
               <!--<select class="form-control" id="bookStatus<%= book.id %>" data-id="<%= book.id %>" onchange="updateBookStatus(this.id)">-->
@@ -76,6 +75,20 @@
 //          $(this).find('td:eq(7)').html(number)
 //      });
 //  });
+function checkAll(thiss){
+    var $this = $(thiss);
+    if($this.get(0).checked){
+        $.each($('.selectBook'), function(){
+            $(this).prop('checked', true);
+            selecBookChange($(this));
+        });
+    }else{
+        $.each($('.selectBook'), function(){
+            $(this).prop('checked', false);
+            selecBookChange($(this));
+        });
+    }
+}
     function filterByCategory(link){
         window.location = link;
     }

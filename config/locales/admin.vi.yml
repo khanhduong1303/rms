@@ -2,6 +2,9 @@ vi:
   admin:
       index:
         email: "Email"
+        name: "Họ tên"
+        city: "Tỉnh thành"
+        country: "Quốc gia"
         join_date: "Ngày tạo"
         active: "Hoạt động"
         inactive: "Không hoạt động"
@@ -14,17 +17,19 @@ vi:
         manage_role: 'Quản lý quyền'
         user_name: 'Tên người dùng'
         phone: 'Di động'
-        city: 'Tỉnh thành'
-        country: 'Quốc tịch'
       new:
         close: "Hủy"
         create: "Lưu"
         email: "Email"
+        name: 'Họ tên'
         username: "Tên đăng nhập"
         phone: "Di động"
+        city: 'Tỉnh thành'
+        country: 'Quốc tịch'
         password: "Mật khẩu"
         password_confirm: "Nhập lại mật khẩu"
         create_new_user: "Tạo người dùng"
+        update_user: "Cập nhật người dùng"
       confirm:
         destroy_user: "Xóa người dùng"
         you_really_want: "Bạn thật sự muốn xóa?"

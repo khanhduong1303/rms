@@ -3,14 +3,18 @@ var bookArr = libArray();
 
 $(function () {
     $(document).on('click', '.selectBook', function () {
-        var val = $(this).val();
-        if ($(this).prop('checked') == true) {
-            bookArr.insert(val);
-        } else {
-            bookArr.deletByValue(val);
-        }
+        selecBookChange($(this));
     });
 });
+
+function selecBookChange($this){
+    var val = $this.val();
+    if ($this.prop('checked') == true) {
+        bookArr.insert(val);
+    } else {
+        bookArr.deletByValue(val);
+    }
+}
 //function update booking status
 //function updateBookStatus(id) {
 //    var book_id = $('#' + id).data('id'), book_stt = $('#' + id).val()
