@@ -25,8 +25,6 @@
 //= require_tree .
 var language;
 jQuery(function () {
-
-
     if(localStorage.getItem('i18n') == undefined || localStorage.getItem('i18n') == 'vi'){
         i18nJs = i18nJs.vi;
     }else{

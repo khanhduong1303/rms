@@ -44,7 +44,7 @@ class Api::BulletinsController < Api::ApiController
         if b.nil?
         @result = nil
         else
-        @result = {id: b.id , title: b.title ,date: b.date ,content: b.content ,image_path_thump: b.image_path.url(:thumb) , image_path:  b.image_path.url }
+        @result = {id: b.id , title: b.title ,date: b.date ,content: b.content ,image_path_thumb: b.image_path.url(:thumb) , image_path:  b.image_path.url }
         end
       rescue ActiveRecord::RecordNotFound => e
         @result = nil

@@ -31,6 +31,16 @@ class Api::BookingsController < Api::ApiController
 
   end
 
+  def get_facilities
+    if !params[:condo_id].nil?
+      facilities = Condo.find(params[:condo_id]).facilities.order(created_at: :desc)
+      facilities = process_results facilities
+      return render json: PublicFunction.data_json('success', 'List facility', facilities.size, facilities)
+    else
+      return render json: PublicFunction.data_json('failed', 'Missing condo_id parameter', 0, nil)
+    end
+  end
+
   def make_a_booking
     if !params[:user_id].nil? && !params[:preferred_date].nil? && !params[:time_slot_id].nil?
       if Booking.where(date_book:params[:preferred_date].to_date, time_slot_id:params[:time_slot_id]).size > 0

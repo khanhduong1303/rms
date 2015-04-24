@@ -58,11 +58,23 @@
 <!-- This file lives in public/422.html -->
 <div class="dialog">
     <div>
-        <h1>The change you wanted was rejected.</h1>
-
-        <p>Maybe you tried to change something you didn't have access to.</p>
+        <p></p>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <!--<p>If you are the application owner check the logs for more information.</p>-->
 </div>
+
+
+<script data-turbolinks-track="true" src="/assets/jquery.js"></script>
+<script data-turbolinks-track="true" src="/assets/i18n.js"></script>
+<script>
+    if(localStorage.getItem('i18n') == undefined || localStorage.getItem('i18n') == 'vi'){
+        i18nJs = i18nJs.vi;
+    }else{
+        i18nJs = i18nJs.en;
+    }
+    $(window).load(function(){
+        $('.dialog > div > p').html(i18nJs.common.cannot_access);
+    });
+</script>
 </body>
 </html>

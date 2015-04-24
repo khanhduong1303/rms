@@ -1,14 +1,14 @@
 <div class="author-header">
   
   <%= link_to new_roles_path, {class: 'btn btn-link', remote: true} do %>
-      <span class="glyphicon glyphicon-plus"></span> Add New Role
+      <span class="glyphicon glyphicon-plus"></span> <%= t('admin.index.new_role') %>
   <% end %>
    
   
   <ul class="nav nav-tabs" role="tablist">
 
-  <li><%=link_to "Manage User" , admins_path, 'data-no-turbolink' => true %></li>
-   <li class="active"><a href="#">Manage Role</a></li>
+  <li><%= link_to t('admin.index.manage_user') , admins_path, 'data-no-turbolink' => true %></li>
+   <li class="active"><a href="#"><%= t('admin.index.manage_role') %></a></li>
 <div></div>
 </ul>
 

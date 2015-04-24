@@ -17,6 +17,7 @@ vi:
         manage_role: 'Quản lý quyền'
         user_name: 'Tên người dùng'
         phone: 'Di động'
+        new_role: ' Thêm quyền'
       new:
         close: "Hủy"
         create: "Lưu"

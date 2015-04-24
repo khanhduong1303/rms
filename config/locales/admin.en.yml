@@ -14,6 +14,7 @@ en:
       manage_role: 'Manage Role'
       user_name: 'Name'
       phone: 'Phone'
+      new_role: 'Add new role'
     new:
       close: "Close"
       create: "Create"
