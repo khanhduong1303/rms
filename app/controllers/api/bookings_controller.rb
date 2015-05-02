@@ -33,9 +33,36 @@ class Api::BookingsController < Api::ApiController
 
   def get_facilities
     if !params[:condo_id].nil?
-      facilities = Condo.find(params[:condo_id]).facilities.order(created_at: :desc)
+      limit = params[:limit].blank? ? 5 : params[:limit].to_i
+      page = params[:page].blank? ? 1 : params[:page].to_i
+      facility_category = params[:facility_category].blank? ? nil : params[:facility_category].to_i
+      if facility_category.nil?
+        total_correct = Condo.find(params[:condo_id]).facilities
+        facilities = Condo.find(params[:condo_id]).facilities.limit(limit).offset((page - 1) * limit).order(name: :asc)
+      else
+        total_correct = Condo.find(params[:condo_id]).facilities.where(facility_category_id: facility_category)
+        facilities = Condo.find(params[:condo_id]).facilities.where(facility_category_id: facility_category).limit(limit).offset((page - 1) * limit).order(name: :asc)
+      end
       facilities = process_results facilities
-      return render json: PublicFunction.data_json('success', 'List facility', facilities.size, facilities)
+      return render json: PublicFunction.data_json('success', 'List facility', total_correct.size, facilities)
+    else
+      return render json: PublicFunction.data_json('failed', 'Missing condo_id parameter', 0, nil)
+    end
+  end
+
+
+  def count_facility
+    if !params[:condo_id].nil?
+      return render json: PublicFunction.data_json('success', 'List facility', 1, Condo.find(params[:condo_id]).facilities.size)
+    else
+      return render json: PublicFunction.data_json('failed', 'Missing condo_id parameter', 0, nil)
+    end
+  end
+
+  def get_facility_categories
+    if !params[:condo_id].nil?
+      facility_categories = Condo.find(params[:condo_id]).facility_categories.order(name: :desc)
+      return render json: PublicFunction.data_json('success', 'List facility', facility_categories.size, facility_categories)
     else
       return render json: PublicFunction.data_json('failed', 'Missing condo_id parameter', 0, nil)
     end
@@ -56,7 +83,7 @@ class Api::BookingsController < Api::ApiController
       temp[:time_slot] = time_slot.slot_start.strftime("%H:%M") + ' - ' + TimeSlot.find(params[:time_slot_id]).slot_end.strftime("%H:%M")
       temp[:booking_price] = time_slot.facility.booking_price
       temp[:deposit_price] = time_slot.facility.deposit_price
-      @booking = Booking.create(data:temp.to_s,time_slot_id:params[:time_slot_id], date_submit:Time.now , date_expiry:1.days.from_now , date_book:params[:preferred_date], user_id:params[:user_id], status:'Reserved')
+      @booking = Booking.create(data:temp.to_s,time_slot_id:params[:time_slot_id], date_submit:Time.now , date_expiry:1.days.from_now , date_book:params[:preferred_date], user_id:params[:user_id], status:'Waiting')
       if @booking
         return render json: PublicFunction.data_json('success', t('bookings.booking_success'), 1, @booking)
       else
@@ -64,6 +91,20 @@ class Api::BookingsController < Api::ApiController
       end
     else
       return render json: PublicFunction.data_json('failed', 'Missing parameter', 0, nil)
+    end
+  end
+
+  def my_bookings
+    user = params[:user_id]
+    if user.nil?
+      return render json: PublicFunction.data_json('failed', 'Missing parameter', 0, nil)
+    else
+      if User.where(id: user).size > 0
+        @booking = User.find(user).bookings
+        return render json: PublicFunction.data_json('success', 'Check booking list', @booking.size, @booking)
+      else
+        return render json: PublicFunction.data_json('failed', 'User_id not found', 0, nil)
+      end
     end
   end
 
@@ -153,7 +194,7 @@ class Api::BookingsController < Api::ApiController
         temp[:created_at]=booking.created_at
         temp[:updated_at]=booking.updated_at
         temp[:facility_category_id]=booking.facility_category_id
-        temp[:image_path]=booking.image_path.url
+        temp[:image_path]=booking.image_path.url(:default)
         booking_data[i] = temp
         i+=1
       end
@@ -172,7 +213,7 @@ class Api::BookingsController < Api::ApiController
       temp[:created_at]=facility.created_at
       temp[:updated_at]=facility.updated_at
       temp[:facility_category_id]=facility.facility_category_id
-      temp[:image_path]=facility.image_path.url
+      temp[:image_path]=facility.image_path.url(:default)
     return temp
   end
 end

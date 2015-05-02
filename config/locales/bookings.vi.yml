@@ -12,6 +12,8 @@ vi:
     booking_success: 'Đăng ký sử dụng dịch vụ thành công.'
     booking_unsuccess: 'Đăng ký sử dụng dịch vụ không thành công.'
     time_slot_not_exist: 'Thời gian không tồn tại.'
+    approved: 'Có'
+    cancel: 'Không'
     table:
       booking_id: 'Mã'
       facility: 'Cơ sở vật chất'
@@ -22,7 +24,7 @@ vi:
       user: 'Người đặt'
       booking_price: 'Giá đặt'
       booking_deposit: 'Trả trước'
-      booking_status: 'Thanh toán'
+      booking_status: 'Chấp nhận'
       waiting_status: 'Đang đợi'
       booked_status: 'Đặt trước'
       reserved_status: 'Đã đặt'

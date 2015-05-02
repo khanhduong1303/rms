@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     post 'send_feedback', to: 'feedbacks#create'
     get 'list_subject', to: 'feedbacks#list_cat'
     get 'get_facilities', to: 'bookings#get_facilities'
+    get 'count_facility', to: 'bookings#count_facility'
+    get 'my_bookings', to: 'bookings#my_bookings'
+    get 'get_facility_categories', to: 'bookings#get_facility_categories'
     get 'get_users', to: 'users#get_users'
 
   end
@@ -249,6 +252,7 @@ Rails.application.routes.draw do
     resource :form, only: [], path: 'api' do
       collection do
         get 'forms' => 'forms#index'
+        get 'get_forms' => 'forms#get_forms'
       end
     end
 

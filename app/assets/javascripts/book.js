@@ -30,7 +30,8 @@ function selecBookChange($this){
 function updateBookStatus(thiss){
     $this = $(thiss);
     var book_id = $this.data('id');
-    var book_stt = $this.get(0).checked == true ? 'Booked' : '';
+    var book_stt = $this.val();
+//    var book_stt = $this.get(0).checked == true ? 'Booked' : '';
     $.post('/bookings/updateStatus', {book_id: book_id, book_stt: book_stt}, function (data) {
         if (data.status == 'failed') {
             delayedAlert(i18nJs.common.update_unsuccess, 1000);

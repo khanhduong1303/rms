@@ -1,7 +1,7 @@
 vi:
   condo:
     button:
-      edit: "Chỉnh sữa"
+      edit: "Chỉnh sửa"
       add_photo: "Thêm hình ảnh"
       cancel: "Hủy"
       save: "Lưu"

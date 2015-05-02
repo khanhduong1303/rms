@@ -46,7 +46,13 @@
             <td><%= number_format(string_to_hash(book.data).booking_price) unless string_to_hash(book.data).blank? %><%#= number_format(book.time_slot.facility.booking_price) if !book.time_slot.facility.booking_price.blank? %></td>
             <td><%= number_format(string_to_hash(book.data).deposit_price) unless string_to_hash(book.data).blank? %><%#= number_format(book.time_slot.facility.deposit_price) if !book.time_slot.facility.deposit_price.blank? %></td>
             <td>
-              <input id="booking_<%= book.id %>" data-id='<%= book.id %>' type="checkbox" <%= 'checked' if book.status.upcase == 'BOOKED' %> style="margin: 0px 38%;" onchange="updateBookStatus(this)"/>
+              <div class="radio-inline">
+                <label style="font-weight: normal;"><input id="booking_<%= book.id %>_ok" name="booking_<%= book.id %>" data-id='<%= book.id %>' type="radio" <%= 'checked' if book.status.upcase == 'APPROVED' %> onchange="updateBookStatus(this)" value="approved" /><%= t('bookings.approved') %></label>
+              </div>
+              <div class="radio-inline">
+                <label style="font-weight: normal;"><input id="booking_<%= book.id %>" name="booking_<%= book.id %>" data-id='<%= book.id %>' type="radio" <%= 'checked' if book.status.upcase == 'CANCEL' %> onchange="updateBookStatus(this)" value="cancel" /><%= t('bookings.cancel') %></label>
+              </div>
+
               <!--<select class="form-control" id="bookStatus<%= book.id %>" data-id="<%= book.id %>" onchange="updateBookStatus(this.id)">-->
                 <!--&lt;!&ndash;<option <%#= 'selected' if book.status.upcase == 'WAITING' %> value="Booked"><%= t('bookings.table.waiting_status') %></option>&ndash;&gt;-->
                 <!--<option <%#= 'selected' if book.status.upcase == 'BOOKED' %> value="Booked"><%= t('bookings.table.booked_status')%></option>-->

@@ -11,7 +11,7 @@ vi:
       city: "Thành phố:"
       zip: "Mã bưu điện :"
       phone: "Điện Thoại:"
-      button_edit: "Chỉnh sữa"
+      button_edit: "Chỉnh sửa"
       chang_your_pass: "Thay đổi mật khẩu"
       current_password: "Mật khẩu hiện tại"
       password: "Mật khẩu mới"

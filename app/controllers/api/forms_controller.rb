@@ -19,5 +19,17 @@ class Api::FormsController < Api::ApiController
       render json: {status: 'failed', message: 'Not found forms', results: {}}, status: :not_found
     end
   end
+
+  def get_forms
+    if !params[:condo_id].nil?
+      limit = params[:limit].blank? ? 5 : params[:limit].to_i
+      page = params[:page].blank? ? 1 : params[:page].to_i
+      forms = Condo.find(params[:condo_id]).forms.limit(limit).offset((page - 1) * limit).order(title: :asc)
+      return render json: PublicFunction.data_json('success', 'List forms', forms.size, forms)
+    else
+      return render json: PublicFunction.data_json('failed', 'Missing condo_id parameter', 0, nil)
+    end
+  end
+
 end
 

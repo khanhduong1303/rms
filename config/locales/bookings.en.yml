@@ -12,6 +12,8 @@ en:
     booking_success: 'Booking success.'
     booking_unsuccess: 'Booking not success.'
     time_slot_not_exist: 'TimeSlot not exist.'
+    approved: 'Yes'
+    cancel: 'No'
     table:
       booking_id: 'Booking ID'
       facility: 'Facility'
@@ -22,7 +24,7 @@ en:
       user: 'User'
       booking_price: 'Booking price'
       booking_deposit: 'Booking deposit'
-      booking_status: 'Status'
+      booking_status: 'Approve'
       waiting_status: 'Waiting'
       booked_status: 'Booked'
       reserved_status: 'Reserved'
