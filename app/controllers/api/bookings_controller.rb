@@ -37,11 +37,11 @@ class Api::BookingsController < Api::ApiController
       page = params[:page].blank? ? 1 : params[:page].to_i
       facility_category = params[:facility_category].blank? ? nil : params[:facility_category].to_i
       if facility_category.nil?
-        total_correct = Condo.find(params[:condo_id]).facilities
-        facilities = Condo.find(params[:condo_id]).facilities.limit(limit).offset((page - 1) * limit).order(name: :asc)
+        total_correct = Condo.find(params[:condo_id]).facilities.where(:active => true)
+        facilities = Condo.find(params[:condo_id]).facilities.where(:active => true).limit(limit).offset((page - 1) * limit).order('created_at' => :desc)
       else
-        total_correct = Condo.find(params[:condo_id]).facilities.where(facility_category_id: facility_category)
-        facilities = Condo.find(params[:condo_id]).facilities.where(facility_category_id: facility_category).limit(limit).offset((page - 1) * limit).order(name: :asc)
+        total_correct = Condo.find(params[:condo_id]).facilities.where(facility_category_id: facility_category, :active => true)
+        facilities = Condo.find(params[:condo_id]).facilities.where(facility_category_id: facility_category, :active => true).limit(limit).offset((page - 1) * limit).order('created_at' => :desc)
       end
       facilities = process_results facilities
       return render json: PublicFunction.data_json('success', 'List facility', total_correct.size, facilities)

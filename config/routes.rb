@@ -253,6 +253,7 @@ Rails.application.routes.draw do
       collection do
         get 'forms' => 'forms#index'
         get 'get_forms' => 'forms#get_forms'
+        get 'count_forms' => 'forms#count_forms'
       end
     end
 
