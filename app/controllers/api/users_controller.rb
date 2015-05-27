@@ -2,9 +2,11 @@ class Api::UsersController < Api::ApiController
 
   def get_users
     if !params[:condo_id].nil?
-      users = Condo.find(params[:condo_id]).users.where.not(:username => 'guest').order(created_at: :desc)
+      limit = params[:limit].blank? ? 5 : params[:limit].to_i
+      page = params[:page].blank? ? 1 : params[:page].to_i
+      users = Condo.find(params[:condo_id]).users.where('username not in ("admin", "guest")').limit(limit).offset((page - 1) * limit).order('created_at' => :desc)
       users = process_results users
-      return render json: PublicFunction.data_json('success', 'List facility', users.size, users)
+      return render json: PublicFunction.data_json('success', 'List facility', Condo.find(params[:condo_id]).users.size, users)
     else
       return render json: PublicFunction.data_json('failed', 'Missing condo_id parameter', 0, nil)
     end

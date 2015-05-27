@@ -15,18 +15,18 @@ class Api::PrivilegesController < Api::ApiController #ApplicationController
     if page < 1 or limit < 1
       @results = Privilege.limit(10).where("user_id in (#{arr_group_id.join(',')})").order(created_at: :desc)
       @privileges = process_results @results, []
-      return render json: PublicFunction.data_json('success', 'Privilege list', @privileges.size, @privileges)
+      return render json: PublicFunction.data_json('success', 'Privilege list', Privilege.where("user_id in (#{arr_group_id.join(',')})").size, @privileges)
     end
 
     if limit > 0 and page > 0
       @results = Privilege.limit(limit).offset(page*limit-limit).where("user_id in (#{arr_group_id.join(',')})").order(created_at: :desc)
       @privileges = process_results @results, []
       if @privileges.size > 0
-        return render json: PublicFunction.data_json('success', 'Privilege list', @privileges.size, @privileges)
+        return render json: PublicFunction.data_json('success', 'Privilege list', Privilege.where("user_id in (#{arr_group_id.join(',')})").size, @privileges)
       else
         @results = Privilege.limit(10).where("user_id in (#{arr_group_id.join(',')})").order(created_at: :desc)
         @privileges = process_results @results, []
-        return render json: PublicFunction.data_json('success', 'Privilege list', @privileges.size, @privileges)
+        return render json: PublicFunction.data_json('success', 'Privilege list', Privilege.where("user_id in (#{arr_group_id.join(',')})").size, @privileges)
       end
     end
   end
